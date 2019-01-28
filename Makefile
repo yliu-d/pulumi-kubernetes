@@ -18,6 +18,7 @@ OPENAPI_FILE    := ${OPENAPI_DIR}/swagger-${KUBE_VERSION}.json
 SCHEMA_FILE     := provider/cmd/pulumi-resource-kubernetes/schema.json
 
 VERSION_FLAGS   := -ldflags "-X github.com/pulumi/pulumi-kubernetes/provider/v2/pkg/version.Version=${VERSION}"
+BUILD_FLAGS := -gcflags "all=-N -l"
 
 GO              ?= go
 CURL            ?= curl
@@ -39,7 +40,7 @@ $(OPENAPI_FILE)::
 	test -f $(OPENAPI_FILE) || $(CURL) -s -L $(SWAGGER_URL) > $(OPENAPI_FILE)
 
 k8sgen::
-	cd provider && $(GO) install $(VERSION_FLAGS) $(PROJECT)/provider/v2/cmd/$(CODEGEN)
+	cd provider && $(GO) install $(BUILD_FLAGS) $(VERSION_FLAGS) $(PROJECT)/provider/v2/cmd/$(CODEGEN)
 
 $(SCHEMA_FILE):: k8sgen $(OPENAPI_FILE)
 	$(call STEP_MESSAGE)
@@ -90,7 +91,7 @@ lint::
 	done
 
 install::
-	cd provider && GOBIN=$(PULUMI_BIN) $(GO) install $(VERSION_FLAGS) $(PROJECT)/provider/v2/cmd/$(PROVIDER)
+	cd provider && GOBIN=$(PULUMI_BIN) $(GO) install $(BUILD_FLAGS) $(VERSION_FLAGS) $(PROJECT)/provider/v2/cmd/$(PROVIDER)
 	[ ! -e "$(PULUMI_NODE_MODULES)/$(NODE_MODULE_NAME)" ] || rm -rf "$(PULUMI_NODE_MODULES)/$(NODE_MODULE_NAME)"
 	mkdir -p "$(PULUMI_NODE_MODULES)/$(NODE_MODULE_NAME)"
 	cp -r sdk/nodejs/bin/. "$(PULUMI_NODE_MODULES)/$(NODE_MODULE_NAME)"
@@ -106,8 +107,7 @@ install::
 	find . -name '$(NUGET_PKG_NAME).*.nupkg' -exec cp -p {} ${PULUMI_NUGET} \;
 
 test_fast::
-# TODO: re-enable this test once https://github.com/pulumi/pulumi/issues/4954 is fixed.
-#	./sdk/nodejs/node_modules/mocha/bin/mocha ./sdk/nodejs/bin/tests
+	./sdk/nodejs/node_modules/mocha/bin/mocha ./sdk/nodejs/bin/tests
 	cd provider/pkg && $(GO_TEST_FAST) ./...
 	cd tests && $(GO_TEST_FAST) ./...
 
