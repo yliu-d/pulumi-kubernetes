@@ -82,7 +82,7 @@ python_sdk:: k8sgen $(SCHEMA_FILE)
 		cd ./bin && $(PYTHON) setup.py build sdist
 
 .PHONY: build
-build:: k8sgen k8sprovider dotnet_sdk go_sdk nodejs_sdk python_sdk
+build:: k8sgen k8sprovider python_sdk
 
 lint::
 	for DIR in "provider" "sdk" "tests" ; do \
