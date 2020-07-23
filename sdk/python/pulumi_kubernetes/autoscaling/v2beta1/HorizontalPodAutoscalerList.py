@@ -5,37 +5,55 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from ... import _utilities, _tables
+from . import outputs
+from ... import meta as _meta
+from ._inputs import *
+
+__all__ = ['HorizontalPodAutoscalerList']
 
 
 class HorizontalPodAutoscalerList(pulumi.CustomResource):
-    api_version: pulumi.Output[str]
+    api_version: pulumi.Output[Optional[str]] = pulumi.property("apiVersion")
     """
     APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
     """
-    items: pulumi.Output[list]
+
+    items: pulumi.Output[List['outputs.HorizontalPodAutoscaler']] = pulumi.property("items")
     """
     items is the list of horizontal pod autoscaler objects.
     """
-    kind: pulumi.Output[str]
+
+    kind: pulumi.Output[Optional[str]] = pulumi.property("kind")
     """
     Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
     """
-    metadata: pulumi.Output[dict]
+
+    metadata: pulumi.Output[Optional['_meta.v1.outputs.ListMeta']] = pulumi.property("metadata")
     """
     metadata is the standard list metadata.
     """
-    def __init__(__self__, resource_name, opts=None, api_version=None, items=None, kind=None, metadata=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 api_version: Optional[pulumi.Input[str]] = None,
+                 items: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['HorizontalPodAutoscalerArgs']]]]] = None,
+                 kind: Optional[pulumi.Input[str]] = None,
+                 metadata: Optional[pulumi.Input[pulumi.InputType['_meta.v1.ListMetaArgs']]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         HorizontalPodAutoscaler is a list of horizontal pod autoscaler objects.
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] api_version: APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
-        :param pulumi.Input[list] items: items is the list of horizontal pod autoscaler objects.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['HorizontalPodAutoscalerArgs']]]] items: items is the list of horizontal pod autoscaler objects.
         :param pulumi.Input[str] kind: Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-        :param pulumi.Input[dict] metadata: metadata is the standard list metadata.
+        :param pulumi.Input[pulumi.InputType['_meta.v1.ListMetaArgs']] metadata: metadata is the standard list metadata.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -67,7 +85,9 @@ class HorizontalPodAutoscalerList(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None) -> 'HorizontalPodAutoscalerList':
         """
         Get an existing HorizontalPodAutoscalerList resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -87,3 +107,4 @@ class HorizontalPodAutoscalerList(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

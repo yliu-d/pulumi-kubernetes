@@ -5,44 +5,68 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from ... import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = ['Status']
 
 
 class Status(pulumi.CustomResource):
-    api_version: pulumi.Output[str]
+    api_version: pulumi.Output[Optional[str]] = pulumi.property("apiVersion")
     """
     APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
     """
-    code: pulumi.Output[float]
+
+    code: pulumi.Output[Optional[float]] = pulumi.property("code")
     """
     Suggested HTTP return code for this status, 0 if not set.
     """
-    details: pulumi.Output[dict]
+
+    details: pulumi.Output[Optional['outputs.StatusDetails']] = pulumi.property("details")
     """
     Extended data associated with the reason.  Each reason may define its own extended details. This field is optional and the data returned is not guaranteed to conform to any schema except that defined by the reason type.
     """
-    kind: pulumi.Output[str]
+
+    kind: pulumi.Output[Optional[str]] = pulumi.property("kind")
     """
     Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
     """
-    message: pulumi.Output[str]
+
+    message: pulumi.Output[Optional[str]] = pulumi.property("message")
     """
     A human-readable description of the status of this operation.
     """
-    metadata: pulumi.Output[dict]
+
+    metadata: pulumi.Output[Optional['outputs.ListMeta']] = pulumi.property("metadata")
     """
     Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
     """
-    reason: pulumi.Output[str]
+
+    reason: pulumi.Output[Optional[str]] = pulumi.property("reason")
     """
     A machine-readable description of why this operation is in the "Failure" status. If this value is empty there is no information available. A Reason clarifies an HTTP status code but does not override it.
     """
-    status: pulumi.Output[str]
+
+    status: pulumi.Output[Optional[str]] = pulumi.property("status")
     """
     Status of the operation. One of: "Success" or "Failure". More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
     """
-    def __init__(__self__, resource_name, opts=None, api_version=None, code=None, details=None, kind=None, message=None, metadata=None, reason=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 api_version: Optional[pulumi.Input[str]] = None,
+                 code: Optional[pulumi.Input[float]] = None,
+                 details: Optional[pulumi.Input[pulumi.InputType['StatusDetailsArgs']]] = None,
+                 kind: Optional[pulumi.Input[str]] = None,
+                 message: Optional[pulumi.Input[str]] = None,
+                 metadata: Optional[pulumi.Input[pulumi.InputType['ListMetaArgs']]] = None,
+                 reason: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Status is a return value for calls that don't return other objects.
 
@@ -50,10 +74,10 @@ class Status(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] api_version: APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
         :param pulumi.Input[float] code: Suggested HTTP return code for this status, 0 if not set.
-        :param pulumi.Input[dict] details: Extended data associated with the reason.  Each reason may define its own extended details. This field is optional and the data returned is not guaranteed to conform to any schema except that defined by the reason type.
+        :param pulumi.Input[pulumi.InputType['StatusDetailsArgs']] details: Extended data associated with the reason.  Each reason may define its own extended details. This field is optional and the data returned is not guaranteed to conform to any schema except that defined by the reason type.
         :param pulumi.Input[str] kind: Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         :param pulumi.Input[str] message: A human-readable description of the status of this operation.
-        :param pulumi.Input[dict] metadata: Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+        :param pulumi.Input[pulumi.InputType['ListMetaArgs']] metadata: Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         :param pulumi.Input[str] reason: A machine-readable description of why this operation is in the "Failure" status. If this value is empty there is no information available. A Reason clarifies an HTTP status code but does not override it.
         """
         if __name__ is not None:
@@ -88,7 +112,9 @@ class Status(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None) -> 'Status':
         """
         Get an existing Status resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -108,3 +134,4 @@ class Status(pulumi.CustomResource):
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

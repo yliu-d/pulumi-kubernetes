@@ -5,3 +5,5 @@
 # Export this package's modules as members:
 from .NetworkPolicy import *
 from .NetworkPolicyList import *
+from ._inputs import *
+from . import outputs
