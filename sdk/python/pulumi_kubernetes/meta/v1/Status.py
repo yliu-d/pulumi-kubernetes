@@ -14,46 +14,6 @@ __all__ = ['Status']
 
 
 class Status(pulumi.CustomResource):
-    api_version: pulumi.Output[Optional[str]] = pulumi.property("apiVersion")
-    """
-    APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
-    """
-
-    code: pulumi.Output[Optional[float]] = pulumi.property("code")
-    """
-    Suggested HTTP return code for this status, 0 if not set.
-    """
-
-    details: pulumi.Output[Optional['outputs.StatusDetails']] = pulumi.property("details")
-    """
-    Extended data associated with the reason.  Each reason may define its own extended details. This field is optional and the data returned is not guaranteed to conform to any schema except that defined by the reason type.
-    """
-
-    kind: pulumi.Output[Optional[str]] = pulumi.property("kind")
-    """
-    Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-    """
-
-    message: pulumi.Output[Optional[str]] = pulumi.property("message")
-    """
-    A human-readable description of the status of this operation.
-    """
-
-    metadata: pulumi.Output[Optional['outputs.ListMeta']] = pulumi.property("metadata")
-    """
-    Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-    """
-
-    reason: pulumi.Output[Optional[str]] = pulumi.property("reason")
-    """
-    A machine-readable description of why this operation is in the "Failure" status. If this value is empty there is no information available. A Reason clarifies an HTTP status code but does not override it.
-    """
-
-    status: pulumi.Output[Optional[str]] = pulumi.property("status")
-    """
-    Status of the operation. One of: "Success" or "Failure". More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -128,6 +88,70 @@ class Status(pulumi.CustomResource):
         __props__ = dict()
 
         return Status(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="apiVersion")
+    def api_version(self) -> Optional[str]:
+        """
+        APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def code(self) -> Optional[float]:
+        """
+        Suggested HTTP return code for this status, 0 if not set.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def details(self) -> Optional['outputs.StatusDetails']:
+        """
+        Extended data associated with the reason.  Each reason may define its own extended details. This field is optional and the data returned is not guaranteed to conform to any schema except that defined by the reason type.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def kind(self) -> Optional[str]:
+        """
+        Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def message(self) -> Optional[str]:
+        """
+        A human-readable description of the status of this operation.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def metadata(self) -> Optional['outputs.ListMeta']:
+        """
+        Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def reason(self) -> Optional[str]:
+        """
+        A machine-readable description of why this operation is in the "Failure" status. If this value is empty there is no information available. A Reason clarifies an HTTP status code but does not override it.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def status(self) -> Optional[str]:
+        """
+        Status of the operation. One of: "Success" or "Failure". More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -45,12 +45,15 @@ class CustomResourceColumnDefinitionArgs:
         :param pulumi.Input[str] format: format is an optional OpenAPI type definition for this column. The 'name' format is applied to the primary identifier column to assist in clients identifying column is the resource name. See https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#data-types for details.
         :param pulumi.Input[float] priority: priority is an integer defining the relative importance of this column compared to others. Lower numbers are considered higher priority. Columns that may be omitted in limited space scenarios should be given a priority greater than 0.
         """
-        pulumi.set(__self__, "JSONPath", json_path)
+        pulumi.set(__self__, "json_path", json_path)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "type", type)
-        pulumi.set(__self__, "description", description)
-        pulumi.set(__self__, "format", format)
-        pulumi.set(__self__, "priority", priority)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if format is not None:
+            pulumi.set(__self__, "format", format)
+        if priority is not None:
+            pulumi.set(__self__, "priority", priority)
 
     @property
     @pulumi.getter(name="JSONPath")
@@ -139,8 +142,10 @@ class CustomResourceConversionArgs:
         :param pulumi.Input['WebhookClientConfigArgs'] webhook_client_config: webhookClientConfig is the instructions for how to call the webhook if strategy is `Webhook`. Required when `strategy` is set to `Webhook`.
         """
         pulumi.set(__self__, "strategy", strategy)
-        pulumi.set(__self__, "conversionReviewVersions", conversion_review_versions)
-        pulumi.set(__self__, "webhookClientConfig", webhook_client_config)
+        if conversion_review_versions is not None:
+            pulumi.set(__self__, "conversion_review_versions", conversion_review_versions)
+        if webhook_client_config is not None:
+            pulumi.set(__self__, "webhook_client_config", webhook_client_config)
 
     @property
     @pulumi.getter
@@ -196,10 +201,14 @@ class CustomResourceDefinitionArgs:
         :param pulumi.Input['CustomResourceDefinitionStatusArgs'] status: status indicates the actual state of the CustomResourceDefinition
         """
         pulumi.set(__self__, "spec", spec)
-        pulumi.set(__self__, "apiVersion", 'apiextensions.k8s.io/v1beta1')
-        pulumi.set(__self__, "kind", 'CustomResourceDefinition')
-        pulumi.set(__self__, "metadata", metadata)
-        pulumi.set(__self__, "status", status)
+        if api_version is not None:
+            pulumi.set(__self__, "api_version", 'apiextensions.k8s.io/v1beta1')
+        if kind is not None:
+            pulumi.set(__self__, "kind", 'CustomResourceDefinition')
+        if metadata is not None:
+            pulumi.set(__self__, "metadata", metadata)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
 
     @property
     @pulumi.getter
@@ -277,9 +286,12 @@ class CustomResourceDefinitionConditionArgs:
         """
         pulumi.set(__self__, "status", status)
         pulumi.set(__self__, "type", type)
-        pulumi.set(__self__, "lastTransitionTime", last_transition_time)
-        pulumi.set(__self__, "message", message)
-        pulumi.set(__self__, "reason", reason)
+        if last_transition_time is not None:
+            pulumi.set(__self__, "last_transition_time", last_transition_time)
+        if message is not None:
+            pulumi.set(__self__, "message", message)
+        if reason is not None:
+            pulumi.set(__self__, "reason", reason)
 
     @property
     @pulumi.getter
@@ -362,10 +374,14 @@ class CustomResourceDefinitionNamesArgs:
         """
         pulumi.set(__self__, "kind", kind)
         pulumi.set(__self__, "plural", plural)
-        pulumi.set(__self__, "categories", categories)
-        pulumi.set(__self__, "listKind", list_kind)
-        pulumi.set(__self__, "shortNames", short_names)
-        pulumi.set(__self__, "singular", singular)
+        if categories is not None:
+            pulumi.set(__self__, "categories", categories)
+        if list_kind is not None:
+            pulumi.set(__self__, "list_kind", list_kind)
+        if short_names is not None:
+            pulumi.set(__self__, "short_names", short_names)
+        if singular is not None:
+            pulumi.set(__self__, "singular", singular)
 
     @property
     @pulumi.getter
@@ -469,13 +485,20 @@ class CustomResourceDefinitionSpecArgs:
         pulumi.set(__self__, "group", group)
         pulumi.set(__self__, "names", names)
         pulumi.set(__self__, "scope", scope)
-        pulumi.set(__self__, "additionalPrinterColumns", additional_printer_columns)
-        pulumi.set(__self__, "conversion", conversion)
-        pulumi.set(__self__, "preserveUnknownFields", preserve_unknown_fields)
-        pulumi.set(__self__, "subresources", subresources)
-        pulumi.set(__self__, "validation", validation)
-        pulumi.set(__self__, "version", version)
-        pulumi.set(__self__, "versions", versions)
+        if additional_printer_columns is not None:
+            pulumi.set(__self__, "additional_printer_columns", additional_printer_columns)
+        if conversion is not None:
+            pulumi.set(__self__, "conversion", conversion)
+        if preserve_unknown_fields is not None:
+            pulumi.set(__self__, "preserve_unknown_fields", preserve_unknown_fields)
+        if subresources is not None:
+            pulumi.set(__self__, "subresources", subresources)
+        if validation is not None:
+            pulumi.set(__self__, "validation", validation)
+        if version is not None:
+            pulumi.set(__self__, "version", version)
+        if versions is not None:
+            pulumi.set(__self__, "versions", versions)
 
     @property
     @pulumi.getter
@@ -610,9 +633,10 @@ class CustomResourceDefinitionStatusArgs:
         :param pulumi.Input[List[pulumi.Input[str]]] stored_versions: storedVersions lists all versions of CustomResources that were ever persisted. Tracking these versions allows a migration path for stored versions in etcd. The field is mutable so a migration controller can finish a migration to another version (ensuring no old objects are left in storage), and then remove the rest of the versions from this list. Versions may not be removed from `spec.versions` while they exist in this list.
         :param pulumi.Input[List[pulumi.Input['CustomResourceDefinitionConditionArgs']]] conditions: conditions indicate state for particular aspects of a CustomResourceDefinition
         """
-        pulumi.set(__self__, "acceptedNames", accepted_names)
-        pulumi.set(__self__, "storedVersions", stored_versions)
-        pulumi.set(__self__, "conditions", conditions)
+        pulumi.set(__self__, "accepted_names", accepted_names)
+        pulumi.set(__self__, "stored_versions", stored_versions)
+        if conditions is not None:
+            pulumi.set(__self__, "conditions", conditions)
 
     @property
     @pulumi.getter(name="acceptedNames")
@@ -672,9 +696,12 @@ class CustomResourceDefinitionVersionArgs:
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "served", served)
         pulumi.set(__self__, "storage", storage)
-        pulumi.set(__self__, "additionalPrinterColumns", additional_printer_columns)
-        pulumi.set(__self__, "schema", schema)
-        pulumi.set(__self__, "subresources", subresources)
+        if additional_printer_columns is not None:
+            pulumi.set(__self__, "additional_printer_columns", additional_printer_columns)
+        if schema is not None:
+            pulumi.set(__self__, "schema", schema)
+        if subresources is not None:
+            pulumi.set(__self__, "subresources", subresources)
 
     @property
     @pulumi.getter
@@ -761,9 +788,10 @@ class CustomResourceSubresourceScaleArgs:
         :param pulumi.Input[str] status_replicas_path: statusReplicasPath defines the JSON path inside of a custom resource that corresponds to Scale `status.replicas`. Only JSON paths without the array notation are allowed. Must be a JSON Path under `.status`. If there is no value under the given path in the custom resource, the `status.replicas` value in the `/scale` subresource will default to 0.
         :param pulumi.Input[str] label_selector_path: labelSelectorPath defines the JSON path inside of a custom resource that corresponds to Scale `status.selector`. Only JSON paths without the array notation are allowed. Must be a JSON Path under `.status` or `.spec`. Must be set to work with HorizontalPodAutoscaler. The field pointed by this JSON path must be a string field (not a complex selector struct) which contains a serialized label selector in string form. More info: https://kubernetes.io/docs/tasks/access-kubernetes-api/custom-resources/custom-resource-definitions#scale-subresource If there is no value under the given path in the custom resource, the `status.selector` value in the `/scale` subresource will default to the empty string.
         """
-        pulumi.set(__self__, "specReplicasPath", spec_replicas_path)
-        pulumi.set(__self__, "statusReplicasPath", status_replicas_path)
-        pulumi.set(__self__, "labelSelectorPath", label_selector_path)
+        pulumi.set(__self__, "spec_replicas_path", spec_replicas_path)
+        pulumi.set(__self__, "status_replicas_path", status_replicas_path)
+        if label_selector_path is not None:
+            pulumi.set(__self__, "label_selector_path", label_selector_path)
 
     @property
     @pulumi.getter(name="specReplicasPath")
@@ -812,8 +840,10 @@ class CustomResourceSubresourcesArgs:
         :param pulumi.Input['CustomResourceSubresourceScaleArgs'] scale: scale indicates the custom resource should serve a `/scale` subresource that returns an `autoscaling/v1` Scale object.
         :param Any status: status indicates the custom resource should serve a `/status` subresource. When enabled: 1. requests to the custom resource primary endpoint ignore changes to the `status` stanza of the object. 2. requests to the custom resource `/status` subresource ignore changes to anything other than the `status` stanza of the object.
         """
-        pulumi.set(__self__, "scale", scale)
-        pulumi.set(__self__, "status", status)
+        if scale is not None:
+            pulumi.set(__self__, "scale", scale)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
 
     @property
     @pulumi.getter
@@ -848,7 +878,8 @@ class CustomResourceValidationArgs:
         CustomResourceValidation is a list of validation methods for CustomResources.
         :param pulumi.Input['JSONSchemaPropsArgs'] open_apiv3_schema: openAPIV3Schema is the OpenAPI v3 schema to use for validation and pruning.
         """
-        pulumi.set(__self__, "openAPIV3Schema", open_apiv3_schema)
+        if open_apiv3_schema is not None:
+            pulumi.set(__self__, "open_apiv3_schema", open_apiv3_schema)
 
     @property
     @pulumi.getter(name="openAPIV3Schema")
@@ -871,8 +902,10 @@ class ExternalDocumentationArgs:
         """
         ExternalDocumentation allows referencing an external resource for extended documentation.
         """
-        pulumi.set(__self__, "description", description)
-        pulumi.set(__self__, "url", url)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if url is not None:
+            pulumi.set(__self__, "url", url)
 
     @property
     @pulumi.getter
@@ -985,49 +1018,92 @@ class JSONSchemaPropsArgs:
                     Atomic maps will be entirely replaced when updated.
         :param pulumi.Input[bool] x_kubernetes_preserve_unknown_fields: x-kubernetes-preserve-unknown-fields stops the API server decoding step from pruning fields which are not specified in the validation schema. This affects fields recursively, but switches back to normal pruning behaviour if nested properties or additionalProperties are specified in the schema. This can either be true or undefined. False is forbidden.
         """
-        pulumi.set(__self__, "$ref", _ref)
-        pulumi.set(__self__, "$schema", _schema)
-        pulumi.set(__self__, "additionalItems", additional_items)
-        pulumi.set(__self__, "additionalProperties", additional_properties)
-        pulumi.set(__self__, "allOf", all_of)
-        pulumi.set(__self__, "anyOf", any_of)
-        pulumi.set(__self__, "default", default)
-        pulumi.set(__self__, "definitions", definitions)
-        pulumi.set(__self__, "dependencies", dependencies)
-        pulumi.set(__self__, "description", description)
-        pulumi.set(__self__, "enum", enum)
-        pulumi.set(__self__, "example", example)
-        pulumi.set(__self__, "exclusiveMaximum", exclusive_maximum)
-        pulumi.set(__self__, "exclusiveMinimum", exclusive_minimum)
-        pulumi.set(__self__, "externalDocs", external_docs)
-        pulumi.set(__self__, "format", format)
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "items", items)
-        pulumi.set(__self__, "maxItems", max_items)
-        pulumi.set(__self__, "maxLength", max_length)
-        pulumi.set(__self__, "maxProperties", max_properties)
-        pulumi.set(__self__, "maximum", maximum)
-        pulumi.set(__self__, "minItems", min_items)
-        pulumi.set(__self__, "minLength", min_length)
-        pulumi.set(__self__, "minProperties", min_properties)
-        pulumi.set(__self__, "minimum", minimum)
-        pulumi.set(__self__, "multipleOf", multiple_of)
-        pulumi.set(__self__, "not", not_)
-        pulumi.set(__self__, "nullable", nullable)
-        pulumi.set(__self__, "oneOf", one_of)
-        pulumi.set(__self__, "pattern", pattern)
-        pulumi.set(__self__, "patternProperties", pattern_properties)
-        pulumi.set(__self__, "properties", properties)
-        pulumi.set(__self__, "required", required)
-        pulumi.set(__self__, "title", title)
-        pulumi.set(__self__, "type", type)
-        pulumi.set(__self__, "uniqueItems", unique_items)
-        pulumi.set(__self__, "x_kubernetes_embedded_resource", x_kubernetes_embedded_resource)
-        pulumi.set(__self__, "x_kubernetes_int_or_string", x_kubernetes_int_or_string)
-        pulumi.set(__self__, "x_kubernetes_list_map_keys", x_kubernetes_list_map_keys)
-        pulumi.set(__self__, "x_kubernetes_list_type", x_kubernetes_list_type)
-        pulumi.set(__self__, "x_kubernetes_map_type", x_kubernetes_map_type)
-        pulumi.set(__self__, "x_kubernetes_preserve_unknown_fields", x_kubernetes_preserve_unknown_fields)
+        if _ref is not None:
+            pulumi.set(__self__, "_ref", _ref)
+        if _schema is not None:
+            pulumi.set(__self__, "_schema", _schema)
+        if additional_items is not None:
+            pulumi.set(__self__, "additional_items", additional_items)
+        if additional_properties is not None:
+            pulumi.set(__self__, "additional_properties", additional_properties)
+        if all_of is not None:
+            pulumi.set(__self__, "all_of", all_of)
+        if any_of is not None:
+            pulumi.set(__self__, "any_of", any_of)
+        if default is not None:
+            pulumi.set(__self__, "default", default)
+        if definitions is not None:
+            pulumi.set(__self__, "definitions", definitions)
+        if dependencies is not None:
+            pulumi.set(__self__, "dependencies", dependencies)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if enum is not None:
+            pulumi.set(__self__, "enum", enum)
+        if example is not None:
+            pulumi.set(__self__, "example", example)
+        if exclusive_maximum is not None:
+            pulumi.set(__self__, "exclusive_maximum", exclusive_maximum)
+        if exclusive_minimum is not None:
+            pulumi.set(__self__, "exclusive_minimum", exclusive_minimum)
+        if external_docs is not None:
+            pulumi.set(__self__, "external_docs", external_docs)
+        if format is not None:
+            pulumi.set(__self__, "format", format)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if items is not None:
+            pulumi.set(__self__, "items", items)
+        if max_items is not None:
+            pulumi.set(__self__, "max_items", max_items)
+        if max_length is not None:
+            pulumi.set(__self__, "max_length", max_length)
+        if max_properties is not None:
+            pulumi.set(__self__, "max_properties", max_properties)
+        if maximum is not None:
+            pulumi.set(__self__, "maximum", maximum)
+        if min_items is not None:
+            pulumi.set(__self__, "min_items", min_items)
+        if min_length is not None:
+            pulumi.set(__self__, "min_length", min_length)
+        if min_properties is not None:
+            pulumi.set(__self__, "min_properties", min_properties)
+        if minimum is not None:
+            pulumi.set(__self__, "minimum", minimum)
+        if multiple_of is not None:
+            pulumi.set(__self__, "multiple_of", multiple_of)
+        if not_ is not None:
+            pulumi.set(__self__, "not_", not_)
+        if nullable is not None:
+            pulumi.set(__self__, "nullable", nullable)
+        if one_of is not None:
+            pulumi.set(__self__, "one_of", one_of)
+        if pattern is not None:
+            pulumi.set(__self__, "pattern", pattern)
+        if pattern_properties is not None:
+            pulumi.set(__self__, "pattern_properties", pattern_properties)
+        if properties is not None:
+            pulumi.set(__self__, "properties", properties)
+        if required is not None:
+            pulumi.set(__self__, "required", required)
+        if title is not None:
+            pulumi.set(__self__, "title", title)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+        if unique_items is not None:
+            pulumi.set(__self__, "unique_items", unique_items)
+        if x_kubernetes_embedded_resource is not None:
+            pulumi.set(__self__, "x_kubernetes_embedded_resource", x_kubernetes_embedded_resource)
+        if x_kubernetes_int_or_string is not None:
+            pulumi.set(__self__, "x_kubernetes_int_or_string", x_kubernetes_int_or_string)
+        if x_kubernetes_list_map_keys is not None:
+            pulumi.set(__self__, "x_kubernetes_list_map_keys", x_kubernetes_list_map_keys)
+        if x_kubernetes_list_type is not None:
+            pulumi.set(__self__, "x_kubernetes_list_type", x_kubernetes_list_type)
+        if x_kubernetes_map_type is not None:
+            pulumi.set(__self__, "x_kubernetes_map_type", x_kubernetes_map_type)
+        if x_kubernetes_preserve_unknown_fields is not None:
+            pulumi.set(__self__, "x_kubernetes_preserve_unknown_fields", x_kubernetes_preserve_unknown_fields)
 
     @property
     @pulumi.getter(name="$ref")
@@ -1492,8 +1568,10 @@ class ServiceReferenceArgs:
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "namespace", namespace)
-        pulumi.set(__self__, "path", path)
-        pulumi.set(__self__, "port", port)
+        if path is not None:
+            pulumi.set(__self__, "path", path)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
 
     @property
     @pulumi.getter
@@ -1568,9 +1646,12 @@ class WebhookClientConfigArgs:
                
                Attempting to use a user or basic auth e.g. "user:password@" is not allowed. Fragments ("#...") and query parameters ("?...") are not allowed, either.
         """
-        pulumi.set(__self__, "caBundle", ca_bundle)
-        pulumi.set(__self__, "service", service)
-        pulumi.set(__self__, "url", url)
+        if ca_bundle is not None:
+            pulumi.set(__self__, "ca_bundle", ca_bundle)
+        if service is not None:
+            pulumi.set(__self__, "service", service)
+        if url is not None:
+            pulumi.set(__self__, "url", url)
 
     @property
     @pulumi.getter(name="caBundle")

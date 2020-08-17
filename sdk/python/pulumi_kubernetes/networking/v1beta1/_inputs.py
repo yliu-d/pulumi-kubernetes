@@ -46,8 +46,10 @@ class HTTPIngressPathArgs:
                Implementations are required to support all path types. Defaults to ImplementationSpecific.
         """
         pulumi.set(__self__, "backend", backend)
-        pulumi.set(__self__, "path", path)
-        pulumi.set(__self__, "pathType", path_type)
+        if path is not None:
+            pulumi.set(__self__, "path", path)
+        if path_type is not None:
+            pulumi.set(__self__, "path_type", path_type)
 
     @property
     @pulumi.getter
@@ -149,11 +151,16 @@ class IngressArgs:
         :param pulumi.Input['IngressSpecArgs'] spec: Spec is the desired state of the Ingress. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
         :param pulumi.Input['IngressStatusArgs'] status: Status is the current state of the Ingress. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
         """
-        pulumi.set(__self__, "apiVersion", 'networking.k8s.io/v1beta1')
-        pulumi.set(__self__, "kind", 'Ingress')
-        pulumi.set(__self__, "metadata", metadata)
-        pulumi.set(__self__, "spec", spec)
-        pulumi.set(__self__, "status", status)
+        if api_version is not None:
+            pulumi.set(__self__, "api_version", 'networking.k8s.io/v1beta1')
+        if kind is not None:
+            pulumi.set(__self__, "kind", 'Ingress')
+        if metadata is not None:
+            pulumi.set(__self__, "metadata", metadata)
+        if spec is not None:
+            pulumi.set(__self__, "spec", spec)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
 
     @property
     @pulumi.getter(name="apiVersion")
@@ -228,9 +235,10 @@ class IngressBackendArgs:
         :param pulumi.Input[Union[float, str]] service_port: Specifies the port of the referenced service.
         :param pulumi.Input['_core.v1.TypedLocalObjectReferenceArgs'] resource: Resource is an ObjectRef to another Kubernetes resource in the namespace of the Ingress object. If resource is specified, serviceName and servicePort must not be specified.
         """
-        pulumi.set(__self__, "serviceName", service_name)
-        pulumi.set(__self__, "servicePort", service_port)
-        pulumi.set(__self__, "resource", resource)
+        pulumi.set(__self__, "service_name", service_name)
+        pulumi.set(__self__, "service_port", service_port)
+        if resource is not None:
+            pulumi.set(__self__, "resource", resource)
 
     @property
     @pulumi.getter(name="serviceName")
@@ -283,10 +291,14 @@ class IngressClassArgs:
         :param pulumi.Input['_meta.v1.ObjectMetaArgs'] metadata: Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         :param pulumi.Input['IngressClassSpecArgs'] spec: Spec is the desired state of the IngressClass. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
         """
-        pulumi.set(__self__, "apiVersion", 'networking.k8s.io/v1beta1')
-        pulumi.set(__self__, "kind", 'IngressClass')
-        pulumi.set(__self__, "metadata", metadata)
-        pulumi.set(__self__, "spec", spec)
+        if api_version is not None:
+            pulumi.set(__self__, "api_version", 'networking.k8s.io/v1beta1')
+        if kind is not None:
+            pulumi.set(__self__, "kind", 'IngressClass')
+        if metadata is not None:
+            pulumi.set(__self__, "metadata", metadata)
+        if spec is not None:
+            pulumi.set(__self__, "spec", spec)
 
     @property
     @pulumi.getter(name="apiVersion")
@@ -347,8 +359,10 @@ class IngressClassSpecArgs:
         :param pulumi.Input[str] controller: Controller refers to the name of the controller that should handle this class. This allows for different "flavors" that are controlled by the same controller. For example, you may have different Parameters for the same implementing controller. This should be specified as a domain-prefixed path no more than 250 characters in length, e.g. "acme.io/ingress-controller". This field is immutable.
         :param pulumi.Input['_core.v1.TypedLocalObjectReferenceArgs'] parameters: Parameters is a link to a custom resource containing additional configuration for the controller. This is optional if the controller does not require extra parameters.
         """
-        pulumi.set(__self__, "controller", controller)
-        pulumi.set(__self__, "parameters", parameters)
+        if controller is not None:
+            pulumi.set(__self__, "controller", controller)
+        if parameters is not None:
+            pulumi.set(__self__, "parameters", parameters)
 
     @property
     @pulumi.getter
@@ -391,8 +405,10 @@ class IngressRuleArgs:
                
                Host can be "precise" which is a domain name without the terminating dot of a network host (e.g. "foo.bar.com") or "wildcard", which is a domain name prefixed with a single wildcard label (e.g. "*.foo.com"). The wildcard character '*' must appear by itself as the first DNS label and matches only a single label. You cannot have a wildcard label by itself (e.g. Host == "*"). Requests will be matched against the Host field in the following way: 1. If Host is precise, the request matches this rule if the http host header is equal to Host. 2. If Host is a wildcard, then the request matches this rule if the http host header is to equal to the suffix (removing the first label) of the wildcard rule.
         """
-        pulumi.set(__self__, "host", host)
-        pulumi.set(__self__, "http", http)
+        if host is not None:
+            pulumi.set(__self__, "host", host)
+        if http is not None:
+            pulumi.set(__self__, "http", http)
 
     @property
     @pulumi.getter
@@ -437,10 +453,14 @@ class IngressSpecArgs:
         :param pulumi.Input[List[pulumi.Input['IngressRuleArgs']]] rules: A list of host rules used to configure the Ingress. If unspecified, or no rule matches, all traffic is sent to the default backend.
         :param pulumi.Input[List[pulumi.Input['IngressTLSArgs']]] tls: TLS configuration. Currently the Ingress only supports a single TLS port, 443. If multiple members of this list specify different hosts, they will be multiplexed on the same port according to the hostname specified through the SNI TLS extension, if the ingress controller fulfilling the ingress supports SNI.
         """
-        pulumi.set(__self__, "backend", backend)
-        pulumi.set(__self__, "ingressClassName", ingress_class_name)
-        pulumi.set(__self__, "rules", rules)
-        pulumi.set(__self__, "tls", tls)
+        if backend is not None:
+            pulumi.set(__self__, "backend", backend)
+        if ingress_class_name is not None:
+            pulumi.set(__self__, "ingress_class_name", ingress_class_name)
+        if rules is not None:
+            pulumi.set(__self__, "rules", rules)
+        if tls is not None:
+            pulumi.set(__self__, "tls", tls)
 
     @property
     @pulumi.getter
@@ -499,7 +519,8 @@ class IngressStatusArgs:
         IngressStatus describe the current state of the Ingress.
         :param pulumi.Input['_core.v1.LoadBalancerStatusArgs'] load_balancer: LoadBalancer contains the current status of the load-balancer.
         """
-        pulumi.set(__self__, "loadBalancer", load_balancer)
+        if load_balancer is not None:
+            pulumi.set(__self__, "load_balancer", load_balancer)
 
     @property
     @pulumi.getter(name="loadBalancer")
@@ -524,8 +545,10 @@ class IngressTLSArgs:
         :param pulumi.Input[List[pulumi.Input[str]]] hosts: Hosts are a list of hosts included in the TLS certificate. The values in this list must match the name/s used in the tlsSecret. Defaults to the wildcard host setting for the loadbalancer controller fulfilling this Ingress, if left unspecified.
         :param pulumi.Input[str] secret_name: SecretName is the name of the secret used to terminate TLS traffic on port 443. Field is left optional to allow TLS routing based on SNI hostname alone. If the SNI host in a listener conflicts with the "Host" header field used by an IngressRule, the SNI host is used for termination and value of the Host header is used for routing.
         """
-        pulumi.set(__self__, "hosts", hosts)
-        pulumi.set(__self__, "secretName", secret_name)
+        if hosts is not None:
+            pulumi.set(__self__, "hosts", hosts)
+        if secret_name is not None:
+            pulumi.set(__self__, "secret_name", secret_name)
 
     @property
     @pulumi.getter

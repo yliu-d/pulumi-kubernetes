@@ -54,23 +54,39 @@ class EventArgs:
         :param pulumi.Input['EventSeriesArgs'] series: Data about the Event series this event represents or nil if it's a singleton Event.
         :param pulumi.Input[str] type: Type of this event (Normal, Warning), new types could be added in the future.
         """
-        pulumi.set(__self__, "eventTime", event_time)
-        pulumi.set(__self__, "action", action)
-        pulumi.set(__self__, "apiVersion", 'events.k8s.io/v1beta1')
-        pulumi.set(__self__, "deprecatedCount", deprecated_count)
-        pulumi.set(__self__, "deprecatedFirstTimestamp", deprecated_first_timestamp)
-        pulumi.set(__self__, "deprecatedLastTimestamp", deprecated_last_timestamp)
-        pulumi.set(__self__, "deprecatedSource", deprecated_source)
-        pulumi.set(__self__, "kind", 'Event')
-        pulumi.set(__self__, "metadata", metadata)
-        pulumi.set(__self__, "note", note)
-        pulumi.set(__self__, "reason", reason)
-        pulumi.set(__self__, "regarding", regarding)
-        pulumi.set(__self__, "related", related)
-        pulumi.set(__self__, "reportingController", reporting_controller)
-        pulumi.set(__self__, "reportingInstance", reporting_instance)
-        pulumi.set(__self__, "series", series)
-        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "event_time", event_time)
+        if action is not None:
+            pulumi.set(__self__, "action", action)
+        if api_version is not None:
+            pulumi.set(__self__, "api_version", 'events.k8s.io/v1beta1')
+        if deprecated_count is not None:
+            pulumi.set(__self__, "deprecated_count", deprecated_count)
+        if deprecated_first_timestamp is not None:
+            pulumi.set(__self__, "deprecated_first_timestamp", deprecated_first_timestamp)
+        if deprecated_last_timestamp is not None:
+            pulumi.set(__self__, "deprecated_last_timestamp", deprecated_last_timestamp)
+        if deprecated_source is not None:
+            pulumi.set(__self__, "deprecated_source", deprecated_source)
+        if kind is not None:
+            pulumi.set(__self__, "kind", 'Event')
+        if metadata is not None:
+            pulumi.set(__self__, "metadata", metadata)
+        if note is not None:
+            pulumi.set(__self__, "note", note)
+        if reason is not None:
+            pulumi.set(__self__, "reason", reason)
+        if regarding is not None:
+            pulumi.set(__self__, "regarding", regarding)
+        if related is not None:
+            pulumi.set(__self__, "related", related)
+        if reporting_controller is not None:
+            pulumi.set(__self__, "reporting_controller", reporting_controller)
+        if reporting_instance is not None:
+            pulumi.set(__self__, "reporting_instance", reporting_instance)
+        if series is not None:
+            pulumi.set(__self__, "series", series)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter(name="eventTime")
@@ -287,7 +303,7 @@ class EventSeriesArgs:
         :param pulumi.Input[str] state: Information whether this series is ongoing or finished. Deprecated. Planned removal for 1.18
         """
         pulumi.set(__self__, "count", count)
-        pulumi.set(__self__, "lastObservedTime", last_observed_time)
+        pulumi.set(__self__, "last_observed_time", last_observed_time)
         pulumi.set(__self__, "state", state)
 
     @property

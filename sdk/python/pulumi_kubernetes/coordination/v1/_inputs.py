@@ -28,10 +28,14 @@ class LeaseArgs:
         :param pulumi.Input['_meta.v1.ObjectMetaArgs'] metadata: More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         :param pulumi.Input['LeaseSpecArgs'] spec: Specification of the Lease. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
         """
-        pulumi.set(__self__, "apiVersion", 'coordination.k8s.io/v1')
-        pulumi.set(__self__, "kind", 'Lease')
-        pulumi.set(__self__, "metadata", metadata)
-        pulumi.set(__self__, "spec", spec)
+        if api_version is not None:
+            pulumi.set(__self__, "api_version", 'coordination.k8s.io/v1')
+        if kind is not None:
+            pulumi.set(__self__, "kind", 'Lease')
+        if metadata is not None:
+            pulumi.set(__self__, "metadata", metadata)
+        if spec is not None:
+            pulumi.set(__self__, "spec", spec)
 
     @property
     @pulumi.getter(name="apiVersion")
@@ -98,11 +102,16 @@ class LeaseSpecArgs:
         :param pulumi.Input[float] lease_transitions: leaseTransitions is the number of transitions of a lease between holders.
         :param pulumi.Input[str] renew_time: renewTime is a time when the current holder of a lease has last updated the lease.
         """
-        pulumi.set(__self__, "acquireTime", acquire_time)
-        pulumi.set(__self__, "holderIdentity", holder_identity)
-        pulumi.set(__self__, "leaseDurationSeconds", lease_duration_seconds)
-        pulumi.set(__self__, "leaseTransitions", lease_transitions)
-        pulumi.set(__self__, "renewTime", renew_time)
+        if acquire_time is not None:
+            pulumi.set(__self__, "acquire_time", acquire_time)
+        if holder_identity is not None:
+            pulumi.set(__self__, "holder_identity", holder_identity)
+        if lease_duration_seconds is not None:
+            pulumi.set(__self__, "lease_duration_seconds", lease_duration_seconds)
+        if lease_transitions is not None:
+            pulumi.set(__self__, "lease_transitions", lease_transitions)
+        if renew_time is not None:
+            pulumi.set(__self__, "renew_time", renew_time)
 
     @property
     @pulumi.getter(name="acquireTime")

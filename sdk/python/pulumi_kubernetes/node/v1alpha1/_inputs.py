@@ -25,7 +25,8 @@ class OverheadArgs:
         Overhead structure represents the resource overhead associated with running a pod.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] pod_fixed: PodFixed represents the fixed resource overhead associated with running a pod.
         """
-        pulumi.set(__self__, "podFixed", pod_fixed)
+        if pod_fixed is not None:
+            pulumi.set(__self__, "pod_fixed", pod_fixed)
 
     @property
     @pulumi.getter(name="podFixed")
@@ -55,9 +56,12 @@ class RuntimeClassArgs:
         :param pulumi.Input['_meta.v1.ObjectMetaArgs'] metadata: More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         """
         pulumi.set(__self__, "spec", spec)
-        pulumi.set(__self__, "apiVersion", 'node.k8s.io/v1alpha1')
-        pulumi.set(__self__, "kind", 'RuntimeClass')
-        pulumi.set(__self__, "metadata", metadata)
+        if api_version is not None:
+            pulumi.set(__self__, "api_version", 'node.k8s.io/v1alpha1')
+        if kind is not None:
+            pulumi.set(__self__, "kind", 'RuntimeClass')
+        if metadata is not None:
+            pulumi.set(__self__, "metadata", metadata)
 
     @property
     @pulumi.getter
@@ -120,9 +124,11 @@ class RuntimeClassSpecArgs:
         :param pulumi.Input['OverheadArgs'] overhead: Overhead represents the resource overhead associated with running a pod for a given RuntimeClass. For more details, see https://git.k8s.io/enhancements/keps/sig-node/20190226-pod-overhead.md This field is alpha-level as of Kubernetes v1.15, and is only honored by servers that enable the PodOverhead feature.
         :param pulumi.Input['SchedulingArgs'] scheduling: Scheduling holds the scheduling constraints to ensure that pods running with this RuntimeClass are scheduled to nodes that support it. If scheduling is nil, this RuntimeClass is assumed to be supported by all nodes.
         """
-        pulumi.set(__self__, "runtimeHandler", runtime_handler)
-        pulumi.set(__self__, "overhead", overhead)
-        pulumi.set(__self__, "scheduling", scheduling)
+        pulumi.set(__self__, "runtime_handler", runtime_handler)
+        if overhead is not None:
+            pulumi.set(__self__, "overhead", overhead)
+        if scheduling is not None:
+            pulumi.set(__self__, "scheduling", scheduling)
 
     @property
     @pulumi.getter(name="runtimeHandler")
@@ -171,8 +177,10 @@ class SchedulingArgs:
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] node_selector: nodeSelector lists labels that must be present on nodes that support this RuntimeClass. Pods using this RuntimeClass can only be scheduled to a node matched by this selector. The RuntimeClass nodeSelector is merged with a pod's existing nodeSelector. Any conflicts will cause the pod to be rejected in admission.
         :param pulumi.Input[List[pulumi.Input['_core.v1.TolerationArgs']]] tolerations: tolerations are appended (excluding duplicates) to pods running with this RuntimeClass during admission, effectively unioning the set of nodes tolerated by the pod and the RuntimeClass.
         """
-        pulumi.set(__self__, "nodeSelector", node_selector)
-        pulumi.set(__self__, "tolerations", tolerations)
+        if node_selector is not None:
+            pulumi.set(__self__, "node_selector", node_selector)
+        if tolerations is not None:
+            pulumi.set(__self__, "tolerations", tolerations)
 
     @property
     @pulumi.getter(name="nodeSelector")

@@ -14,56 +14,6 @@ __all__ = ['StorageClass']
 
 
 class StorageClass(pulumi.CustomResource):
-    allow_volume_expansion: pulumi.Output[Optional[bool]] = pulumi.property("allowVolumeExpansion")
-    """
-    AllowVolumeExpansion shows whether the storage class allow volume expand
-    """
-
-    allowed_topologies: pulumi.Output[Optional[List['_core.v1.outputs.TopologySelectorTerm']]] = pulumi.property("allowedTopologies")
-    """
-    Restrict the node topologies where volumes can be dynamically provisioned. Each volume plugin defines its own supported topology specifications. An empty TopologySelectorTerm list means there is no topology restriction. This field is only honored by servers that enable the VolumeScheduling feature.
-    """
-
-    api_version: pulumi.Output[Optional[str]] = pulumi.property("apiVersion")
-    """
-    APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
-    """
-
-    kind: pulumi.Output[Optional[str]] = pulumi.property("kind")
-    """
-    Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-    """
-
-    metadata: pulumi.Output[Optional['_meta.v1.outputs.ObjectMeta']] = pulumi.property("metadata")
-    """
-    Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
-    """
-
-    mount_options: pulumi.Output[Optional[List[str]]] = pulumi.property("mountOptions")
-    """
-    Dynamically provisioned PersistentVolumes of this storage class are created with these mountOptions, e.g. ["ro", "soft"]. Not validated - mount of the PVs will simply fail if one is invalid.
-    """
-
-    parameters: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("parameters")
-    """
-    Parameters holds the parameters for the provisioner that should create volumes of this storage class.
-    """
-
-    provisioner: pulumi.Output[str] = pulumi.property("provisioner")
-    """
-    Provisioner indicates the type of the provisioner.
-    """
-
-    reclaim_policy: pulumi.Output[Optional[str]] = pulumi.property("reclaimPolicy")
-    """
-    Dynamically provisioned PersistentVolumes of this storage class are created with this reclaimPolicy. Defaults to Delete.
-    """
-
-    volume_binding_mode: pulumi.Output[Optional[str]] = pulumi.property("volumeBindingMode")
-    """
-    VolumeBindingMode indicates how PersistentVolumeClaims should be provisioned and bound.  When unset, VolumeBindingImmediate is used. This field is only honored by servers that enable the VolumeScheduling feature.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -152,6 +102,86 @@ class StorageClass(pulumi.CustomResource):
         __props__ = dict()
 
         return StorageClass(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="allowVolumeExpansion")
+    def allow_volume_expansion(self) -> Optional[bool]:
+        """
+        AllowVolumeExpansion shows whether the storage class allow volume expand
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="allowedTopologies")
+    def allowed_topologies(self) -> Optional[List['_core.v1.outputs.TopologySelectorTerm']]:
+        """
+        Restrict the node topologies where volumes can be dynamically provisioned. Each volume plugin defines its own supported topology specifications. An empty TopologySelectorTerm list means there is no topology restriction. This field is only honored by servers that enable the VolumeScheduling feature.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="apiVersion")
+    def api_version(self) -> Optional[str]:
+        """
+        APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def kind(self) -> Optional[str]:
+        """
+        Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def metadata(self) -> Optional['_meta.v1.outputs.ObjectMeta']:
+        """
+        Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="mountOptions")
+    def mount_options(self) -> Optional[List[str]]:
+        """
+        Dynamically provisioned PersistentVolumes of this storage class are created with these mountOptions, e.g. ["ro", "soft"]. Not validated - mount of the PVs will simply fail if one is invalid.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def parameters(self) -> Optional[Mapping[str, str]]:
+        """
+        Parameters holds the parameters for the provisioner that should create volumes of this storage class.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def provisioner(self) -> str:
+        """
+        Provisioner indicates the type of the provisioner.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="reclaimPolicy")
+    def reclaim_policy(self) -> Optional[str]:
+        """
+        Dynamically provisioned PersistentVolumes of this storage class are created with this reclaimPolicy. Defaults to Delete.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="volumeBindingMode")
+    def volume_binding_mode(self) -> Optional[str]:
+        """
+        VolumeBindingMode indicates how PersistentVolumeClaims should be provisioned and bound.  When unset, VolumeBindingImmediate is used. This field is only honored by servers that enable the VolumeScheduling feature.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

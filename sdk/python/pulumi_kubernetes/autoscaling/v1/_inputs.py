@@ -30,7 +30,8 @@ class CrossVersionObjectReferenceArgs:
         """
         pulumi.set(__self__, "kind", kind)
         pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "apiVersion", api_version)
+        if api_version is not None:
+            pulumi.set(__self__, "api_version", api_version)
 
     @property
     @pulumi.getter
@@ -85,11 +86,16 @@ class HorizontalPodAutoscalerArgs:
         :param pulumi.Input['HorizontalPodAutoscalerSpecArgs'] spec: behaviour of autoscaler. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status.
         :param pulumi.Input['HorizontalPodAutoscalerStatusArgs'] status: current information about the autoscaler.
         """
-        pulumi.set(__self__, "apiVersion", 'autoscaling/v1')
-        pulumi.set(__self__, "kind", 'HorizontalPodAutoscaler')
-        pulumi.set(__self__, "metadata", metadata)
-        pulumi.set(__self__, "spec", spec)
-        pulumi.set(__self__, "status", status)
+        if api_version is not None:
+            pulumi.set(__self__, "api_version", 'autoscaling/v1')
+        if kind is not None:
+            pulumi.set(__self__, "kind", 'HorizontalPodAutoscaler')
+        if metadata is not None:
+            pulumi.set(__self__, "metadata", metadata)
+        if spec is not None:
+            pulumi.set(__self__, "spec", spec)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
 
     @property
     @pulumi.getter(name="apiVersion")
@@ -166,10 +172,12 @@ class HorizontalPodAutoscalerSpecArgs:
         :param pulumi.Input[float] min_replicas: minReplicas is the lower limit for the number of replicas to which the autoscaler can scale down.  It defaults to 1 pod.  minReplicas is allowed to be 0 if the alpha feature gate HPAScaleToZero is enabled and at least one Object or External metric is configured.  Scaling is active as long as at least one metric value is available.
         :param pulumi.Input[float] target_cpu_utilization_percentage: target average CPU utilization (represented as a percentage of requested CPU) over all the pods; if not specified the default autoscaling policy will be used.
         """
-        pulumi.set(__self__, "maxReplicas", max_replicas)
-        pulumi.set(__self__, "scaleTargetRef", scale_target_ref)
-        pulumi.set(__self__, "minReplicas", min_replicas)
-        pulumi.set(__self__, "targetCPUUtilizationPercentage", target_cpu_utilization_percentage)
+        pulumi.set(__self__, "max_replicas", max_replicas)
+        pulumi.set(__self__, "scale_target_ref", scale_target_ref)
+        if min_replicas is not None:
+            pulumi.set(__self__, "min_replicas", min_replicas)
+        if target_cpu_utilization_percentage is not None:
+            pulumi.set(__self__, "target_cpu_utilization_percentage", target_cpu_utilization_percentage)
 
     @property
     @pulumi.getter(name="maxReplicas")
@@ -236,11 +244,14 @@ class HorizontalPodAutoscalerStatusArgs:
         :param pulumi.Input[str] last_scale_time: last time the HorizontalPodAutoscaler scaled the number of pods; used by the autoscaler to control how often the number of pods is changed.
         :param pulumi.Input[float] observed_generation: most recent generation observed by this autoscaler.
         """
-        pulumi.set(__self__, "currentReplicas", current_replicas)
-        pulumi.set(__self__, "desiredReplicas", desired_replicas)
-        pulumi.set(__self__, "currentCPUUtilizationPercentage", current_cpu_utilization_percentage)
-        pulumi.set(__self__, "lastScaleTime", last_scale_time)
-        pulumi.set(__self__, "observedGeneration", observed_generation)
+        pulumi.set(__self__, "current_replicas", current_replicas)
+        pulumi.set(__self__, "desired_replicas", desired_replicas)
+        if current_cpu_utilization_percentage is not None:
+            pulumi.set(__self__, "current_cpu_utilization_percentage", current_cpu_utilization_percentage)
+        if last_scale_time is not None:
+            pulumi.set(__self__, "last_scale_time", last_scale_time)
+        if observed_generation is not None:
+            pulumi.set(__self__, "observed_generation", observed_generation)
 
     @property
     @pulumi.getter(name="currentReplicas")

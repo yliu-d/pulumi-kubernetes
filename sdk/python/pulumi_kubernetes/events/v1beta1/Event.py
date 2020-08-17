@@ -16,88 +16,6 @@ __all__ = ['Event']
 
 
 class Event(pulumi.CustomResource):
-    action: pulumi.Output[Optional[str]] = pulumi.property("action")
-    """
-    What action was taken/failed regarding to the regarding object.
-    """
-
-    api_version: pulumi.Output[Optional[str]] = pulumi.property("apiVersion")
-    """
-    APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
-    """
-
-    deprecated_count: pulumi.Output[Optional[float]] = pulumi.property("deprecatedCount")
-    """
-    Deprecated field assuring backward compatibility with core.v1 Event type
-    """
-
-    deprecated_first_timestamp: pulumi.Output[Optional[str]] = pulumi.property("deprecatedFirstTimestamp")
-    """
-    Deprecated field assuring backward compatibility with core.v1 Event type
-    """
-
-    deprecated_last_timestamp: pulumi.Output[Optional[str]] = pulumi.property("deprecatedLastTimestamp")
-    """
-    Deprecated field assuring backward compatibility with core.v1 Event type
-    """
-
-    deprecated_source: pulumi.Output[Optional['_core.v1.outputs.EventSource']] = pulumi.property("deprecatedSource")
-    """
-    Deprecated field assuring backward compatibility with core.v1 Event type
-    """
-
-    event_time: pulumi.Output[str] = pulumi.property("eventTime")
-    """
-    Required. Time when this Event was first observed.
-    """
-
-    kind: pulumi.Output[Optional[str]] = pulumi.property("kind")
-    """
-    Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-    """
-
-    metadata: pulumi.Output[Optional['_meta.v1.outputs.ObjectMeta']] = pulumi.property("metadata")
-
-    note: pulumi.Output[Optional[str]] = pulumi.property("note")
-    """
-    Optional. A human-readable description of the status of this operation. Maximal length of the note is 1kB, but libraries should be prepared to handle values up to 64kB.
-    """
-
-    reason: pulumi.Output[Optional[str]] = pulumi.property("reason")
-    """
-    Why the action was taken.
-    """
-
-    regarding: pulumi.Output[Optional['_core.v1.outputs.ObjectReference']] = pulumi.property("regarding")
-    """
-    The object this Event is about. In most cases it's an Object reporting controller implements. E.g. ReplicaSetController implements ReplicaSets and this event is emitted because it acts on some changes in a ReplicaSet object.
-    """
-
-    related: pulumi.Output[Optional['_core.v1.outputs.ObjectReference']] = pulumi.property("related")
-    """
-    Optional secondary object for more complex actions. E.g. when regarding object triggers a creation or deletion of related object.
-    """
-
-    reporting_controller: pulumi.Output[Optional[str]] = pulumi.property("reportingController")
-    """
-    Name of the controller that emitted this Event, e.g. `kubernetes.io/kubelet`.
-    """
-
-    reporting_instance: pulumi.Output[Optional[str]] = pulumi.property("reportingInstance")
-    """
-    ID of the controller instance, e.g. `kubelet-xyzf`.
-    """
-
-    series: pulumi.Output[Optional['outputs.EventSeries']] = pulumi.property("series")
-    """
-    Data about the Event series this event represents or nil if it's a singleton Event.
-    """
-
-    type: pulumi.Output[Optional[str]] = pulumi.property("type")
-    """
-    Type of this event (Normal, Warning), new types could be added in the future.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -204,6 +122,139 @@ class Event(pulumi.CustomResource):
         __props__ = dict()
 
         return Event(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def action(self) -> Optional[str]:
+        """
+        What action was taken/failed regarding to the regarding object.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="apiVersion")
+    def api_version(self) -> Optional[str]:
+        """
+        APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="deprecatedCount")
+    def deprecated_count(self) -> Optional[float]:
+        """
+        Deprecated field assuring backward compatibility with core.v1 Event type
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="deprecatedFirstTimestamp")
+    def deprecated_first_timestamp(self) -> Optional[str]:
+        """
+        Deprecated field assuring backward compatibility with core.v1 Event type
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="deprecatedLastTimestamp")
+    def deprecated_last_timestamp(self) -> Optional[str]:
+        """
+        Deprecated field assuring backward compatibility with core.v1 Event type
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="deprecatedSource")
+    def deprecated_source(self) -> Optional['_core.v1.outputs.EventSource']:
+        """
+        Deprecated field assuring backward compatibility with core.v1 Event type
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="eventTime")
+    def event_time(self) -> str:
+        """
+        Required. Time when this Event was first observed.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def kind(self) -> Optional[str]:
+        """
+        Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def metadata(self) -> Optional['_meta.v1.outputs.ObjectMeta']:
+        ...
+
+    @property
+    @pulumi.getter
+    def note(self) -> Optional[str]:
+        """
+        Optional. A human-readable description of the status of this operation. Maximal length of the note is 1kB, but libraries should be prepared to handle values up to 64kB.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def reason(self) -> Optional[str]:
+        """
+        Why the action was taken.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def regarding(self) -> Optional['_core.v1.outputs.ObjectReference']:
+        """
+        The object this Event is about. In most cases it's an Object reporting controller implements. E.g. ReplicaSetController implements ReplicaSets and this event is emitted because it acts on some changes in a ReplicaSet object.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def related(self) -> Optional['_core.v1.outputs.ObjectReference']:
+        """
+        Optional secondary object for more complex actions. E.g. when regarding object triggers a creation or deletion of related object.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="reportingController")
+    def reporting_controller(self) -> Optional[str]:
+        """
+        Name of the controller that emitted this Event, e.g. `kubernetes.io/kubelet`.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="reportingInstance")
+    def reporting_instance(self) -> Optional[str]:
+        """
+        ID of the controller instance, e.g. `kubelet-xyzf`.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def series(self) -> Optional['outputs.EventSeries']:
+        """
+        Data about the Event series this event represents or nil if it's a singleton Event.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[str]:
+        """
+        Type of this event (Normal, Warning), new types could be added in the future.
+        """
+        ...
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

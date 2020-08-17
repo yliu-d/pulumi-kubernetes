@@ -47,7 +47,8 @@ class CrossVersionObjectReferenceArgs:
         """
         pulumi.set(__self__, "kind", kind)
         pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "apiVersion", api_version)
+        if api_version is not None:
+            pulumi.set(__self__, "api_version", api_version)
 
     @property
     @pulumi.getter
@@ -174,7 +175,7 @@ class HPAScalingPolicyArgs:
         :param pulumi.Input[str] type: Type is used to specify the scaling policy.
         :param pulumi.Input[float] value: Value contains the amount of change which is permitted by the policy. It must be greater than zero
         """
-        pulumi.set(__self__, "periodSeconds", period_seconds)
+        pulumi.set(__self__, "period_seconds", period_seconds)
         pulumi.set(__self__, "type", type)
         pulumi.set(__self__, "value", value)
 
@@ -227,9 +228,12 @@ class HPAScalingRulesArgs:
         :param pulumi.Input[str] select_policy: selectPolicy is used to specify which policy should be used. If not set, the default value MaxPolicySelect is used.
         :param pulumi.Input[float] stabilization_window_seconds: StabilizationWindowSeconds is the number of seconds for which past recommendations should be considered while scaling up or scaling down. StabilizationWindowSeconds must be greater than or equal to zero and less than or equal to 3600 (one hour). If not set, use the default values: - For scale up: 0 (i.e. no stabilization is done). - For scale down: 300 (i.e. the stabilization window is 300 seconds long).
         """
-        pulumi.set(__self__, "policies", policies)
-        pulumi.set(__self__, "selectPolicy", select_policy)
-        pulumi.set(__self__, "stabilizationWindowSeconds", stabilization_window_seconds)
+        if policies is not None:
+            pulumi.set(__self__, "policies", policies)
+        if select_policy is not None:
+            pulumi.set(__self__, "select_policy", select_policy)
+        if stabilization_window_seconds is not None:
+            pulumi.set(__self__, "stabilization_window_seconds", stabilization_window_seconds)
 
     @property
     @pulumi.getter
@@ -284,11 +288,16 @@ class HorizontalPodAutoscalerArgs:
         :param pulumi.Input['HorizontalPodAutoscalerSpecArgs'] spec: spec is the specification for the behaviour of the autoscaler. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status.
         :param pulumi.Input['HorizontalPodAutoscalerStatusArgs'] status: status is the current information about the autoscaler.
         """
-        pulumi.set(__self__, "apiVersion", 'autoscaling/v2beta2')
-        pulumi.set(__self__, "kind", 'HorizontalPodAutoscaler')
-        pulumi.set(__self__, "metadata", metadata)
-        pulumi.set(__self__, "spec", spec)
-        pulumi.set(__self__, "status", status)
+        if api_version is not None:
+            pulumi.set(__self__, "api_version", 'autoscaling/v2beta2')
+        if kind is not None:
+            pulumi.set(__self__, "kind", 'HorizontalPodAutoscaler')
+        if metadata is not None:
+            pulumi.set(__self__, "metadata", metadata)
+        if spec is not None:
+            pulumi.set(__self__, "spec", spec)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
 
     @property
     @pulumi.getter(name="apiVersion")
@@ -364,8 +373,10 @@ class HorizontalPodAutoscalerBehaviorArgs:
                  * double the number of pods per 60 seconds
                No stabilization is used.
         """
-        pulumi.set(__self__, "scaleDown", scale_down)
-        pulumi.set(__self__, "scaleUp", scale_up)
+        if scale_down is not None:
+            pulumi.set(__self__, "scale_down", scale_down)
+        if scale_up is not None:
+            pulumi.set(__self__, "scale_up", scale_up)
 
     @property
     @pulumi.getter(name="scaleDown")
@@ -413,9 +424,12 @@ class HorizontalPodAutoscalerConditionArgs:
         """
         pulumi.set(__self__, "status", status)
         pulumi.set(__self__, "type", type)
-        pulumi.set(__self__, "lastTransitionTime", last_transition_time)
-        pulumi.set(__self__, "message", message)
-        pulumi.set(__self__, "reason", reason)
+        if last_transition_time is not None:
+            pulumi.set(__self__, "last_transition_time", last_transition_time)
+        if message is not None:
+            pulumi.set(__self__, "message", message)
+        if reason is not None:
+            pulumi.set(__self__, "reason", reason)
 
     @property
     @pulumi.getter
@@ -494,11 +508,14 @@ class HorizontalPodAutoscalerSpecArgs:
         :param pulumi.Input[List[pulumi.Input['MetricSpecArgs']]] metrics: metrics contains the specifications for which to use to calculate the desired replica count (the maximum replica count across all metrics will be used).  The desired replica count is calculated multiplying the ratio between the target value and the current value by the current number of pods.  Ergo, metrics used must decrease as the pod count is increased, and vice-versa.  See the individual metric source types for more information about how each type of metric must respond. If not set, the default metric will be set to 80% average CPU utilization.
         :param pulumi.Input[float] min_replicas: minReplicas is the lower limit for the number of replicas to which the autoscaler can scale down.  It defaults to 1 pod.  minReplicas is allowed to be 0 if the alpha feature gate HPAScaleToZero is enabled and at least one Object or External metric is configured.  Scaling is active as long as at least one metric value is available.
         """
-        pulumi.set(__self__, "maxReplicas", max_replicas)
-        pulumi.set(__self__, "scaleTargetRef", scale_target_ref)
-        pulumi.set(__self__, "behavior", behavior)
-        pulumi.set(__self__, "metrics", metrics)
-        pulumi.set(__self__, "minReplicas", min_replicas)
+        pulumi.set(__self__, "max_replicas", max_replicas)
+        pulumi.set(__self__, "scale_target_ref", scale_target_ref)
+        if behavior is not None:
+            pulumi.set(__self__, "behavior", behavior)
+        if metrics is not None:
+            pulumi.set(__self__, "metrics", metrics)
+        if min_replicas is not None:
+            pulumi.set(__self__, "min_replicas", min_replicas)
 
     @property
     @pulumi.getter(name="maxReplicas")
@@ -580,11 +597,14 @@ class HorizontalPodAutoscalerStatusArgs:
         :param pulumi.Input[float] observed_generation: observedGeneration is the most recent generation observed by this autoscaler.
         """
         pulumi.set(__self__, "conditions", conditions)
-        pulumi.set(__self__, "currentReplicas", current_replicas)
-        pulumi.set(__self__, "desiredReplicas", desired_replicas)
-        pulumi.set(__self__, "currentMetrics", current_metrics)
-        pulumi.set(__self__, "lastScaleTime", last_scale_time)
-        pulumi.set(__self__, "observedGeneration", observed_generation)
+        pulumi.set(__self__, "current_replicas", current_replicas)
+        pulumi.set(__self__, "desired_replicas", desired_replicas)
+        if current_metrics is not None:
+            pulumi.set(__self__, "current_metrics", current_metrics)
+        if last_scale_time is not None:
+            pulumi.set(__self__, "last_scale_time", last_scale_time)
+        if observed_generation is not None:
+            pulumi.set(__self__, "observed_generation", observed_generation)
 
     @property
     @pulumi.getter
@@ -670,7 +690,8 @@ class MetricIdentifierArgs:
         :param pulumi.Input['_meta.v1.LabelSelectorArgs'] selector: selector is the string-encoded form of a standard kubernetes label selector for the given metric When set, it is passed as an additional parameter to the metrics server for more specific metrics scoping. When unset, just the metricName will be used to gather metrics.
         """
         pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "selector", selector)
+        if selector is not None:
+            pulumi.set(__self__, "selector", selector)
 
     @property
     @pulumi.getter
@@ -714,10 +735,14 @@ class MetricSpecArgs:
         :param pulumi.Input['ResourceMetricSourceArgs'] resource: resource refers to a resource metric (such as those specified in requests and limits) known to Kubernetes describing each pod in the current scale target (e.g. CPU or memory). Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the "pods" source.
         """
         pulumi.set(__self__, "type", type)
-        pulumi.set(__self__, "external", external)
-        pulumi.set(__self__, "object", object)
-        pulumi.set(__self__, "pods", pods)
-        pulumi.set(__self__, "resource", resource)
+        if external is not None:
+            pulumi.set(__self__, "external", external)
+        if object is not None:
+            pulumi.set(__self__, "object", object)
+        if pods is not None:
+            pulumi.set(__self__, "pods", pods)
+        if resource is not None:
+            pulumi.set(__self__, "resource", resource)
 
     @property
     @pulumi.getter
@@ -797,10 +822,14 @@ class MetricStatusArgs:
         :param pulumi.Input['ResourceMetricStatusArgs'] resource: resource refers to a resource metric (such as those specified in requests and limits) known to Kubernetes describing each pod in the current scale target (e.g. CPU or memory). Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the "pods" source.
         """
         pulumi.set(__self__, "type", type)
-        pulumi.set(__self__, "external", external)
-        pulumi.set(__self__, "object", object)
-        pulumi.set(__self__, "pods", pods)
-        pulumi.set(__self__, "resource", resource)
+        if external is not None:
+            pulumi.set(__self__, "external", external)
+        if object is not None:
+            pulumi.set(__self__, "object", object)
+        if pods is not None:
+            pulumi.set(__self__, "pods", pods)
+        if resource is not None:
+            pulumi.set(__self__, "resource", resource)
 
     @property
     @pulumi.getter
@@ -878,9 +907,12 @@ class MetricTargetArgs:
         :param pulumi.Input[str] value: value is the target value of the metric (as a quantity).
         """
         pulumi.set(__self__, "type", type)
-        pulumi.set(__self__, "averageUtilization", average_utilization)
-        pulumi.set(__self__, "averageValue", average_value)
-        pulumi.set(__self__, "value", value)
+        if average_utilization is not None:
+            pulumi.set(__self__, "average_utilization", average_utilization)
+        if average_value is not None:
+            pulumi.set(__self__, "average_value", average_value)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
@@ -943,9 +975,12 @@ class MetricValueStatusArgs:
         :param pulumi.Input[str] average_value: averageValue is the current value of the average of the metric across all relevant pods (as a quantity)
         :param pulumi.Input[str] value: value is the current value of the metric (as a quantity).
         """
-        pulumi.set(__self__, "averageUtilization", average_utilization)
-        pulumi.set(__self__, "averageValue", average_value)
-        pulumi.set(__self__, "value", value)
+        if average_utilization is not None:
+            pulumi.set(__self__, "average_utilization", average_utilization)
+        if average_value is not None:
+            pulumi.set(__self__, "average_value", average_value)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter(name="averageUtilization")
@@ -995,7 +1030,7 @@ class ObjectMetricSourceArgs:
         :param pulumi.Input['MetricIdentifierArgs'] metric: metric identifies the target metric by name and selector
         :param pulumi.Input['MetricTargetArgs'] target: target specifies the target value for the given metric
         """
-        pulumi.set(__self__, "describedObject", described_object)
+        pulumi.set(__self__, "described_object", described_object)
         pulumi.set(__self__, "metric", metric)
         pulumi.set(__self__, "target", target)
 
@@ -1045,7 +1080,7 @@ class ObjectMetricStatusArgs:
         :param pulumi.Input['MetricIdentifierArgs'] metric: metric identifies the target metric by name and selector
         """
         pulumi.set(__self__, "current", current)
-        pulumi.set(__self__, "describedObject", described_object)
+        pulumi.set(__self__, "described_object", described_object)
         pulumi.set(__self__, "metric", metric)
 
     @property

@@ -33,13 +33,20 @@ class CrossVersionObjectReference(dict):
     """
     CrossVersionObjectReference contains enough information to let you identify the referred resource.
     """
-    @property
-    @pulumi.getter(name="apiVersion")
-    def api_version(self) -> Optional[str]:
+    def __init__(__self__, *,
+                 kind: str,
+                 name: str,
+                 api_version: Optional[str] = None):
         """
-        API version of the referent
+        CrossVersionObjectReference contains enough information to let you identify the referred resource.
+        :param str kind: Kind of the referent; More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds"
+        :param str name: Name of the referent; More info: http://kubernetes.io/docs/user-guide/identifiers#names
+        :param str api_version: API version of the referent
         """
-        ...
+        pulumi.set(__self__, "kind", kind)
+        pulumi.set(__self__, "name", name)
+        if api_version is not None:
+            pulumi.set(__self__, "api_version", api_version)
 
     @property
     @pulumi.getter
@@ -57,6 +64,14 @@ class CrossVersionObjectReference(dict):
         """
         ...
 
+    @property
+    @pulumi.getter(name="apiVersion")
+    def api_version(self) -> Optional[str]:
+        """
+        API version of the referent
+        """
+        ...
+
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
@@ -66,6 +81,26 @@ class ExternalMetricSource(dict):
     """
     ExternalMetricSource indicates how to scale on a metric not associated with any Kubernetes object (for example length of queue in cloud messaging service, or QPS from loadbalancer running outside of cluster). Exactly one "target" type should be set.
     """
+    def __init__(__self__, *,
+                 metric_name: str,
+                 metric_selector: Optional['_meta.v1.outputs.LabelSelector'] = None,
+                 target_average_value: Optional[str] = None,
+                 target_value: Optional[str] = None):
+        """
+        ExternalMetricSource indicates how to scale on a metric not associated with any Kubernetes object (for example length of queue in cloud messaging service, or QPS from loadbalancer running outside of cluster). Exactly one "target" type should be set.
+        :param str metric_name: metricName is the name of the metric in question.
+        :param '_meta.v1.LabelSelectorArgs' metric_selector: metricSelector is used to identify a specific time series within a given metric.
+        :param str target_average_value: targetAverageValue is the target per-pod value of global metric (as a quantity). Mutually exclusive with TargetValue.
+        :param str target_value: targetValue is the target value of the metric (as a quantity). Mutually exclusive with TargetAverageValue.
+        """
+        pulumi.set(__self__, "metric_name", metric_name)
+        if metric_selector is not None:
+            pulumi.set(__self__, "metric_selector", metric_selector)
+        if target_average_value is not None:
+            pulumi.set(__self__, "target_average_value", target_average_value)
+        if target_value is not None:
+            pulumi.set(__self__, "target_value", target_value)
+
     @property
     @pulumi.getter(name="metricName")
     def metric_name(self) -> str:
@@ -107,13 +142,24 @@ class ExternalMetricStatus(dict):
     """
     ExternalMetricStatus indicates the current value of a global metric not associated with any Kubernetes object.
     """
-    @property
-    @pulumi.getter(name="currentAverageValue")
-    def current_average_value(self) -> Optional[str]:
+    def __init__(__self__, *,
+                 current_value: str,
+                 metric_name: str,
+                 current_average_value: Optional[str] = None,
+                 metric_selector: Optional['_meta.v1.outputs.LabelSelector'] = None):
         """
-        currentAverageValue is the current value of metric averaged over autoscaled pods.
+        ExternalMetricStatus indicates the current value of a global metric not associated with any Kubernetes object.
+        :param str current_value: currentValue is the current value of the metric (as a quantity)
+        :param str metric_name: metricName is the name of a metric used for autoscaling in metric system.
+        :param str current_average_value: currentAverageValue is the current value of metric averaged over autoscaled pods.
+        :param '_meta.v1.LabelSelectorArgs' metric_selector: metricSelector is used to identify a specific time series within a given metric.
         """
-        ...
+        pulumi.set(__self__, "current_value", current_value)
+        pulumi.set(__self__, "metric_name", metric_name)
+        if current_average_value is not None:
+            pulumi.set(__self__, "current_average_value", current_average_value)
+        if metric_selector is not None:
+            pulumi.set(__self__, "metric_selector", metric_selector)
 
     @property
     @pulumi.getter(name="currentValue")
@@ -128,6 +174,14 @@ class ExternalMetricStatus(dict):
     def metric_name(self) -> str:
         """
         metricName is the name of a metric used for autoscaling in metric system.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="currentAverageValue")
+    def current_average_value(self) -> Optional[str]:
+        """
+        currentAverageValue is the current value of metric averaged over autoscaled pods.
         """
         ...
 
@@ -148,6 +202,31 @@ class HorizontalPodAutoscaler(dict):
     """
     HorizontalPodAutoscaler is the configuration for a horizontal pod autoscaler, which automatically manages the replica count of any resource implementing the scale subresource based on the metrics specified.
     """
+    def __init__(__self__, *,
+                 api_version: Optional[str] = None,
+                 kind: Optional[str] = None,
+                 metadata: Optional['_meta.v1.outputs.ObjectMeta'] = None,
+                 spec: Optional['outputs.HorizontalPodAutoscalerSpec'] = None,
+                 status: Optional['outputs.HorizontalPodAutoscalerStatus'] = None):
+        """
+        HorizontalPodAutoscaler is the configuration for a horizontal pod autoscaler, which automatically manages the replica count of any resource implementing the scale subresource based on the metrics specified.
+        :param str api_version: APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+        :param str kind: Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+        :param '_meta.v1.ObjectMetaArgs' metadata: metadata is the standard object metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
+        :param 'HorizontalPodAutoscalerSpecArgs' spec: spec is the specification for the behaviour of the autoscaler. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status.
+        :param 'HorizontalPodAutoscalerStatusArgs' status: status is the current information about the autoscaler.
+        """
+        if api_version is not None:
+            pulumi.set(__self__, "api_version", 'autoscaling/v2beta1')
+        if kind is not None:
+            pulumi.set(__self__, "kind", 'HorizontalPodAutoscaler')
+        if metadata is not None:
+            pulumi.set(__self__, "metadata", metadata)
+        if spec is not None:
+            pulumi.set(__self__, "spec", spec)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+
     @property
     @pulumi.getter(name="apiVersion")
     def api_version(self) -> Optional[str]:
@@ -197,6 +276,45 @@ class HorizontalPodAutoscalerCondition(dict):
     """
     HorizontalPodAutoscalerCondition describes the state of a HorizontalPodAutoscaler at a certain point.
     """
+    def __init__(__self__, *,
+                 status: str,
+                 type: str,
+                 last_transition_time: Optional[str] = None,
+                 message: Optional[str] = None,
+                 reason: Optional[str] = None):
+        """
+        HorizontalPodAutoscalerCondition describes the state of a HorizontalPodAutoscaler at a certain point.
+        :param str status: status is the status of the condition (True, False, Unknown)
+        :param str type: type describes the current condition
+        :param str last_transition_time: lastTransitionTime is the last time the condition transitioned from one status to another
+        :param str message: message is a human-readable explanation containing details about the transition
+        :param str reason: reason is the reason for the condition's last transition.
+        """
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "type", type)
+        if last_transition_time is not None:
+            pulumi.set(__self__, "last_transition_time", last_transition_time)
+        if message is not None:
+            pulumi.set(__self__, "message", message)
+        if reason is not None:
+            pulumi.set(__self__, "reason", reason)
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        status is the status of the condition (True, False, Unknown)
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        type describes the current condition
+        """
+        ...
+
     @property
     @pulumi.getter(name="lastTransitionTime")
     def last_transition_time(self) -> Optional[str]:
@@ -221,22 +339,6 @@ class HorizontalPodAutoscalerCondition(dict):
         """
         ...
 
-    @property
-    @pulumi.getter
-    def status(self) -> str:
-        """
-        status is the status of the condition (True, False, Unknown)
-        """
-        ...
-
-    @property
-    @pulumi.getter
-    def type(self) -> str:
-        """
-        type describes the current condition
-        """
-        ...
-
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
@@ -246,11 +348,38 @@ class HorizontalPodAutoscalerSpec(dict):
     """
     HorizontalPodAutoscalerSpec describes the desired functionality of the HorizontalPodAutoscaler.
     """
+    def __init__(__self__, *,
+                 max_replicas: float,
+                 scale_target_ref: 'outputs.CrossVersionObjectReference',
+                 metrics: Optional[List['outputs.MetricSpec']] = None,
+                 min_replicas: Optional[float] = None):
+        """
+        HorizontalPodAutoscalerSpec describes the desired functionality of the HorizontalPodAutoscaler.
+        :param float max_replicas: maxReplicas is the upper limit for the number of replicas to which the autoscaler can scale up. It cannot be less that minReplicas.
+        :param 'CrossVersionObjectReferenceArgs' scale_target_ref: scaleTargetRef points to the target resource to scale, and is used to the pods for which metrics should be collected, as well as to actually change the replica count.
+        :param List['MetricSpecArgs'] metrics: metrics contains the specifications for which to use to calculate the desired replica count (the maximum replica count across all metrics will be used).  The desired replica count is calculated multiplying the ratio between the target value and the current value by the current number of pods.  Ergo, metrics used must decrease as the pod count is increased, and vice-versa.  See the individual metric source types for more information about how each type of metric must respond.
+        :param float min_replicas: minReplicas is the lower limit for the number of replicas to which the autoscaler can scale down.  It defaults to 1 pod.  minReplicas is allowed to be 0 if the alpha feature gate HPAScaleToZero is enabled and at least one Object or External metric is configured.  Scaling is active as long as at least one metric value is available.
+        """
+        pulumi.set(__self__, "max_replicas", max_replicas)
+        pulumi.set(__self__, "scale_target_ref", scale_target_ref)
+        if metrics is not None:
+            pulumi.set(__self__, "metrics", metrics)
+        if min_replicas is not None:
+            pulumi.set(__self__, "min_replicas", min_replicas)
+
     @property
     @pulumi.getter(name="maxReplicas")
     def max_replicas(self) -> float:
         """
         maxReplicas is the upper limit for the number of replicas to which the autoscaler can scale up. It cannot be less that minReplicas.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="scaleTargetRef")
+    def scale_target_ref(self) -> 'outputs.CrossVersionObjectReference':
+        """
+        scaleTargetRef points to the target resource to scale, and is used to the pods for which metrics should be collected, as well as to actually change the replica count.
         """
         ...
 
@@ -270,14 +399,6 @@ class HorizontalPodAutoscalerSpec(dict):
         """
         ...
 
-    @property
-    @pulumi.getter(name="scaleTargetRef")
-    def scale_target_ref(self) -> 'outputs.CrossVersionObjectReference':
-        """
-        scaleTargetRef points to the target resource to scale, and is used to the pods for which metrics should be collected, as well as to actually change the replica count.
-        """
-        ...
-
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
@@ -287,19 +408,37 @@ class HorizontalPodAutoscalerStatus(dict):
     """
     HorizontalPodAutoscalerStatus describes the current status of a horizontal pod autoscaler.
     """
+    def __init__(__self__, *,
+                 conditions: List['outputs.HorizontalPodAutoscalerCondition'],
+                 current_replicas: float,
+                 desired_replicas: float,
+                 current_metrics: Optional[List['outputs.MetricStatus']] = None,
+                 last_scale_time: Optional[str] = None,
+                 observed_generation: Optional[float] = None):
+        """
+        HorizontalPodAutoscalerStatus describes the current status of a horizontal pod autoscaler.
+        :param List['HorizontalPodAutoscalerConditionArgs'] conditions: conditions is the set of conditions required for this autoscaler to scale its target, and indicates whether or not those conditions are met.
+        :param float current_replicas: currentReplicas is current number of replicas of pods managed by this autoscaler, as last seen by the autoscaler.
+        :param float desired_replicas: desiredReplicas is the desired number of replicas of pods managed by this autoscaler, as last calculated by the autoscaler.
+        :param List['MetricStatusArgs'] current_metrics: currentMetrics is the last read state of the metrics used by this autoscaler.
+        :param str last_scale_time: lastScaleTime is the last time the HorizontalPodAutoscaler scaled the number of pods, used by the autoscaler to control how often the number of pods is changed.
+        :param float observed_generation: observedGeneration is the most recent generation observed by this autoscaler.
+        """
+        pulumi.set(__self__, "conditions", conditions)
+        pulumi.set(__self__, "current_replicas", current_replicas)
+        pulumi.set(__self__, "desired_replicas", desired_replicas)
+        if current_metrics is not None:
+            pulumi.set(__self__, "current_metrics", current_metrics)
+        if last_scale_time is not None:
+            pulumi.set(__self__, "last_scale_time", last_scale_time)
+        if observed_generation is not None:
+            pulumi.set(__self__, "observed_generation", observed_generation)
+
     @property
     @pulumi.getter
     def conditions(self) -> List['outputs.HorizontalPodAutoscalerCondition']:
         """
         conditions is the set of conditions required for this autoscaler to scale its target, and indicates whether or not those conditions are met.
-        """
-        ...
-
-    @property
-    @pulumi.getter(name="currentMetrics")
-    def current_metrics(self) -> Optional[List['outputs.MetricStatus']]:
-        """
-        currentMetrics is the last read state of the metrics used by this autoscaler.
         """
         ...
 
@@ -316,6 +455,14 @@ class HorizontalPodAutoscalerStatus(dict):
     def desired_replicas(self) -> float:
         """
         desiredReplicas is the desired number of replicas of pods managed by this autoscaler, as last calculated by the autoscaler.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="currentMetrics")
+    def current_metrics(self) -> Optional[List['outputs.MetricStatus']]:
+        """
+        currentMetrics is the last read state of the metrics used by this autoscaler.
         """
         ...
 
@@ -344,6 +491,38 @@ class MetricSpec(dict):
     """
     MetricSpec specifies how to scale based on a single metric (only `type` and one other matching field should be set at once).
     """
+    def __init__(__self__, *,
+                 type: str,
+                 external: Optional['outputs.ExternalMetricSource'] = None,
+                 object: Optional['outputs.ObjectMetricSource'] = None,
+                 pods: Optional['outputs.PodsMetricSource'] = None,
+                 resource: Optional['outputs.ResourceMetricSource'] = None):
+        """
+        MetricSpec specifies how to scale based on a single metric (only `type` and one other matching field should be set at once).
+        :param str type: type is the type of metric source.  It should be one of "Object", "Pods" or "Resource", each mapping to a matching field in the object.
+        :param 'ExternalMetricSourceArgs' external: external refers to a global metric that is not associated with any Kubernetes object. It allows autoscaling based on information coming from components running outside of cluster (for example length of queue in cloud messaging service, or QPS from loadbalancer running outside of cluster).
+        :param 'ObjectMetricSourceArgs' object: object refers to a metric describing a single kubernetes object (for example, hits-per-second on an Ingress object).
+        :param 'PodsMetricSourceArgs' pods: pods refers to a metric describing each pod in the current scale target (for example, transactions-processed-per-second).  The values will be averaged together before being compared to the target value.
+        :param 'ResourceMetricSourceArgs' resource: resource refers to a resource metric (such as those specified in requests and limits) known to Kubernetes describing each pod in the current scale target (e.g. CPU or memory). Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the "pods" source.
+        """
+        pulumi.set(__self__, "type", type)
+        if external is not None:
+            pulumi.set(__self__, "external", external)
+        if object is not None:
+            pulumi.set(__self__, "object", object)
+        if pods is not None:
+            pulumi.set(__self__, "pods", pods)
+        if resource is not None:
+            pulumi.set(__self__, "resource", resource)
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        type is the type of metric source.  It should be one of "Object", "Pods" or "Resource", each mapping to a matching field in the object.
+        """
+        ...
+
     @property
     @pulumi.getter
     def external(self) -> Optional['outputs.ExternalMetricSource']:
@@ -376,14 +555,6 @@ class MetricSpec(dict):
         """
         ...
 
-    @property
-    @pulumi.getter
-    def type(self) -> str:
-        """
-        type is the type of metric source.  It should be one of "Object", "Pods" or "Resource", each mapping to a matching field in the object.
-        """
-        ...
-
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
@@ -393,6 +564,38 @@ class MetricStatus(dict):
     """
     MetricStatus describes the last-read state of a single metric.
     """
+    def __init__(__self__, *,
+                 type: str,
+                 external: Optional['outputs.ExternalMetricStatus'] = None,
+                 object: Optional['outputs.ObjectMetricStatus'] = None,
+                 pods: Optional['outputs.PodsMetricStatus'] = None,
+                 resource: Optional['outputs.ResourceMetricStatus'] = None):
+        """
+        MetricStatus describes the last-read state of a single metric.
+        :param str type: type is the type of metric source.  It will be one of "Object", "Pods" or "Resource", each corresponds to a matching field in the object.
+        :param 'ExternalMetricStatusArgs' external: external refers to a global metric that is not associated with any Kubernetes object. It allows autoscaling based on information coming from components running outside of cluster (for example length of queue in cloud messaging service, or QPS from loadbalancer running outside of cluster).
+        :param 'ObjectMetricStatusArgs' object: object refers to a metric describing a single kubernetes object (for example, hits-per-second on an Ingress object).
+        :param 'PodsMetricStatusArgs' pods: pods refers to a metric describing each pod in the current scale target (for example, transactions-processed-per-second).  The values will be averaged together before being compared to the target value.
+        :param 'ResourceMetricStatusArgs' resource: resource refers to a resource metric (such as those specified in requests and limits) known to Kubernetes describing each pod in the current scale target (e.g. CPU or memory). Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the "pods" source.
+        """
+        pulumi.set(__self__, "type", type)
+        if external is not None:
+            pulumi.set(__self__, "external", external)
+        if object is not None:
+            pulumi.set(__self__, "object", object)
+        if pods is not None:
+            pulumi.set(__self__, "pods", pods)
+        if resource is not None:
+            pulumi.set(__self__, "resource", resource)
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        type is the type of metric source.  It will be one of "Object", "Pods" or "Resource", each corresponds to a matching field in the object.
+        """
+        ...
+
     @property
     @pulumi.getter
     def external(self) -> Optional['outputs.ExternalMetricStatus']:
@@ -425,14 +628,6 @@ class MetricStatus(dict):
         """
         ...
 
-    @property
-    @pulumi.getter
-    def type(self) -> str:
-        """
-        type is the type of metric source.  It will be one of "Object", "Pods" or "Resource", each corresponds to a matching field in the object.
-        """
-        ...
-
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
@@ -442,27 +637,33 @@ class ObjectMetricSource(dict):
     """
     ObjectMetricSource indicates how to scale on a metric describing a kubernetes object (for example, hits-per-second on an Ingress object).
     """
-    @property
-    @pulumi.getter(name="averageValue")
-    def average_value(self) -> Optional[str]:
+    def __init__(__self__, *,
+                 metric_name: str,
+                 target: 'outputs.CrossVersionObjectReference',
+                 target_value: str,
+                 average_value: Optional[str] = None,
+                 selector: Optional['_meta.v1.outputs.LabelSelector'] = None):
         """
-        averageValue is the target value of the average of the metric across all relevant pods (as a quantity)
+        ObjectMetricSource indicates how to scale on a metric describing a kubernetes object (for example, hits-per-second on an Ingress object).
+        :param str metric_name: metricName is the name of the metric in question.
+        :param 'CrossVersionObjectReferenceArgs' target: target is the described Kubernetes object.
+        :param str target_value: targetValue is the target value of the metric (as a quantity).
+        :param str average_value: averageValue is the target value of the average of the metric across all relevant pods (as a quantity)
+        :param '_meta.v1.LabelSelectorArgs' selector: selector is the string-encoded form of a standard kubernetes label selector for the given metric When set, it is passed as an additional parameter to the metrics server for more specific metrics scoping When unset, just the metricName will be used to gather metrics.
         """
-        ...
+        pulumi.set(__self__, "metric_name", metric_name)
+        pulumi.set(__self__, "target", target)
+        pulumi.set(__self__, "target_value", target_value)
+        if average_value is not None:
+            pulumi.set(__self__, "average_value", average_value)
+        if selector is not None:
+            pulumi.set(__self__, "selector", selector)
 
     @property
     @pulumi.getter(name="metricName")
     def metric_name(self) -> str:
         """
         metricName is the name of the metric in question.
-        """
-        ...
-
-    @property
-    @pulumi.getter
-    def selector(self) -> Optional['_meta.v1.outputs.LabelSelector']:
-        """
-        selector is the string-encoded form of a standard kubernetes label selector for the given metric When set, it is passed as an additional parameter to the metrics server for more specific metrics scoping When unset, just the metricName will be used to gather metrics.
         """
         ...
 
@@ -482,6 +683,22 @@ class ObjectMetricSource(dict):
         """
         ...
 
+    @property
+    @pulumi.getter(name="averageValue")
+    def average_value(self) -> Optional[str]:
+        """
+        averageValue is the target value of the average of the metric across all relevant pods (as a quantity)
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def selector(self) -> Optional['_meta.v1.outputs.LabelSelector']:
+        """
+        selector is the string-encoded form of a standard kubernetes label selector for the given metric When set, it is passed as an additional parameter to the metrics server for more specific metrics scoping When unset, just the metricName will be used to gather metrics.
+        """
+        ...
+
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
@@ -491,13 +708,27 @@ class ObjectMetricStatus(dict):
     """
     ObjectMetricStatus indicates the current value of a metric describing a kubernetes object (for example, hits-per-second on an Ingress object).
     """
-    @property
-    @pulumi.getter(name="averageValue")
-    def average_value(self) -> Optional[str]:
+    def __init__(__self__, *,
+                 current_value: str,
+                 metric_name: str,
+                 target: 'outputs.CrossVersionObjectReference',
+                 average_value: Optional[str] = None,
+                 selector: Optional['_meta.v1.outputs.LabelSelector'] = None):
         """
-        averageValue is the current value of the average of the metric across all relevant pods (as a quantity)
+        ObjectMetricStatus indicates the current value of a metric describing a kubernetes object (for example, hits-per-second on an Ingress object).
+        :param str current_value: currentValue is the current value of the metric (as a quantity).
+        :param str metric_name: metricName is the name of the metric in question.
+        :param 'CrossVersionObjectReferenceArgs' target: target is the described Kubernetes object.
+        :param str average_value: averageValue is the current value of the average of the metric across all relevant pods (as a quantity)
+        :param '_meta.v1.LabelSelectorArgs' selector: selector is the string-encoded form of a standard kubernetes label selector for the given metric When set in the ObjectMetricSource, it is passed as an additional parameter to the metrics server for more specific metrics scoping. When unset, just the metricName will be used to gather metrics.
         """
-        ...
+        pulumi.set(__self__, "current_value", current_value)
+        pulumi.set(__self__, "metric_name", metric_name)
+        pulumi.set(__self__, "target", target)
+        if average_value is not None:
+            pulumi.set(__self__, "average_value", average_value)
+        if selector is not None:
+            pulumi.set(__self__, "selector", selector)
 
     @property
     @pulumi.getter(name="currentValue")
@@ -517,17 +748,25 @@ class ObjectMetricStatus(dict):
 
     @property
     @pulumi.getter
-    def selector(self) -> Optional['_meta.v1.outputs.LabelSelector']:
+    def target(self) -> 'outputs.CrossVersionObjectReference':
         """
-        selector is the string-encoded form of a standard kubernetes label selector for the given metric When set in the ObjectMetricSource, it is passed as an additional parameter to the metrics server for more specific metrics scoping. When unset, just the metricName will be used to gather metrics.
+        target is the described Kubernetes object.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="averageValue")
+    def average_value(self) -> Optional[str]:
+        """
+        averageValue is the current value of the average of the metric across all relevant pods (as a quantity)
         """
         ...
 
     @property
     @pulumi.getter
-    def target(self) -> 'outputs.CrossVersionObjectReference':
+    def selector(self) -> Optional['_meta.v1.outputs.LabelSelector']:
         """
-        target is the described Kubernetes object.
+        selector is the string-encoded form of a standard kubernetes label selector for the given metric When set in the ObjectMetricSource, it is passed as an additional parameter to the metrics server for more specific metrics scoping. When unset, just the metricName will be used to gather metrics.
         """
         ...
 
@@ -540,6 +779,21 @@ class PodsMetricSource(dict):
     """
     PodsMetricSource indicates how to scale on a metric describing each pod in the current scale target (for example, transactions-processed-per-second). The values will be averaged together before being compared to the target value.
     """
+    def __init__(__self__, *,
+                 metric_name: str,
+                 target_average_value: str,
+                 selector: Optional['_meta.v1.outputs.LabelSelector'] = None):
+        """
+        PodsMetricSource indicates how to scale on a metric describing each pod in the current scale target (for example, transactions-processed-per-second). The values will be averaged together before being compared to the target value.
+        :param str metric_name: metricName is the name of the metric in question
+        :param str target_average_value: targetAverageValue is the target value of the average of the metric across all relevant pods (as a quantity)
+        :param '_meta.v1.LabelSelectorArgs' selector: selector is the string-encoded form of a standard kubernetes label selector for the given metric When set, it is passed as an additional parameter to the metrics server for more specific metrics scoping When unset, just the metricName will be used to gather metrics.
+        """
+        pulumi.set(__self__, "metric_name", metric_name)
+        pulumi.set(__self__, "target_average_value", target_average_value)
+        if selector is not None:
+            pulumi.set(__self__, "selector", selector)
+
     @property
     @pulumi.getter(name="metricName")
     def metric_name(self) -> str:
@@ -549,18 +803,18 @@ class PodsMetricSource(dict):
         ...
 
     @property
-    @pulumi.getter
-    def selector(self) -> Optional['_meta.v1.outputs.LabelSelector']:
-        """
-        selector is the string-encoded form of a standard kubernetes label selector for the given metric When set, it is passed as an additional parameter to the metrics server for more specific metrics scoping When unset, just the metricName will be used to gather metrics.
-        """
-        ...
-
-    @property
     @pulumi.getter(name="targetAverageValue")
     def target_average_value(self) -> str:
         """
         targetAverageValue is the target value of the average of the metric across all relevant pods (as a quantity)
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def selector(self) -> Optional['_meta.v1.outputs.LabelSelector']:
+        """
+        selector is the string-encoded form of a standard kubernetes label selector for the given metric When set, it is passed as an additional parameter to the metrics server for more specific metrics scoping When unset, just the metricName will be used to gather metrics.
         """
         ...
 
@@ -573,6 +827,21 @@ class PodsMetricStatus(dict):
     """
     PodsMetricStatus indicates the current value of a metric describing each pod in the current scale target (for example, transactions-processed-per-second).
     """
+    def __init__(__self__, *,
+                 current_average_value: str,
+                 metric_name: str,
+                 selector: Optional['_meta.v1.outputs.LabelSelector'] = None):
+        """
+        PodsMetricStatus indicates the current value of a metric describing each pod in the current scale target (for example, transactions-processed-per-second).
+        :param str current_average_value: currentAverageValue is the current value of the average of the metric across all relevant pods (as a quantity)
+        :param str metric_name: metricName is the name of the metric in question
+        :param '_meta.v1.LabelSelectorArgs' selector: selector is the string-encoded form of a standard kubernetes label selector for the given metric When set in the PodsMetricSource, it is passed as an additional parameter to the metrics server for more specific metrics scoping. When unset, just the metricName will be used to gather metrics.
+        """
+        pulumi.set(__self__, "current_average_value", current_average_value)
+        pulumi.set(__self__, "metric_name", metric_name)
+        if selector is not None:
+            pulumi.set(__self__, "selector", selector)
+
     @property
     @pulumi.getter(name="currentAverageValue")
     def current_average_value(self) -> str:
@@ -606,6 +875,22 @@ class ResourceMetricSource(dict):
     """
     ResourceMetricSource indicates how to scale on a resource metric known to Kubernetes, as specified in requests and limits, describing each pod in the current scale target (e.g. CPU or memory).  The values will be averaged together before being compared to the target.  Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the "pods" source.  Only one "target" type should be set.
     """
+    def __init__(__self__, *,
+                 name: str,
+                 target_average_utilization: Optional[float] = None,
+                 target_average_value: Optional[str] = None):
+        """
+        ResourceMetricSource indicates how to scale on a resource metric known to Kubernetes, as specified in requests and limits, describing each pod in the current scale target (e.g. CPU or memory).  The values will be averaged together before being compared to the target.  Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the "pods" source.  Only one "target" type should be set.
+        :param str name: name is the name of the resource in question.
+        :param float target_average_utilization: targetAverageUtilization is the target value of the average of the resource metric across all relevant pods, represented as a percentage of the requested value of the resource for the pods.
+        :param str target_average_value: targetAverageValue is the target value of the average of the resource metric across all relevant pods, as a raw value (instead of as a percentage of the request), similar to the "pods" metric source type.
+        """
+        pulumi.set(__self__, "name", name)
+        if target_average_utilization is not None:
+            pulumi.set(__self__, "target_average_utilization", target_average_utilization)
+        if target_average_value is not None:
+            pulumi.set(__self__, "target_average_value", target_average_value)
+
     @property
     @pulumi.getter
     def name(self) -> str:
@@ -639,13 +924,20 @@ class ResourceMetricStatus(dict):
     """
     ResourceMetricStatus indicates the current value of a resource metric known to Kubernetes, as specified in requests and limits, describing each pod in the current scale target (e.g. CPU or memory).  Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the "pods" source.
     """
-    @property
-    @pulumi.getter(name="currentAverageUtilization")
-    def current_average_utilization(self) -> Optional[float]:
+    def __init__(__self__, *,
+                 current_average_value: str,
+                 name: str,
+                 current_average_utilization: Optional[float] = None):
         """
-        currentAverageUtilization is the current value of the average of the resource metric across all relevant pods, represented as a percentage of the requested value of the resource for the pods.  It will only be present if `targetAverageValue` was set in the corresponding metric specification.
+        ResourceMetricStatus indicates the current value of a resource metric known to Kubernetes, as specified in requests and limits, describing each pod in the current scale target (e.g. CPU or memory).  Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the "pods" source.
+        :param str current_average_value: currentAverageValue is the current value of the average of the resource metric across all relevant pods, as a raw value (instead of as a percentage of the request), similar to the "pods" metric source type. It will always be set, regardless of the corresponding metric specification.
+        :param str name: name is the name of the resource in question.
+        :param float current_average_utilization: currentAverageUtilization is the current value of the average of the resource metric across all relevant pods, represented as a percentage of the requested value of the resource for the pods.  It will only be present if `targetAverageValue` was set in the corresponding metric specification.
         """
-        ...
+        pulumi.set(__self__, "current_average_value", current_average_value)
+        pulumi.set(__self__, "name", name)
+        if current_average_utilization is not None:
+            pulumi.set(__self__, "current_average_utilization", current_average_utilization)
 
     @property
     @pulumi.getter(name="currentAverageValue")
@@ -660,6 +952,14 @@ class ResourceMetricStatus(dict):
     def name(self) -> str:
         """
         name is the name of the resource in question.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="currentAverageUtilization")
+    def current_average_utilization(self) -> Optional[float]:
+        """
+        currentAverageUtilization is the current value of the average of the resource metric across all relevant pods, represented as a percentage of the requested value of the resource for the pods.  It will only be present if `targetAverageValue` was set in the corresponding metric specification.
         """
         ...
 

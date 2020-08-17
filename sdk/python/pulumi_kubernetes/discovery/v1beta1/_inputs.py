@@ -40,10 +40,14 @@ class EndpointArgs:
                  endpoint is located. This should match the corresponding node label.
         """
         pulumi.set(__self__, "addresses", addresses)
-        pulumi.set(__self__, "conditions", conditions)
-        pulumi.set(__self__, "hostname", hostname)
-        pulumi.set(__self__, "targetRef", target_ref)
-        pulumi.set(__self__, "topology", topology)
+        if conditions is not None:
+            pulumi.set(__self__, "conditions", conditions)
+        if hostname is not None:
+            pulumi.set(__self__, "hostname", hostname)
+        if target_ref is not None:
+            pulumi.set(__self__, "target_ref", target_ref)
+        if topology is not None:
+            pulumi.set(__self__, "topology", topology)
 
     @property
     @pulumi.getter
@@ -120,7 +124,8 @@ class EndpointConditionsArgs:
         EndpointConditions represents the current condition of an endpoint.
         :param pulumi.Input[bool] ready: ready indicates that this endpoint is prepared to receive traffic, according to whatever system is managing the endpoint. A nil value indicates an unknown state. In most cases consumers should interpret this unknown state as ready.
         """
-        pulumi.set(__self__, "ready", ready)
+        if ready is not None:
+            pulumi.set(__self__, "ready", ready)
 
     @property
     @pulumi.getter
@@ -149,10 +154,14 @@ class EndpointPortArgs:
         :param pulumi.Input[float] port: The port number of the endpoint. If this is not specified, ports are not restricted and must be interpreted in the context of the specific consumer.
         :param pulumi.Input[str] protocol: The IP protocol for this port. Must be UDP, TCP, or SCTP. Default is TCP.
         """
-        pulumi.set(__self__, "appProtocol", app_protocol)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "port", port)
-        pulumi.set(__self__, "protocol", protocol)
+        if app_protocol is not None:
+            pulumi.set(__self__, "app_protocol", app_protocol)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
+        if protocol is not None:
+            pulumi.set(__self__, "protocol", protocol)
 
     @property
     @pulumi.getter(name="appProtocol")
@@ -221,12 +230,16 @@ class EndpointSliceArgs:
         :param pulumi.Input['_meta.v1.ObjectMetaArgs'] metadata: Standard object's metadata.
         :param pulumi.Input[List[pulumi.Input['EndpointPortArgs']]] ports: ports specifies the list of network ports exposed by each endpoint in this slice. Each port must have a unique name. When ports is empty, it indicates that there are no defined ports. When a port is defined with a nil port value, it indicates "all ports". Each slice may include a maximum of 100 ports.
         """
-        pulumi.set(__self__, "addressType", address_type)
+        pulumi.set(__self__, "address_type", address_type)
         pulumi.set(__self__, "endpoints", endpoints)
-        pulumi.set(__self__, "apiVersion", 'discovery.k8s.io/v1beta1')
-        pulumi.set(__self__, "kind", 'EndpointSlice')
-        pulumi.set(__self__, "metadata", metadata)
-        pulumi.set(__self__, "ports", ports)
+        if api_version is not None:
+            pulumi.set(__self__, "api_version", 'discovery.k8s.io/v1beta1')
+        if kind is not None:
+            pulumi.set(__self__, "kind", 'EndpointSlice')
+        if metadata is not None:
+            pulumi.set(__self__, "metadata", metadata)
+        if ports is not None:
+            pulumi.set(__self__, "ports", ports)
 
     @property
     @pulumi.getter(name="addressType")

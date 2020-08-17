@@ -23,6 +23,30 @@ class APIService(dict):
     """
     APIService represents a server for a particular GroupVersion. Name must be "version.group".
     """
+    def __init__(__self__, *,
+                 api_version: Optional[str] = None,
+                 kind: Optional[str] = None,
+                 metadata: Optional['_meta.v1.outputs.ObjectMeta'] = None,
+                 spec: Optional['outputs.APIServiceSpec'] = None,
+                 status: Optional['outputs.APIServiceStatus'] = None):
+        """
+        APIService represents a server for a particular GroupVersion. Name must be "version.group".
+        :param str api_version: APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+        :param str kind: Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+        :param 'APIServiceSpecArgs' spec: Spec contains information for locating and communicating with a server
+        :param 'APIServiceStatusArgs' status: Status contains derived information about an API server
+        """
+        if api_version is not None:
+            pulumi.set(__self__, "api_version", 'apiregistration.k8s.io/v1beta1')
+        if kind is not None:
+            pulumi.set(__self__, "kind", 'APIService')
+        if metadata is not None:
+            pulumi.set(__self__, "metadata", metadata)
+        if spec is not None:
+            pulumi.set(__self__, "spec", spec)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+
     @property
     @pulumi.getter(name="apiVersion")
     def api_version(self) -> Optional[str]:
@@ -69,6 +93,45 @@ class APIServiceCondition(dict):
     """
     APIServiceCondition describes the state of an APIService at a particular point
     """
+    def __init__(__self__, *,
+                 status: str,
+                 type: str,
+                 last_transition_time: Optional[str] = None,
+                 message: Optional[str] = None,
+                 reason: Optional[str] = None):
+        """
+        APIServiceCondition describes the state of an APIService at a particular point
+        :param str status: Status is the status of the condition. Can be True, False, Unknown.
+        :param str type: Type is the type of the condition.
+        :param str last_transition_time: Last time the condition transitioned from one status to another.
+        :param str message: Human-readable message indicating details about last transition.
+        :param str reason: Unique, one-word, CamelCase reason for the condition's last transition.
+        """
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "type", type)
+        if last_transition_time is not None:
+            pulumi.set(__self__, "last_transition_time", last_transition_time)
+        if message is not None:
+            pulumi.set(__self__, "message", message)
+        if reason is not None:
+            pulumi.set(__self__, "reason", reason)
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        Status is the status of the condition. Can be True, False, Unknown.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        Type is the type of the condition.
+        """
+        ...
+
     @property
     @pulumi.getter(name="lastTransitionTime")
     def last_transition_time(self) -> Optional[str]:
@@ -93,22 +156,6 @@ class APIServiceCondition(dict):
         """
         ...
 
-    @property
-    @pulumi.getter
-    def status(self) -> str:
-        """
-        Status is the status of the condition. Can be True, False, Unknown.
-        """
-        ...
-
-    @property
-    @pulumi.getter
-    def type(self) -> str:
-        """
-        Type is the type of the condition.
-        """
-        ...
-
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
@@ -118,6 +165,53 @@ class APIServiceSpec(dict):
     """
     APIServiceSpec contains information for locating and communicating with a server. Only https is supported, though you are able to disable certificate verification.
     """
+    def __init__(__self__, *,
+                 group_priority_minimum: float,
+                 version_priority: float,
+                 ca_bundle: Optional[str] = None,
+                 group: Optional[str] = None,
+                 insecure_skip_tls_verify: Optional[bool] = None,
+                 service: Optional['outputs.ServiceReference'] = None,
+                 version: Optional[str] = None):
+        """
+        APIServiceSpec contains information for locating and communicating with a server. Only https is supported, though you are able to disable certificate verification.
+        :param float group_priority_minimum: GroupPriorityMininum is the priority this group should have at least. Higher priority means that the group is preferred by clients over lower priority ones. Note that other versions of this group might specify even higher GroupPriorityMininum values such that the whole group gets a higher priority. The primary sort is based on GroupPriorityMinimum, ordered highest number to lowest (20 before 10). The secondary sort is based on the alphabetical comparison of the name of the object.  (v1.bar before v1.foo) We'd recommend something like: *.k8s.io (except extensions) at 18000 and PaaSes (OpenShift, Deis) are recommended to be in the 2000s
+        :param float version_priority: VersionPriority controls the ordering of this API version inside of its group.  Must be greater than zero. The primary sort is based on VersionPriority, ordered highest to lowest (20 before 10). Since it's inside of a group, the number can be small, probably in the 10s. In case of equal version priorities, the version string will be used to compute the order inside a group. If the version string is "kube-like", it will sort above non "kube-like" version strings, which are ordered lexicographically. "Kube-like" versions start with a "v", then are followed by a number (the major version), then optionally the string "alpha" or "beta" and another number (the minor version). These are sorted first by GA > beta > alpha (where GA is a version with no suffix such as beta or alpha), and then by comparing major version, then minor version. An example sorted list of versions: v10, v2, v1, v11beta2, v10beta3, v3beta1, v12alpha1, v11alpha2, foo1, foo10.
+        :param str ca_bundle: CABundle is a PEM encoded CA bundle which will be used to validate an API server's serving certificate. If unspecified, system trust roots on the apiserver are used.
+        :param str group: Group is the API group name this server hosts
+        :param bool insecure_skip_tls_verify: InsecureSkipTLSVerify disables TLS certificate verification when communicating with this server. This is strongly discouraged.  You should use the CABundle instead.
+        :param 'ServiceReferenceArgs' service: Service is a reference to the service for this API server.  It must communicate on port 443 If the Service is nil, that means the handling for the API groupversion is handled locally on this server. The call will simply delegate to the normal handler chain to be fulfilled.
+        :param str version: Version is the API version this server hosts.  For example, "v1"
+        """
+        pulumi.set(__self__, "group_priority_minimum", group_priority_minimum)
+        pulumi.set(__self__, "version_priority", version_priority)
+        if ca_bundle is not None:
+            pulumi.set(__self__, "ca_bundle", ca_bundle)
+        if group is not None:
+            pulumi.set(__self__, "group", group)
+        if insecure_skip_tls_verify is not None:
+            pulumi.set(__self__, "insecure_skip_tls_verify", insecure_skip_tls_verify)
+        if service is not None:
+            pulumi.set(__self__, "service", service)
+        if version is not None:
+            pulumi.set(__self__, "version", version)
+
+    @property
+    @pulumi.getter(name="groupPriorityMinimum")
+    def group_priority_minimum(self) -> float:
+        """
+        GroupPriorityMininum is the priority this group should have at least. Higher priority means that the group is preferred by clients over lower priority ones. Note that other versions of this group might specify even higher GroupPriorityMininum values such that the whole group gets a higher priority. The primary sort is based on GroupPriorityMinimum, ordered highest number to lowest (20 before 10). The secondary sort is based on the alphabetical comparison of the name of the object.  (v1.bar before v1.foo) We'd recommend something like: *.k8s.io (except extensions) at 18000 and PaaSes (OpenShift, Deis) are recommended to be in the 2000s
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="versionPriority")
+    def version_priority(self) -> float:
+        """
+        VersionPriority controls the ordering of this API version inside of its group.  Must be greater than zero. The primary sort is based on VersionPriority, ordered highest to lowest (20 before 10). Since it's inside of a group, the number can be small, probably in the 10s. In case of equal version priorities, the version string will be used to compute the order inside a group. If the version string is "kube-like", it will sort above non "kube-like" version strings, which are ordered lexicographically. "Kube-like" versions start with a "v", then are followed by a number (the major version), then optionally the string "alpha" or "beta" and another number (the minor version). These are sorted first by GA > beta > alpha (where GA is a version with no suffix such as beta or alpha), and then by comparing major version, then minor version. An example sorted list of versions: v10, v2, v1, v11beta2, v10beta3, v3beta1, v12alpha1, v11alpha2, foo1, foo10.
+        """
+        ...
+
     @property
     @pulumi.getter(name="caBundle")
     def ca_bundle(self) -> Optional[str]:
@@ -131,14 +225,6 @@ class APIServiceSpec(dict):
     def group(self) -> Optional[str]:
         """
         Group is the API group name this server hosts
-        """
-        ...
-
-    @property
-    @pulumi.getter(name="groupPriorityMinimum")
-    def group_priority_minimum(self) -> float:
-        """
-        GroupPriorityMininum is the priority this group should have at least. Higher priority means that the group is preferred by clients over lower priority ones. Note that other versions of this group might specify even higher GroupPriorityMininum values such that the whole group gets a higher priority. The primary sort is based on GroupPriorityMinimum, ordered highest number to lowest (20 before 10). The secondary sort is based on the alphabetical comparison of the name of the object.  (v1.bar before v1.foo) We'd recommend something like: *.k8s.io (except extensions) at 18000 and PaaSes (OpenShift, Deis) are recommended to be in the 2000s
         """
         ...
 
@@ -166,14 +252,6 @@ class APIServiceSpec(dict):
         """
         ...
 
-    @property
-    @pulumi.getter(name="versionPriority")
-    def version_priority(self) -> float:
-        """
-        VersionPriority controls the ordering of this API version inside of its group.  Must be greater than zero. The primary sort is based on VersionPriority, ordered highest to lowest (20 before 10). Since it's inside of a group, the number can be small, probably in the 10s. In case of equal version priorities, the version string will be used to compute the order inside a group. If the version string is "kube-like", it will sort above non "kube-like" version strings, which are ordered lexicographically. "Kube-like" versions start with a "v", then are followed by a number (the major version), then optionally the string "alpha" or "beta" and another number (the minor version). These are sorted first by GA > beta > alpha (where GA is a version with no suffix such as beta or alpha), and then by comparing major version, then minor version. An example sorted list of versions: v10, v2, v1, v11beta2, v10beta3, v3beta1, v12alpha1, v11alpha2, foo1, foo10.
-        """
-        ...
-
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
@@ -183,6 +261,15 @@ class APIServiceStatus(dict):
     """
     APIServiceStatus contains derived information about an API server
     """
+    def __init__(__self__, *,
+                 conditions: Optional[List['outputs.APIServiceCondition']] = None):
+        """
+        APIServiceStatus contains derived information about an API server
+        :param List['APIServiceConditionArgs'] conditions: Current service state of apiService.
+        """
+        if conditions is not None:
+            pulumi.set(__self__, "conditions", conditions)
+
     @property
     @pulumi.getter
     def conditions(self) -> Optional[List['outputs.APIServiceCondition']]:
@@ -200,6 +287,23 @@ class ServiceReference(dict):
     """
     ServiceReference holds a reference to Service.legacy.k8s.io
     """
+    def __init__(__self__, *,
+                 name: Optional[str] = None,
+                 namespace: Optional[str] = None,
+                 port: Optional[float] = None):
+        """
+        ServiceReference holds a reference to Service.legacy.k8s.io
+        :param str name: Name is the name of the service
+        :param str namespace: Namespace is the namespace of the service
+        :param float port: If specified, the port on the service that hosting webhook. Default to 443 for backward compatibility. `port` should be a valid port number (1-65535, inclusive).
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
+
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:

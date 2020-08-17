@@ -41,7 +41,8 @@ class CrossVersionObjectReferenceArgs:
         """
         pulumi.set(__self__, "kind", kind)
         pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "apiVersion", api_version)
+        if api_version is not None:
+            pulumi.set(__self__, "api_version", api_version)
 
     @property
     @pulumi.getter
@@ -94,10 +95,13 @@ class ExternalMetricSourceArgs:
         :param pulumi.Input[str] target_average_value: targetAverageValue is the target per-pod value of global metric (as a quantity). Mutually exclusive with TargetValue.
         :param pulumi.Input[str] target_value: targetValue is the target value of the metric (as a quantity). Mutually exclusive with TargetAverageValue.
         """
-        pulumi.set(__self__, "metricName", metric_name)
-        pulumi.set(__self__, "metricSelector", metric_selector)
-        pulumi.set(__self__, "targetAverageValue", target_average_value)
-        pulumi.set(__self__, "targetValue", target_value)
+        pulumi.set(__self__, "metric_name", metric_name)
+        if metric_selector is not None:
+            pulumi.set(__self__, "metric_selector", metric_selector)
+        if target_average_value is not None:
+            pulumi.set(__self__, "target_average_value", target_average_value)
+        if target_value is not None:
+            pulumi.set(__self__, "target_value", target_value)
 
     @property
     @pulumi.getter(name="metricName")
@@ -162,10 +166,12 @@ class ExternalMetricStatusArgs:
         :param pulumi.Input[str] current_average_value: currentAverageValue is the current value of metric averaged over autoscaled pods.
         :param pulumi.Input['_meta.v1.LabelSelectorArgs'] metric_selector: metricSelector is used to identify a specific time series within a given metric.
         """
-        pulumi.set(__self__, "currentValue", current_value)
-        pulumi.set(__self__, "metricName", metric_name)
-        pulumi.set(__self__, "currentAverageValue", current_average_value)
-        pulumi.set(__self__, "metricSelector", metric_selector)
+        pulumi.set(__self__, "current_value", current_value)
+        pulumi.set(__self__, "metric_name", metric_name)
+        if current_average_value is not None:
+            pulumi.set(__self__, "current_average_value", current_average_value)
+        if metric_selector is not None:
+            pulumi.set(__self__, "metric_selector", metric_selector)
 
     @property
     @pulumi.getter(name="currentValue")
@@ -232,11 +238,16 @@ class HorizontalPodAutoscalerArgs:
         :param pulumi.Input['HorizontalPodAutoscalerSpecArgs'] spec: spec is the specification for the behaviour of the autoscaler. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status.
         :param pulumi.Input['HorizontalPodAutoscalerStatusArgs'] status: status is the current information about the autoscaler.
         """
-        pulumi.set(__self__, "apiVersion", 'autoscaling/v2beta1')
-        pulumi.set(__self__, "kind", 'HorizontalPodAutoscaler')
-        pulumi.set(__self__, "metadata", metadata)
-        pulumi.set(__self__, "spec", spec)
-        pulumi.set(__self__, "status", status)
+        if api_version is not None:
+            pulumi.set(__self__, "api_version", 'autoscaling/v2beta1')
+        if kind is not None:
+            pulumi.set(__self__, "kind", 'HorizontalPodAutoscaler')
+        if metadata is not None:
+            pulumi.set(__self__, "metadata", metadata)
+        if spec is not None:
+            pulumi.set(__self__, "spec", spec)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
 
     @property
     @pulumi.getter(name="apiVersion")
@@ -317,9 +328,12 @@ class HorizontalPodAutoscalerConditionArgs:
         """
         pulumi.set(__self__, "status", status)
         pulumi.set(__self__, "type", type)
-        pulumi.set(__self__, "lastTransitionTime", last_transition_time)
-        pulumi.set(__self__, "message", message)
-        pulumi.set(__self__, "reason", reason)
+        if last_transition_time is not None:
+            pulumi.set(__self__, "last_transition_time", last_transition_time)
+        if message is not None:
+            pulumi.set(__self__, "message", message)
+        if reason is not None:
+            pulumi.set(__self__, "reason", reason)
 
     @property
     @pulumi.getter
@@ -396,10 +410,12 @@ class HorizontalPodAutoscalerSpecArgs:
         :param pulumi.Input[List[pulumi.Input['MetricSpecArgs']]] metrics: metrics contains the specifications for which to use to calculate the desired replica count (the maximum replica count across all metrics will be used).  The desired replica count is calculated multiplying the ratio between the target value and the current value by the current number of pods.  Ergo, metrics used must decrease as the pod count is increased, and vice-versa.  See the individual metric source types for more information about how each type of metric must respond.
         :param pulumi.Input[float] min_replicas: minReplicas is the lower limit for the number of replicas to which the autoscaler can scale down.  It defaults to 1 pod.  minReplicas is allowed to be 0 if the alpha feature gate HPAScaleToZero is enabled and at least one Object or External metric is configured.  Scaling is active as long as at least one metric value is available.
         """
-        pulumi.set(__self__, "maxReplicas", max_replicas)
-        pulumi.set(__self__, "scaleTargetRef", scale_target_ref)
-        pulumi.set(__self__, "metrics", metrics)
-        pulumi.set(__self__, "minReplicas", min_replicas)
+        pulumi.set(__self__, "max_replicas", max_replicas)
+        pulumi.set(__self__, "scale_target_ref", scale_target_ref)
+        if metrics is not None:
+            pulumi.set(__self__, "metrics", metrics)
+        if min_replicas is not None:
+            pulumi.set(__self__, "min_replicas", min_replicas)
 
     @property
     @pulumi.getter(name="maxReplicas")
@@ -469,11 +485,14 @@ class HorizontalPodAutoscalerStatusArgs:
         :param pulumi.Input[float] observed_generation: observedGeneration is the most recent generation observed by this autoscaler.
         """
         pulumi.set(__self__, "conditions", conditions)
-        pulumi.set(__self__, "currentReplicas", current_replicas)
-        pulumi.set(__self__, "desiredReplicas", desired_replicas)
-        pulumi.set(__self__, "currentMetrics", current_metrics)
-        pulumi.set(__self__, "lastScaleTime", last_scale_time)
-        pulumi.set(__self__, "observedGeneration", observed_generation)
+        pulumi.set(__self__, "current_replicas", current_replicas)
+        pulumi.set(__self__, "desired_replicas", desired_replicas)
+        if current_metrics is not None:
+            pulumi.set(__self__, "current_metrics", current_metrics)
+        if last_scale_time is not None:
+            pulumi.set(__self__, "last_scale_time", last_scale_time)
+        if observed_generation is not None:
+            pulumi.set(__self__, "observed_generation", observed_generation)
 
     @property
     @pulumi.getter
@@ -565,10 +584,14 @@ class MetricSpecArgs:
         :param pulumi.Input['ResourceMetricSourceArgs'] resource: resource refers to a resource metric (such as those specified in requests and limits) known to Kubernetes describing each pod in the current scale target (e.g. CPU or memory). Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the "pods" source.
         """
         pulumi.set(__self__, "type", type)
-        pulumi.set(__self__, "external", external)
-        pulumi.set(__self__, "object", object)
-        pulumi.set(__self__, "pods", pods)
-        pulumi.set(__self__, "resource", resource)
+        if external is not None:
+            pulumi.set(__self__, "external", external)
+        if object is not None:
+            pulumi.set(__self__, "object", object)
+        if pods is not None:
+            pulumi.set(__self__, "pods", pods)
+        if resource is not None:
+            pulumi.set(__self__, "resource", resource)
 
     @property
     @pulumi.getter
@@ -648,10 +671,14 @@ class MetricStatusArgs:
         :param pulumi.Input['ResourceMetricStatusArgs'] resource: resource refers to a resource metric (such as those specified in requests and limits) known to Kubernetes describing each pod in the current scale target (e.g. CPU or memory). Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the "pods" source.
         """
         pulumi.set(__self__, "type", type)
-        pulumi.set(__self__, "external", external)
-        pulumi.set(__self__, "object", object)
-        pulumi.set(__self__, "pods", pods)
-        pulumi.set(__self__, "resource", resource)
+        if external is not None:
+            pulumi.set(__self__, "external", external)
+        if object is not None:
+            pulumi.set(__self__, "object", object)
+        if pods is not None:
+            pulumi.set(__self__, "pods", pods)
+        if resource is not None:
+            pulumi.set(__self__, "resource", resource)
 
     @property
     @pulumi.getter
@@ -730,11 +757,13 @@ class ObjectMetricSourceArgs:
         :param pulumi.Input[str] average_value: averageValue is the target value of the average of the metric across all relevant pods (as a quantity)
         :param pulumi.Input['_meta.v1.LabelSelectorArgs'] selector: selector is the string-encoded form of a standard kubernetes label selector for the given metric When set, it is passed as an additional parameter to the metrics server for more specific metrics scoping When unset, just the metricName will be used to gather metrics.
         """
-        pulumi.set(__self__, "metricName", metric_name)
+        pulumi.set(__self__, "metric_name", metric_name)
         pulumi.set(__self__, "target", target)
-        pulumi.set(__self__, "targetValue", target_value)
-        pulumi.set(__self__, "averageValue", average_value)
-        pulumi.set(__self__, "selector", selector)
+        pulumi.set(__self__, "target_value", target_value)
+        if average_value is not None:
+            pulumi.set(__self__, "average_value", average_value)
+        if selector is not None:
+            pulumi.set(__self__, "selector", selector)
 
     @property
     @pulumi.getter(name="metricName")
@@ -813,11 +842,13 @@ class ObjectMetricStatusArgs:
         :param pulumi.Input[str] average_value: averageValue is the current value of the average of the metric across all relevant pods (as a quantity)
         :param pulumi.Input['_meta.v1.LabelSelectorArgs'] selector: selector is the string-encoded form of a standard kubernetes label selector for the given metric When set in the ObjectMetricSource, it is passed as an additional parameter to the metrics server for more specific metrics scoping. When unset, just the metricName will be used to gather metrics.
         """
-        pulumi.set(__self__, "currentValue", current_value)
-        pulumi.set(__self__, "metricName", metric_name)
+        pulumi.set(__self__, "current_value", current_value)
+        pulumi.set(__self__, "metric_name", metric_name)
         pulumi.set(__self__, "target", target)
-        pulumi.set(__self__, "averageValue", average_value)
-        pulumi.set(__self__, "selector", selector)
+        if average_value is not None:
+            pulumi.set(__self__, "average_value", average_value)
+        if selector is not None:
+            pulumi.set(__self__, "selector", selector)
 
     @property
     @pulumi.getter(name="currentValue")
@@ -892,9 +923,10 @@ class PodsMetricSourceArgs:
         :param pulumi.Input[str] target_average_value: targetAverageValue is the target value of the average of the metric across all relevant pods (as a quantity)
         :param pulumi.Input['_meta.v1.LabelSelectorArgs'] selector: selector is the string-encoded form of a standard kubernetes label selector for the given metric When set, it is passed as an additional parameter to the metrics server for more specific metrics scoping When unset, just the metricName will be used to gather metrics.
         """
-        pulumi.set(__self__, "metricName", metric_name)
-        pulumi.set(__self__, "targetAverageValue", target_average_value)
-        pulumi.set(__self__, "selector", selector)
+        pulumi.set(__self__, "metric_name", metric_name)
+        pulumi.set(__self__, "target_average_value", target_average_value)
+        if selector is not None:
+            pulumi.set(__self__, "selector", selector)
 
     @property
     @pulumi.getter(name="metricName")
@@ -945,9 +977,10 @@ class PodsMetricStatusArgs:
         :param pulumi.Input[str] metric_name: metricName is the name of the metric in question
         :param pulumi.Input['_meta.v1.LabelSelectorArgs'] selector: selector is the string-encoded form of a standard kubernetes label selector for the given metric When set in the PodsMetricSource, it is passed as an additional parameter to the metrics server for more specific metrics scoping. When unset, just the metricName will be used to gather metrics.
         """
-        pulumi.set(__self__, "currentAverageValue", current_average_value)
-        pulumi.set(__self__, "metricName", metric_name)
-        pulumi.set(__self__, "selector", selector)
+        pulumi.set(__self__, "current_average_value", current_average_value)
+        pulumi.set(__self__, "metric_name", metric_name)
+        if selector is not None:
+            pulumi.set(__self__, "selector", selector)
 
     @property
     @pulumi.getter(name="currentAverageValue")
@@ -999,8 +1032,10 @@ class ResourceMetricSourceArgs:
         :param pulumi.Input[str] target_average_value: targetAverageValue is the target value of the average of the resource metric across all relevant pods, as a raw value (instead of as a percentage of the request), similar to the "pods" metric source type.
         """
         pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "targetAverageUtilization", target_average_utilization)
-        pulumi.set(__self__, "targetAverageValue", target_average_value)
+        if target_average_utilization is not None:
+            pulumi.set(__self__, "target_average_utilization", target_average_utilization)
+        if target_average_value is not None:
+            pulumi.set(__self__, "target_average_value", target_average_value)
 
     @property
     @pulumi.getter
@@ -1051,9 +1086,10 @@ class ResourceMetricStatusArgs:
         :param pulumi.Input[str] name: name is the name of the resource in question.
         :param pulumi.Input[float] current_average_utilization: currentAverageUtilization is the current value of the average of the resource metric across all relevant pods, represented as a percentage of the requested value of the resource for the pods.  It will only be present if `targetAverageValue` was set in the corresponding metric specification.
         """
-        pulumi.set(__self__, "currentAverageValue", current_average_value)
+        pulumi.set(__self__, "current_average_value", current_average_value)
         pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "currentAverageUtilization", current_average_utilization)
+        if current_average_utilization is not None:
+            pulumi.set(__self__, "current_average_utilization", current_average_utilization)
 
     @property
     @pulumi.getter(name="currentAverageValue")

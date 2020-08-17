@@ -32,10 +32,14 @@ class AuditSinkArgs:
         :param pulumi.Input[str] kind: Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         :param pulumi.Input['AuditSinkSpecArgs'] spec: Spec defines the audit configuration spec
         """
-        pulumi.set(__self__, "apiVersion", 'auditregistration.k8s.io/v1alpha1')
-        pulumi.set(__self__, "kind", 'AuditSink')
-        pulumi.set(__self__, "metadata", metadata)
-        pulumi.set(__self__, "spec", spec)
+        if api_version is not None:
+            pulumi.set(__self__, "api_version", 'auditregistration.k8s.io/v1alpha1')
+        if kind is not None:
+            pulumi.set(__self__, "kind", 'AuditSink')
+        if metadata is not None:
+            pulumi.set(__self__, "metadata", metadata)
+        if spec is not None:
+            pulumi.set(__self__, "spec", spec)
 
     @property
     @pulumi.getter(name="apiVersion")
@@ -132,7 +136,8 @@ class PolicyArgs:
         :param pulumi.Input[List[pulumi.Input[str]]] stages: Stages is a list of stages for which events are created.
         """
         pulumi.set(__self__, "level", level)
-        pulumi.set(__self__, "stages", stages)
+        if stages is not None:
+            pulumi.set(__self__, "stages", stages)
 
     @property
     @pulumi.getter
@@ -175,8 +180,10 @@ class ServiceReferenceArgs:
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "namespace", namespace)
-        pulumi.set(__self__, "path", path)
-        pulumi.set(__self__, "port", port)
+        if path is not None:
+            pulumi.set(__self__, "path", path)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
 
     @property
     @pulumi.getter
@@ -237,8 +244,9 @@ class WebhookArgs:
         :param pulumi.Input['WebhookClientConfigArgs'] client_config: ClientConfig holds the connection parameters for the webhook required
         :param pulumi.Input['WebhookThrottleConfigArgs'] throttle: Throttle holds the options for throttling the webhook
         """
-        pulumi.set(__self__, "clientConfig", client_config)
-        pulumi.set(__self__, "throttle", throttle)
+        pulumi.set(__self__, "client_config", client_config)
+        if throttle is not None:
+            pulumi.set(__self__, "throttle", throttle)
 
     @property
     @pulumi.getter(name="clientConfig")
@@ -289,9 +297,12 @@ class WebhookClientConfigArgs:
                
                Attempting to use a user or basic auth e.g. "user:password@" is not allowed. Fragments ("#...") and query parameters ("?...") are not allowed, either.
         """
-        pulumi.set(__self__, "caBundle", ca_bundle)
-        pulumi.set(__self__, "service", service)
-        pulumi.set(__self__, "url", url)
+        if ca_bundle is not None:
+            pulumi.set(__self__, "ca_bundle", ca_bundle)
+        if service is not None:
+            pulumi.set(__self__, "service", service)
+        if url is not None:
+            pulumi.set(__self__, "url", url)
 
     @property
     @pulumi.getter(name="caBundle")
@@ -352,8 +363,10 @@ class WebhookThrottleConfigArgs:
         :param pulumi.Input[float] burst: ThrottleBurst is the maximum number of events sent at the same moment default 15 QPS
         :param pulumi.Input[float] qps: ThrottleQPS maximum number of batches per second default 10 QPS
         """
-        pulumi.set(__self__, "burst", burst)
-        pulumi.set(__self__, "qps", qps)
+        if burst is not None:
+            pulumi.set(__self__, "burst", burst)
+        if qps is not None:
+            pulumi.set(__self__, "qps", qps)
 
     @property
     @pulumi.getter

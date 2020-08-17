@@ -34,11 +34,16 @@ class CronJobArgs:
         :param pulumi.Input['CronJobSpecArgs'] spec: Specification of the desired behavior of a cron job, including the schedule. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
         :param pulumi.Input['CronJobStatusArgs'] status: Current status of a cron job. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
         """
-        pulumi.set(__self__, "apiVersion", 'batch/v1beta1')
-        pulumi.set(__self__, "kind", 'CronJob')
-        pulumi.set(__self__, "metadata", metadata)
-        pulumi.set(__self__, "spec", spec)
-        pulumi.set(__self__, "status", status)
+        if api_version is not None:
+            pulumi.set(__self__, "api_version", 'batch/v1beta1')
+        if kind is not None:
+            pulumi.set(__self__, "kind", 'CronJob')
+        if metadata is not None:
+            pulumi.set(__self__, "metadata", metadata)
+        if spec is not None:
+            pulumi.set(__self__, "spec", spec)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
 
     @property
     @pulumi.getter(name="apiVersion")
@@ -121,13 +126,18 @@ class CronJobSpecArgs:
         :param pulumi.Input[float] successful_jobs_history_limit: The number of successful finished jobs to retain. This is a pointer to distinguish between explicit zero and not specified. Defaults to 3.
         :param pulumi.Input[bool] suspend: This flag tells the controller to suspend subsequent executions, it does not apply to already started executions.  Defaults to false.
         """
-        pulumi.set(__self__, "jobTemplate", job_template)
+        pulumi.set(__self__, "job_template", job_template)
         pulumi.set(__self__, "schedule", schedule)
-        pulumi.set(__self__, "concurrencyPolicy", concurrency_policy)
-        pulumi.set(__self__, "failedJobsHistoryLimit", failed_jobs_history_limit)
-        pulumi.set(__self__, "startingDeadlineSeconds", starting_deadline_seconds)
-        pulumi.set(__self__, "successfulJobsHistoryLimit", successful_jobs_history_limit)
-        pulumi.set(__self__, "suspend", suspend)
+        if concurrency_policy is not None:
+            pulumi.set(__self__, "concurrency_policy", concurrency_policy)
+        if failed_jobs_history_limit is not None:
+            pulumi.set(__self__, "failed_jobs_history_limit", failed_jobs_history_limit)
+        if starting_deadline_seconds is not None:
+            pulumi.set(__self__, "starting_deadline_seconds", starting_deadline_seconds)
+        if successful_jobs_history_limit is not None:
+            pulumi.set(__self__, "successful_jobs_history_limit", successful_jobs_history_limit)
+        if suspend is not None:
+            pulumi.set(__self__, "suspend", suspend)
 
     @property
     @pulumi.getter(name="jobTemplate")
@@ -224,8 +234,10 @@ class CronJobStatusArgs:
         :param pulumi.Input[List[pulumi.Input['_core.v1.ObjectReferenceArgs']]] active: A list of pointers to currently running jobs.
         :param pulumi.Input[str] last_schedule_time: Information when was the last time the job was successfully scheduled.
         """
-        pulumi.set(__self__, "active", active)
-        pulumi.set(__self__, "lastScheduleTime", last_schedule_time)
+        if active is not None:
+            pulumi.set(__self__, "active", active)
+        if last_schedule_time is not None:
+            pulumi.set(__self__, "last_schedule_time", last_schedule_time)
 
     @property
     @pulumi.getter
@@ -262,8 +274,10 @@ class JobTemplateSpecArgs:
         :param pulumi.Input['_meta.v1.ObjectMetaArgs'] metadata: Standard object's metadata of the jobs created from this template. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         :param pulumi.Input['_batch.v1.JobSpecArgs'] spec: Specification of the desired behavior of the job. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
         """
-        pulumi.set(__self__, "metadata", metadata)
-        pulumi.set(__self__, "spec", spec)
+        if metadata is not None:
+            pulumi.set(__self__, "metadata", metadata)
+        if spec is not None:
+            pulumi.set(__self__, "spec", spec)
 
     @property
     @pulumi.getter

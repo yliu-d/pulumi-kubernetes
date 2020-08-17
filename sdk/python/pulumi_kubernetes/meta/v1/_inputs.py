@@ -29,8 +29,10 @@ class LabelSelectorArgs:
         :param pulumi.Input[List[pulumi.Input['LabelSelectorRequirementArgs']]] match_expressions: matchExpressions is a list of label selector requirements. The requirements are ANDed.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] match_labels: matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed.
         """
-        pulumi.set(__self__, "matchExpressions", match_expressions)
-        pulumi.set(__self__, "matchLabels", match_labels)
+        if match_expressions is not None:
+            pulumi.set(__self__, "match_expressions", match_expressions)
+        if match_labels is not None:
+            pulumi.set(__self__, "match_labels", match_labels)
 
     @property
     @pulumi.getter(name="matchExpressions")
@@ -71,7 +73,8 @@ class LabelSelectorRequirementArgs:
         """
         pulumi.set(__self__, "key", key)
         pulumi.set(__self__, "operator", operator)
-        pulumi.set(__self__, "values", values)
+        if values is not None:
+            pulumi.set(__self__, "values", values)
 
     @property
     @pulumi.getter
@@ -126,10 +129,14 @@ class ListMetaArgs:
                
                DEPRECATED Kubernetes will stop propagating this field in 1.20 release and the field is planned to be removed in 1.21 release.
         """
-        pulumi.set(__self__, "continue", continue_)
-        pulumi.set(__self__, "remainingItemCount", remaining_item_count)
-        pulumi.set(__self__, "resourceVersion", resource_version)
-        pulumi.set(__self__, "selfLink", self_link)
+        if continue_ is not None:
+            pulumi.set(__self__, "continue_", continue_)
+        if remaining_item_count is not None:
+            pulumi.set(__self__, "remaining_item_count", remaining_item_count)
+        if resource_version is not None:
+            pulumi.set(__self__, "resource_version", resource_version)
+        if self_link is not None:
+            pulumi.set(__self__, "self_link", self_link)
 
     @property
     @pulumi.getter(name="continue")
@@ -200,12 +207,18 @@ class ManagedFieldsEntryArgs:
         :param pulumi.Input[str] operation: Operation is the type of operation which lead to this ManagedFieldsEntry being created. The only valid values for this field are 'Apply' and 'Update'.
         :param pulumi.Input[str] time: Time is timestamp of when these fields were set. It should always be empty if Operation is 'Apply'
         """
-        pulumi.set(__self__, "apiVersion", api_version)
-        pulumi.set(__self__, "fieldsType", fields_type)
-        pulumi.set(__self__, "fieldsV1", fields_v1)
-        pulumi.set(__self__, "manager", manager)
-        pulumi.set(__self__, "operation", operation)
-        pulumi.set(__self__, "time", time)
+        if api_version is not None:
+            pulumi.set(__self__, "api_version", api_version)
+        if fields_type is not None:
+            pulumi.set(__self__, "fields_type", fields_type)
+        if fields_v1 is not None:
+            pulumi.set(__self__, "fields_v1", fields_v1)
+        if manager is not None:
+            pulumi.set(__self__, "manager", manager)
+        if operation is not None:
+            pulumi.set(__self__, "operation", operation)
+        if time is not None:
+            pulumi.set(__self__, "time", time)
 
     @property
     @pulumi.getter(name="apiVersion")
@@ -334,22 +347,38 @@ class ObjectMetaArgs:
                
                Populated by the system. Read-only. More info: http://kubernetes.io/docs/user-guide/identifiers#uids
         """
-        pulumi.set(__self__, "annotations", annotations)
-        pulumi.set(__self__, "clusterName", cluster_name)
-        pulumi.set(__self__, "creationTimestamp", creation_timestamp)
-        pulumi.set(__self__, "deletionGracePeriodSeconds", deletion_grace_period_seconds)
-        pulumi.set(__self__, "deletionTimestamp", deletion_timestamp)
-        pulumi.set(__self__, "finalizers", finalizers)
-        pulumi.set(__self__, "generateName", generate_name)
-        pulumi.set(__self__, "generation", generation)
-        pulumi.set(__self__, "labels", labels)
-        pulumi.set(__self__, "managedFields", managed_fields)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "namespace", namespace)
-        pulumi.set(__self__, "ownerReferences", owner_references)
-        pulumi.set(__self__, "resourceVersion", resource_version)
-        pulumi.set(__self__, "selfLink", self_link)
-        pulumi.set(__self__, "uid", uid)
+        if annotations is not None:
+            pulumi.set(__self__, "annotations", annotations)
+        if cluster_name is not None:
+            pulumi.set(__self__, "cluster_name", cluster_name)
+        if creation_timestamp is not None:
+            pulumi.set(__self__, "creation_timestamp", creation_timestamp)
+        if deletion_grace_period_seconds is not None:
+            pulumi.set(__self__, "deletion_grace_period_seconds", deletion_grace_period_seconds)
+        if deletion_timestamp is not None:
+            pulumi.set(__self__, "deletion_timestamp", deletion_timestamp)
+        if finalizers is not None:
+            pulumi.set(__self__, "finalizers", finalizers)
+        if generate_name is not None:
+            pulumi.set(__self__, "generate_name", generate_name)
+        if generation is not None:
+            pulumi.set(__self__, "generation", generation)
+        if labels is not None:
+            pulumi.set(__self__, "labels", labels)
+        if managed_fields is not None:
+            pulumi.set(__self__, "managed_fields", managed_fields)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
+        if owner_references is not None:
+            pulumi.set(__self__, "owner_references", owner_references)
+        if resource_version is not None:
+            pulumi.set(__self__, "resource_version", resource_version)
+        if self_link is not None:
+            pulumi.set(__self__, "self_link", self_link)
+        if uid is not None:
+            pulumi.set(__self__, "uid", uid)
 
     @property
     @pulumi.getter
@@ -578,12 +607,14 @@ class OwnerReferenceArgs:
         :param pulumi.Input[bool] block_owner_deletion: If true, AND if the owner has the "foregroundDeletion" finalizer, then the owner cannot be deleted from the key-value store until this reference is removed. Defaults to false. To set this field, a user needs "delete" permission of the owner, otherwise 422 (Unprocessable Entity) will be returned.
         :param pulumi.Input[bool] controller: If true, this reference points to the managing controller.
         """
-        pulumi.set(__self__, "apiVersion", api_version)
+        pulumi.set(__self__, "api_version", api_version)
         pulumi.set(__self__, "kind", kind)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "uid", uid)
-        pulumi.set(__self__, "blockOwnerDeletion", block_owner_deletion)
-        pulumi.set(__self__, "controller", controller)
+        if block_owner_deletion is not None:
+            pulumi.set(__self__, "block_owner_deletion", block_owner_deletion)
+        if controller is not None:
+            pulumi.set(__self__, "controller", controller)
 
     @property
     @pulumi.getter(name="apiVersion")
@@ -674,9 +705,12 @@ class StatusCauseArgs:
         :param pulumi.Input[str] message: A human-readable description of the cause of the error.  This field may be presented as-is to a reader.
         :param pulumi.Input[str] reason: A machine-readable description of the cause of the error. If this value is empty there is no information available.
         """
-        pulumi.set(__self__, "field", field)
-        pulumi.set(__self__, "message", message)
-        pulumi.set(__self__, "reason", reason)
+        if field is not None:
+            pulumi.set(__self__, "field", field)
+        if message is not None:
+            pulumi.set(__self__, "message", message)
+        if reason is not None:
+            pulumi.set(__self__, "reason", reason)
 
     @property
     @pulumi.getter
@@ -737,12 +771,18 @@ class StatusDetailsArgs:
         :param pulumi.Input[float] retry_after_seconds: If specified, the time in seconds before the operation should be retried. Some errors may indicate the client must take an alternate action - for those errors this field may indicate how long to wait before taking the alternate action.
         :param pulumi.Input[str] uid: UID of the resource. (when there is a single resource which can be described). More info: http://kubernetes.io/docs/user-guide/identifiers#uids
         """
-        pulumi.set(__self__, "causes", causes)
-        pulumi.set(__self__, "group", group)
-        pulumi.set(__self__, "kind", kind)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "retryAfterSeconds", retry_after_seconds)
-        pulumi.set(__self__, "uid", uid)
+        if causes is not None:
+            pulumi.set(__self__, "causes", causes)
+        if group is not None:
+            pulumi.set(__self__, "group", group)
+        if kind is not None:
+            pulumi.set(__self__, "kind", kind)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if retry_after_seconds is not None:
+            pulumi.set(__self__, "retry_after_seconds", retry_after_seconds)
+        if uid is not None:
+            pulumi.set(__self__, "uid", uid)
 
     @property
     @pulumi.getter

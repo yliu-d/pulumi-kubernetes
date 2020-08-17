@@ -28,10 +28,14 @@ class BoundObjectReferenceArgs:
         :param pulumi.Input[str] name: Name of the referent.
         :param pulumi.Input[str] uid: UID of the referent.
         """
-        pulumi.set(__self__, "apiVersion", api_version)
-        pulumi.set(__self__, "kind", kind)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "uid", uid)
+        if api_version is not None:
+            pulumi.set(__self__, "api_version", api_version)
+        if kind is not None:
+            pulumi.set(__self__, "kind", kind)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if uid is not None:
+            pulumi.set(__self__, "uid", uid)
 
     @property
     @pulumi.getter(name="apiVersion")
@@ -95,8 +99,10 @@ class TokenRequestSpecArgs:
         :param pulumi.Input[float] expiration_seconds: ExpirationSeconds is the requested duration of validity of the request. The token issuer may return a token with a different validity duration so a client needs to check the 'expiration' field in a response.
         """
         pulumi.set(__self__, "audiences", audiences)
-        pulumi.set(__self__, "boundObjectRef", bound_object_ref)
-        pulumi.set(__self__, "expirationSeconds", expiration_seconds)
+        if bound_object_ref is not None:
+            pulumi.set(__self__, "bound_object_ref", bound_object_ref)
+        if expiration_seconds is not None:
+            pulumi.set(__self__, "expiration_seconds", expiration_seconds)
 
     @property
     @pulumi.getter
@@ -145,8 +151,10 @@ class TokenReviewSpecArgs:
         :param pulumi.Input[List[pulumi.Input[str]]] audiences: Audiences is a list of the identifiers that the resource server presented with the token identifies as. Audience-aware token authenticators will verify that the token was intended for at least one of the audiences in this list. If no audiences are provided, the audience will default to the audience of the Kubernetes apiserver.
         :param pulumi.Input[str] token: Token is the opaque bearer token.
         """
-        pulumi.set(__self__, "audiences", audiences)
-        pulumi.set(__self__, "token", token)
+        if audiences is not None:
+            pulumi.set(__self__, "audiences", audiences)
+        if token is not None:
+            pulumi.set(__self__, "token", token)
 
     @property
     @pulumi.getter

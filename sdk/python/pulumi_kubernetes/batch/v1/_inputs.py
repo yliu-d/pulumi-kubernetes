@@ -48,11 +48,16 @@ class JobArgs:
         :param pulumi.Input['JobSpecArgs'] spec: Specification of the desired behavior of a job. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
         :param pulumi.Input['JobStatusArgs'] status: Current status of a job. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
         """
-        pulumi.set(__self__, "apiVersion", 'batch/v1')
-        pulumi.set(__self__, "kind", 'Job')
-        pulumi.set(__self__, "metadata", metadata)
-        pulumi.set(__self__, "spec", spec)
-        pulumi.set(__self__, "status", status)
+        if api_version is not None:
+            pulumi.set(__self__, "api_version", 'batch/v1')
+        if kind is not None:
+            pulumi.set(__self__, "kind", 'Job')
+        if metadata is not None:
+            pulumi.set(__self__, "metadata", metadata)
+        if spec is not None:
+            pulumi.set(__self__, "spec", spec)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
 
     @property
     @pulumi.getter(name="apiVersion")
@@ -135,10 +140,14 @@ class JobConditionArgs:
         """
         pulumi.set(__self__, "status", status)
         pulumi.set(__self__, "type", type)
-        pulumi.set(__self__, "lastProbeTime", last_probe_time)
-        pulumi.set(__self__, "lastTransitionTime", last_transition_time)
-        pulumi.set(__self__, "message", message)
-        pulumi.set(__self__, "reason", reason)
+        if last_probe_time is not None:
+            pulumi.set(__self__, "last_probe_time", last_probe_time)
+        if last_transition_time is not None:
+            pulumi.set(__self__, "last_transition_time", last_transition_time)
+        if message is not None:
+            pulumi.set(__self__, "message", message)
+        if reason is not None:
+            pulumi.set(__self__, "reason", reason)
 
     @property
     @pulumi.getter
@@ -236,13 +245,20 @@ class JobSpecArgs:
         :param pulumi.Input[float] ttl_seconds_after_finished: ttlSecondsAfterFinished limits the lifetime of a Job that has finished execution (either Complete or Failed). If this field is set, ttlSecondsAfterFinished after the Job finishes, it is eligible to be automatically deleted. When the Job is being deleted, its lifecycle guarantees (e.g. finalizers) will be honored. If this field is unset, the Job won't be automatically deleted. If this field is set to zero, the Job becomes eligible to be deleted immediately after it finishes. This field is alpha-level and is only honored by servers that enable the TTLAfterFinished feature.
         """
         pulumi.set(__self__, "template", template)
-        pulumi.set(__self__, "activeDeadlineSeconds", active_deadline_seconds)
-        pulumi.set(__self__, "backoffLimit", backoff_limit)
-        pulumi.set(__self__, "completions", completions)
-        pulumi.set(__self__, "manualSelector", manual_selector)
-        pulumi.set(__self__, "parallelism", parallelism)
-        pulumi.set(__self__, "selector", selector)
-        pulumi.set(__self__, "ttlSecondsAfterFinished", ttl_seconds_after_finished)
+        if active_deadline_seconds is not None:
+            pulumi.set(__self__, "active_deadline_seconds", active_deadline_seconds)
+        if backoff_limit is not None:
+            pulumi.set(__self__, "backoff_limit", backoff_limit)
+        if completions is not None:
+            pulumi.set(__self__, "completions", completions)
+        if manual_selector is not None:
+            pulumi.set(__self__, "manual_selector", manual_selector)
+        if parallelism is not None:
+            pulumi.set(__self__, "parallelism", parallelism)
+        if selector is not None:
+            pulumi.set(__self__, "selector", selector)
+        if ttl_seconds_after_finished is not None:
+            pulumi.set(__self__, "ttl_seconds_after_finished", ttl_seconds_after_finished)
 
     @property
     @pulumi.getter
@@ -359,12 +375,18 @@ class JobStatusArgs:
         :param pulumi.Input[str] start_time: Represents time when the job was acknowledged by the job controller. It is not guaranteed to be set in happens-before order across separate operations. It is represented in RFC3339 form and is in UTC.
         :param pulumi.Input[float] succeeded: The number of pods which reached phase Succeeded.
         """
-        pulumi.set(__self__, "active", active)
-        pulumi.set(__self__, "completionTime", completion_time)
-        pulumi.set(__self__, "conditions", conditions)
-        pulumi.set(__self__, "failed", failed)
-        pulumi.set(__self__, "startTime", start_time)
-        pulumi.set(__self__, "succeeded", succeeded)
+        if active is not None:
+            pulumi.set(__self__, "active", active)
+        if completion_time is not None:
+            pulumi.set(__self__, "completion_time", completion_time)
+        if conditions is not None:
+            pulumi.set(__self__, "conditions", conditions)
+        if failed is not None:
+            pulumi.set(__self__, "failed", failed)
+        if start_time is not None:
+            pulumi.set(__self__, "start_time", start_time)
+        if succeeded is not None:
+            pulumi.set(__self__, "succeeded", succeeded)
 
     @property
     @pulumi.getter

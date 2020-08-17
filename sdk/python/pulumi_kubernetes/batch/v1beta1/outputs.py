@@ -24,6 +24,31 @@ class CronJob(dict):
     """
     CronJob represents the configuration of a single cron job.
     """
+    def __init__(__self__, *,
+                 api_version: Optional[str] = None,
+                 kind: Optional[str] = None,
+                 metadata: Optional['_meta.v1.outputs.ObjectMeta'] = None,
+                 spec: Optional['outputs.CronJobSpec'] = None,
+                 status: Optional['outputs.CronJobStatus'] = None):
+        """
+        CronJob represents the configuration of a single cron job.
+        :param str api_version: APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+        :param str kind: Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+        :param '_meta.v1.ObjectMetaArgs' metadata: Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
+        :param 'CronJobSpecArgs' spec: Specification of the desired behavior of a cron job, including the schedule. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
+        :param 'CronJobStatusArgs' status: Current status of a cron job. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
+        """
+        if api_version is not None:
+            pulumi.set(__self__, "api_version", 'batch/v1beta1')
+        if kind is not None:
+            pulumi.set(__self__, "kind", 'CronJob')
+        if metadata is not None:
+            pulumi.set(__self__, "metadata", metadata)
+        if spec is not None:
+            pulumi.set(__self__, "spec", spec)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+
     @property
     @pulumi.getter(name="apiVersion")
     def api_version(self) -> Optional[str]:
@@ -73,21 +98,36 @@ class CronJobSpec(dict):
     """
     CronJobSpec describes how the job execution will look like and when it will actually run.
     """
-    @property
-    @pulumi.getter(name="concurrencyPolicy")
-    def concurrency_policy(self) -> Optional[str]:
+    def __init__(__self__, *,
+                 job_template: 'outputs.JobTemplateSpec',
+                 schedule: str,
+                 concurrency_policy: Optional[str] = None,
+                 failed_jobs_history_limit: Optional[float] = None,
+                 starting_deadline_seconds: Optional[float] = None,
+                 successful_jobs_history_limit: Optional[float] = None,
+                 suspend: Optional[bool] = None):
         """
-        Specifies how to treat concurrent executions of a Job. Valid values are: - "Allow" (default): allows CronJobs to run concurrently; - "Forbid": forbids concurrent runs, skipping next run if previous run hasn't finished yet; - "Replace": cancels currently running job and replaces it with a new one
+        CronJobSpec describes how the job execution will look like and when it will actually run.
+        :param 'JobTemplateSpecArgs' job_template: Specifies the job that will be created when executing a CronJob.
+        :param str schedule: The schedule in Cron format, see https://en.wikipedia.org/wiki/Cron.
+        :param str concurrency_policy: Specifies how to treat concurrent executions of a Job. Valid values are: - "Allow" (default): allows CronJobs to run concurrently; - "Forbid": forbids concurrent runs, skipping next run if previous run hasn't finished yet; - "Replace": cancels currently running job and replaces it with a new one
+        :param float failed_jobs_history_limit: The number of failed finished jobs to retain. This is a pointer to distinguish between explicit zero and not specified. Defaults to 1.
+        :param float starting_deadline_seconds: Optional deadline in seconds for starting the job if it misses scheduled time for any reason.  Missed jobs executions will be counted as failed ones.
+        :param float successful_jobs_history_limit: The number of successful finished jobs to retain. This is a pointer to distinguish between explicit zero and not specified. Defaults to 3.
+        :param bool suspend: This flag tells the controller to suspend subsequent executions, it does not apply to already started executions.  Defaults to false.
         """
-        ...
-
-    @property
-    @pulumi.getter(name="failedJobsHistoryLimit")
-    def failed_jobs_history_limit(self) -> Optional[float]:
-        """
-        The number of failed finished jobs to retain. This is a pointer to distinguish between explicit zero and not specified. Defaults to 1.
-        """
-        ...
+        pulumi.set(__self__, "job_template", job_template)
+        pulumi.set(__self__, "schedule", schedule)
+        if concurrency_policy is not None:
+            pulumi.set(__self__, "concurrency_policy", concurrency_policy)
+        if failed_jobs_history_limit is not None:
+            pulumi.set(__self__, "failed_jobs_history_limit", failed_jobs_history_limit)
+        if starting_deadline_seconds is not None:
+            pulumi.set(__self__, "starting_deadline_seconds", starting_deadline_seconds)
+        if successful_jobs_history_limit is not None:
+            pulumi.set(__self__, "successful_jobs_history_limit", successful_jobs_history_limit)
+        if suspend is not None:
+            pulumi.set(__self__, "suspend", suspend)
 
     @property
     @pulumi.getter(name="jobTemplate")
@@ -102,6 +142,22 @@ class CronJobSpec(dict):
     def schedule(self) -> str:
         """
         The schedule in Cron format, see https://en.wikipedia.org/wiki/Cron.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="concurrencyPolicy")
+    def concurrency_policy(self) -> Optional[str]:
+        """
+        Specifies how to treat concurrent executions of a Job. Valid values are: - "Allow" (default): allows CronJobs to run concurrently; - "Forbid": forbids concurrent runs, skipping next run if previous run hasn't finished yet; - "Replace": cancels currently running job and replaces it with a new one
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="failedJobsHistoryLimit")
+    def failed_jobs_history_limit(self) -> Optional[float]:
+        """
+        The number of failed finished jobs to retain. This is a pointer to distinguish between explicit zero and not specified. Defaults to 1.
         """
         ...
 
@@ -138,6 +194,19 @@ class CronJobStatus(dict):
     """
     CronJobStatus represents the current state of a cron job.
     """
+    def __init__(__self__, *,
+                 active: Optional[List['_core.v1.outputs.ObjectReference']] = None,
+                 last_schedule_time: Optional[str] = None):
+        """
+        CronJobStatus represents the current state of a cron job.
+        :param List['_core.v1.ObjectReferenceArgs'] active: A list of pointers to currently running jobs.
+        :param str last_schedule_time: Information when was the last time the job was successfully scheduled.
+        """
+        if active is not None:
+            pulumi.set(__self__, "active", active)
+        if last_schedule_time is not None:
+            pulumi.set(__self__, "last_schedule_time", last_schedule_time)
+
     @property
     @pulumi.getter
     def active(self) -> Optional[List['_core.v1.outputs.ObjectReference']]:
@@ -163,6 +232,19 @@ class JobTemplateSpec(dict):
     """
     JobTemplateSpec describes the data a Job should have when created from a template
     """
+    def __init__(__self__, *,
+                 metadata: Optional['_meta.v1.outputs.ObjectMeta'] = None,
+                 spec: Optional['_batch.v1.outputs.JobSpec'] = None):
+        """
+        JobTemplateSpec describes the data a Job should have when created from a template
+        :param '_meta.v1.ObjectMetaArgs' metadata: Standard object's metadata of the jobs created from this template. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
+        :param '_batch.v1.JobSpecArgs' spec: Specification of the desired behavior of the job. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
+        """
+        if metadata is not None:
+            pulumi.set(__self__, "metadata", metadata)
+        if spec is not None:
+            pulumi.set(__self__, "spec", spec)
+
     @property
     @pulumi.getter
     def metadata(self) -> Optional['_meta.v1.outputs.ObjectMeta']:

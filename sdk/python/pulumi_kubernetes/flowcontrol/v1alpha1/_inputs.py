@@ -71,11 +71,16 @@ class FlowSchemaArgs:
         :param pulumi.Input['FlowSchemaSpecArgs'] spec: `spec` is the specification of the desired behavior of a FlowSchema. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
         :param pulumi.Input['FlowSchemaStatusArgs'] status: `status` is the current status of a FlowSchema. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
         """
-        pulumi.set(__self__, "apiVersion", 'flowcontrol.apiserver.k8s.io/v1alpha1')
-        pulumi.set(__self__, "kind", 'FlowSchema')
-        pulumi.set(__self__, "metadata", metadata)
-        pulumi.set(__self__, "spec", spec)
-        pulumi.set(__self__, "status", status)
+        if api_version is not None:
+            pulumi.set(__self__, "api_version", 'flowcontrol.apiserver.k8s.io/v1alpha1')
+        if kind is not None:
+            pulumi.set(__self__, "kind", 'FlowSchema')
+        if metadata is not None:
+            pulumi.set(__self__, "metadata", metadata)
+        if spec is not None:
+            pulumi.set(__self__, "spec", spec)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
 
     @property
     @pulumi.getter(name="apiVersion")
@@ -154,11 +159,16 @@ class FlowSchemaConditionArgs:
         :param pulumi.Input[str] status: `status` is the status of the condition. Can be True, False, Unknown. Required.
         :param pulumi.Input[str] type: `type` is the type of the condition. Required.
         """
-        pulumi.set(__self__, "lastTransitionTime", last_transition_time)
-        pulumi.set(__self__, "message", message)
-        pulumi.set(__self__, "reason", reason)
-        pulumi.set(__self__, "status", status)
-        pulumi.set(__self__, "type", type)
+        if last_transition_time is not None:
+            pulumi.set(__self__, "last_transition_time", last_transition_time)
+        if message is not None:
+            pulumi.set(__self__, "message", message)
+        if reason is not None:
+            pulumi.set(__self__, "reason", reason)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter(name="lastTransitionTime")
@@ -235,10 +245,13 @@ class FlowSchemaSpecArgs:
         :param pulumi.Input[float] matching_precedence: `matchingPrecedence` is used to choose among the FlowSchemas that match a given request. The chosen FlowSchema is among those with the numerically lowest (which we take to be logically highest) MatchingPrecedence.  Each MatchingPrecedence value must be ranged in [1,10000]. Note that if the precedence is not specified, it will be set to 1000 as default.
         :param pulumi.Input[List[pulumi.Input['PolicyRulesWithSubjectsArgs']]] rules: `rules` describes which requests will match this flow schema. This FlowSchema matches a request if and only if at least one member of rules matches the request. if it is an empty slice, there will be no requests matching the FlowSchema.
         """
-        pulumi.set(__self__, "priorityLevelConfiguration", priority_level_configuration)
-        pulumi.set(__self__, "distinguisherMethod", distinguisher_method)
-        pulumi.set(__self__, "matchingPrecedence", matching_precedence)
-        pulumi.set(__self__, "rules", rules)
+        pulumi.set(__self__, "priority_level_configuration", priority_level_configuration)
+        if distinguisher_method is not None:
+            pulumi.set(__self__, "distinguisher_method", distinguisher_method)
+        if matching_precedence is not None:
+            pulumi.set(__self__, "matching_precedence", matching_precedence)
+        if rules is not None:
+            pulumi.set(__self__, "rules", rules)
 
     @property
     @pulumi.getter(name="priorityLevelConfiguration")
@@ -297,7 +310,8 @@ class FlowSchemaStatusArgs:
         FlowSchemaStatus represents the current state of a FlowSchema.
         :param pulumi.Input[List[pulumi.Input['FlowSchemaConditionArgs']]] conditions: `conditions` is a list of the current states of FlowSchema.
         """
-        pulumi.set(__self__, "conditions", conditions)
+        if conditions is not None:
+            pulumi.set(__self__, "conditions", conditions)
 
     @property
     @pulumi.getter
@@ -346,7 +360,8 @@ class LimitResponseArgs:
         :param pulumi.Input['QueuingConfigurationArgs'] queuing: `queuing` holds the configuration parameters for queuing. This field may be non-empty only if `type` is `"Queue"`.
         """
         pulumi.set(__self__, "type", type)
-        pulumi.set(__self__, "queuing", queuing)
+        if queuing is not None:
+            pulumi.set(__self__, "queuing", queuing)
 
     @property
     @pulumi.getter
@@ -389,8 +404,10 @@ class LimitedPriorityLevelConfigurationArgs:
                bigger numbers of ACS mean more reserved concurrent requests (at the expense of every other PL). This field has a default value of 30.
         :param pulumi.Input['LimitResponseArgs'] limit_response: `limitResponse` indicates what to do with requests that can not be executed right now
         """
-        pulumi.set(__self__, "assuredConcurrencyShares", assured_concurrency_shares)
-        pulumi.set(__self__, "limitResponse", limit_response)
+        if assured_concurrency_shares is not None:
+            pulumi.set(__self__, "assured_concurrency_shares", assured_concurrency_shares)
+        if limit_response is not None:
+            pulumi.set(__self__, "limit_response", limit_response)
 
     @property
     @pulumi.getter(name="assuredConcurrencyShares")
@@ -437,7 +454,7 @@ class NonResourcePolicyRuleArgs:
                "*" matches all non-resource urls. if it is present, it must be the only entry. Required.
         :param pulumi.Input[List[pulumi.Input[str]]] verbs: `verbs` is a list of matching verbs and may not be empty. "*" matches all verbs. If it is present, it must be the only entry. Required.
         """
-        pulumi.set(__self__, "nonResourceURLs", non_resource_urls)
+        pulumi.set(__self__, "non_resource_urls", non_resource_urls)
         pulumi.set(__self__, "verbs", verbs)
 
     @property
@@ -484,8 +501,10 @@ class PolicyRulesWithSubjectsArgs:
         :param pulumi.Input[List[pulumi.Input['ResourcePolicyRuleArgs']]] resource_rules: `resourceRules` is a slice of ResourcePolicyRules that identify matching requests according to their verb and the target resource. At least one of `resourceRules` and `nonResourceRules` has to be non-empty.
         """
         pulumi.set(__self__, "subjects", subjects)
-        pulumi.set(__self__, "nonResourceRules", non_resource_rules)
-        pulumi.set(__self__, "resourceRules", resource_rules)
+        if non_resource_rules is not None:
+            pulumi.set(__self__, "non_resource_rules", non_resource_rules)
+        if resource_rules is not None:
+            pulumi.set(__self__, "resource_rules", resource_rules)
 
     @property
     @pulumi.getter
@@ -540,11 +559,16 @@ class PriorityLevelConfigurationArgs:
         :param pulumi.Input['PriorityLevelConfigurationSpecArgs'] spec: `spec` is the specification of the desired behavior of a "request-priority". More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
         :param pulumi.Input['PriorityLevelConfigurationStatusArgs'] status: `status` is the current status of a "request-priority". More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
         """
-        pulumi.set(__self__, "apiVersion", 'flowcontrol.apiserver.k8s.io/v1alpha1')
-        pulumi.set(__self__, "kind", 'PriorityLevelConfiguration')
-        pulumi.set(__self__, "metadata", metadata)
-        pulumi.set(__self__, "spec", spec)
-        pulumi.set(__self__, "status", status)
+        if api_version is not None:
+            pulumi.set(__self__, "api_version", 'flowcontrol.apiserver.k8s.io/v1alpha1')
+        if kind is not None:
+            pulumi.set(__self__, "kind", 'PriorityLevelConfiguration')
+        if metadata is not None:
+            pulumi.set(__self__, "metadata", metadata)
+        if spec is not None:
+            pulumi.set(__self__, "spec", spec)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
 
     @property
     @pulumi.getter(name="apiVersion")
@@ -623,11 +647,16 @@ class PriorityLevelConfigurationConditionArgs:
         :param pulumi.Input[str] status: `status` is the status of the condition. Can be True, False, Unknown. Required.
         :param pulumi.Input[str] type: `type` is the type of the condition. Required.
         """
-        pulumi.set(__self__, "lastTransitionTime", last_transition_time)
-        pulumi.set(__self__, "message", message)
-        pulumi.set(__self__, "reason", reason)
-        pulumi.set(__self__, "status", status)
-        pulumi.set(__self__, "type", type)
+        if last_transition_time is not None:
+            pulumi.set(__self__, "last_transition_time", last_transition_time)
+        if message is not None:
+            pulumi.set(__self__, "message", message)
+        if reason is not None:
+            pulumi.set(__self__, "reason", reason)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter(name="lastTransitionTime")
@@ -724,7 +753,8 @@ class PriorityLevelConfigurationSpecArgs:
         :param pulumi.Input['LimitedPriorityLevelConfigurationArgs'] limited: `limited` specifies how requests are handled for a Limited priority level. This field must be non-empty if and only if `type` is `"Limited"`.
         """
         pulumi.set(__self__, "type", type)
-        pulumi.set(__self__, "limited", limited)
+        if limited is not None:
+            pulumi.set(__self__, "limited", limited)
 
     @property
     @pulumi.getter
@@ -759,7 +789,8 @@ class PriorityLevelConfigurationStatusArgs:
         PriorityLevelConfigurationStatus represents the current state of a "request-priority".
         :param pulumi.Input[List[pulumi.Input['PriorityLevelConfigurationConditionArgs']]] conditions: `conditions` is the current state of "request-priority".
         """
-        pulumi.set(__self__, "conditions", conditions)
+        if conditions is not None:
+            pulumi.set(__self__, "conditions", conditions)
 
     @property
     @pulumi.getter
@@ -786,9 +817,12 @@ class QueuingConfigurationArgs:
         :param pulumi.Input[float] queue_length_limit: `queueLengthLimit` is the maximum number of requests allowed to be waiting in a given queue of this priority level at a time; excess requests are rejected.  This value must be positive.  If not specified, it will be defaulted to 50.
         :param pulumi.Input[float] queues: `queues` is the number of queues for this priority level. The queues exist independently at each apiserver. The value must be positive.  Setting it to 1 effectively precludes shufflesharding and thus makes the distinguisher method of associated flow schemas irrelevant.  This field has a default value of 64.
         """
-        pulumi.set(__self__, "handSize", hand_size)
-        pulumi.set(__self__, "queueLengthLimit", queue_length_limit)
-        pulumi.set(__self__, "queues", queues)
+        if hand_size is not None:
+            pulumi.set(__self__, "hand_size", hand_size)
+        if queue_length_limit is not None:
+            pulumi.set(__self__, "queue_length_limit", queue_length_limit)
+        if queues is not None:
+            pulumi.set(__self__, "queues", queues)
 
     @property
     @pulumi.getter(name="handSize")
@@ -843,11 +877,13 @@ class ResourcePolicyRuleArgs:
         :param pulumi.Input[bool] cluster_scope: `clusterScope` indicates whether to match requests that do not specify a namespace (which happens either because the resource is not namespaced or the request targets all namespaces). If this field is omitted or false then the `namespaces` field must contain a non-empty list.
         :param pulumi.Input[List[pulumi.Input[str]]] namespaces: `namespaces` is a list of target namespaces that restricts matches.  A request that specifies a target namespace matches only if either (a) this list contains that target namespace or (b) this list contains "*".  Note that "*" matches any specified namespace but does not match a request that _does not specify_ a namespace (see the `clusterScope` field for that). This list may be empty, but only if `clusterScope` is true.
         """
-        pulumi.set(__self__, "apiGroups", api_groups)
+        pulumi.set(__self__, "api_groups", api_groups)
         pulumi.set(__self__, "resources", resources)
         pulumi.set(__self__, "verbs", verbs)
-        pulumi.set(__self__, "clusterScope", cluster_scope)
-        pulumi.set(__self__, "namespaces", namespaces)
+        if cluster_scope is not None:
+            pulumi.set(__self__, "cluster_scope", cluster_scope)
+        if namespaces is not None:
+            pulumi.set(__self__, "namespaces", namespaces)
 
     @property
     @pulumi.getter(name="apiGroups")
@@ -960,9 +996,12 @@ class SubjectArgs:
         :param pulumi.Input[str] kind: Required
         """
         pulumi.set(__self__, "kind", kind)
-        pulumi.set(__self__, "group", group)
-        pulumi.set(__self__, "serviceAccount", service_account)
-        pulumi.set(__self__, "user", user)
+        if group is not None:
+            pulumi.set(__self__, "group", group)
+        if service_account is not None:
+            pulumi.set(__self__, "service_account", service_account)
+        if user is not None:
+            pulumi.set(__self__, "user", user)
 
     @property
     @pulumi.getter

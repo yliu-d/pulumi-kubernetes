@@ -24,7 +24,8 @@ class OverheadArgs:
         Overhead structure represents the resource overhead associated with running a pod.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] pod_fixed: PodFixed represents the fixed resource overhead associated with running a pod.
         """
-        pulumi.set(__self__, "podFixed", pod_fixed)
+        if pod_fixed is not None:
+            pulumi.set(__self__, "pod_fixed", pod_fixed)
 
     @property
     @pulumi.getter(name="podFixed")
@@ -58,11 +59,16 @@ class RuntimeClassArgs:
         :param pulumi.Input['SchedulingArgs'] scheduling: Scheduling holds the scheduling constraints to ensure that pods running with this RuntimeClass are scheduled to nodes that support it. If scheduling is nil, this RuntimeClass is assumed to be supported by all nodes.
         """
         pulumi.set(__self__, "handler", handler)
-        pulumi.set(__self__, "apiVersion", 'node.k8s.io/v1beta1')
-        pulumi.set(__self__, "kind", 'RuntimeClass')
-        pulumi.set(__self__, "metadata", metadata)
-        pulumi.set(__self__, "overhead", overhead)
-        pulumi.set(__self__, "scheduling", scheduling)
+        if api_version is not None:
+            pulumi.set(__self__, "api_version", 'node.k8s.io/v1beta1')
+        if kind is not None:
+            pulumi.set(__self__, "kind", 'RuntimeClass')
+        if metadata is not None:
+            pulumi.set(__self__, "metadata", metadata)
+        if overhead is not None:
+            pulumi.set(__self__, "overhead", overhead)
+        if scheduling is not None:
+            pulumi.set(__self__, "scheduling", scheduling)
 
     @property
     @pulumi.getter
@@ -147,8 +153,10 @@ class SchedulingArgs:
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] node_selector: nodeSelector lists labels that must be present on nodes that support this RuntimeClass. Pods using this RuntimeClass can only be scheduled to a node matched by this selector. The RuntimeClass nodeSelector is merged with a pod's existing nodeSelector. Any conflicts will cause the pod to be rejected in admission.
         :param pulumi.Input[List[pulumi.Input['_core.v1.TolerationArgs']]] tolerations: tolerations are appended (excluding duplicates) to pods running with this RuntimeClass during admission, effectively unioning the set of nodes tolerated by the pod and the RuntimeClass.
         """
-        pulumi.set(__self__, "nodeSelector", node_selector)
-        pulumi.set(__self__, "tolerations", tolerations)
+        if node_selector is not None:
+            pulumi.set(__self__, "node_selector", node_selector)
+        if tolerations is not None:
+            pulumi.set(__self__, "tolerations", tolerations)
 
     @property
     @pulumi.getter(name="nodeSelector")

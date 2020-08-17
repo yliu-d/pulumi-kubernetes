@@ -26,8 +26,10 @@ class NonResourceAttributesArgs:
         :param pulumi.Input[str] path: Path is the URL path of the request
         :param pulumi.Input[str] verb: Verb is the standard HTTP verb
         """
-        pulumi.set(__self__, "path", path)
-        pulumi.set(__self__, "verb", verb)
+        if path is not None:
+            pulumi.set(__self__, "path", path)
+        if verb is not None:
+            pulumi.set(__self__, "verb", verb)
 
     @property
     @pulumi.getter
@@ -74,13 +76,20 @@ class ResourceAttributesArgs:
         :param pulumi.Input[str] verb: Verb is a kubernetes resource API verb, like: get, list, watch, create, update, delete, proxy.  "*" means all.
         :param pulumi.Input[str] version: Version is the API Version of the Resource.  "*" means all.
         """
-        pulumi.set(__self__, "group", group)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "namespace", namespace)
-        pulumi.set(__self__, "resource", resource)
-        pulumi.set(__self__, "subresource", subresource)
-        pulumi.set(__self__, "verb", verb)
-        pulumi.set(__self__, "version", version)
+        if group is not None:
+            pulumi.set(__self__, "group", group)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
+        if resource is not None:
+            pulumi.set(__self__, "resource", resource)
+        if subresource is not None:
+            pulumi.set(__self__, "subresource", subresource)
+        if verb is not None:
+            pulumi.set(__self__, "verb", verb)
+        if version is not None:
+            pulumi.set(__self__, "version", version)
 
     @property
     @pulumi.getter
@@ -177,8 +186,10 @@ class SelfSubjectAccessReviewSpecArgs:
         :param pulumi.Input['NonResourceAttributesArgs'] non_resource_attributes: NonResourceAttributes describes information for a non-resource access request
         :param pulumi.Input['ResourceAttributesArgs'] resource_attributes: ResourceAuthorizationAttributes describes information for a resource access request
         """
-        pulumi.set(__self__, "nonResourceAttributes", non_resource_attributes)
-        pulumi.set(__self__, "resourceAttributes", resource_attributes)
+        if non_resource_attributes is not None:
+            pulumi.set(__self__, "non_resource_attributes", non_resource_attributes)
+        if resource_attributes is not None:
+            pulumi.set(__self__, "resource_attributes", resource_attributes)
 
     @property
     @pulumi.getter(name="nonResourceAttributes")
@@ -212,7 +223,8 @@ class SelfSubjectRulesReviewSpecArgs:
         """
         :param pulumi.Input[str] namespace: Namespace to evaluate rules for. Required.
         """
-        pulumi.set(__self__, "namespace", namespace)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
 
     @property
     @pulumi.getter
@@ -245,12 +257,18 @@ class SubjectAccessReviewSpecArgs:
         :param pulumi.Input[str] uid: UID information about the requesting user.
         :param pulumi.Input[str] user: User is the user you're testing for. If you specify "User" but not "Groups", then is it interpreted as "What if User were not a member of any groups
         """
-        pulumi.set(__self__, "extra", extra)
-        pulumi.set(__self__, "groups", groups)
-        pulumi.set(__self__, "nonResourceAttributes", non_resource_attributes)
-        pulumi.set(__self__, "resourceAttributes", resource_attributes)
-        pulumi.set(__self__, "uid", uid)
-        pulumi.set(__self__, "user", user)
+        if extra is not None:
+            pulumi.set(__self__, "extra", extra)
+        if groups is not None:
+            pulumi.set(__self__, "groups", groups)
+        if non_resource_attributes is not None:
+            pulumi.set(__self__, "non_resource_attributes", non_resource_attributes)
+        if resource_attributes is not None:
+            pulumi.set(__self__, "resource_attributes", resource_attributes)
+        if uid is not None:
+            pulumi.set(__self__, "uid", uid)
+        if user is not None:
+            pulumi.set(__self__, "user", user)
 
     @property
     @pulumi.getter

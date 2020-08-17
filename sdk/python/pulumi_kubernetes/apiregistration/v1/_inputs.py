@@ -32,11 +32,16 @@ class APIServiceArgs:
         :param pulumi.Input['APIServiceSpecArgs'] spec: Spec contains information for locating and communicating with a server
         :param pulumi.Input['APIServiceStatusArgs'] status: Status contains derived information about an API server
         """
-        pulumi.set(__self__, "apiVersion", 'apiregistration.k8s.io/v1')
-        pulumi.set(__self__, "kind", 'APIService')
-        pulumi.set(__self__, "metadata", metadata)
-        pulumi.set(__self__, "spec", spec)
-        pulumi.set(__self__, "status", status)
+        if api_version is not None:
+            pulumi.set(__self__, "api_version", 'apiregistration.k8s.io/v1')
+        if kind is not None:
+            pulumi.set(__self__, "kind", 'APIService')
+        if metadata is not None:
+            pulumi.set(__self__, "metadata", metadata)
+        if spec is not None:
+            pulumi.set(__self__, "spec", spec)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
 
     @property
     @pulumi.getter(name="apiVersion")
@@ -114,9 +119,12 @@ class APIServiceConditionArgs:
         """
         pulumi.set(__self__, "status", status)
         pulumi.set(__self__, "type", type)
-        pulumi.set(__self__, "lastTransitionTime", last_transition_time)
-        pulumi.set(__self__, "message", message)
-        pulumi.set(__self__, "reason", reason)
+        if last_transition_time is not None:
+            pulumi.set(__self__, "last_transition_time", last_transition_time)
+        if message is not None:
+            pulumi.set(__self__, "message", message)
+        if reason is not None:
+            pulumi.set(__self__, "reason", reason)
 
     @property
     @pulumi.getter
@@ -199,13 +207,18 @@ class APIServiceSpecArgs:
         :param pulumi.Input['ServiceReferenceArgs'] service: Service is a reference to the service for this API server.  It must communicate on port 443 If the Service is nil, that means the handling for the API groupversion is handled locally on this server. The call will simply delegate to the normal handler chain to be fulfilled.
         :param pulumi.Input[str] version: Version is the API version this server hosts.  For example, "v1"
         """
-        pulumi.set(__self__, "groupPriorityMinimum", group_priority_minimum)
-        pulumi.set(__self__, "versionPriority", version_priority)
-        pulumi.set(__self__, "caBundle", ca_bundle)
-        pulumi.set(__self__, "group", group)
-        pulumi.set(__self__, "insecureSkipTLSVerify", insecure_skip_tls_verify)
-        pulumi.set(__self__, "service", service)
-        pulumi.set(__self__, "version", version)
+        pulumi.set(__self__, "group_priority_minimum", group_priority_minimum)
+        pulumi.set(__self__, "version_priority", version_priority)
+        if ca_bundle is not None:
+            pulumi.set(__self__, "ca_bundle", ca_bundle)
+        if group is not None:
+            pulumi.set(__self__, "group", group)
+        if insecure_skip_tls_verify is not None:
+            pulumi.set(__self__, "insecure_skip_tls_verify", insecure_skip_tls_verify)
+        if service is not None:
+            pulumi.set(__self__, "service", service)
+        if version is not None:
+            pulumi.set(__self__, "version", version)
 
     @property
     @pulumi.getter(name="groupPriorityMinimum")
@@ -300,7 +313,8 @@ class APIServiceStatusArgs:
         APIServiceStatus contains derived information about an API server
         :param pulumi.Input[List[pulumi.Input['APIServiceConditionArgs']]] conditions: Current service state of apiService.
         """
-        pulumi.set(__self__, "conditions", conditions)
+        if conditions is not None:
+            pulumi.set(__self__, "conditions", conditions)
 
     @property
     @pulumi.getter
@@ -327,9 +341,12 @@ class ServiceReferenceArgs:
         :param pulumi.Input[str] namespace: Namespace is the namespace of the service
         :param pulumi.Input[float] port: If specified, the port on the service that hosting webhook. Default to 443 for backward compatibility. `port` should be a valid port number (1-65535, inclusive).
         """
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "namespace", namespace)
-        pulumi.set(__self__, "port", port)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
 
     @property
     @pulumi.getter

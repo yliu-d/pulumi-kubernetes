@@ -22,8 +22,10 @@ class TokenReviewSpecArgs:
         :param pulumi.Input[List[pulumi.Input[str]]] audiences: Audiences is a list of the identifiers that the resource server presented with the token identifies as. Audience-aware token authenticators will verify that the token was intended for at least one of the audiences in this list. If no audiences are provided, the audience will default to the audience of the Kubernetes apiserver.
         :param pulumi.Input[str] token: Token is the opaque bearer token.
         """
-        pulumi.set(__self__, "audiences", audiences)
-        pulumi.set(__self__, "token", token)
+        if audiences is not None:
+            pulumi.set(__self__, "audiences", audiences)
+        if token is not None:
+            pulumi.set(__self__, "token", token)
 
     @property
     @pulumi.getter

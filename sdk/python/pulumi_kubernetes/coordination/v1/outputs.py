@@ -20,6 +20,27 @@ class Lease(dict):
     """
     Lease defines a lease concept.
     """
+    def __init__(__self__, *,
+                 api_version: Optional[str] = None,
+                 kind: Optional[str] = None,
+                 metadata: Optional['_meta.v1.outputs.ObjectMeta'] = None,
+                 spec: Optional['outputs.LeaseSpec'] = None):
+        """
+        Lease defines a lease concept.
+        :param str api_version: APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+        :param str kind: Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+        :param '_meta.v1.ObjectMetaArgs' metadata: More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
+        :param 'LeaseSpecArgs' spec: Specification of the Lease. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
+        """
+        if api_version is not None:
+            pulumi.set(__self__, "api_version", 'coordination.k8s.io/v1')
+        if kind is not None:
+            pulumi.set(__self__, "kind", 'Lease')
+        if metadata is not None:
+            pulumi.set(__self__, "metadata", metadata)
+        if spec is not None:
+            pulumi.set(__self__, "spec", spec)
+
     @property
     @pulumi.getter(name="apiVersion")
     def api_version(self) -> Optional[str]:
@@ -61,6 +82,31 @@ class LeaseSpec(dict):
     """
     LeaseSpec is a specification of a Lease.
     """
+    def __init__(__self__, *,
+                 acquire_time: Optional[str] = None,
+                 holder_identity: Optional[str] = None,
+                 lease_duration_seconds: Optional[float] = None,
+                 lease_transitions: Optional[float] = None,
+                 renew_time: Optional[str] = None):
+        """
+        LeaseSpec is a specification of a Lease.
+        :param str acquire_time: acquireTime is a time when the current lease was acquired.
+        :param str holder_identity: holderIdentity contains the identity of the holder of a current lease.
+        :param float lease_duration_seconds: leaseDurationSeconds is a duration that candidates for a lease need to wait to force acquire it. This is measure against time of last observed RenewTime.
+        :param float lease_transitions: leaseTransitions is the number of transitions of a lease between holders.
+        :param str renew_time: renewTime is a time when the current holder of a lease has last updated the lease.
+        """
+        if acquire_time is not None:
+            pulumi.set(__self__, "acquire_time", acquire_time)
+        if holder_identity is not None:
+            pulumi.set(__self__, "holder_identity", holder_identity)
+        if lease_duration_seconds is not None:
+            pulumi.set(__self__, "lease_duration_seconds", lease_duration_seconds)
+        if lease_transitions is not None:
+            pulumi.set(__self__, "lease_transitions", lease_transitions)
+        if renew_time is not None:
+            pulumi.set(__self__, "renew_time", renew_time)
+
     @property
     @pulumi.getter(name="acquireTime")
     def acquire_time(self) -> Optional[str]:

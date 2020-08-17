@@ -38,6 +38,14 @@ class FlowDistinguisherMethod(dict):
     """
     FlowDistinguisherMethod specifies the method of a flow distinguisher.
     """
+    def __init__(__self__, *,
+                 type: str):
+        """
+        FlowDistinguisherMethod specifies the method of a flow distinguisher.
+        :param str type: `type` is the type of flow distinguisher method The supported types are "ByUser" and "ByNamespace". Required.
+        """
+        pulumi.set(__self__, "type", type)
+
     @property
     @pulumi.getter
     def type(self) -> str:
@@ -55,6 +63,31 @@ class FlowSchema(dict):
     """
     FlowSchema defines the schema of a group of flows. Note that a flow is made up of a set of inbound API requests with similar attributes and is identified by a pair of strings: the name of the FlowSchema and a "flow distinguisher".
     """
+    def __init__(__self__, *,
+                 api_version: Optional[str] = None,
+                 kind: Optional[str] = None,
+                 metadata: Optional['_meta.v1.outputs.ObjectMeta'] = None,
+                 spec: Optional['outputs.FlowSchemaSpec'] = None,
+                 status: Optional['outputs.FlowSchemaStatus'] = None):
+        """
+        FlowSchema defines the schema of a group of flows. Note that a flow is made up of a set of inbound API requests with similar attributes and is identified by a pair of strings: the name of the FlowSchema and a "flow distinguisher".
+        :param str api_version: APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+        :param str kind: Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+        :param '_meta.v1.ObjectMetaArgs' metadata: `metadata` is the standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
+        :param 'FlowSchemaSpecArgs' spec: `spec` is the specification of the desired behavior of a FlowSchema. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
+        :param 'FlowSchemaStatusArgs' status: `status` is the current status of a FlowSchema. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
+        """
+        if api_version is not None:
+            pulumi.set(__self__, "api_version", 'flowcontrol.apiserver.k8s.io/v1alpha1')
+        if kind is not None:
+            pulumi.set(__self__, "kind", 'FlowSchema')
+        if metadata is not None:
+            pulumi.set(__self__, "metadata", metadata)
+        if spec is not None:
+            pulumi.set(__self__, "spec", spec)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+
     @property
     @pulumi.getter(name="apiVersion")
     def api_version(self) -> Optional[str]:
@@ -104,6 +137,31 @@ class FlowSchemaCondition(dict):
     """
     FlowSchemaCondition describes conditions for a FlowSchema.
     """
+    def __init__(__self__, *,
+                 last_transition_time: Optional[str] = None,
+                 message: Optional[str] = None,
+                 reason: Optional[str] = None,
+                 status: Optional[str] = None,
+                 type: Optional[str] = None):
+        """
+        FlowSchemaCondition describes conditions for a FlowSchema.
+        :param str last_transition_time: `lastTransitionTime` is the last time the condition transitioned from one status to another.
+        :param str message: `message` is a human-readable message indicating details about last transition.
+        :param str reason: `reason` is a unique, one-word, CamelCase reason for the condition's last transition.
+        :param str status: `status` is the status of the condition. Can be True, False, Unknown. Required.
+        :param str type: `type` is the type of the condition. Required.
+        """
+        if last_transition_time is not None:
+            pulumi.set(__self__, "last_transition_time", last_transition_time)
+        if message is not None:
+            pulumi.set(__self__, "message", message)
+        if reason is not None:
+            pulumi.set(__self__, "reason", reason)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
     @property
     @pulumi.getter(name="lastTransitionTime")
     def last_transition_time(self) -> Optional[str]:
@@ -153,6 +211,34 @@ class FlowSchemaSpec(dict):
     """
     FlowSchemaSpec describes how the FlowSchema's specification looks like.
     """
+    def __init__(__self__, *,
+                 priority_level_configuration: 'outputs.PriorityLevelConfigurationReference',
+                 distinguisher_method: Optional['outputs.FlowDistinguisherMethod'] = None,
+                 matching_precedence: Optional[float] = None,
+                 rules: Optional[List['outputs.PolicyRulesWithSubjects']] = None):
+        """
+        FlowSchemaSpec describes how the FlowSchema's specification looks like.
+        :param 'PriorityLevelConfigurationReferenceArgs' priority_level_configuration: `priorityLevelConfiguration` should reference a PriorityLevelConfiguration in the cluster. If the reference cannot be resolved, the FlowSchema will be ignored and marked as invalid in its status. Required.
+        :param 'FlowDistinguisherMethodArgs' distinguisher_method: `distinguisherMethod` defines how to compute the flow distinguisher for requests that match this schema. `nil` specifies that the distinguisher is disabled and thus will always be the empty string.
+        :param float matching_precedence: `matchingPrecedence` is used to choose among the FlowSchemas that match a given request. The chosen FlowSchema is among those with the numerically lowest (which we take to be logically highest) MatchingPrecedence.  Each MatchingPrecedence value must be ranged in [1,10000]. Note that if the precedence is not specified, it will be set to 1000 as default.
+        :param List['PolicyRulesWithSubjectsArgs'] rules: `rules` describes which requests will match this flow schema. This FlowSchema matches a request if and only if at least one member of rules matches the request. if it is an empty slice, there will be no requests matching the FlowSchema.
+        """
+        pulumi.set(__self__, "priority_level_configuration", priority_level_configuration)
+        if distinguisher_method is not None:
+            pulumi.set(__self__, "distinguisher_method", distinguisher_method)
+        if matching_precedence is not None:
+            pulumi.set(__self__, "matching_precedence", matching_precedence)
+        if rules is not None:
+            pulumi.set(__self__, "rules", rules)
+
+    @property
+    @pulumi.getter(name="priorityLevelConfiguration")
+    def priority_level_configuration(self) -> 'outputs.PriorityLevelConfigurationReference':
+        """
+        `priorityLevelConfiguration` should reference a PriorityLevelConfiguration in the cluster. If the reference cannot be resolved, the FlowSchema will be ignored and marked as invalid in its status. Required.
+        """
+        ...
+
     @property
     @pulumi.getter(name="distinguisherMethod")
     def distinguisher_method(self) -> Optional['outputs.FlowDistinguisherMethod']:
@@ -166,14 +252,6 @@ class FlowSchemaSpec(dict):
     def matching_precedence(self) -> Optional[float]:
         """
         `matchingPrecedence` is used to choose among the FlowSchemas that match a given request. The chosen FlowSchema is among those with the numerically lowest (which we take to be logically highest) MatchingPrecedence.  Each MatchingPrecedence value must be ranged in [1,10000]. Note that if the precedence is not specified, it will be set to 1000 as default.
-        """
-        ...
-
-    @property
-    @pulumi.getter(name="priorityLevelConfiguration")
-    def priority_level_configuration(self) -> 'outputs.PriorityLevelConfigurationReference':
-        """
-        `priorityLevelConfiguration` should reference a PriorityLevelConfiguration in the cluster. If the reference cannot be resolved, the FlowSchema will be ignored and marked as invalid in its status. Required.
         """
         ...
 
@@ -194,6 +272,15 @@ class FlowSchemaStatus(dict):
     """
     FlowSchemaStatus represents the current state of a FlowSchema.
     """
+    def __init__(__self__, *,
+                 conditions: Optional[List['outputs.FlowSchemaCondition']] = None):
+        """
+        FlowSchemaStatus represents the current state of a FlowSchema.
+        :param List['FlowSchemaConditionArgs'] conditions: `conditions` is a list of the current states of FlowSchema.
+        """
+        if conditions is not None:
+            pulumi.set(__self__, "conditions", conditions)
+
     @property
     @pulumi.getter
     def conditions(self) -> Optional[List['outputs.FlowSchemaCondition']]:
@@ -211,6 +298,14 @@ class GroupSubject(dict):
     """
     GroupSubject holds detailed information for group-kind subject.
     """
+    def __init__(__self__, *,
+                 name: str):
+        """
+        GroupSubject holds detailed information for group-kind subject.
+        :param str name: name is the user group that matches, or "*" to match all user groups. See https://github.com/kubernetes/apiserver/blob/master/pkg/authentication/user/user.go for some well-known group names. Required.
+        """
+        pulumi.set(__self__, "name", name)
+
     @property
     @pulumi.getter
     def name(self) -> str:
@@ -228,19 +323,31 @@ class LimitResponse(dict):
     """
     LimitResponse defines how to handle requests that can not be executed right now.
     """
-    @property
-    @pulumi.getter
-    def queuing(self) -> Optional['outputs.QueuingConfiguration']:
+    def __init__(__self__, *,
+                 type: str,
+                 queuing: Optional['outputs.QueuingConfiguration'] = None):
         """
-        `queuing` holds the configuration parameters for queuing. This field may be non-empty only if `type` is `"Queue"`.
+        LimitResponse defines how to handle requests that can not be executed right now.
+        :param str type: `type` is "Queue" or "Reject". "Queue" means that requests that can not be executed upon arrival are held in a queue until they can be executed or a queuing limit is reached. "Reject" means that requests that can not be executed upon arrival are rejected. Required.
+        :param 'QueuingConfigurationArgs' queuing: `queuing` holds the configuration parameters for queuing. This field may be non-empty only if `type` is `"Queue"`.
         """
-        ...
+        pulumi.set(__self__, "type", type)
+        if queuing is not None:
+            pulumi.set(__self__, "queuing", queuing)
 
     @property
     @pulumi.getter
     def type(self) -> str:
         """
         `type` is "Queue" or "Reject". "Queue" means that requests that can not be executed upon arrival are held in a queue until they can be executed or a queuing limit is reached. "Reject" means that requests that can not be executed upon arrival are rejected. Required.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def queuing(self) -> Optional['outputs.QueuingConfiguration']:
+        """
+        `queuing` holds the configuration parameters for queuing. This field may be non-empty only if `type` is `"Queue"`.
         """
         ...
 
@@ -255,6 +362,25 @@ class LimitedPriorityLevelConfiguration(dict):
      * How are requests for this priority level limited?
      * What should be done with requests that exceed the limit?
     """
+    def __init__(__self__, *,
+                 assured_concurrency_shares: Optional[float] = None,
+                 limit_response: Optional['outputs.LimitResponse'] = None):
+        """
+        LimitedPriorityLevelConfiguration specifies how to handle requests that are subject to limits. It addresses two issues:
+         * How are requests for this priority level limited?
+         * What should be done with requests that exceed the limit?
+        :param float assured_concurrency_shares: `assuredConcurrencyShares` (ACS) configures the execution limit, which is a limit on the number of requests of this priority level that may be exeucting at a given time.  ACS must be a positive number. The server's concurrency limit (SCL) is divided among the concurrency-controlled priority levels in proportion to their assured concurrency shares. This produces the assured concurrency value (ACV) --- the number of requests that may be executing at a time --- for each such priority level:
+               
+                           ACV(l) = ceil( SCL * ACS(l) / ( sum[priority levels k] ACS(k) ) )
+               
+               bigger numbers of ACS mean more reserved concurrent requests (at the expense of every other PL). This field has a default value of 30.
+        :param 'LimitResponseArgs' limit_response: `limitResponse` indicates what to do with requests that can not be executed right now
+        """
+        if assured_concurrency_shares is not None:
+            pulumi.set(__self__, "assured_concurrency_shares", assured_concurrency_shares)
+        if limit_response is not None:
+            pulumi.set(__self__, "limit_response", limit_response)
+
     @property
     @pulumi.getter(name="assuredConcurrencyShares")
     def assured_concurrency_shares(self) -> Optional[float]:
@@ -284,6 +410,23 @@ class NonResourcePolicyRule(dict):
     """
     NonResourcePolicyRule is a predicate that matches non-resource requests according to their verb and the target non-resource URL. A NonResourcePolicyRule matches a request if and only if both (a) at least one member of verbs matches the request and (b) at least one member of nonResourceURLs matches the request.
     """
+    def __init__(__self__, *,
+                 non_resource_urls: List[str],
+                 verbs: List[str]):
+        """
+        NonResourcePolicyRule is a predicate that matches non-resource requests according to their verb and the target non-resource URL. A NonResourcePolicyRule matches a request if and only if both (a) at least one member of verbs matches the request and (b) at least one member of nonResourceURLs matches the request.
+        :param List[str] non_resource_urls: `nonResourceURLs` is a set of url prefixes that a user should have access to and may not be empty. For example:
+                 - "/healthz" is legal
+                 - "/hea*" is illegal
+                 - "/hea" is legal but matches nothing
+                 - "/hea/*" also matches nothing
+                 - "/healthz/*" matches all per-component health checks.
+               "*" matches all non-resource urls. if it is present, it must be the only entry. Required.
+        :param List[str] verbs: `verbs` is a list of matching verbs and may not be empty. "*" matches all verbs. If it is present, it must be the only entry. Required.
+        """
+        pulumi.set(__self__, "non_resource_urls", non_resource_urls)
+        pulumi.set(__self__, "verbs", verbs)
+
     @property
     @pulumi.getter(name="nonResourceURLs")
     def non_resource_urls(self) -> List[str]:
@@ -315,6 +458,30 @@ class PolicyRulesWithSubjects(dict):
     """
     PolicyRulesWithSubjects prescribes a test that applies to a request to an apiserver. The test considers the subject making the request, the verb being requested, and the resource to be acted upon. This PolicyRulesWithSubjects matches a request if and only if both (a) at least one member of subjects matches the request and (b) at least one member of resourceRules or nonResourceRules matches the request.
     """
+    def __init__(__self__, *,
+                 subjects: List['outputs.Subject'],
+                 non_resource_rules: Optional[List['outputs.NonResourcePolicyRule']] = None,
+                 resource_rules: Optional[List['outputs.ResourcePolicyRule']] = None):
+        """
+        PolicyRulesWithSubjects prescribes a test that applies to a request to an apiserver. The test considers the subject making the request, the verb being requested, and the resource to be acted upon. This PolicyRulesWithSubjects matches a request if and only if both (a) at least one member of subjects matches the request and (b) at least one member of resourceRules or nonResourceRules matches the request.
+        :param List['SubjectArgs'] subjects: subjects is the list of normal user, serviceaccount, or group that this rule cares about. There must be at least one member in this slice. A slice that includes both the system:authenticated and system:unauthenticated user groups matches every request. Required.
+        :param List['NonResourcePolicyRuleArgs'] non_resource_rules: `nonResourceRules` is a list of NonResourcePolicyRules that identify matching requests according to their verb and the target non-resource URL.
+        :param List['ResourcePolicyRuleArgs'] resource_rules: `resourceRules` is a slice of ResourcePolicyRules that identify matching requests according to their verb and the target resource. At least one of `resourceRules` and `nonResourceRules` has to be non-empty.
+        """
+        pulumi.set(__self__, "subjects", subjects)
+        if non_resource_rules is not None:
+            pulumi.set(__self__, "non_resource_rules", non_resource_rules)
+        if resource_rules is not None:
+            pulumi.set(__self__, "resource_rules", resource_rules)
+
+    @property
+    @pulumi.getter
+    def subjects(self) -> List['outputs.Subject']:
+        """
+        subjects is the list of normal user, serviceaccount, or group that this rule cares about. There must be at least one member in this slice. A slice that includes both the system:authenticated and system:unauthenticated user groups matches every request. Required.
+        """
+        ...
+
     @property
     @pulumi.getter(name="nonResourceRules")
     def non_resource_rules(self) -> Optional[List['outputs.NonResourcePolicyRule']]:
@@ -331,14 +498,6 @@ class PolicyRulesWithSubjects(dict):
         """
         ...
 
-    @property
-    @pulumi.getter
-    def subjects(self) -> List['outputs.Subject']:
-        """
-        subjects is the list of normal user, serviceaccount, or group that this rule cares about. There must be at least one member in this slice. A slice that includes both the system:authenticated and system:unauthenticated user groups matches every request. Required.
-        """
-        ...
-
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
@@ -348,6 +507,31 @@ class PriorityLevelConfiguration(dict):
     """
     PriorityLevelConfiguration represents the configuration of a priority level.
     """
+    def __init__(__self__, *,
+                 api_version: Optional[str] = None,
+                 kind: Optional[str] = None,
+                 metadata: Optional['_meta.v1.outputs.ObjectMeta'] = None,
+                 spec: Optional['outputs.PriorityLevelConfigurationSpec'] = None,
+                 status: Optional['outputs.PriorityLevelConfigurationStatus'] = None):
+        """
+        PriorityLevelConfiguration represents the configuration of a priority level.
+        :param str api_version: APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+        :param str kind: Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+        :param '_meta.v1.ObjectMetaArgs' metadata: `metadata` is the standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
+        :param 'PriorityLevelConfigurationSpecArgs' spec: `spec` is the specification of the desired behavior of a "request-priority". More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
+        :param 'PriorityLevelConfigurationStatusArgs' status: `status` is the current status of a "request-priority". More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
+        """
+        if api_version is not None:
+            pulumi.set(__self__, "api_version", 'flowcontrol.apiserver.k8s.io/v1alpha1')
+        if kind is not None:
+            pulumi.set(__self__, "kind", 'PriorityLevelConfiguration')
+        if metadata is not None:
+            pulumi.set(__self__, "metadata", metadata)
+        if spec is not None:
+            pulumi.set(__self__, "spec", spec)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+
     @property
     @pulumi.getter(name="apiVersion")
     def api_version(self) -> Optional[str]:
@@ -397,6 +581,31 @@ class PriorityLevelConfigurationCondition(dict):
     """
     PriorityLevelConfigurationCondition defines the condition of priority level.
     """
+    def __init__(__self__, *,
+                 last_transition_time: Optional[str] = None,
+                 message: Optional[str] = None,
+                 reason: Optional[str] = None,
+                 status: Optional[str] = None,
+                 type: Optional[str] = None):
+        """
+        PriorityLevelConfigurationCondition defines the condition of priority level.
+        :param str last_transition_time: `lastTransitionTime` is the last time the condition transitioned from one status to another.
+        :param str message: `message` is a human-readable message indicating details about last transition.
+        :param str reason: `reason` is a unique, one-word, CamelCase reason for the condition's last transition.
+        :param str status: `status` is the status of the condition. Can be True, False, Unknown. Required.
+        :param str type: `type` is the type of the condition. Required.
+        """
+        if last_transition_time is not None:
+            pulumi.set(__self__, "last_transition_time", last_transition_time)
+        if message is not None:
+            pulumi.set(__self__, "message", message)
+        if reason is not None:
+            pulumi.set(__self__, "reason", reason)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
     @property
     @pulumi.getter(name="lastTransitionTime")
     def last_transition_time(self) -> Optional[str]:
@@ -446,6 +655,14 @@ class PriorityLevelConfigurationReference(dict):
     """
     PriorityLevelConfigurationReference contains information that points to the "request-priority" being used.
     """
+    def __init__(__self__, *,
+                 name: str):
+        """
+        PriorityLevelConfigurationReference contains information that points to the "request-priority" being used.
+        :param str name: `name` is the name of the priority level configuration being referenced Required.
+        """
+        pulumi.set(__self__, "name", name)
+
     @property
     @pulumi.getter
     def name(self) -> str:
@@ -463,19 +680,31 @@ class PriorityLevelConfigurationSpec(dict):
     """
     PriorityLevelConfigurationSpec specifies the configuration of a priority level.
     """
-    @property
-    @pulumi.getter
-    def limited(self) -> Optional['outputs.LimitedPriorityLevelConfiguration']:
+    def __init__(__self__, *,
+                 type: str,
+                 limited: Optional['outputs.LimitedPriorityLevelConfiguration'] = None):
         """
-        `limited` specifies how requests are handled for a Limited priority level. This field must be non-empty if and only if `type` is `"Limited"`.
+        PriorityLevelConfigurationSpec specifies the configuration of a priority level.
+        :param str type: `type` indicates whether this priority level is subject to limitation on request execution.  A value of `"Exempt"` means that requests of this priority level are not subject to a limit (and thus are never queued) and do not detract from the capacity made available to other priority levels.  A value of `"Limited"` means that (a) requests of this priority level _are_ subject to limits and (b) some of the server's limited capacity is made available exclusively to this priority level. Required.
+        :param 'LimitedPriorityLevelConfigurationArgs' limited: `limited` specifies how requests are handled for a Limited priority level. This field must be non-empty if and only if `type` is `"Limited"`.
         """
-        ...
+        pulumi.set(__self__, "type", type)
+        if limited is not None:
+            pulumi.set(__self__, "limited", limited)
 
     @property
     @pulumi.getter
     def type(self) -> str:
         """
         `type` indicates whether this priority level is subject to limitation on request execution.  A value of `"Exempt"` means that requests of this priority level are not subject to a limit (and thus are never queued) and do not detract from the capacity made available to other priority levels.  A value of `"Limited"` means that (a) requests of this priority level _are_ subject to limits and (b) some of the server's limited capacity is made available exclusively to this priority level. Required.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def limited(self) -> Optional['outputs.LimitedPriorityLevelConfiguration']:
+        """
+        `limited` specifies how requests are handled for a Limited priority level. This field must be non-empty if and only if `type` is `"Limited"`.
         """
         ...
 
@@ -488,6 +717,15 @@ class PriorityLevelConfigurationStatus(dict):
     """
     PriorityLevelConfigurationStatus represents the current state of a "request-priority".
     """
+    def __init__(__self__, *,
+                 conditions: Optional[List['outputs.PriorityLevelConfigurationCondition']] = None):
+        """
+        PriorityLevelConfigurationStatus represents the current state of a "request-priority".
+        :param List['PriorityLevelConfigurationConditionArgs'] conditions: `conditions` is the current state of "request-priority".
+        """
+        if conditions is not None:
+            pulumi.set(__self__, "conditions", conditions)
+
     @property
     @pulumi.getter
     def conditions(self) -> Optional[List['outputs.PriorityLevelConfigurationCondition']]:
@@ -505,6 +743,23 @@ class QueuingConfiguration(dict):
     """
     QueuingConfiguration holds the configuration parameters for queuing
     """
+    def __init__(__self__, *,
+                 hand_size: Optional[float] = None,
+                 queue_length_limit: Optional[float] = None,
+                 queues: Optional[float] = None):
+        """
+        QueuingConfiguration holds the configuration parameters for queuing
+        :param float hand_size: `handSize` is a small positive number that configures the shuffle sharding of requests into queues.  When enqueuing a request at this priority level the request's flow identifier (a string pair) is hashed and the hash value is used to shuffle the list of queues and deal a hand of the size specified here.  The request is put into one of the shortest queues in that hand. `handSize` must be no larger than `queues`, and should be significantly smaller (so that a few heavy flows do not saturate most of the queues).  See the user-facing documentation for more extensive guidance on setting this field.  This field has a default value of 8.
+        :param float queue_length_limit: `queueLengthLimit` is the maximum number of requests allowed to be waiting in a given queue of this priority level at a time; excess requests are rejected.  This value must be positive.  If not specified, it will be defaulted to 50.
+        :param float queues: `queues` is the number of queues for this priority level. The queues exist independently at each apiserver. The value must be positive.  Setting it to 1 effectively precludes shufflesharding and thus makes the distinguisher method of associated flow schemas irrelevant.  This field has a default value of 64.
+        """
+        if hand_size is not None:
+            pulumi.set(__self__, "hand_size", hand_size)
+        if queue_length_limit is not None:
+            pulumi.set(__self__, "queue_length_limit", queue_length_limit)
+        if queues is not None:
+            pulumi.set(__self__, "queues", queues)
+
     @property
     @pulumi.getter(name="handSize")
     def hand_size(self) -> Optional[float]:
@@ -538,27 +793,33 @@ class ResourcePolicyRule(dict):
     """
     ResourcePolicyRule is a predicate that matches some resource requests, testing the request's verb and the target resource. A ResourcePolicyRule matches a resource request if and only if: (a) at least one member of verbs matches the request, (b) at least one member of apiGroups matches the request, (c) at least one member of resources matches the request, and (d) least one member of namespaces matches the request.
     """
+    def __init__(__self__, *,
+                 api_groups: List[str],
+                 resources: List[str],
+                 verbs: List[str],
+                 cluster_scope: Optional[bool] = None,
+                 namespaces: Optional[List[str]] = None):
+        """
+        ResourcePolicyRule is a predicate that matches some resource requests, testing the request's verb and the target resource. A ResourcePolicyRule matches a resource request if and only if: (a) at least one member of verbs matches the request, (b) at least one member of apiGroups matches the request, (c) at least one member of resources matches the request, and (d) least one member of namespaces matches the request.
+        :param List[str] api_groups: `apiGroups` is a list of matching API groups and may not be empty. "*" matches all API groups and, if present, must be the only entry. Required.
+        :param List[str] resources: `resources` is a list of matching resources (i.e., lowercase and plural) with, if desired, subresource.  For example, [ "services", "nodes/status" ].  This list may not be empty. "*" matches all resources and, if present, must be the only entry. Required.
+        :param List[str] verbs: `verbs` is a list of matching verbs and may not be empty. "*" matches all verbs and, if present, must be the only entry. Required.
+        :param bool cluster_scope: `clusterScope` indicates whether to match requests that do not specify a namespace (which happens either because the resource is not namespaced or the request targets all namespaces). If this field is omitted or false then the `namespaces` field must contain a non-empty list.
+        :param List[str] namespaces: `namespaces` is a list of target namespaces that restricts matches.  A request that specifies a target namespace matches only if either (a) this list contains that target namespace or (b) this list contains "*".  Note that "*" matches any specified namespace but does not match a request that _does not specify_ a namespace (see the `clusterScope` field for that). This list may be empty, but only if `clusterScope` is true.
+        """
+        pulumi.set(__self__, "api_groups", api_groups)
+        pulumi.set(__self__, "resources", resources)
+        pulumi.set(__self__, "verbs", verbs)
+        if cluster_scope is not None:
+            pulumi.set(__self__, "cluster_scope", cluster_scope)
+        if namespaces is not None:
+            pulumi.set(__self__, "namespaces", namespaces)
+
     @property
     @pulumi.getter(name="apiGroups")
     def api_groups(self) -> List[str]:
         """
         `apiGroups` is a list of matching API groups and may not be empty. "*" matches all API groups and, if present, must be the only entry. Required.
-        """
-        ...
-
-    @property
-    @pulumi.getter(name="clusterScope")
-    def cluster_scope(self) -> Optional[bool]:
-        """
-        `clusterScope` indicates whether to match requests that do not specify a namespace (which happens either because the resource is not namespaced or the request targets all namespaces). If this field is omitted or false then the `namespaces` field must contain a non-empty list.
-        """
-        ...
-
-    @property
-    @pulumi.getter
-    def namespaces(self) -> Optional[List[str]]:
-        """
-        `namespaces` is a list of target namespaces that restricts matches.  A request that specifies a target namespace matches only if either (a) this list contains that target namespace or (b) this list contains "*".  Note that "*" matches any specified namespace but does not match a request that _does not specify_ a namespace (see the `clusterScope` field for that). This list may be empty, but only if `clusterScope` is true.
         """
         ...
 
@@ -578,6 +839,22 @@ class ResourcePolicyRule(dict):
         """
         ...
 
+    @property
+    @pulumi.getter(name="clusterScope")
+    def cluster_scope(self) -> Optional[bool]:
+        """
+        `clusterScope` indicates whether to match requests that do not specify a namespace (which happens either because the resource is not namespaced or the request targets all namespaces). If this field is omitted or false then the `namespaces` field must contain a non-empty list.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def namespaces(self) -> Optional[List[str]]:
+        """
+        `namespaces` is a list of target namespaces that restricts matches.  A request that specifies a target namespace matches only if either (a) this list contains that target namespace or (b) this list contains "*".  Note that "*" matches any specified namespace but does not match a request that _does not specify_ a namespace (see the `clusterScope` field for that). This list may be empty, but only if `clusterScope` is true.
+        """
+        ...
+
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
@@ -587,6 +864,17 @@ class ServiceAccountSubject(dict):
     """
     ServiceAccountSubject holds detailed information for service-account-kind subject.
     """
+    def __init__(__self__, *,
+                 name: str,
+                 namespace: str):
+        """
+        ServiceAccountSubject holds detailed information for service-account-kind subject.
+        :param str name: `name` is the name of matching ServiceAccount objects, or "*" to match regardless of name. Required.
+        :param str namespace: `namespace` is the namespace of matching ServiceAccount objects. Required.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "namespace", namespace)
+
     @property
     @pulumi.getter
     def name(self) -> str:
@@ -612,10 +900,22 @@ class Subject(dict):
     """
     Subject matches the originator of a request, as identified by the request authentication system. There are three ways of matching an originator; by user, group, or service account.
     """
-    @property
-    @pulumi.getter
-    def group(self) -> Optional['outputs.GroupSubject']:
-        ...
+    def __init__(__self__, *,
+                 kind: str,
+                 group: Optional['outputs.GroupSubject'] = None,
+                 service_account: Optional['outputs.ServiceAccountSubject'] = None,
+                 user: Optional['outputs.UserSubject'] = None):
+        """
+        Subject matches the originator of a request, as identified by the request authentication system. There are three ways of matching an originator; by user, group, or service account.
+        :param str kind: Required
+        """
+        pulumi.set(__self__, "kind", kind)
+        if group is not None:
+            pulumi.set(__self__, "group", group)
+        if service_account is not None:
+            pulumi.set(__self__, "service_account", service_account)
+        if user is not None:
+            pulumi.set(__self__, "user", user)
 
     @property
     @pulumi.getter
@@ -623,6 +923,11 @@ class Subject(dict):
         """
         Required
         """
+        ...
+
+    @property
+    @pulumi.getter
+    def group(self) -> Optional['outputs.GroupSubject']:
         ...
 
     @property
@@ -644,6 +949,14 @@ class UserSubject(dict):
     """
     UserSubject holds detailed information for user-kind subject.
     """
+    def __init__(__self__, *,
+                 name: str):
+        """
+        UserSubject holds detailed information for user-kind subject.
+        :param str name: `name` is the username that matches, or "*" to match all usernames. Required.
+        """
+        pulumi.set(__self__, "name", name)
+
     @property
     @pulumi.getter
     def name(self) -> str:

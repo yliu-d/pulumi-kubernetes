@@ -34,12 +34,18 @@ class PriorityClassArgs:
         :param pulumi.Input[str] preemption_policy: PreemptionPolicy is the Policy for preempting pods with lower priority. One of Never, PreemptLowerPriority. Defaults to PreemptLowerPriority if unset. This field is alpha-level and is only honored by servers that enable the NonPreemptingPriority feature.
         """
         pulumi.set(__self__, "value", value)
-        pulumi.set(__self__, "apiVersion", 'scheduling.k8s.io/v1alpha1')
-        pulumi.set(__self__, "description", description)
-        pulumi.set(__self__, "globalDefault", global_default)
-        pulumi.set(__self__, "kind", 'PriorityClass')
-        pulumi.set(__self__, "metadata", metadata)
-        pulumi.set(__self__, "preemptionPolicy", preemption_policy)
+        if api_version is not None:
+            pulumi.set(__self__, "api_version", 'scheduling.k8s.io/v1alpha1')
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if global_default is not None:
+            pulumi.set(__self__, "global_default", global_default)
+        if kind is not None:
+            pulumi.set(__self__, "kind", 'PriorityClass')
+        if metadata is not None:
+            pulumi.set(__self__, "metadata", metadata)
+        if preemption_policy is not None:
+            pulumi.set(__self__, "preemption_policy", preemption_policy)
 
     @property
     @pulumi.getter

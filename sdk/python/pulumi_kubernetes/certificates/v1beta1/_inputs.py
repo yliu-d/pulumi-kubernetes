@@ -31,11 +31,16 @@ class CertificateSigningRequestArgs:
         :param pulumi.Input['CertificateSigningRequestSpecArgs'] spec: The certificate request itself and any additional information.
         :param pulumi.Input['CertificateSigningRequestStatusArgs'] status: Derived information about the request.
         """
-        pulumi.set(__self__, "apiVersion", 'certificates.k8s.io/v1beta1')
-        pulumi.set(__self__, "kind", 'CertificateSigningRequest')
-        pulumi.set(__self__, "metadata", metadata)
-        pulumi.set(__self__, "spec", spec)
-        pulumi.set(__self__, "status", status)
+        if api_version is not None:
+            pulumi.set(__self__, "api_version", 'certificates.k8s.io/v1beta1')
+        if kind is not None:
+            pulumi.set(__self__, "kind", 'CertificateSigningRequest')
+        if metadata is not None:
+            pulumi.set(__self__, "metadata", metadata)
+        if spec is not None:
+            pulumi.set(__self__, "spec", spec)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
 
     @property
     @pulumi.getter(name="apiVersion")
@@ -109,9 +114,12 @@ class CertificateSigningRequestConditionArgs:
         :param pulumi.Input[str] reason: brief reason for the request state
         """
         pulumi.set(__self__, "type", type)
-        pulumi.set(__self__, "lastUpdateTime", last_update_time)
-        pulumi.set(__self__, "message", message)
-        pulumi.set(__self__, "reason", reason)
+        if last_update_time is not None:
+            pulumi.set(__self__, "last_update_time", last_update_time)
+        if message is not None:
+            pulumi.set(__self__, "message", message)
+        if reason is not None:
+            pulumi.set(__self__, "reason", reason)
 
     @property
     @pulumi.getter
@@ -190,12 +198,18 @@ class CertificateSigningRequestSpecArgs:
         :param pulumi.Input[str] username: Information about the requesting user. See user.Info interface for details.
         """
         pulumi.set(__self__, "request", request)
-        pulumi.set(__self__, "extra", extra)
-        pulumi.set(__self__, "groups", groups)
-        pulumi.set(__self__, "signerName", signer_name)
-        pulumi.set(__self__, "uid", uid)
-        pulumi.set(__self__, "usages", usages)
-        pulumi.set(__self__, "username", username)
+        if extra is not None:
+            pulumi.set(__self__, "extra", extra)
+        if groups is not None:
+            pulumi.set(__self__, "groups", groups)
+        if signer_name is not None:
+            pulumi.set(__self__, "signer_name", signer_name)
+        if uid is not None:
+            pulumi.set(__self__, "uid", uid)
+        if usages is not None:
+            pulumi.set(__self__, "usages", usages)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
 
     @property
     @pulumi.getter
@@ -298,8 +312,10 @@ class CertificateSigningRequestStatusArgs:
         :param pulumi.Input[str] certificate: If request was approved, the controller will place the issued certificate here.
         :param pulumi.Input[List[pulumi.Input['CertificateSigningRequestConditionArgs']]] conditions: Conditions applied to the request, such as approval or denial.
         """
-        pulumi.set(__self__, "certificate", certificate)
-        pulumi.set(__self__, "conditions", conditions)
+        if certificate is not None:
+            pulumi.set(__self__, "certificate", certificate)
+        if conditions is not None:
+            pulumi.set(__self__, "conditions", conditions)
 
     @property
     @pulumi.getter

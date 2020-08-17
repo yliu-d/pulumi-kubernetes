@@ -37,10 +37,14 @@ class VolumeAttachmentArgs:
         :param pulumi.Input['VolumeAttachmentStatusArgs'] status: Status of the VolumeAttachment request. Populated by the entity completing the attach or detach operation, i.e. the external-attacher.
         """
         pulumi.set(__self__, "spec", spec)
-        pulumi.set(__self__, "apiVersion", 'storage.k8s.io/v1alpha1')
-        pulumi.set(__self__, "kind", 'VolumeAttachment')
-        pulumi.set(__self__, "metadata", metadata)
-        pulumi.set(__self__, "status", status)
+        if api_version is not None:
+            pulumi.set(__self__, "api_version", 'storage.k8s.io/v1alpha1')
+        if kind is not None:
+            pulumi.set(__self__, "kind", 'VolumeAttachment')
+        if metadata is not None:
+            pulumi.set(__self__, "metadata", metadata)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
 
     @property
     @pulumi.getter
@@ -113,8 +117,10 @@ class VolumeAttachmentSourceArgs:
         :param pulumi.Input['_core.v1.PersistentVolumeSpecArgs'] inline_volume_spec: inlineVolumeSpec contains all the information necessary to attach a persistent volume defined by a pod's inline VolumeSource. This field is populated only for the CSIMigration feature. It contains translated fields from a pod's inline VolumeSource to a PersistentVolumeSpec. This field is alpha-level and is only honored by servers that enabled the CSIMigration feature.
         :param pulumi.Input[str] persistent_volume_name: Name of the persistent volume to attach.
         """
-        pulumi.set(__self__, "inlineVolumeSpec", inline_volume_spec)
-        pulumi.set(__self__, "persistentVolumeName", persistent_volume_name)
+        if inline_volume_spec is not None:
+            pulumi.set(__self__, "inline_volume_spec", inline_volume_spec)
+        if persistent_volume_name is not None:
+            pulumi.set(__self__, "persistent_volume_name", persistent_volume_name)
 
     @property
     @pulumi.getter(name="inlineVolumeSpec")
@@ -154,7 +160,7 @@ class VolumeAttachmentSpecArgs:
         :param pulumi.Input['VolumeAttachmentSourceArgs'] source: Source represents the volume that should be attached.
         """
         pulumi.set(__self__, "attacher", attacher)
-        pulumi.set(__self__, "nodeName", node_name)
+        pulumi.set(__self__, "node_name", node_name)
         pulumi.set(__self__, "source", source)
 
     @property
@@ -209,9 +215,12 @@ class VolumeAttachmentStatusArgs:
         :param pulumi.Input['VolumeErrorArgs'] detach_error: The last error encountered during detach operation, if any. This field must only be set by the entity completing the detach operation, i.e. the external-attacher.
         """
         pulumi.set(__self__, "attached", attached)
-        pulumi.set(__self__, "attachError", attach_error)
-        pulumi.set(__self__, "attachmentMetadata", attachment_metadata)
-        pulumi.set(__self__, "detachError", detach_error)
+        if attach_error is not None:
+            pulumi.set(__self__, "attach_error", attach_error)
+        if attachment_metadata is not None:
+            pulumi.set(__self__, "attachment_metadata", attachment_metadata)
+        if detach_error is not None:
+            pulumi.set(__self__, "detach_error", detach_error)
 
     @property
     @pulumi.getter
@@ -272,8 +281,10 @@ class VolumeErrorArgs:
         :param pulumi.Input[str] message: String detailing the error encountered during Attach or Detach operation. This string maybe logged, so it should not contain sensitive information.
         :param pulumi.Input[str] time: Time the error was encountered.
         """
-        pulumi.set(__self__, "message", message)
-        pulumi.set(__self__, "time", time)
+        if message is not None:
+            pulumi.set(__self__, "message", message)
+        if time is not None:
+            pulumi.set(__self__, "time", time)
 
     @property
     @pulumi.getter
