@@ -22,13 +22,37 @@ class CertificateSigningRequest(dict):
     """
     Describes a certificate signing request
     """
+    def __init__(__self__, *,
+                 api_version: Optional[str] = None,
+                 kind: Optional[str] = None,
+                 metadata: Optional['_meta.v1.outputs.ObjectMeta'] = None,
+                 spec: Optional['outputs.CertificateSigningRequestSpec'] = None,
+                 status: Optional['outputs.CertificateSigningRequestStatus'] = None):
+        """
+        Describes a certificate signing request
+        :param str api_version: APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+        :param str kind: Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+        :param 'CertificateSigningRequestSpecArgs' spec: The certificate request itself and any additional information.
+        :param 'CertificateSigningRequestStatusArgs' status: Derived information about the request.
+        """
+        if api_version is not None:
+            pulumi.set(__self__, "api_version", 'certificates.k8s.io/v1beta1')
+        if kind is not None:
+            pulumi.set(__self__, "kind", 'CertificateSigningRequest')
+        if metadata is not None:
+            pulumi.set(__self__, "metadata", metadata)
+        if spec is not None:
+            pulumi.set(__self__, "spec", spec)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+
     @property
     @pulumi.getter(name="apiVersion")
     def api_version(self) -> Optional[str]:
         """
         APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
         """
-        ...
+        return pulumi.get(self, "api_version")
 
     @property
     @pulumi.getter
@@ -36,12 +60,12 @@ class CertificateSigningRequest(dict):
         """
         Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         """
-        ...
+        return pulumi.get(self, "kind")
 
     @property
     @pulumi.getter
     def metadata(self) -> Optional['_meta.v1.outputs.ObjectMeta']:
-        ...
+        return pulumi.get(self, "metadata")
 
     @property
     @pulumi.getter
@@ -49,7 +73,7 @@ class CertificateSigningRequest(dict):
         """
         The certificate request itself and any additional information.
         """
-        ...
+        return pulumi.get(self, "spec")
 
     @property
     @pulumi.getter
@@ -57,7 +81,7 @@ class CertificateSigningRequest(dict):
         """
         Derived information about the request.
         """
-        ...
+        return pulumi.get(self, "status")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -65,29 +89,24 @@ class CertificateSigningRequest(dict):
 
 @pulumi.output_type
 class CertificateSigningRequestCondition(dict):
-    @property
-    @pulumi.getter(name="lastUpdateTime")
-    def last_update_time(self) -> Optional[str]:
+    def __init__(__self__, *,
+                 type: str,
+                 last_update_time: Optional[str] = None,
+                 message: Optional[str] = None,
+                 reason: Optional[str] = None):
         """
-        timestamp for the last update to this condition
+        :param str type: request approval state, currently Approved or Denied.
+        :param str last_update_time: timestamp for the last update to this condition
+        :param str message: human readable message with details about the request state
+        :param str reason: brief reason for the request state
         """
-        ...
-
-    @property
-    @pulumi.getter
-    def message(self) -> Optional[str]:
-        """
-        human readable message with details about the request state
-        """
-        ...
-
-    @property
-    @pulumi.getter
-    def reason(self) -> Optional[str]:
-        """
-        brief reason for the request state
-        """
-        ...
+        pulumi.set(__self__, "type", type)
+        if last_update_time is not None:
+            pulumi.set(__self__, "last_update_time", last_update_time)
+        if message is not None:
+            pulumi.set(__self__, "message", message)
+        if reason is not None:
+            pulumi.set(__self__, "reason", reason)
 
     @property
     @pulumi.getter
@@ -95,7 +114,31 @@ class CertificateSigningRequestCondition(dict):
         """
         request approval state, currently Approved or Denied.
         """
-        ...
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter(name="lastUpdateTime")
+    def last_update_time(self) -> Optional[str]:
+        """
+        timestamp for the last update to this condition
+        """
+        return pulumi.get(self, "last_update_time")
+
+    @property
+    @pulumi.getter
+    def message(self) -> Optional[str]:
+        """
+        human readable message with details about the request state
+        """
+        return pulumi.get(self, "message")
+
+    @property
+    @pulumi.getter
+    def reason(self) -> Optional[str]:
+        """
+        brief reason for the request state
+        """
+        return pulumi.get(self, "reason")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -106,21 +149,44 @@ class CertificateSigningRequestSpec(dict):
     """
     This information is immutable after the request is created. Only the Request and Usages fields can be set on creation, other fields are derived by Kubernetes and cannot be modified by users.
     """
-    @property
-    @pulumi.getter
-    def extra(self) -> Optional[Mapping[str, List[str]]]:
+    def __init__(__self__, *,
+                 request: str,
+                 extra: Optional[Mapping[str, List[str]]] = None,
+                 groups: Optional[List[str]] = None,
+                 signer_name: Optional[str] = None,
+                 uid: Optional[str] = None,
+                 usages: Optional[List[str]] = None,
+                 username: Optional[str] = None):
         """
-        Extra information about the requesting user. See user.Info interface for details.
+        This information is immutable after the request is created. Only the Request and Usages fields can be set on creation, other fields are derived by Kubernetes and cannot be modified by users.
+        :param str request: Base64-encoded PKCS#10 CSR data
+        :param Mapping[str, List[str]] extra: Extra information about the requesting user. See user.Info interface for details.
+        :param List[str] groups: Group information about the requesting user. See user.Info interface for details.
+        :param str signer_name: Requested signer for the request. It is a qualified name in the form: `scope-hostname.io/name`. If empty, it will be defaulted:
+                1. If it's a kubelet client certificate, it is assigned
+                   "kubernetes.io/kube-apiserver-client-kubelet".
+                2. If it's a kubelet serving certificate, it is assigned
+                   "kubernetes.io/kubelet-serving".
+                3. Otherwise, it is assigned "kubernetes.io/legacy-unknown".
+               Distribution of trust for signers happens out of band. You can select on this field using `spec.signerName`.
+        :param str uid: UID information about the requesting user. See user.Info interface for details.
+        :param List[str] usages: allowedUsages specifies a set of usage contexts the key will be valid for. See: https://tools.ietf.org/html/rfc5280#section-4.2.1.3
+                    https://tools.ietf.org/html/rfc5280#section-4.2.1.12
+        :param str username: Information about the requesting user. See user.Info interface for details.
         """
-        ...
-
-    @property
-    @pulumi.getter
-    def groups(self) -> Optional[List[str]]:
-        """
-        Group information about the requesting user. See user.Info interface for details.
-        """
-        ...
+        pulumi.set(__self__, "request", request)
+        if extra is not None:
+            pulumi.set(__self__, "extra", extra)
+        if groups is not None:
+            pulumi.set(__self__, "groups", groups)
+        if signer_name is not None:
+            pulumi.set(__self__, "signer_name", signer_name)
+        if uid is not None:
+            pulumi.set(__self__, "uid", uid)
+        if usages is not None:
+            pulumi.set(__self__, "usages", usages)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
 
     @property
     @pulumi.getter
@@ -128,7 +194,23 @@ class CertificateSigningRequestSpec(dict):
         """
         Base64-encoded PKCS#10 CSR data
         """
-        ...
+        return pulumi.get(self, "request")
+
+    @property
+    @pulumi.getter
+    def extra(self) -> Optional[Mapping[str, List[str]]]:
+        """
+        Extra information about the requesting user. See user.Info interface for details.
+        """
+        return pulumi.get(self, "extra")
+
+    @property
+    @pulumi.getter
+    def groups(self) -> Optional[List[str]]:
+        """
+        Group information about the requesting user. See user.Info interface for details.
+        """
+        return pulumi.get(self, "groups")
 
     @property
     @pulumi.getter(name="signerName")
@@ -142,7 +224,7 @@ class CertificateSigningRequestSpec(dict):
          3. Otherwise, it is assigned "kubernetes.io/legacy-unknown".
         Distribution of trust for signers happens out of band. You can select on this field using `spec.signerName`.
         """
-        ...
+        return pulumi.get(self, "signer_name")
 
     @property
     @pulumi.getter
@@ -150,7 +232,7 @@ class CertificateSigningRequestSpec(dict):
         """
         UID information about the requesting user. See user.Info interface for details.
         """
-        ...
+        return pulumi.get(self, "uid")
 
     @property
     @pulumi.getter
@@ -159,7 +241,7 @@ class CertificateSigningRequestSpec(dict):
         allowedUsages specifies a set of usage contexts the key will be valid for. See: https://tools.ietf.org/html/rfc5280#section-4.2.1.3
              https://tools.ietf.org/html/rfc5280#section-4.2.1.12
         """
-        ...
+        return pulumi.get(self, "usages")
 
     @property
     @pulumi.getter
@@ -167,7 +249,7 @@ class CertificateSigningRequestSpec(dict):
         """
         Information about the requesting user. See user.Info interface for details.
         """
-        ...
+        return pulumi.get(self, "username")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -175,13 +257,25 @@ class CertificateSigningRequestSpec(dict):
 
 @pulumi.output_type
 class CertificateSigningRequestStatus(dict):
+    def __init__(__self__, *,
+                 certificate: Optional[str] = None,
+                 conditions: Optional[List['outputs.CertificateSigningRequestCondition']] = None):
+        """
+        :param str certificate: If request was approved, the controller will place the issued certificate here.
+        :param List['CertificateSigningRequestConditionArgs'] conditions: Conditions applied to the request, such as approval or denial.
+        """
+        if certificate is not None:
+            pulumi.set(__self__, "certificate", certificate)
+        if conditions is not None:
+            pulumi.set(__self__, "conditions", conditions)
+
     @property
     @pulumi.getter
     def certificate(self) -> Optional[str]:
         """
         If request was approved, the controller will place the issued certificate here.
         """
-        ...
+        return pulumi.get(self, "certificate")
 
     @property
     @pulumi.getter
@@ -189,7 +283,7 @@ class CertificateSigningRequestStatus(dict):
         """
         Conditions applied to the request, such as approval or denial.
         """
-        ...
+        return pulumi.get(self, "conditions")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

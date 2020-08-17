@@ -34,11 +34,16 @@ class CronJobArgs:
         :param pulumi.Input['CronJobSpecArgs'] spec: Specification of the desired behavior of a cron job, including the schedule. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
         :param pulumi.Input['CronJobStatusArgs'] status: Current status of a cron job. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
         """
-        pulumi.set(__self__, "apiVersion", 'batch/v1beta1')
-        pulumi.set(__self__, "kind", 'CronJob')
-        pulumi.set(__self__, "metadata", metadata)
-        pulumi.set(__self__, "spec", spec)
-        pulumi.set(__self__, "status", status)
+        if api_version is not None:
+            pulumi.set(__self__, "api_version", 'batch/v1beta1')
+        if kind is not None:
+            pulumi.set(__self__, "kind", 'CronJob')
+        if metadata is not None:
+            pulumi.set(__self__, "metadata", metadata)
+        if spec is not None:
+            pulumi.set(__self__, "spec", spec)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
 
     @property
     @pulumi.getter(name="apiVersion")
@@ -46,11 +51,11 @@ class CronJobArgs:
         """
         APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
         """
-        ...
+        return pulumi.get(self, "api_version")
 
     @api_version.setter
     def api_version(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "api_version", value)
 
     @property
     @pulumi.getter
@@ -58,11 +63,11 @@ class CronJobArgs:
         """
         Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         """
-        ...
+        return pulumi.get(self, "kind")
 
     @kind.setter
     def kind(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "kind", value)
 
     @property
     @pulumi.getter
@@ -70,11 +75,11 @@ class CronJobArgs:
         """
         Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         """
-        ...
+        return pulumi.get(self, "metadata")
 
     @metadata.setter
     def metadata(self, value: Optional[pulumi.Input['_meta.v1.ObjectMetaArgs']]):
-        ...
+        pulumi.set(self, "metadata", value)
 
     @property
     @pulumi.getter
@@ -82,11 +87,11 @@ class CronJobArgs:
         """
         Specification of the desired behavior of a cron job, including the schedule. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
         """
-        ...
+        return pulumi.get(self, "spec")
 
     @spec.setter
     def spec(self, value: Optional[pulumi.Input['CronJobSpecArgs']]):
-        ...
+        pulumi.set(self, "spec", value)
 
     @property
     @pulumi.getter
@@ -94,11 +99,11 @@ class CronJobArgs:
         """
         Current status of a cron job. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
         """
-        ...
+        return pulumi.get(self, "status")
 
     @status.setter
     def status(self, value: Optional[pulumi.Input['CronJobStatusArgs']]):
-        ...
+        pulumi.set(self, "status", value)
 
 
 @pulumi.input_type
@@ -121,13 +126,18 @@ class CronJobSpecArgs:
         :param pulumi.Input[float] successful_jobs_history_limit: The number of successful finished jobs to retain. This is a pointer to distinguish between explicit zero and not specified. Defaults to 3.
         :param pulumi.Input[bool] suspend: This flag tells the controller to suspend subsequent executions, it does not apply to already started executions.  Defaults to false.
         """
-        pulumi.set(__self__, "jobTemplate", job_template)
+        pulumi.set(__self__, "job_template", job_template)
         pulumi.set(__self__, "schedule", schedule)
-        pulumi.set(__self__, "concurrencyPolicy", concurrency_policy)
-        pulumi.set(__self__, "failedJobsHistoryLimit", failed_jobs_history_limit)
-        pulumi.set(__self__, "startingDeadlineSeconds", starting_deadline_seconds)
-        pulumi.set(__self__, "successfulJobsHistoryLimit", successful_jobs_history_limit)
-        pulumi.set(__self__, "suspend", suspend)
+        if concurrency_policy is not None:
+            pulumi.set(__self__, "concurrency_policy", concurrency_policy)
+        if failed_jobs_history_limit is not None:
+            pulumi.set(__self__, "failed_jobs_history_limit", failed_jobs_history_limit)
+        if starting_deadline_seconds is not None:
+            pulumi.set(__self__, "starting_deadline_seconds", starting_deadline_seconds)
+        if successful_jobs_history_limit is not None:
+            pulumi.set(__self__, "successful_jobs_history_limit", successful_jobs_history_limit)
+        if suspend is not None:
+            pulumi.set(__self__, "suspend", suspend)
 
     @property
     @pulumi.getter(name="jobTemplate")
@@ -135,11 +145,11 @@ class CronJobSpecArgs:
         """
         Specifies the job that will be created when executing a CronJob.
         """
-        ...
+        return pulumi.get(self, "job_template")
 
     @job_template.setter
     def job_template(self, value: pulumi.Input['JobTemplateSpecArgs']):
-        ...
+        pulumi.set(self, "job_template", value)
 
     @property
     @pulumi.getter
@@ -147,11 +157,11 @@ class CronJobSpecArgs:
         """
         The schedule in Cron format, see https://en.wikipedia.org/wiki/Cron.
         """
-        ...
+        return pulumi.get(self, "schedule")
 
     @schedule.setter
     def schedule(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "schedule", value)
 
     @property
     @pulumi.getter(name="concurrencyPolicy")
@@ -159,11 +169,11 @@ class CronJobSpecArgs:
         """
         Specifies how to treat concurrent executions of a Job. Valid values are: - "Allow" (default): allows CronJobs to run concurrently; - "Forbid": forbids concurrent runs, skipping next run if previous run hasn't finished yet; - "Replace": cancels currently running job and replaces it with a new one
         """
-        ...
+        return pulumi.get(self, "concurrency_policy")
 
     @concurrency_policy.setter
     def concurrency_policy(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "concurrency_policy", value)
 
     @property
     @pulumi.getter(name="failedJobsHistoryLimit")
@@ -171,11 +181,11 @@ class CronJobSpecArgs:
         """
         The number of failed finished jobs to retain. This is a pointer to distinguish between explicit zero and not specified. Defaults to 1.
         """
-        ...
+        return pulumi.get(self, "failed_jobs_history_limit")
 
     @failed_jobs_history_limit.setter
     def failed_jobs_history_limit(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "failed_jobs_history_limit", value)
 
     @property
     @pulumi.getter(name="startingDeadlineSeconds")
@@ -183,11 +193,11 @@ class CronJobSpecArgs:
         """
         Optional deadline in seconds for starting the job if it misses scheduled time for any reason.  Missed jobs executions will be counted as failed ones.
         """
-        ...
+        return pulumi.get(self, "starting_deadline_seconds")
 
     @starting_deadline_seconds.setter
     def starting_deadline_seconds(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "starting_deadline_seconds", value)
 
     @property
     @pulumi.getter(name="successfulJobsHistoryLimit")
@@ -195,11 +205,11 @@ class CronJobSpecArgs:
         """
         The number of successful finished jobs to retain. This is a pointer to distinguish between explicit zero and not specified. Defaults to 3.
         """
-        ...
+        return pulumi.get(self, "successful_jobs_history_limit")
 
     @successful_jobs_history_limit.setter
     def successful_jobs_history_limit(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "successful_jobs_history_limit", value)
 
     @property
     @pulumi.getter
@@ -207,11 +217,11 @@ class CronJobSpecArgs:
         """
         This flag tells the controller to suspend subsequent executions, it does not apply to already started executions.  Defaults to false.
         """
-        ...
+        return pulumi.get(self, "suspend")
 
     @suspend.setter
     def suspend(self, value: Optional[pulumi.Input[bool]]):
-        ...
+        pulumi.set(self, "suspend", value)
 
 
 @pulumi.input_type
@@ -224,8 +234,10 @@ class CronJobStatusArgs:
         :param pulumi.Input[List[pulumi.Input['_core.v1.ObjectReferenceArgs']]] active: A list of pointers to currently running jobs.
         :param pulumi.Input[str] last_schedule_time: Information when was the last time the job was successfully scheduled.
         """
-        pulumi.set(__self__, "active", active)
-        pulumi.set(__self__, "lastScheduleTime", last_schedule_time)
+        if active is not None:
+            pulumi.set(__self__, "active", active)
+        if last_schedule_time is not None:
+            pulumi.set(__self__, "last_schedule_time", last_schedule_time)
 
     @property
     @pulumi.getter
@@ -233,11 +245,11 @@ class CronJobStatusArgs:
         """
         A list of pointers to currently running jobs.
         """
-        ...
+        return pulumi.get(self, "active")
 
     @active.setter
     def active(self, value: Optional[pulumi.Input[List[pulumi.Input['_core.v1.ObjectReferenceArgs']]]]):
-        ...
+        pulumi.set(self, "active", value)
 
     @property
     @pulumi.getter(name="lastScheduleTime")
@@ -245,11 +257,11 @@ class CronJobStatusArgs:
         """
         Information when was the last time the job was successfully scheduled.
         """
-        ...
+        return pulumi.get(self, "last_schedule_time")
 
     @last_schedule_time.setter
     def last_schedule_time(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "last_schedule_time", value)
 
 
 @pulumi.input_type
@@ -262,8 +274,10 @@ class JobTemplateSpecArgs:
         :param pulumi.Input['_meta.v1.ObjectMetaArgs'] metadata: Standard object's metadata of the jobs created from this template. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         :param pulumi.Input['_batch.v1.JobSpecArgs'] spec: Specification of the desired behavior of the job. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
         """
-        pulumi.set(__self__, "metadata", metadata)
-        pulumi.set(__self__, "spec", spec)
+        if metadata is not None:
+            pulumi.set(__self__, "metadata", metadata)
+        if spec is not None:
+            pulumi.set(__self__, "spec", spec)
 
     @property
     @pulumi.getter
@@ -271,11 +285,11 @@ class JobTemplateSpecArgs:
         """
         Standard object's metadata of the jobs created from this template. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         """
-        ...
+        return pulumi.get(self, "metadata")
 
     @metadata.setter
     def metadata(self, value: Optional[pulumi.Input['_meta.v1.ObjectMetaArgs']]):
-        ...
+        pulumi.set(self, "metadata", value)
 
     @property
     @pulumi.getter
@@ -283,10 +297,10 @@ class JobTemplateSpecArgs:
         """
         Specification of the desired behavior of the job. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
         """
-        ...
+        return pulumi.get(self, "spec")
 
     @spec.setter
     def spec(self, value: Optional[pulumi.Input['_batch.v1.JobSpecArgs']]):
-        ...
+        pulumi.set(self, "spec", value)
 
 

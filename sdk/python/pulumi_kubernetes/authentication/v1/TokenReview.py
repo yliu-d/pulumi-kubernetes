@@ -15,28 +15,6 @@ __all__ = ['TokenReview']
 
 
 class TokenReview(pulumi.CustomResource):
-    api_version: pulumi.Output[Optional[str]] = pulumi.property("apiVersion")
-    """
-    APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
-    """
-
-    kind: pulumi.Output[Optional[str]] = pulumi.property("kind")
-    """
-    Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-    """
-
-    metadata: pulumi.Output[Optional['_meta.v1.outputs.ObjectMeta']] = pulumi.property("metadata")
-
-    spec: pulumi.Output['outputs.TokenReviewSpec'] = pulumi.property("spec")
-    """
-    Spec holds information about the request being evaluated
-    """
-
-    status: pulumi.Output[Optional['outputs.TokenReviewStatus']] = pulumi.property("status")
-    """
-    Status is filled in by the server and indicates whether the request can be authenticated.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -105,6 +83,43 @@ class TokenReview(pulumi.CustomResource):
         __props__ = dict()
 
         return TokenReview(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="apiVersion")
+    def api_version(self) -> Optional[str]:
+        """
+        APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+        """
+        return pulumi.get(self, "api_version")
+
+    @property
+    @pulumi.getter
+    def kind(self) -> Optional[str]:
+        """
+        Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+        """
+        return pulumi.get(self, "kind")
+
+    @property
+    @pulumi.getter
+    def metadata(self) -> Optional['_meta.v1.outputs.ObjectMeta']:
+        return pulumi.get(self, "metadata")
+
+    @property
+    @pulumi.getter
+    def spec(self) -> 'outputs.TokenReviewSpec':
+        """
+        Spec holds information about the request being evaluated
+        """
+        return pulumi.get(self, "spec")
+
+    @property
+    @pulumi.getter
+    def status(self) -> Optional['outputs.TokenReviewStatus']:
+        """
+        Status is filled in by the server and indicates whether the request can be authenticated.
+        """
+        return pulumi.get(self, "status")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

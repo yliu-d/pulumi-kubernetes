@@ -15,31 +15,6 @@ __all__ = ['RoleBinding']
 
 
 class RoleBinding(pulumi.CustomResource):
-    api_version: pulumi.Output[Optional[str]] = pulumi.property("apiVersion")
-    """
-    APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
-    """
-
-    kind: pulumi.Output[Optional[str]] = pulumi.property("kind")
-    """
-    Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-    """
-
-    metadata: pulumi.Output[Optional['_meta.v1.outputs.ObjectMeta']] = pulumi.property("metadata")
-    """
-    Standard object's metadata.
-    """
-
-    role_ref: pulumi.Output['outputs.RoleRef'] = pulumi.property("roleRef")
-    """
-    RoleRef can reference a Role in the current namespace or a ClusterRole in the global namespace. If the RoleRef cannot be resolved, the Authorizer must return an error.
-    """
-
-    subjects: pulumi.Output[Optional[List['outputs.Subject']]] = pulumi.property("subjects")
-    """
-    Subjects holds references to the objects the role applies to.
-    """
-
     def __init__(__self__,
                  resource_name,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -111,6 +86,46 @@ class RoleBinding(pulumi.CustomResource):
         __props__ = dict()
 
         return RoleBinding(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="apiVersion")
+    def api_version(self) -> Optional[str]:
+        """
+        APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+        """
+        return pulumi.get(self, "api_version")
+
+    @property
+    @pulumi.getter
+    def kind(self) -> Optional[str]:
+        """
+        Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+        """
+        return pulumi.get(self, "kind")
+
+    @property
+    @pulumi.getter
+    def metadata(self) -> Optional['_meta.v1.outputs.ObjectMeta']:
+        """
+        Standard object's metadata.
+        """
+        return pulumi.get(self, "metadata")
+
+    @property
+    @pulumi.getter(name="roleRef")
+    def role_ref(self) -> 'outputs.RoleRef':
+        """
+        RoleRef can reference a Role in the current namespace or a ClusterRole in the global namespace. If the RoleRef cannot be resolved, the Authorizer must return an error.
+        """
+        return pulumi.get(self, "role_ref")
+
+    @property
+    @pulumi.getter
+    def subjects(self) -> Optional[List['outputs.Subject']]:
+        """
+        Subjects holds references to the objects the role applies to.
+        """
+        return pulumi.get(self, "subjects")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

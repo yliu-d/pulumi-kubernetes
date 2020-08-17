@@ -25,13 +25,25 @@ class IPBlock(dict):
     """
     IPBlock describes a particular CIDR (Ex. "192.168.1.1/24","2001:db9::/64") that is allowed to the pods matched by a NetworkPolicySpec's podSelector. The except entry describes CIDRs that should not be included within this rule.
     """
+    def __init__(__self__, *,
+                 cidr: str,
+                 except_: Optional[List[str]] = None):
+        """
+        IPBlock describes a particular CIDR (Ex. "192.168.1.1/24","2001:db9::/64") that is allowed to the pods matched by a NetworkPolicySpec's podSelector. The except entry describes CIDRs that should not be included within this rule.
+        :param str cidr: CIDR is a string representing the IP Block Valid examples are "192.168.1.1/24" or "2001:db9::/64"
+        :param List[str] except_: Except is a slice of CIDRs that should not be included within an IP Block Valid examples are "192.168.1.1/24" or "2001:db9::/64" Except values will be rejected if they are outside the CIDR range
+        """
+        pulumi.set(__self__, "cidr", cidr)
+        if except_ is not None:
+            pulumi.set(__self__, "except_", except_)
+
     @property
     @pulumi.getter
     def cidr(self) -> str:
         """
         CIDR is a string representing the IP Block Valid examples are "192.168.1.1/24" or "2001:db9::/64"
         """
-        ...
+        return pulumi.get(self, "cidr")
 
     @property
     @pulumi.getter(name="except")
@@ -39,7 +51,7 @@ class IPBlock(dict):
         """
         Except is a slice of CIDRs that should not be included within an IP Block Valid examples are "192.168.1.1/24" or "2001:db9::/64" Except values will be rejected if they are outside the CIDR range
         """
-        ...
+        return pulumi.get(self, "except_")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -50,13 +62,34 @@ class NetworkPolicy(dict):
     """
     NetworkPolicy describes what network traffic is allowed for a set of Pods
     """
+    def __init__(__self__, *,
+                 api_version: Optional[str] = None,
+                 kind: Optional[str] = None,
+                 metadata: Optional['_meta.v1.outputs.ObjectMeta'] = None,
+                 spec: Optional['outputs.NetworkPolicySpec'] = None):
+        """
+        NetworkPolicy describes what network traffic is allowed for a set of Pods
+        :param str api_version: APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+        :param str kind: Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+        :param '_meta.v1.ObjectMetaArgs' metadata: Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
+        :param 'NetworkPolicySpecArgs' spec: Specification of the desired behavior for this NetworkPolicy.
+        """
+        if api_version is not None:
+            pulumi.set(__self__, "api_version", 'networking.k8s.io/v1')
+        if kind is not None:
+            pulumi.set(__self__, "kind", 'NetworkPolicy')
+        if metadata is not None:
+            pulumi.set(__self__, "metadata", metadata)
+        if spec is not None:
+            pulumi.set(__self__, "spec", spec)
+
     @property
     @pulumi.getter(name="apiVersion")
     def api_version(self) -> Optional[str]:
         """
         APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
         """
-        ...
+        return pulumi.get(self, "api_version")
 
     @property
     @pulumi.getter
@@ -64,7 +97,7 @@ class NetworkPolicy(dict):
         """
         Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         """
-        ...
+        return pulumi.get(self, "kind")
 
     @property
     @pulumi.getter
@@ -72,7 +105,7 @@ class NetworkPolicy(dict):
         """
         Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         """
-        ...
+        return pulumi.get(self, "metadata")
 
     @property
     @pulumi.getter
@@ -80,7 +113,7 @@ class NetworkPolicy(dict):
         """
         Specification of the desired behavior for this NetworkPolicy.
         """
-        ...
+        return pulumi.get(self, "spec")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -91,13 +124,26 @@ class NetworkPolicyEgressRule(dict):
     """
     NetworkPolicyEgressRule describes a particular set of traffic that is allowed out of pods matched by a NetworkPolicySpec's podSelector. The traffic must match both ports and to. This type is beta-level in 1.8
     """
+    def __init__(__self__, *,
+                 ports: Optional[List['outputs.NetworkPolicyPort']] = None,
+                 to: Optional[List['outputs.NetworkPolicyPeer']] = None):
+        """
+        NetworkPolicyEgressRule describes a particular set of traffic that is allowed out of pods matched by a NetworkPolicySpec's podSelector. The traffic must match both ports and to. This type is beta-level in 1.8
+        :param List['NetworkPolicyPortArgs'] ports: List of destination ports for outgoing traffic. Each item in this list is combined using a logical OR. If this field is empty or missing, this rule matches all ports (traffic not restricted by port). If this field is present and contains at least one item, then this rule allows traffic only if the traffic matches at least one port in the list.
+        :param List['NetworkPolicyPeerArgs'] to: List of destinations for outgoing traffic of pods selected for this rule. Items in this list are combined using a logical OR operation. If this field is empty or missing, this rule matches all destinations (traffic not restricted by destination). If this field is present and contains at least one item, this rule allows traffic only if the traffic matches at least one item in the to list.
+        """
+        if ports is not None:
+            pulumi.set(__self__, "ports", ports)
+        if to is not None:
+            pulumi.set(__self__, "to", to)
+
     @property
     @pulumi.getter
     def ports(self) -> Optional[List['outputs.NetworkPolicyPort']]:
         """
         List of destination ports for outgoing traffic. Each item in this list is combined using a logical OR. If this field is empty or missing, this rule matches all ports (traffic not restricted by port). If this field is present and contains at least one item, then this rule allows traffic only if the traffic matches at least one port in the list.
         """
-        ...
+        return pulumi.get(self, "ports")
 
     @property
     @pulumi.getter
@@ -105,7 +151,7 @@ class NetworkPolicyEgressRule(dict):
         """
         List of destinations for outgoing traffic of pods selected for this rule. Items in this list are combined using a logical OR operation. If this field is empty or missing, this rule matches all destinations (traffic not restricted by destination). If this field is present and contains at least one item, this rule allows traffic only if the traffic matches at least one item in the to list.
         """
-        ...
+        return pulumi.get(self, "to")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -116,13 +162,26 @@ class NetworkPolicyIngressRule(dict):
     """
     NetworkPolicyIngressRule describes a particular set of traffic that is allowed to the pods matched by a NetworkPolicySpec's podSelector. The traffic must match both ports and from.
     """
+    def __init__(__self__, *,
+                 from_: Optional[List['outputs.NetworkPolicyPeer']] = None,
+                 ports: Optional[List['outputs.NetworkPolicyPort']] = None):
+        """
+        NetworkPolicyIngressRule describes a particular set of traffic that is allowed to the pods matched by a NetworkPolicySpec's podSelector. The traffic must match both ports and from.
+        :param List['NetworkPolicyPeerArgs'] from_: List of sources which should be able to access the pods selected for this rule. Items in this list are combined using a logical OR operation. If this field is empty or missing, this rule matches all sources (traffic not restricted by source). If this field is present and contains at least one item, this rule allows traffic only if the traffic matches at least one item in the from list.
+        :param List['NetworkPolicyPortArgs'] ports: List of ports which should be made accessible on the pods selected for this rule. Each item in this list is combined using a logical OR. If this field is empty or missing, this rule matches all ports (traffic not restricted by port). If this field is present and contains at least one item, then this rule allows traffic only if the traffic matches at least one port in the list.
+        """
+        if from_ is not None:
+            pulumi.set(__self__, "from_", from_)
+        if ports is not None:
+            pulumi.set(__self__, "ports", ports)
+
     @property
     @pulumi.getter(name="from")
     def from_(self) -> Optional[List['outputs.NetworkPolicyPeer']]:
         """
         List of sources which should be able to access the pods selected for this rule. Items in this list are combined using a logical OR operation. If this field is empty or missing, this rule matches all sources (traffic not restricted by source). If this field is present and contains at least one item, this rule allows traffic only if the traffic matches at least one item in the from list.
         """
-        ...
+        return pulumi.get(self, "from_")
 
     @property
     @pulumi.getter
@@ -130,7 +189,7 @@ class NetworkPolicyIngressRule(dict):
         """
         List of ports which should be made accessible on the pods selected for this rule. Each item in this list is combined using a logical OR. If this field is empty or missing, this rule matches all ports (traffic not restricted by port). If this field is present and contains at least one item, then this rule allows traffic only if the traffic matches at least one port in the list.
         """
-        ...
+        return pulumi.get(self, "ports")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -141,13 +200,34 @@ class NetworkPolicyPeer(dict):
     """
     NetworkPolicyPeer describes a peer to allow traffic from. Only certain combinations of fields are allowed
     """
+    def __init__(__self__, *,
+                 ip_block: Optional['outputs.IPBlock'] = None,
+                 namespace_selector: Optional['_meta.v1.outputs.LabelSelector'] = None,
+                 pod_selector: Optional['_meta.v1.outputs.LabelSelector'] = None):
+        """
+        NetworkPolicyPeer describes a peer to allow traffic from. Only certain combinations of fields are allowed
+        :param 'IPBlockArgs' ip_block: IPBlock defines policy on a particular IPBlock. If this field is set then neither of the other fields can be.
+        :param '_meta.v1.LabelSelectorArgs' namespace_selector: Selects Namespaces using cluster-scoped labels. This field follows standard label selector semantics; if present but empty, it selects all namespaces.
+               
+               If PodSelector is also set, then the NetworkPolicyPeer as a whole selects the Pods matching PodSelector in the Namespaces selected by NamespaceSelector. Otherwise it selects all Pods in the Namespaces selected by NamespaceSelector.
+        :param '_meta.v1.LabelSelectorArgs' pod_selector: This is a label selector which selects Pods. This field follows standard label selector semantics; if present but empty, it selects all pods.
+               
+               If NamespaceSelector is also set, then the NetworkPolicyPeer as a whole selects the Pods matching PodSelector in the Namespaces selected by NamespaceSelector. Otherwise it selects the Pods matching PodSelector in the policy's own Namespace.
+        """
+        if ip_block is not None:
+            pulumi.set(__self__, "ip_block", ip_block)
+        if namespace_selector is not None:
+            pulumi.set(__self__, "namespace_selector", namespace_selector)
+        if pod_selector is not None:
+            pulumi.set(__self__, "pod_selector", pod_selector)
+
     @property
     @pulumi.getter(name="ipBlock")
     def ip_block(self) -> Optional['outputs.IPBlock']:
         """
         IPBlock defines policy on a particular IPBlock. If this field is set then neither of the other fields can be.
         """
-        ...
+        return pulumi.get(self, "ip_block")
 
     @property
     @pulumi.getter(name="namespaceSelector")
@@ -157,7 +237,7 @@ class NetworkPolicyPeer(dict):
 
         If PodSelector is also set, then the NetworkPolicyPeer as a whole selects the Pods matching PodSelector in the Namespaces selected by NamespaceSelector. Otherwise it selects all Pods in the Namespaces selected by NamespaceSelector.
         """
-        ...
+        return pulumi.get(self, "namespace_selector")
 
     @property
     @pulumi.getter(name="podSelector")
@@ -167,7 +247,7 @@ class NetworkPolicyPeer(dict):
 
         If NamespaceSelector is also set, then the NetworkPolicyPeer as a whole selects the Pods matching PodSelector in the Namespaces selected by NamespaceSelector. Otherwise it selects the Pods matching PodSelector in the policy's own Namespace.
         """
-        ...
+        return pulumi.get(self, "pod_selector")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -178,13 +258,26 @@ class NetworkPolicyPort(dict):
     """
     NetworkPolicyPort describes a port to allow traffic on
     """
+    def __init__(__self__, *,
+                 port: Optional[Any] = None,
+                 protocol: Optional[str] = None):
+        """
+        NetworkPolicyPort describes a port to allow traffic on
+        :param Union[float, str] port: The port on the given protocol. This can either be a numerical or named port on a pod. If this field is not provided, this matches all port names and numbers.
+        :param str protocol: The protocol (TCP, UDP, or SCTP) which traffic must match. If not specified, this field defaults to TCP.
+        """
+        if port is not None:
+            pulumi.set(__self__, "port", port)
+        if protocol is not None:
+            pulumi.set(__self__, "protocol", protocol)
+
     @property
     @pulumi.getter
     def port(self) -> Optional[Any]:
         """
         The port on the given protocol. This can either be a numerical or named port on a pod. If this field is not provided, this matches all port names and numbers.
         """
-        ...
+        return pulumi.get(self, "port")
 
     @property
     @pulumi.getter
@@ -192,7 +285,7 @@ class NetworkPolicyPort(dict):
         """
         The protocol (TCP, UDP, or SCTP) which traffic must match. If not specified, this field defaults to TCP.
         """
-        ...
+        return pulumi.get(self, "protocol")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -203,21 +296,25 @@ class NetworkPolicySpec(dict):
     """
     NetworkPolicySpec provides the specification of a NetworkPolicy
     """
-    @property
-    @pulumi.getter
-    def egress(self) -> Optional[List['outputs.NetworkPolicyEgressRule']]:
+    def __init__(__self__, *,
+                 pod_selector: '_meta.v1.outputs.LabelSelector',
+                 egress: Optional[List['outputs.NetworkPolicyEgressRule']] = None,
+                 ingress: Optional[List['outputs.NetworkPolicyIngressRule']] = None,
+                 policy_types: Optional[List[str]] = None):
         """
-        List of egress rules to be applied to the selected pods. Outgoing traffic is allowed if there are no NetworkPolicies selecting the pod (and cluster policy otherwise allows the traffic), OR if the traffic matches at least one egress rule across all of the NetworkPolicy objects whose podSelector matches the pod. If this field is empty then this NetworkPolicy limits all outgoing traffic (and serves solely to ensure that the pods it selects are isolated by default). This field is beta-level in 1.8
+        NetworkPolicySpec provides the specification of a NetworkPolicy
+        :param '_meta.v1.LabelSelectorArgs' pod_selector: Selects the pods to which this NetworkPolicy object applies. The array of ingress rules is applied to any pods selected by this field. Multiple network policies can select the same set of pods. In this case, the ingress rules for each are combined additively. This field is NOT optional and follows standard label selector semantics. An empty podSelector matches all pods in this namespace.
+        :param List['NetworkPolicyEgressRuleArgs'] egress: List of egress rules to be applied to the selected pods. Outgoing traffic is allowed if there are no NetworkPolicies selecting the pod (and cluster policy otherwise allows the traffic), OR if the traffic matches at least one egress rule across all of the NetworkPolicy objects whose podSelector matches the pod. If this field is empty then this NetworkPolicy limits all outgoing traffic (and serves solely to ensure that the pods it selects are isolated by default). This field is beta-level in 1.8
+        :param List['NetworkPolicyIngressRuleArgs'] ingress: List of ingress rules to be applied to the selected pods. Traffic is allowed to a pod if there are no NetworkPolicies selecting the pod (and cluster policy otherwise allows the traffic), OR if the traffic source is the pod's local node, OR if the traffic matches at least one ingress rule across all of the NetworkPolicy objects whose podSelector matches the pod. If this field is empty then this NetworkPolicy does not allow any traffic (and serves solely to ensure that the pods it selects are isolated by default)
+        :param List[str] policy_types: List of rule types that the NetworkPolicy relates to. Valid options are "Ingress", "Egress", or "Ingress,Egress". If this field is not specified, it will default based on the existence of Ingress or Egress rules; policies that contain an Egress section are assumed to affect Egress, and all policies (whether or not they contain an Ingress section) are assumed to affect Ingress. If you want to write an egress-only policy, you must explicitly specify policyTypes [ "Egress" ]. Likewise, if you want to write a policy that specifies that no egress is allowed, you must specify a policyTypes value that include "Egress" (since such a policy would not include an Egress section and would otherwise default to just [ "Ingress" ]). This field is beta-level in 1.8
         """
-        ...
-
-    @property
-    @pulumi.getter
-    def ingress(self) -> Optional[List['outputs.NetworkPolicyIngressRule']]:
-        """
-        List of ingress rules to be applied to the selected pods. Traffic is allowed to a pod if there are no NetworkPolicies selecting the pod (and cluster policy otherwise allows the traffic), OR if the traffic source is the pod's local node, OR if the traffic matches at least one ingress rule across all of the NetworkPolicy objects whose podSelector matches the pod. If this field is empty then this NetworkPolicy does not allow any traffic (and serves solely to ensure that the pods it selects are isolated by default)
-        """
-        ...
+        pulumi.set(__self__, "pod_selector", pod_selector)
+        if egress is not None:
+            pulumi.set(__self__, "egress", egress)
+        if ingress is not None:
+            pulumi.set(__self__, "ingress", ingress)
+        if policy_types is not None:
+            pulumi.set(__self__, "policy_types", policy_types)
 
     @property
     @pulumi.getter(name="podSelector")
@@ -225,7 +322,23 @@ class NetworkPolicySpec(dict):
         """
         Selects the pods to which this NetworkPolicy object applies. The array of ingress rules is applied to any pods selected by this field. Multiple network policies can select the same set of pods. In this case, the ingress rules for each are combined additively. This field is NOT optional and follows standard label selector semantics. An empty podSelector matches all pods in this namespace.
         """
-        ...
+        return pulumi.get(self, "pod_selector")
+
+    @property
+    @pulumi.getter
+    def egress(self) -> Optional[List['outputs.NetworkPolicyEgressRule']]:
+        """
+        List of egress rules to be applied to the selected pods. Outgoing traffic is allowed if there are no NetworkPolicies selecting the pod (and cluster policy otherwise allows the traffic), OR if the traffic matches at least one egress rule across all of the NetworkPolicy objects whose podSelector matches the pod. If this field is empty then this NetworkPolicy limits all outgoing traffic (and serves solely to ensure that the pods it selects are isolated by default). This field is beta-level in 1.8
+        """
+        return pulumi.get(self, "egress")
+
+    @property
+    @pulumi.getter
+    def ingress(self) -> Optional[List['outputs.NetworkPolicyIngressRule']]:
+        """
+        List of ingress rules to be applied to the selected pods. Traffic is allowed to a pod if there are no NetworkPolicies selecting the pod (and cluster policy otherwise allows the traffic), OR if the traffic source is the pod's local node, OR if the traffic matches at least one ingress rule across all of the NetworkPolicy objects whose podSelector matches the pod. If this field is empty then this NetworkPolicy does not allow any traffic (and serves solely to ensure that the pods it selects are isolated by default)
+        """
+        return pulumi.get(self, "ingress")
 
     @property
     @pulumi.getter(name="policyTypes")
@@ -233,7 +346,7 @@ class NetworkPolicySpec(dict):
         """
         List of rule types that the NetworkPolicy relates to. Valid options are "Ingress", "Egress", or "Ingress,Egress". If this field is not specified, it will default based on the existence of Ingress or Egress rules; policies that contain an Egress section are assumed to affect Egress, and all policies (whether or not they contain an Ingress section) are assumed to affect Ingress. If you want to write an egress-only policy, you must explicitly specify policyTypes [ "Egress" ]. Likewise, if you want to write a policy that specifies that no egress is allowed, you must specify a policyTypes value that include "Egress" (since such a policy would not include an Egress section and would otherwise default to just [ "Ingress" ]). This field is beta-level in 1.8
         """
-        ...
+        return pulumi.get(self, "policy_types")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

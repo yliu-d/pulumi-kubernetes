@@ -27,10 +27,14 @@ class PodPresetArgs:
         :param pulumi.Input[str] api_version: APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
         :param pulumi.Input[str] kind: Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         """
-        pulumi.set(__self__, "apiVersion", 'settings.k8s.io/v1alpha1')
-        pulumi.set(__self__, "kind", 'PodPreset')
-        pulumi.set(__self__, "metadata", metadata)
-        pulumi.set(__self__, "spec", spec)
+        if api_version is not None:
+            pulumi.set(__self__, "api_version", 'settings.k8s.io/v1alpha1')
+        if kind is not None:
+            pulumi.set(__self__, "kind", 'PodPreset')
+        if metadata is not None:
+            pulumi.set(__self__, "metadata", metadata)
+        if spec is not None:
+            pulumi.set(__self__, "spec", spec)
 
     @property
     @pulumi.getter(name="apiVersion")
@@ -38,11 +42,11 @@ class PodPresetArgs:
         """
         APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
         """
-        ...
+        return pulumi.get(self, "api_version")
 
     @api_version.setter
     def api_version(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "api_version", value)
 
     @property
     @pulumi.getter
@@ -50,29 +54,29 @@ class PodPresetArgs:
         """
         Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         """
-        ...
+        return pulumi.get(self, "kind")
 
     @kind.setter
     def kind(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "kind", value)
 
     @property
     @pulumi.getter
     def metadata(self) -> Optional[pulumi.Input['_meta.v1.ObjectMetaArgs']]:
-        ...
+        return pulumi.get(self, "metadata")
 
     @metadata.setter
     def metadata(self, value: Optional[pulumi.Input['_meta.v1.ObjectMetaArgs']]):
-        ...
+        pulumi.set(self, "metadata", value)
 
     @property
     @pulumi.getter
     def spec(self) -> Optional[pulumi.Input['PodPresetSpecArgs']]:
-        ...
+        return pulumi.get(self, "spec")
 
     @spec.setter
     def spec(self, value: Optional[pulumi.Input['PodPresetSpecArgs']]):
-        ...
+        pulumi.set(self, "spec", value)
 
 
 @pulumi.input_type
@@ -91,11 +95,16 @@ class PodPresetSpecArgs:
         :param pulumi.Input[List[pulumi.Input['_core.v1.VolumeMountArgs']]] volume_mounts: VolumeMounts defines the collection of VolumeMount to inject into containers.
         :param pulumi.Input[List[pulumi.Input['_core.v1.VolumeArgs']]] volumes: Volumes defines the collection of Volume to inject into the pod.
         """
-        pulumi.set(__self__, "env", env)
-        pulumi.set(__self__, "envFrom", env_from)
-        pulumi.set(__self__, "selector", selector)
-        pulumi.set(__self__, "volumeMounts", volume_mounts)
-        pulumi.set(__self__, "volumes", volumes)
+        if env is not None:
+            pulumi.set(__self__, "env", env)
+        if env_from is not None:
+            pulumi.set(__self__, "env_from", env_from)
+        if selector is not None:
+            pulumi.set(__self__, "selector", selector)
+        if volume_mounts is not None:
+            pulumi.set(__self__, "volume_mounts", volume_mounts)
+        if volumes is not None:
+            pulumi.set(__self__, "volumes", volumes)
 
     @property
     @pulumi.getter
@@ -103,11 +112,11 @@ class PodPresetSpecArgs:
         """
         Env defines the collection of EnvVar to inject into containers.
         """
-        ...
+        return pulumi.get(self, "env")
 
     @env.setter
     def env(self, value: Optional[pulumi.Input[List[pulumi.Input['_core.v1.EnvVarArgs']]]]):
-        ...
+        pulumi.set(self, "env", value)
 
     @property
     @pulumi.getter(name="envFrom")
@@ -115,11 +124,11 @@ class PodPresetSpecArgs:
         """
         EnvFrom defines the collection of EnvFromSource to inject into containers.
         """
-        ...
+        return pulumi.get(self, "env_from")
 
     @env_from.setter
     def env_from(self, value: Optional[pulumi.Input[List[pulumi.Input['_core.v1.EnvFromSourceArgs']]]]):
-        ...
+        pulumi.set(self, "env_from", value)
 
     @property
     @pulumi.getter
@@ -127,11 +136,11 @@ class PodPresetSpecArgs:
         """
         Selector is a label query over a set of resources, in this case pods. Required.
         """
-        ...
+        return pulumi.get(self, "selector")
 
     @selector.setter
     def selector(self, value: Optional[pulumi.Input['_meta.v1.LabelSelectorArgs']]):
-        ...
+        pulumi.set(self, "selector", value)
 
     @property
     @pulumi.getter(name="volumeMounts")
@@ -139,11 +148,11 @@ class PodPresetSpecArgs:
         """
         VolumeMounts defines the collection of VolumeMount to inject into containers.
         """
-        ...
+        return pulumi.get(self, "volume_mounts")
 
     @volume_mounts.setter
     def volume_mounts(self, value: Optional[pulumi.Input[List[pulumi.Input['_core.v1.VolumeMountArgs']]]]):
-        ...
+        pulumi.set(self, "volume_mounts", value)
 
     @property
     @pulumi.getter
@@ -151,10 +160,10 @@ class PodPresetSpecArgs:
         """
         Volumes defines the collection of Volume to inject into the pod.
         """
-        ...
+        return pulumi.get(self, "volumes")
 
     @volumes.setter
     def volumes(self, value: Optional[pulumi.Input[List[pulumi.Input['_core.v1.VolumeArgs']]]]):
-        ...
+        pulumi.set(self, "volumes", value)
 
 

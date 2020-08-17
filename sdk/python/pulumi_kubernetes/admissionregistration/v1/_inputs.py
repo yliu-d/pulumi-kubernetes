@@ -89,17 +89,24 @@ class MutatingWebhookArgs:
         :param pulumi.Input[List[pulumi.Input['RuleWithOperationsArgs']]] rules: Rules describes what operations on what resources/subresources the webhook cares about. The webhook cares about an operation if it matches _any_ Rule. However, in order to prevent ValidatingAdmissionWebhooks and MutatingAdmissionWebhooks from putting the cluster in a state which cannot be recovered from without completely disabling the plugin, ValidatingAdmissionWebhooks and MutatingAdmissionWebhooks are never called on admission requests for ValidatingWebhookConfiguration and MutatingWebhookConfiguration objects.
         :param pulumi.Input[float] timeout_seconds: TimeoutSeconds specifies the timeout for this webhook. After the timeout passes, the webhook call will be ignored or the API call will fail based on the failure policy. The timeout value must be between 1 and 30 seconds. Default to 10 seconds.
         """
-        pulumi.set(__self__, "admissionReviewVersions", admission_review_versions)
-        pulumi.set(__self__, "clientConfig", client_config)
+        pulumi.set(__self__, "admission_review_versions", admission_review_versions)
+        pulumi.set(__self__, "client_config", client_config)
         pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "sideEffects", side_effects)
-        pulumi.set(__self__, "failurePolicy", failure_policy)
-        pulumi.set(__self__, "matchPolicy", match_policy)
-        pulumi.set(__self__, "namespaceSelector", namespace_selector)
-        pulumi.set(__self__, "objectSelector", object_selector)
-        pulumi.set(__self__, "reinvocationPolicy", reinvocation_policy)
-        pulumi.set(__self__, "rules", rules)
-        pulumi.set(__self__, "timeoutSeconds", timeout_seconds)
+        pulumi.set(__self__, "side_effects", side_effects)
+        if failure_policy is not None:
+            pulumi.set(__self__, "failure_policy", failure_policy)
+        if match_policy is not None:
+            pulumi.set(__self__, "match_policy", match_policy)
+        if namespace_selector is not None:
+            pulumi.set(__self__, "namespace_selector", namespace_selector)
+        if object_selector is not None:
+            pulumi.set(__self__, "object_selector", object_selector)
+        if reinvocation_policy is not None:
+            pulumi.set(__self__, "reinvocation_policy", reinvocation_policy)
+        if rules is not None:
+            pulumi.set(__self__, "rules", rules)
+        if timeout_seconds is not None:
+            pulumi.set(__self__, "timeout_seconds", timeout_seconds)
 
     @property
     @pulumi.getter(name="admissionReviewVersions")
@@ -107,11 +114,11 @@ class MutatingWebhookArgs:
         """
         AdmissionReviewVersions is an ordered list of preferred `AdmissionReview` versions the Webhook expects. API server will try to use first version in the list which it supports. If none of the versions specified in this list supported by API server, validation will fail for this object. If a persisted webhook configuration specifies allowed versions and does not include any versions known to the API Server, calls to the webhook will fail and be subject to the failure policy.
         """
-        ...
+        return pulumi.get(self, "admission_review_versions")
 
     @admission_review_versions.setter
     def admission_review_versions(self, value: pulumi.Input[List[pulumi.Input[str]]]):
-        ...
+        pulumi.set(self, "admission_review_versions", value)
 
     @property
     @pulumi.getter(name="clientConfig")
@@ -119,11 +126,11 @@ class MutatingWebhookArgs:
         """
         ClientConfig defines how to communicate with the hook. Required
         """
-        ...
+        return pulumi.get(self, "client_config")
 
     @client_config.setter
     def client_config(self, value: pulumi.Input['WebhookClientConfigArgs']):
-        ...
+        pulumi.set(self, "client_config", value)
 
     @property
     @pulumi.getter
@@ -131,11 +138,11 @@ class MutatingWebhookArgs:
         """
         The name of the admission webhook. Name should be fully qualified, e.g., imagepolicy.kubernetes.io, where "imagepolicy" is the name of the webhook, and kubernetes.io is the name of the organization. Required.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @name.setter
     def name(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "name", value)
 
     @property
     @pulumi.getter(name="sideEffects")
@@ -143,11 +150,11 @@ class MutatingWebhookArgs:
         """
         SideEffects states whether this webhook has side effects. Acceptable values are: None, NoneOnDryRun (webhooks created via v1beta1 may also specify Some or Unknown). Webhooks with side effects MUST implement a reconciliation system, since a request may be rejected by a future step in the admission change and the side effects therefore need to be undone. Requests with the dryRun attribute will be auto-rejected if they match a webhook with sideEffects == Unknown or Some.
         """
-        ...
+        return pulumi.get(self, "side_effects")
 
     @side_effects.setter
     def side_effects(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "side_effects", value)
 
     @property
     @pulumi.getter(name="failurePolicy")
@@ -155,11 +162,11 @@ class MutatingWebhookArgs:
         """
         FailurePolicy defines how unrecognized errors from the admission endpoint are handled - allowed values are Ignore or Fail. Defaults to Fail.
         """
-        ...
+        return pulumi.get(self, "failure_policy")
 
     @failure_policy.setter
     def failure_policy(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "failure_policy", value)
 
     @property
     @pulumi.getter(name="matchPolicy")
@@ -173,11 +180,11 @@ class MutatingWebhookArgs:
 
         Defaults to "Equivalent"
         """
-        ...
+        return pulumi.get(self, "match_policy")
 
     @match_policy.setter
     def match_policy(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "match_policy", value)
 
     @property
     @pulumi.getter(name="namespaceSelector")
@@ -215,11 +222,11 @@ class MutatingWebhookArgs:
 
         Default to the empty LabelSelector, which matches everything.
         """
-        ...
+        return pulumi.get(self, "namespace_selector")
 
     @namespace_selector.setter
     def namespace_selector(self, value: Optional[pulumi.Input['_meta.v1.LabelSelectorArgs']]):
-        ...
+        pulumi.set(self, "namespace_selector", value)
 
     @property
     @pulumi.getter(name="objectSelector")
@@ -227,11 +234,11 @@ class MutatingWebhookArgs:
         """
         ObjectSelector decides whether to run the webhook based on if the object has matching labels. objectSelector is evaluated against both the oldObject and newObject that would be sent to the webhook, and is considered to match if either object matches the selector. A null object (oldObject in the case of create, or newObject in the case of delete) or an object that cannot have labels (like a DeploymentRollback or a PodProxyOptions object) is not considered to match. Use the object selector only if the webhook is opt-in, because end users may skip the admission webhook by setting the labels. Default to the empty LabelSelector, which matches everything.
         """
-        ...
+        return pulumi.get(self, "object_selector")
 
     @object_selector.setter
     def object_selector(self, value: Optional[pulumi.Input['_meta.v1.LabelSelectorArgs']]):
-        ...
+        pulumi.set(self, "object_selector", value)
 
     @property
     @pulumi.getter(name="reinvocationPolicy")
@@ -245,11 +252,11 @@ class MutatingWebhookArgs:
 
         Defaults to "Never".
         """
-        ...
+        return pulumi.get(self, "reinvocation_policy")
 
     @reinvocation_policy.setter
     def reinvocation_policy(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "reinvocation_policy", value)
 
     @property
     @pulumi.getter
@@ -257,11 +264,11 @@ class MutatingWebhookArgs:
         """
         Rules describes what operations on what resources/subresources the webhook cares about. The webhook cares about an operation if it matches _any_ Rule. However, in order to prevent ValidatingAdmissionWebhooks and MutatingAdmissionWebhooks from putting the cluster in a state which cannot be recovered from without completely disabling the plugin, ValidatingAdmissionWebhooks and MutatingAdmissionWebhooks are never called on admission requests for ValidatingWebhookConfiguration and MutatingWebhookConfiguration objects.
         """
-        ...
+        return pulumi.get(self, "rules")
 
     @rules.setter
     def rules(self, value: Optional[pulumi.Input[List[pulumi.Input['RuleWithOperationsArgs']]]]):
-        ...
+        pulumi.set(self, "rules", value)
 
     @property
     @pulumi.getter(name="timeoutSeconds")
@@ -269,11 +276,11 @@ class MutatingWebhookArgs:
         """
         TimeoutSeconds specifies the timeout for this webhook. After the timeout passes, the webhook call will be ignored or the API call will fail based on the failure policy. The timeout value must be between 1 and 30 seconds. Default to 10 seconds.
         """
-        ...
+        return pulumi.get(self, "timeout_seconds")
 
     @timeout_seconds.setter
     def timeout_seconds(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "timeout_seconds", value)
 
 
 @pulumi.input_type
@@ -290,10 +297,14 @@ class MutatingWebhookConfigurationArgs:
         :param pulumi.Input['_meta.v1.ObjectMetaArgs'] metadata: Standard object metadata; More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata.
         :param pulumi.Input[List[pulumi.Input['MutatingWebhookArgs']]] webhooks: Webhooks is a list of webhooks and the affected resources and operations.
         """
-        pulumi.set(__self__, "apiVersion", 'admissionregistration.k8s.io/v1')
-        pulumi.set(__self__, "kind", 'MutatingWebhookConfiguration')
-        pulumi.set(__self__, "metadata", metadata)
-        pulumi.set(__self__, "webhooks", webhooks)
+        if api_version is not None:
+            pulumi.set(__self__, "api_version", 'admissionregistration.k8s.io/v1')
+        if kind is not None:
+            pulumi.set(__self__, "kind", 'MutatingWebhookConfiguration')
+        if metadata is not None:
+            pulumi.set(__self__, "metadata", metadata)
+        if webhooks is not None:
+            pulumi.set(__self__, "webhooks", webhooks)
 
     @property
     @pulumi.getter(name="apiVersion")
@@ -301,11 +312,11 @@ class MutatingWebhookConfigurationArgs:
         """
         APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
         """
-        ...
+        return pulumi.get(self, "api_version")
 
     @api_version.setter
     def api_version(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "api_version", value)
 
     @property
     @pulumi.getter
@@ -313,11 +324,11 @@ class MutatingWebhookConfigurationArgs:
         """
         Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         """
-        ...
+        return pulumi.get(self, "kind")
 
     @kind.setter
     def kind(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "kind", value)
 
     @property
     @pulumi.getter
@@ -325,11 +336,11 @@ class MutatingWebhookConfigurationArgs:
         """
         Standard object metadata; More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata.
         """
-        ...
+        return pulumi.get(self, "metadata")
 
     @metadata.setter
     def metadata(self, value: Optional[pulumi.Input['_meta.v1.ObjectMetaArgs']]):
-        ...
+        pulumi.set(self, "metadata", value)
 
     @property
     @pulumi.getter
@@ -337,11 +348,11 @@ class MutatingWebhookConfigurationArgs:
         """
         Webhooks is a list of webhooks and the affected resources and operations.
         """
-        ...
+        return pulumi.get(self, "webhooks")
 
     @webhooks.setter
     def webhooks(self, value: Optional[pulumi.Input[List[pulumi.Input['MutatingWebhookArgs']]]]):
-        ...
+        pulumi.set(self, "webhooks", value)
 
 
 @pulumi.input_type
@@ -366,11 +377,16 @@ class RuleWithOperationsArgs:
                Depending on the enclosing object, subresources might not be allowed. Required.
         :param pulumi.Input[str] scope: scope specifies the scope of this rule. Valid values are "Cluster", "Namespaced", and "*" "Cluster" means that only cluster-scoped resources will match this rule. Namespace API objects are cluster-scoped. "Namespaced" means that only namespaced resources will match this rule. "*" means that there are no scope restrictions. Subresources match the scope of their parent resource. Default is "*".
         """
-        pulumi.set(__self__, "apiGroups", api_groups)
-        pulumi.set(__self__, "apiVersions", api_versions)
-        pulumi.set(__self__, "operations", operations)
-        pulumi.set(__self__, "resources", resources)
-        pulumi.set(__self__, "scope", scope)
+        if api_groups is not None:
+            pulumi.set(__self__, "api_groups", api_groups)
+        if api_versions is not None:
+            pulumi.set(__self__, "api_versions", api_versions)
+        if operations is not None:
+            pulumi.set(__self__, "operations", operations)
+        if resources is not None:
+            pulumi.set(__self__, "resources", resources)
+        if scope is not None:
+            pulumi.set(__self__, "scope", scope)
 
     @property
     @pulumi.getter(name="apiGroups")
@@ -378,11 +394,11 @@ class RuleWithOperationsArgs:
         """
         APIGroups is the API groups the resources belong to. '*' is all groups. If '*' is present, the length of the slice must be one. Required.
         """
-        ...
+        return pulumi.get(self, "api_groups")
 
     @api_groups.setter
     def api_groups(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
-        ...
+        pulumi.set(self, "api_groups", value)
 
     @property
     @pulumi.getter(name="apiVersions")
@@ -390,11 +406,11 @@ class RuleWithOperationsArgs:
         """
         APIVersions is the API versions the resources belong to. '*' is all versions. If '*' is present, the length of the slice must be one. Required.
         """
-        ...
+        return pulumi.get(self, "api_versions")
 
     @api_versions.setter
     def api_versions(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
-        ...
+        pulumi.set(self, "api_versions", value)
 
     @property
     @pulumi.getter
@@ -402,11 +418,11 @@ class RuleWithOperationsArgs:
         """
         Operations is the operations the admission hook cares about - CREATE, UPDATE, or * for all operations. If '*' is present, the length of the slice must be one. Required.
         """
-        ...
+        return pulumi.get(self, "operations")
 
     @operations.setter
     def operations(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
-        ...
+        pulumi.set(self, "operations", value)
 
     @property
     @pulumi.getter
@@ -420,11 +436,11 @@ class RuleWithOperationsArgs:
 
         Depending on the enclosing object, subresources might not be allowed. Required.
         """
-        ...
+        return pulumi.get(self, "resources")
 
     @resources.setter
     def resources(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
-        ...
+        pulumi.set(self, "resources", value)
 
     @property
     @pulumi.getter
@@ -432,11 +448,11 @@ class RuleWithOperationsArgs:
         """
         scope specifies the scope of this rule. Valid values are "Cluster", "Namespaced", and "*" "Cluster" means that only cluster-scoped resources will match this rule. Namespace API objects are cluster-scoped. "Namespaced" means that only namespaced resources will match this rule. "*" means that there are no scope restrictions. Subresources match the scope of their parent resource. Default is "*".
         """
-        ...
+        return pulumi.get(self, "scope")
 
     @scope.setter
     def scope(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "scope", value)
 
 
 @pulumi.input_type
@@ -455,8 +471,10 @@ class ServiceReferenceArgs:
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "namespace", namespace)
-        pulumi.set(__self__, "path", path)
-        pulumi.set(__self__, "port", port)
+        if path is not None:
+            pulumi.set(__self__, "path", path)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
 
     @property
     @pulumi.getter
@@ -464,11 +482,11 @@ class ServiceReferenceArgs:
         """
         `name` is the name of the service. Required
         """
-        ...
+        return pulumi.get(self, "name")
 
     @name.setter
     def name(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "name", value)
 
     @property
     @pulumi.getter
@@ -476,11 +494,11 @@ class ServiceReferenceArgs:
         """
         `namespace` is the namespace of the service. Required
         """
-        ...
+        return pulumi.get(self, "namespace")
 
     @namespace.setter
     def namespace(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "namespace", value)
 
     @property
     @pulumi.getter
@@ -488,11 +506,11 @@ class ServiceReferenceArgs:
         """
         `path` is an optional URL path which will be sent in any request to this service.
         """
-        ...
+        return pulumi.get(self, "path")
 
     @path.setter
     def path(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "path", value)
 
     @property
     @pulumi.getter
@@ -500,11 +518,11 @@ class ServiceReferenceArgs:
         """
         If specified, the port on the service that hosting webhook. Default to 443 for backward compatibility. `port` should be a valid port number (1-65535, inclusive).
         """
-        ...
+        return pulumi.get(self, "port")
 
     @port.setter
     def port(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "port", value)
 
 
 @pulumi.input_type
@@ -569,16 +587,22 @@ class ValidatingWebhookArgs:
         :param pulumi.Input[List[pulumi.Input['RuleWithOperationsArgs']]] rules: Rules describes what operations on what resources/subresources the webhook cares about. The webhook cares about an operation if it matches _any_ Rule. However, in order to prevent ValidatingAdmissionWebhooks and MutatingAdmissionWebhooks from putting the cluster in a state which cannot be recovered from without completely disabling the plugin, ValidatingAdmissionWebhooks and MutatingAdmissionWebhooks are never called on admission requests for ValidatingWebhookConfiguration and MutatingWebhookConfiguration objects.
         :param pulumi.Input[float] timeout_seconds: TimeoutSeconds specifies the timeout for this webhook. After the timeout passes, the webhook call will be ignored or the API call will fail based on the failure policy. The timeout value must be between 1 and 30 seconds. Default to 10 seconds.
         """
-        pulumi.set(__self__, "admissionReviewVersions", admission_review_versions)
-        pulumi.set(__self__, "clientConfig", client_config)
+        pulumi.set(__self__, "admission_review_versions", admission_review_versions)
+        pulumi.set(__self__, "client_config", client_config)
         pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "sideEffects", side_effects)
-        pulumi.set(__self__, "failurePolicy", failure_policy)
-        pulumi.set(__self__, "matchPolicy", match_policy)
-        pulumi.set(__self__, "namespaceSelector", namespace_selector)
-        pulumi.set(__self__, "objectSelector", object_selector)
-        pulumi.set(__self__, "rules", rules)
-        pulumi.set(__self__, "timeoutSeconds", timeout_seconds)
+        pulumi.set(__self__, "side_effects", side_effects)
+        if failure_policy is not None:
+            pulumi.set(__self__, "failure_policy", failure_policy)
+        if match_policy is not None:
+            pulumi.set(__self__, "match_policy", match_policy)
+        if namespace_selector is not None:
+            pulumi.set(__self__, "namespace_selector", namespace_selector)
+        if object_selector is not None:
+            pulumi.set(__self__, "object_selector", object_selector)
+        if rules is not None:
+            pulumi.set(__self__, "rules", rules)
+        if timeout_seconds is not None:
+            pulumi.set(__self__, "timeout_seconds", timeout_seconds)
 
     @property
     @pulumi.getter(name="admissionReviewVersions")
@@ -586,11 +610,11 @@ class ValidatingWebhookArgs:
         """
         AdmissionReviewVersions is an ordered list of preferred `AdmissionReview` versions the Webhook expects. API server will try to use first version in the list which it supports. If none of the versions specified in this list supported by API server, validation will fail for this object. If a persisted webhook configuration specifies allowed versions and does not include any versions known to the API Server, calls to the webhook will fail and be subject to the failure policy.
         """
-        ...
+        return pulumi.get(self, "admission_review_versions")
 
     @admission_review_versions.setter
     def admission_review_versions(self, value: pulumi.Input[List[pulumi.Input[str]]]):
-        ...
+        pulumi.set(self, "admission_review_versions", value)
 
     @property
     @pulumi.getter(name="clientConfig")
@@ -598,11 +622,11 @@ class ValidatingWebhookArgs:
         """
         ClientConfig defines how to communicate with the hook. Required
         """
-        ...
+        return pulumi.get(self, "client_config")
 
     @client_config.setter
     def client_config(self, value: pulumi.Input['WebhookClientConfigArgs']):
-        ...
+        pulumi.set(self, "client_config", value)
 
     @property
     @pulumi.getter
@@ -610,11 +634,11 @@ class ValidatingWebhookArgs:
         """
         The name of the admission webhook. Name should be fully qualified, e.g., imagepolicy.kubernetes.io, where "imagepolicy" is the name of the webhook, and kubernetes.io is the name of the organization. Required.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @name.setter
     def name(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "name", value)
 
     @property
     @pulumi.getter(name="sideEffects")
@@ -622,11 +646,11 @@ class ValidatingWebhookArgs:
         """
         SideEffects states whether this webhook has side effects. Acceptable values are: None, NoneOnDryRun (webhooks created via v1beta1 may also specify Some or Unknown). Webhooks with side effects MUST implement a reconciliation system, since a request may be rejected by a future step in the admission change and the side effects therefore need to be undone. Requests with the dryRun attribute will be auto-rejected if they match a webhook with sideEffects == Unknown or Some.
         """
-        ...
+        return pulumi.get(self, "side_effects")
 
     @side_effects.setter
     def side_effects(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "side_effects", value)
 
     @property
     @pulumi.getter(name="failurePolicy")
@@ -634,11 +658,11 @@ class ValidatingWebhookArgs:
         """
         FailurePolicy defines how unrecognized errors from the admission endpoint are handled - allowed values are Ignore or Fail. Defaults to Fail.
         """
-        ...
+        return pulumi.get(self, "failure_policy")
 
     @failure_policy.setter
     def failure_policy(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "failure_policy", value)
 
     @property
     @pulumi.getter(name="matchPolicy")
@@ -652,11 +676,11 @@ class ValidatingWebhookArgs:
 
         Defaults to "Equivalent"
         """
-        ...
+        return pulumi.get(self, "match_policy")
 
     @match_policy.setter
     def match_policy(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "match_policy", value)
 
     @property
     @pulumi.getter(name="namespaceSelector")
@@ -694,11 +718,11 @@ class ValidatingWebhookArgs:
 
         Default to the empty LabelSelector, which matches everything.
         """
-        ...
+        return pulumi.get(self, "namespace_selector")
 
     @namespace_selector.setter
     def namespace_selector(self, value: Optional[pulumi.Input['_meta.v1.LabelSelectorArgs']]):
-        ...
+        pulumi.set(self, "namespace_selector", value)
 
     @property
     @pulumi.getter(name="objectSelector")
@@ -706,11 +730,11 @@ class ValidatingWebhookArgs:
         """
         ObjectSelector decides whether to run the webhook based on if the object has matching labels. objectSelector is evaluated against both the oldObject and newObject that would be sent to the webhook, and is considered to match if either object matches the selector. A null object (oldObject in the case of create, or newObject in the case of delete) or an object that cannot have labels (like a DeploymentRollback or a PodProxyOptions object) is not considered to match. Use the object selector only if the webhook is opt-in, because end users may skip the admission webhook by setting the labels. Default to the empty LabelSelector, which matches everything.
         """
-        ...
+        return pulumi.get(self, "object_selector")
 
     @object_selector.setter
     def object_selector(self, value: Optional[pulumi.Input['_meta.v1.LabelSelectorArgs']]):
-        ...
+        pulumi.set(self, "object_selector", value)
 
     @property
     @pulumi.getter
@@ -718,11 +742,11 @@ class ValidatingWebhookArgs:
         """
         Rules describes what operations on what resources/subresources the webhook cares about. The webhook cares about an operation if it matches _any_ Rule. However, in order to prevent ValidatingAdmissionWebhooks and MutatingAdmissionWebhooks from putting the cluster in a state which cannot be recovered from without completely disabling the plugin, ValidatingAdmissionWebhooks and MutatingAdmissionWebhooks are never called on admission requests for ValidatingWebhookConfiguration and MutatingWebhookConfiguration objects.
         """
-        ...
+        return pulumi.get(self, "rules")
 
     @rules.setter
     def rules(self, value: Optional[pulumi.Input[List[pulumi.Input['RuleWithOperationsArgs']]]]):
-        ...
+        pulumi.set(self, "rules", value)
 
     @property
     @pulumi.getter(name="timeoutSeconds")
@@ -730,11 +754,11 @@ class ValidatingWebhookArgs:
         """
         TimeoutSeconds specifies the timeout for this webhook. After the timeout passes, the webhook call will be ignored or the API call will fail based on the failure policy. The timeout value must be between 1 and 30 seconds. Default to 10 seconds.
         """
-        ...
+        return pulumi.get(self, "timeout_seconds")
 
     @timeout_seconds.setter
     def timeout_seconds(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "timeout_seconds", value)
 
 
 @pulumi.input_type
@@ -751,10 +775,14 @@ class ValidatingWebhookConfigurationArgs:
         :param pulumi.Input['_meta.v1.ObjectMetaArgs'] metadata: Standard object metadata; More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata.
         :param pulumi.Input[List[pulumi.Input['ValidatingWebhookArgs']]] webhooks: Webhooks is a list of webhooks and the affected resources and operations.
         """
-        pulumi.set(__self__, "apiVersion", 'admissionregistration.k8s.io/v1')
-        pulumi.set(__self__, "kind", 'ValidatingWebhookConfiguration')
-        pulumi.set(__self__, "metadata", metadata)
-        pulumi.set(__self__, "webhooks", webhooks)
+        if api_version is not None:
+            pulumi.set(__self__, "api_version", 'admissionregistration.k8s.io/v1')
+        if kind is not None:
+            pulumi.set(__self__, "kind", 'ValidatingWebhookConfiguration')
+        if metadata is not None:
+            pulumi.set(__self__, "metadata", metadata)
+        if webhooks is not None:
+            pulumi.set(__self__, "webhooks", webhooks)
 
     @property
     @pulumi.getter(name="apiVersion")
@@ -762,11 +790,11 @@ class ValidatingWebhookConfigurationArgs:
         """
         APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
         """
-        ...
+        return pulumi.get(self, "api_version")
 
     @api_version.setter
     def api_version(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "api_version", value)
 
     @property
     @pulumi.getter
@@ -774,11 +802,11 @@ class ValidatingWebhookConfigurationArgs:
         """
         Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         """
-        ...
+        return pulumi.get(self, "kind")
 
     @kind.setter
     def kind(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "kind", value)
 
     @property
     @pulumi.getter
@@ -786,11 +814,11 @@ class ValidatingWebhookConfigurationArgs:
         """
         Standard object metadata; More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata.
         """
-        ...
+        return pulumi.get(self, "metadata")
 
     @metadata.setter
     def metadata(self, value: Optional[pulumi.Input['_meta.v1.ObjectMetaArgs']]):
-        ...
+        pulumi.set(self, "metadata", value)
 
     @property
     @pulumi.getter
@@ -798,11 +826,11 @@ class ValidatingWebhookConfigurationArgs:
         """
         Webhooks is a list of webhooks and the affected resources and operations.
         """
-        ...
+        return pulumi.get(self, "webhooks")
 
     @webhooks.setter
     def webhooks(self, value: Optional[pulumi.Input[List[pulumi.Input['ValidatingWebhookArgs']]]]):
-        ...
+        pulumi.set(self, "webhooks", value)
 
 
 @pulumi.input_type
@@ -829,9 +857,12 @@ class WebhookClientConfigArgs:
                
                Attempting to use a user or basic auth e.g. "user:password@" is not allowed. Fragments ("#...") and query parameters ("?...") are not allowed, either.
         """
-        pulumi.set(__self__, "caBundle", ca_bundle)
-        pulumi.set(__self__, "service", service)
-        pulumi.set(__self__, "url", url)
+        if ca_bundle is not None:
+            pulumi.set(__self__, "ca_bundle", ca_bundle)
+        if service is not None:
+            pulumi.set(__self__, "service", service)
+        if url is not None:
+            pulumi.set(__self__, "url", url)
 
     @property
     @pulumi.getter(name="caBundle")
@@ -839,11 +870,11 @@ class WebhookClientConfigArgs:
         """
         `caBundle` is a PEM encoded CA bundle which will be used to validate the webhook's server certificate. If unspecified, system trust roots on the apiserver are used.
         """
-        ...
+        return pulumi.get(self, "ca_bundle")
 
     @ca_bundle.setter
     def ca_bundle(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "ca_bundle", value)
 
     @property
     @pulumi.getter
@@ -853,11 +884,11 @@ class WebhookClientConfigArgs:
 
         If the webhook is running within the cluster, then you should use `service`.
         """
-        ...
+        return pulumi.get(self, "service")
 
     @service.setter
     def service(self, value: Optional[pulumi.Input['ServiceReferenceArgs']]):
-        ...
+        pulumi.set(self, "service", value)
 
     @property
     @pulumi.getter
@@ -875,10 +906,10 @@ class WebhookClientConfigArgs:
 
         Attempting to use a user or basic auth e.g. "user:password@" is not allowed. Fragments ("#...") and query parameters ("?...") are not allowed, either.
         """
-        ...
+        return pulumi.get(self, "url")
 
     @url.setter
     def url(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "url", value)
 
 

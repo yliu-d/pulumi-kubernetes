@@ -21,53 +21,76 @@ class Event(dict):
     """
     Event is a report of an event somewhere in the cluster. It generally denotes some state change in the system.
     """
-    @property
-    @pulumi.getter
-    def action(self) -> Optional[str]:
+    def __init__(__self__, *,
+                 event_time: str,
+                 action: Optional[str] = None,
+                 api_version: Optional[str] = None,
+                 deprecated_count: Optional[float] = None,
+                 deprecated_first_timestamp: Optional[str] = None,
+                 deprecated_last_timestamp: Optional[str] = None,
+                 deprecated_source: Optional['_core.v1.outputs.EventSource'] = None,
+                 kind: Optional[str] = None,
+                 metadata: Optional['_meta.v1.outputs.ObjectMeta'] = None,
+                 note: Optional[str] = None,
+                 reason: Optional[str] = None,
+                 regarding: Optional['_core.v1.outputs.ObjectReference'] = None,
+                 related: Optional['_core.v1.outputs.ObjectReference'] = None,
+                 reporting_controller: Optional[str] = None,
+                 reporting_instance: Optional[str] = None,
+                 series: Optional['outputs.EventSeries'] = None,
+                 type: Optional[str] = None):
         """
-        What action was taken/failed regarding to the regarding object.
+        Event is a report of an event somewhere in the cluster. It generally denotes some state change in the system.
+        :param str event_time: Required. Time when this Event was first observed.
+        :param str action: What action was taken/failed regarding to the regarding object.
+        :param str api_version: APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+        :param float deprecated_count: Deprecated field assuring backward compatibility with core.v1 Event type
+        :param str deprecated_first_timestamp: Deprecated field assuring backward compatibility with core.v1 Event type
+        :param str deprecated_last_timestamp: Deprecated field assuring backward compatibility with core.v1 Event type
+        :param '_core.v1.EventSourceArgs' deprecated_source: Deprecated field assuring backward compatibility with core.v1 Event type
+        :param str kind: Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+        :param str note: Optional. A human-readable description of the status of this operation. Maximal length of the note is 1kB, but libraries should be prepared to handle values up to 64kB.
+        :param str reason: Why the action was taken.
+        :param '_core.v1.ObjectReferenceArgs' regarding: The object this Event is about. In most cases it's an Object reporting controller implements. E.g. ReplicaSetController implements ReplicaSets and this event is emitted because it acts on some changes in a ReplicaSet object.
+        :param '_core.v1.ObjectReferenceArgs' related: Optional secondary object for more complex actions. E.g. when regarding object triggers a creation or deletion of related object.
+        :param str reporting_controller: Name of the controller that emitted this Event, e.g. `kubernetes.io/kubelet`.
+        :param str reporting_instance: ID of the controller instance, e.g. `kubelet-xyzf`.
+        :param 'EventSeriesArgs' series: Data about the Event series this event represents or nil if it's a singleton Event.
+        :param str type: Type of this event (Normal, Warning), new types could be added in the future.
         """
-        ...
-
-    @property
-    @pulumi.getter(name="apiVersion")
-    def api_version(self) -> Optional[str]:
-        """
-        APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
-        """
-        ...
-
-    @property
-    @pulumi.getter(name="deprecatedCount")
-    def deprecated_count(self) -> Optional[float]:
-        """
-        Deprecated field assuring backward compatibility with core.v1 Event type
-        """
-        ...
-
-    @property
-    @pulumi.getter(name="deprecatedFirstTimestamp")
-    def deprecated_first_timestamp(self) -> Optional[str]:
-        """
-        Deprecated field assuring backward compatibility with core.v1 Event type
-        """
-        ...
-
-    @property
-    @pulumi.getter(name="deprecatedLastTimestamp")
-    def deprecated_last_timestamp(self) -> Optional[str]:
-        """
-        Deprecated field assuring backward compatibility with core.v1 Event type
-        """
-        ...
-
-    @property
-    @pulumi.getter(name="deprecatedSource")
-    def deprecated_source(self) -> Optional['_core.v1.outputs.EventSource']:
-        """
-        Deprecated field assuring backward compatibility with core.v1 Event type
-        """
-        ...
+        pulumi.set(__self__, "event_time", event_time)
+        if action is not None:
+            pulumi.set(__self__, "action", action)
+        if api_version is not None:
+            pulumi.set(__self__, "api_version", 'events.k8s.io/v1beta1')
+        if deprecated_count is not None:
+            pulumi.set(__self__, "deprecated_count", deprecated_count)
+        if deprecated_first_timestamp is not None:
+            pulumi.set(__self__, "deprecated_first_timestamp", deprecated_first_timestamp)
+        if deprecated_last_timestamp is not None:
+            pulumi.set(__self__, "deprecated_last_timestamp", deprecated_last_timestamp)
+        if deprecated_source is not None:
+            pulumi.set(__self__, "deprecated_source", deprecated_source)
+        if kind is not None:
+            pulumi.set(__self__, "kind", 'Event')
+        if metadata is not None:
+            pulumi.set(__self__, "metadata", metadata)
+        if note is not None:
+            pulumi.set(__self__, "note", note)
+        if reason is not None:
+            pulumi.set(__self__, "reason", reason)
+        if regarding is not None:
+            pulumi.set(__self__, "regarding", regarding)
+        if related is not None:
+            pulumi.set(__self__, "related", related)
+        if reporting_controller is not None:
+            pulumi.set(__self__, "reporting_controller", reporting_controller)
+        if reporting_instance is not None:
+            pulumi.set(__self__, "reporting_instance", reporting_instance)
+        if series is not None:
+            pulumi.set(__self__, "series", series)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter(name="eventTime")
@@ -75,7 +98,55 @@ class Event(dict):
         """
         Required. Time when this Event was first observed.
         """
-        ...
+        return pulumi.get(self, "event_time")
+
+    @property
+    @pulumi.getter
+    def action(self) -> Optional[str]:
+        """
+        What action was taken/failed regarding to the regarding object.
+        """
+        return pulumi.get(self, "action")
+
+    @property
+    @pulumi.getter(name="apiVersion")
+    def api_version(self) -> Optional[str]:
+        """
+        APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+        """
+        return pulumi.get(self, "api_version")
+
+    @property
+    @pulumi.getter(name="deprecatedCount")
+    def deprecated_count(self) -> Optional[float]:
+        """
+        Deprecated field assuring backward compatibility with core.v1 Event type
+        """
+        return pulumi.get(self, "deprecated_count")
+
+    @property
+    @pulumi.getter(name="deprecatedFirstTimestamp")
+    def deprecated_first_timestamp(self) -> Optional[str]:
+        """
+        Deprecated field assuring backward compatibility with core.v1 Event type
+        """
+        return pulumi.get(self, "deprecated_first_timestamp")
+
+    @property
+    @pulumi.getter(name="deprecatedLastTimestamp")
+    def deprecated_last_timestamp(self) -> Optional[str]:
+        """
+        Deprecated field assuring backward compatibility with core.v1 Event type
+        """
+        return pulumi.get(self, "deprecated_last_timestamp")
+
+    @property
+    @pulumi.getter(name="deprecatedSource")
+    def deprecated_source(self) -> Optional['_core.v1.outputs.EventSource']:
+        """
+        Deprecated field assuring backward compatibility with core.v1 Event type
+        """
+        return pulumi.get(self, "deprecated_source")
 
     @property
     @pulumi.getter
@@ -83,12 +154,12 @@ class Event(dict):
         """
         Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         """
-        ...
+        return pulumi.get(self, "kind")
 
     @property
     @pulumi.getter
     def metadata(self) -> Optional['_meta.v1.outputs.ObjectMeta']:
-        ...
+        return pulumi.get(self, "metadata")
 
     @property
     @pulumi.getter
@@ -96,7 +167,7 @@ class Event(dict):
         """
         Optional. A human-readable description of the status of this operation. Maximal length of the note is 1kB, but libraries should be prepared to handle values up to 64kB.
         """
-        ...
+        return pulumi.get(self, "note")
 
     @property
     @pulumi.getter
@@ -104,7 +175,7 @@ class Event(dict):
         """
         Why the action was taken.
         """
-        ...
+        return pulumi.get(self, "reason")
 
     @property
     @pulumi.getter
@@ -112,7 +183,7 @@ class Event(dict):
         """
         The object this Event is about. In most cases it's an Object reporting controller implements. E.g. ReplicaSetController implements ReplicaSets and this event is emitted because it acts on some changes in a ReplicaSet object.
         """
-        ...
+        return pulumi.get(self, "regarding")
 
     @property
     @pulumi.getter
@@ -120,7 +191,7 @@ class Event(dict):
         """
         Optional secondary object for more complex actions. E.g. when regarding object triggers a creation or deletion of related object.
         """
-        ...
+        return pulumi.get(self, "related")
 
     @property
     @pulumi.getter(name="reportingController")
@@ -128,7 +199,7 @@ class Event(dict):
         """
         Name of the controller that emitted this Event, e.g. `kubernetes.io/kubelet`.
         """
-        ...
+        return pulumi.get(self, "reporting_controller")
 
     @property
     @pulumi.getter(name="reportingInstance")
@@ -136,7 +207,7 @@ class Event(dict):
         """
         ID of the controller instance, e.g. `kubelet-xyzf`.
         """
-        ...
+        return pulumi.get(self, "reporting_instance")
 
     @property
     @pulumi.getter
@@ -144,7 +215,7 @@ class Event(dict):
         """
         Data about the Event series this event represents or nil if it's a singleton Event.
         """
-        ...
+        return pulumi.get(self, "series")
 
     @property
     @pulumi.getter
@@ -152,7 +223,7 @@ class Event(dict):
         """
         Type of this event (Normal, Warning), new types could be added in the future.
         """
-        ...
+        return pulumi.get(self, "type")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -163,13 +234,27 @@ class EventSeries(dict):
     """
     EventSeries contain information on series of events, i.e. thing that was/is happening continuously for some time.
     """
+    def __init__(__self__, *,
+                 count: float,
+                 last_observed_time: str,
+                 state: str):
+        """
+        EventSeries contain information on series of events, i.e. thing that was/is happening continuously for some time.
+        :param float count: Number of occurrences in this series up to the last heartbeat time
+        :param str last_observed_time: Time when last Event from the series was seen before last heartbeat.
+        :param str state: Information whether this series is ongoing or finished. Deprecated. Planned removal for 1.18
+        """
+        pulumi.set(__self__, "count", count)
+        pulumi.set(__self__, "last_observed_time", last_observed_time)
+        pulumi.set(__self__, "state", state)
+
     @property
     @pulumi.getter
     def count(self) -> float:
         """
         Number of occurrences in this series up to the last heartbeat time
         """
-        ...
+        return pulumi.get(self, "count")
 
     @property
     @pulumi.getter(name="lastObservedTime")
@@ -177,7 +262,7 @@ class EventSeries(dict):
         """
         Time when last Event from the series was seen before last heartbeat.
         """
-        ...
+        return pulumi.get(self, "last_observed_time")
 
     @property
     @pulumi.getter
@@ -185,7 +270,7 @@ class EventSeries(dict):
         """
         Information whether this series is ongoing or finished. Deprecated. Planned removal for 1.18
         """
-        ...
+        return pulumi.get(self, "state")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

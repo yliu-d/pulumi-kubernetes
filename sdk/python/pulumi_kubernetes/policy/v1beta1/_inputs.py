@@ -45,11 +45,11 @@ class AllowedCSIDriverArgs:
         """
         Name is the registered name of the CSI driver
         """
-        ...
+        return pulumi.get(self, "name")
 
     @name.setter
     def name(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "name", value)
 
 
 @pulumi.input_type
@@ -68,11 +68,11 @@ class AllowedFlexVolumeArgs:
         """
         driver is the name of the Flexvolume driver.
         """
-        ...
+        return pulumi.get(self, "driver")
 
     @driver.setter
     def driver(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "driver", value)
 
 
 @pulumi.input_type
@@ -87,8 +87,10 @@ class AllowedHostPathArgs:
                Examples: `/foo` would allow `/foo`, `/foo/` and `/foo/bar` `/foo` would not allow `/food` or `/etc/foo`
         :param pulumi.Input[bool] read_only: when set to true, will allow host volumes matching the pathPrefix only if all volume mounts are readOnly.
         """
-        pulumi.set(__self__, "pathPrefix", path_prefix)
-        pulumi.set(__self__, "readOnly", read_only)
+        if path_prefix is not None:
+            pulumi.set(__self__, "path_prefix", path_prefix)
+        if read_only is not None:
+            pulumi.set(__self__, "read_only", read_only)
 
     @property
     @pulumi.getter(name="pathPrefix")
@@ -98,11 +100,11 @@ class AllowedHostPathArgs:
 
         Examples: `/foo` would allow `/foo`, `/foo/` and `/foo/bar` `/foo` would not allow `/food` or `/etc/foo`
         """
-        ...
+        return pulumi.get(self, "path_prefix")
 
     @path_prefix.setter
     def path_prefix(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "path_prefix", value)
 
     @property
     @pulumi.getter(name="readOnly")
@@ -110,11 +112,11 @@ class AllowedHostPathArgs:
         """
         when set to true, will allow host volumes matching the pathPrefix only if all volume mounts are readOnly.
         """
-        ...
+        return pulumi.get(self, "read_only")
 
     @read_only.setter
     def read_only(self, value: Optional[pulumi.Input[bool]]):
-        ...
+        pulumi.set(self, "read_only", value)
 
 
 @pulumi.input_type
@@ -127,8 +129,10 @@ class FSGroupStrategyOptionsArgs:
         :param pulumi.Input[List[pulumi.Input['IDRangeArgs']]] ranges: ranges are the allowed ranges of fs groups.  If you would like to force a single fs group then supply a single range with the same start and end. Required for MustRunAs.
         :param pulumi.Input[str] rule: rule is the strategy that will dictate what FSGroup is used in the SecurityContext.
         """
-        pulumi.set(__self__, "ranges", ranges)
-        pulumi.set(__self__, "rule", rule)
+        if ranges is not None:
+            pulumi.set(__self__, "ranges", ranges)
+        if rule is not None:
+            pulumi.set(__self__, "rule", rule)
 
     @property
     @pulumi.getter
@@ -136,11 +140,11 @@ class FSGroupStrategyOptionsArgs:
         """
         ranges are the allowed ranges of fs groups.  If you would like to force a single fs group then supply a single range with the same start and end. Required for MustRunAs.
         """
-        ...
+        return pulumi.get(self, "ranges")
 
     @ranges.setter
     def ranges(self, value: Optional[pulumi.Input[List[pulumi.Input['IDRangeArgs']]]]):
-        ...
+        pulumi.set(self, "ranges", value)
 
     @property
     @pulumi.getter
@@ -148,11 +152,11 @@ class FSGroupStrategyOptionsArgs:
         """
         rule is the strategy that will dictate what FSGroup is used in the SecurityContext.
         """
-        ...
+        return pulumi.get(self, "rule")
 
     @rule.setter
     def rule(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "rule", value)
 
 
 @pulumi.input_type
@@ -174,11 +178,11 @@ class HostPortRangeArgs:
         """
         max is the end of the range, inclusive.
         """
-        ...
+        return pulumi.get(self, "max")
 
     @max.setter
     def max(self, value: pulumi.Input[float]):
-        ...
+        pulumi.set(self, "max", value)
 
     @property
     @pulumi.getter
@@ -186,11 +190,11 @@ class HostPortRangeArgs:
         """
         min is the start of the range, inclusive.
         """
-        ...
+        return pulumi.get(self, "min")
 
     @min.setter
     def min(self, value: pulumi.Input[float]):
-        ...
+        pulumi.set(self, "min", value)
 
 
 @pulumi.input_type
@@ -212,11 +216,11 @@ class IDRangeArgs:
         """
         max is the end of the range, inclusive.
         """
-        ...
+        return pulumi.get(self, "max")
 
     @max.setter
     def max(self, value: pulumi.Input[float]):
-        ...
+        pulumi.set(self, "max", value)
 
     @property
     @pulumi.getter
@@ -224,11 +228,11 @@ class IDRangeArgs:
         """
         min is the start of the range, inclusive.
         """
-        ...
+        return pulumi.get(self, "min")
 
     @min.setter
     def min(self, value: pulumi.Input[float]):
-        ...
+        pulumi.set(self, "min", value)
 
 
 @pulumi.input_type
@@ -246,11 +250,16 @@ class PodDisruptionBudgetArgs:
         :param pulumi.Input['PodDisruptionBudgetSpecArgs'] spec: Specification of the desired behavior of the PodDisruptionBudget.
         :param pulumi.Input['PodDisruptionBudgetStatusArgs'] status: Most recently observed status of the PodDisruptionBudget.
         """
-        pulumi.set(__self__, "apiVersion", 'policy/v1beta1')
-        pulumi.set(__self__, "kind", 'PodDisruptionBudget')
-        pulumi.set(__self__, "metadata", metadata)
-        pulumi.set(__self__, "spec", spec)
-        pulumi.set(__self__, "status", status)
+        if api_version is not None:
+            pulumi.set(__self__, "api_version", 'policy/v1beta1')
+        if kind is not None:
+            pulumi.set(__self__, "kind", 'PodDisruptionBudget')
+        if metadata is not None:
+            pulumi.set(__self__, "metadata", metadata)
+        if spec is not None:
+            pulumi.set(__self__, "spec", spec)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
 
     @property
     @pulumi.getter(name="apiVersion")
@@ -258,11 +267,11 @@ class PodDisruptionBudgetArgs:
         """
         APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
         """
-        ...
+        return pulumi.get(self, "api_version")
 
     @api_version.setter
     def api_version(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "api_version", value)
 
     @property
     @pulumi.getter
@@ -270,20 +279,20 @@ class PodDisruptionBudgetArgs:
         """
         Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         """
-        ...
+        return pulumi.get(self, "kind")
 
     @kind.setter
     def kind(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "kind", value)
 
     @property
     @pulumi.getter
     def metadata(self) -> Optional[pulumi.Input['_meta.v1.ObjectMetaArgs']]:
-        ...
+        return pulumi.get(self, "metadata")
 
     @metadata.setter
     def metadata(self, value: Optional[pulumi.Input['_meta.v1.ObjectMetaArgs']]):
-        ...
+        pulumi.set(self, "metadata", value)
 
     @property
     @pulumi.getter
@@ -291,11 +300,11 @@ class PodDisruptionBudgetArgs:
         """
         Specification of the desired behavior of the PodDisruptionBudget.
         """
-        ...
+        return pulumi.get(self, "spec")
 
     @spec.setter
     def spec(self, value: Optional[pulumi.Input['PodDisruptionBudgetSpecArgs']]):
-        ...
+        pulumi.set(self, "spec", value)
 
     @property
     @pulumi.getter
@@ -303,11 +312,11 @@ class PodDisruptionBudgetArgs:
         """
         Most recently observed status of the PodDisruptionBudget.
         """
-        ...
+        return pulumi.get(self, "status")
 
     @status.setter
     def status(self, value: Optional[pulumi.Input['PodDisruptionBudgetStatusArgs']]):
-        ...
+        pulumi.set(self, "status", value)
 
 
 @pulumi.input_type
@@ -322,9 +331,12 @@ class PodDisruptionBudgetSpecArgs:
         :param pulumi.Input[Union[float, str]] min_available: An eviction is allowed if at least "minAvailable" pods selected by "selector" will still be available after the eviction, i.e. even in the absence of the evicted pod.  So for example you can prevent all voluntary evictions by specifying "100%".
         :param pulumi.Input['_meta.v1.LabelSelectorArgs'] selector: Label query over pods whose evictions are managed by the disruption budget.
         """
-        pulumi.set(__self__, "maxUnavailable", max_unavailable)
-        pulumi.set(__self__, "minAvailable", min_available)
-        pulumi.set(__self__, "selector", selector)
+        if max_unavailable is not None:
+            pulumi.set(__self__, "max_unavailable", max_unavailable)
+        if min_available is not None:
+            pulumi.set(__self__, "min_available", min_available)
+        if selector is not None:
+            pulumi.set(__self__, "selector", selector)
 
     @property
     @pulumi.getter(name="maxUnavailable")
@@ -332,11 +344,11 @@ class PodDisruptionBudgetSpecArgs:
         """
         An eviction is allowed if at most "maxUnavailable" pods selected by "selector" are unavailable after the eviction, i.e. even in absence of the evicted pod. For example, one can prevent all voluntary evictions by specifying 0. This is a mutually exclusive setting with "minAvailable".
         """
-        ...
+        return pulumi.get(self, "max_unavailable")
 
     @max_unavailable.setter
     def max_unavailable(self, value: Optional[pulumi.Input[Union[float, str]]]):
-        ...
+        pulumi.set(self, "max_unavailable", value)
 
     @property
     @pulumi.getter(name="minAvailable")
@@ -344,11 +356,11 @@ class PodDisruptionBudgetSpecArgs:
         """
         An eviction is allowed if at least "minAvailable" pods selected by "selector" will still be available after the eviction, i.e. even in the absence of the evicted pod.  So for example you can prevent all voluntary evictions by specifying "100%".
         """
-        ...
+        return pulumi.get(self, "min_available")
 
     @min_available.setter
     def min_available(self, value: Optional[pulumi.Input[Union[float, str]]]):
-        ...
+        pulumi.set(self, "min_available", value)
 
     @property
     @pulumi.getter
@@ -356,11 +368,11 @@ class PodDisruptionBudgetSpecArgs:
         """
         Label query over pods whose evictions are managed by the disruption budget.
         """
-        ...
+        return pulumi.get(self, "selector")
 
     @selector.setter
     def selector(self, value: Optional[pulumi.Input['_meta.v1.LabelSelectorArgs']]):
-        ...
+        pulumi.set(self, "selector", value)
 
 
 @pulumi.input_type
@@ -381,12 +393,14 @@ class PodDisruptionBudgetStatusArgs:
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] disrupted_pods: DisruptedPods contains information about pods whose eviction was processed by the API server eviction subresource handler but has not yet been observed by the PodDisruptionBudget controller. A pod will be in this map from the time when the API server processed the eviction request to the time when the pod is seen by PDB controller as having been marked for deletion (or after a timeout). The key in the map is the name of the pod and the value is the time when the API server processed the eviction request. If the deletion didn't occur and a pod is still there it will be removed from the list automatically by PodDisruptionBudget controller after some time. If everything goes smooth this map should be empty for the most of the time. Large number of entries in the map may indicate problems with pod deletions.
         :param pulumi.Input[float] observed_generation: Most recent generation observed when updating this PDB status. DisruptionsAllowed and other status information is valid only if observedGeneration equals to PDB's object generation.
         """
-        pulumi.set(__self__, "currentHealthy", current_healthy)
-        pulumi.set(__self__, "desiredHealthy", desired_healthy)
-        pulumi.set(__self__, "disruptionsAllowed", disruptions_allowed)
-        pulumi.set(__self__, "expectedPods", expected_pods)
-        pulumi.set(__self__, "disruptedPods", disrupted_pods)
-        pulumi.set(__self__, "observedGeneration", observed_generation)
+        pulumi.set(__self__, "current_healthy", current_healthy)
+        pulumi.set(__self__, "desired_healthy", desired_healthy)
+        pulumi.set(__self__, "disruptions_allowed", disruptions_allowed)
+        pulumi.set(__self__, "expected_pods", expected_pods)
+        if disrupted_pods is not None:
+            pulumi.set(__self__, "disrupted_pods", disrupted_pods)
+        if observed_generation is not None:
+            pulumi.set(__self__, "observed_generation", observed_generation)
 
     @property
     @pulumi.getter(name="currentHealthy")
@@ -394,11 +408,11 @@ class PodDisruptionBudgetStatusArgs:
         """
         current number of healthy pods
         """
-        ...
+        return pulumi.get(self, "current_healthy")
 
     @current_healthy.setter
     def current_healthy(self, value: pulumi.Input[float]):
-        ...
+        pulumi.set(self, "current_healthy", value)
 
     @property
     @pulumi.getter(name="desiredHealthy")
@@ -406,11 +420,11 @@ class PodDisruptionBudgetStatusArgs:
         """
         minimum desired number of healthy pods
         """
-        ...
+        return pulumi.get(self, "desired_healthy")
 
     @desired_healthy.setter
     def desired_healthy(self, value: pulumi.Input[float]):
-        ...
+        pulumi.set(self, "desired_healthy", value)
 
     @property
     @pulumi.getter(name="disruptionsAllowed")
@@ -418,11 +432,11 @@ class PodDisruptionBudgetStatusArgs:
         """
         Number of pod disruptions that are currently allowed.
         """
-        ...
+        return pulumi.get(self, "disruptions_allowed")
 
     @disruptions_allowed.setter
     def disruptions_allowed(self, value: pulumi.Input[float]):
-        ...
+        pulumi.set(self, "disruptions_allowed", value)
 
     @property
     @pulumi.getter(name="expectedPods")
@@ -430,11 +444,11 @@ class PodDisruptionBudgetStatusArgs:
         """
         total number of pods counted by this disruption budget
         """
-        ...
+        return pulumi.get(self, "expected_pods")
 
     @expected_pods.setter
     def expected_pods(self, value: pulumi.Input[float]):
-        ...
+        pulumi.set(self, "expected_pods", value)
 
     @property
     @pulumi.getter(name="disruptedPods")
@@ -442,11 +456,11 @@ class PodDisruptionBudgetStatusArgs:
         """
         DisruptedPods contains information about pods whose eviction was processed by the API server eviction subresource handler but has not yet been observed by the PodDisruptionBudget controller. A pod will be in this map from the time when the API server processed the eviction request to the time when the pod is seen by PDB controller as having been marked for deletion (or after a timeout). The key in the map is the name of the pod and the value is the time when the API server processed the eviction request. If the deletion didn't occur and a pod is still there it will be removed from the list automatically by PodDisruptionBudget controller after some time. If everything goes smooth this map should be empty for the most of the time. Large number of entries in the map may indicate problems with pod deletions.
         """
-        ...
+        return pulumi.get(self, "disrupted_pods")
 
     @disrupted_pods.setter
     def disrupted_pods(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
-        ...
+        pulumi.set(self, "disrupted_pods", value)
 
     @property
     @pulumi.getter(name="observedGeneration")
@@ -454,11 +468,11 @@ class PodDisruptionBudgetStatusArgs:
         """
         Most recent generation observed when updating this PDB status. DisruptionsAllowed and other status information is valid only if observedGeneration equals to PDB's object generation.
         """
-        ...
+        return pulumi.get(self, "observed_generation")
 
     @observed_generation.setter
     def observed_generation(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "observed_generation", value)
 
 
 @pulumi.input_type
@@ -475,10 +489,14 @@ class PodSecurityPolicyArgs:
         :param pulumi.Input['_meta.v1.ObjectMetaArgs'] metadata: Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         :param pulumi.Input['PodSecurityPolicySpecArgs'] spec: spec defines the policy enforced.
         """
-        pulumi.set(__self__, "apiVersion", 'policy/v1beta1')
-        pulumi.set(__self__, "kind", 'PodSecurityPolicy')
-        pulumi.set(__self__, "metadata", metadata)
-        pulumi.set(__self__, "spec", spec)
+        if api_version is not None:
+            pulumi.set(__self__, "api_version", 'policy/v1beta1')
+        if kind is not None:
+            pulumi.set(__self__, "kind", 'PodSecurityPolicy')
+        if metadata is not None:
+            pulumi.set(__self__, "metadata", metadata)
+        if spec is not None:
+            pulumi.set(__self__, "spec", spec)
 
     @property
     @pulumi.getter(name="apiVersion")
@@ -486,11 +504,11 @@ class PodSecurityPolicyArgs:
         """
         APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
         """
-        ...
+        return pulumi.get(self, "api_version")
 
     @api_version.setter
     def api_version(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "api_version", value)
 
     @property
     @pulumi.getter
@@ -498,11 +516,11 @@ class PodSecurityPolicyArgs:
         """
         Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         """
-        ...
+        return pulumi.get(self, "kind")
 
     @kind.setter
     def kind(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "kind", value)
 
     @property
     @pulumi.getter
@@ -510,11 +528,11 @@ class PodSecurityPolicyArgs:
         """
         Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         """
-        ...
+        return pulumi.get(self, "metadata")
 
     @metadata.setter
     def metadata(self, value: Optional[pulumi.Input['_meta.v1.ObjectMetaArgs']]):
-        ...
+        pulumi.set(self, "metadata", value)
 
     @property
     @pulumi.getter
@@ -522,11 +540,11 @@ class PodSecurityPolicyArgs:
         """
         spec defines the policy enforced.
         """
-        ...
+        return pulumi.get(self, "spec")
 
     @spec.setter
     def spec(self, value: Optional[pulumi.Input['PodSecurityPolicySpecArgs']]):
-        ...
+        pulumi.set(self, "spec", value)
 
 
 @pulumi.input_type
@@ -587,30 +605,50 @@ class PodSecurityPolicySpecArgs:
         :param pulumi.Input['RuntimeClassStrategyOptionsArgs'] runtime_class: runtimeClass is the strategy that will dictate the allowable RuntimeClasses for a pod. If this field is omitted, the pod's runtimeClassName field is unrestricted. Enforcement of this field depends on the RuntimeClass feature gate being enabled.
         :param pulumi.Input[List[pulumi.Input[str]]] volumes: volumes is a white list of allowed volume plugins. Empty indicates that no volumes may be used. To allow all volumes you may use '*'.
         """
-        pulumi.set(__self__, "fsGroup", fs_group)
-        pulumi.set(__self__, "runAsUser", run_as_user)
-        pulumi.set(__self__, "seLinux", se_linux)
-        pulumi.set(__self__, "supplementalGroups", supplemental_groups)
-        pulumi.set(__self__, "allowPrivilegeEscalation", allow_privilege_escalation)
-        pulumi.set(__self__, "allowedCSIDrivers", allowed_csi_drivers)
-        pulumi.set(__self__, "allowedCapabilities", allowed_capabilities)
-        pulumi.set(__self__, "allowedFlexVolumes", allowed_flex_volumes)
-        pulumi.set(__self__, "allowedHostPaths", allowed_host_paths)
-        pulumi.set(__self__, "allowedProcMountTypes", allowed_proc_mount_types)
-        pulumi.set(__self__, "allowedUnsafeSysctls", allowed_unsafe_sysctls)
-        pulumi.set(__self__, "defaultAddCapabilities", default_add_capabilities)
-        pulumi.set(__self__, "defaultAllowPrivilegeEscalation", default_allow_privilege_escalation)
-        pulumi.set(__self__, "forbiddenSysctls", forbidden_sysctls)
-        pulumi.set(__self__, "hostIPC", host_ipc)
-        pulumi.set(__self__, "hostNetwork", host_network)
-        pulumi.set(__self__, "hostPID", host_pid)
-        pulumi.set(__self__, "hostPorts", host_ports)
-        pulumi.set(__self__, "privileged", privileged)
-        pulumi.set(__self__, "readOnlyRootFilesystem", read_only_root_filesystem)
-        pulumi.set(__self__, "requiredDropCapabilities", required_drop_capabilities)
-        pulumi.set(__self__, "runAsGroup", run_as_group)
-        pulumi.set(__self__, "runtimeClass", runtime_class)
-        pulumi.set(__self__, "volumes", volumes)
+        pulumi.set(__self__, "fs_group", fs_group)
+        pulumi.set(__self__, "run_as_user", run_as_user)
+        pulumi.set(__self__, "se_linux", se_linux)
+        pulumi.set(__self__, "supplemental_groups", supplemental_groups)
+        if allow_privilege_escalation is not None:
+            pulumi.set(__self__, "allow_privilege_escalation", allow_privilege_escalation)
+        if allowed_csi_drivers is not None:
+            pulumi.set(__self__, "allowed_csi_drivers", allowed_csi_drivers)
+        if allowed_capabilities is not None:
+            pulumi.set(__self__, "allowed_capabilities", allowed_capabilities)
+        if allowed_flex_volumes is not None:
+            pulumi.set(__self__, "allowed_flex_volumes", allowed_flex_volumes)
+        if allowed_host_paths is not None:
+            pulumi.set(__self__, "allowed_host_paths", allowed_host_paths)
+        if allowed_proc_mount_types is not None:
+            pulumi.set(__self__, "allowed_proc_mount_types", allowed_proc_mount_types)
+        if allowed_unsafe_sysctls is not None:
+            pulumi.set(__self__, "allowed_unsafe_sysctls", allowed_unsafe_sysctls)
+        if default_add_capabilities is not None:
+            pulumi.set(__self__, "default_add_capabilities", default_add_capabilities)
+        if default_allow_privilege_escalation is not None:
+            pulumi.set(__self__, "default_allow_privilege_escalation", default_allow_privilege_escalation)
+        if forbidden_sysctls is not None:
+            pulumi.set(__self__, "forbidden_sysctls", forbidden_sysctls)
+        if host_ipc is not None:
+            pulumi.set(__self__, "host_ipc", host_ipc)
+        if host_network is not None:
+            pulumi.set(__self__, "host_network", host_network)
+        if host_pid is not None:
+            pulumi.set(__self__, "host_pid", host_pid)
+        if host_ports is not None:
+            pulumi.set(__self__, "host_ports", host_ports)
+        if privileged is not None:
+            pulumi.set(__self__, "privileged", privileged)
+        if read_only_root_filesystem is not None:
+            pulumi.set(__self__, "read_only_root_filesystem", read_only_root_filesystem)
+        if required_drop_capabilities is not None:
+            pulumi.set(__self__, "required_drop_capabilities", required_drop_capabilities)
+        if run_as_group is not None:
+            pulumi.set(__self__, "run_as_group", run_as_group)
+        if runtime_class is not None:
+            pulumi.set(__self__, "runtime_class", runtime_class)
+        if volumes is not None:
+            pulumi.set(__self__, "volumes", volumes)
 
     @property
     @pulumi.getter(name="fsGroup")
@@ -618,11 +656,11 @@ class PodSecurityPolicySpecArgs:
         """
         fsGroup is the strategy that will dictate what fs group is used by the SecurityContext.
         """
-        ...
+        return pulumi.get(self, "fs_group")
 
     @fs_group.setter
     def fs_group(self, value: pulumi.Input['FSGroupStrategyOptionsArgs']):
-        ...
+        pulumi.set(self, "fs_group", value)
 
     @property
     @pulumi.getter(name="runAsUser")
@@ -630,11 +668,11 @@ class PodSecurityPolicySpecArgs:
         """
         runAsUser is the strategy that will dictate the allowable RunAsUser values that may be set.
         """
-        ...
+        return pulumi.get(self, "run_as_user")
 
     @run_as_user.setter
     def run_as_user(self, value: pulumi.Input['RunAsUserStrategyOptionsArgs']):
-        ...
+        pulumi.set(self, "run_as_user", value)
 
     @property
     @pulumi.getter(name="seLinux")
@@ -642,11 +680,11 @@ class PodSecurityPolicySpecArgs:
         """
         seLinux is the strategy that will dictate the allowable labels that may be set.
         """
-        ...
+        return pulumi.get(self, "se_linux")
 
     @se_linux.setter
     def se_linux(self, value: pulumi.Input['SELinuxStrategyOptionsArgs']):
-        ...
+        pulumi.set(self, "se_linux", value)
 
     @property
     @pulumi.getter(name="supplementalGroups")
@@ -654,11 +692,11 @@ class PodSecurityPolicySpecArgs:
         """
         supplementalGroups is the strategy that will dictate what supplemental groups are used by the SecurityContext.
         """
-        ...
+        return pulumi.get(self, "supplemental_groups")
 
     @supplemental_groups.setter
     def supplemental_groups(self, value: pulumi.Input['SupplementalGroupsStrategyOptionsArgs']):
-        ...
+        pulumi.set(self, "supplemental_groups", value)
 
     @property
     @pulumi.getter(name="allowPrivilegeEscalation")
@@ -666,11 +704,11 @@ class PodSecurityPolicySpecArgs:
         """
         allowPrivilegeEscalation determines if a pod can request to allow privilege escalation. If unspecified, defaults to true.
         """
-        ...
+        return pulumi.get(self, "allow_privilege_escalation")
 
     @allow_privilege_escalation.setter
     def allow_privilege_escalation(self, value: Optional[pulumi.Input[bool]]):
-        ...
+        pulumi.set(self, "allow_privilege_escalation", value)
 
     @property
     @pulumi.getter(name="allowedCSIDrivers")
@@ -678,11 +716,11 @@ class PodSecurityPolicySpecArgs:
         """
         AllowedCSIDrivers is a whitelist of inline CSI drivers that must be explicitly set to be embedded within a pod spec. An empty value indicates that any CSI driver can be used for inline ephemeral volumes. This is an alpha field, and is only honored if the API server enables the CSIInlineVolume feature gate.
         """
-        ...
+        return pulumi.get(self, "allowed_csi_drivers")
 
     @allowed_csi_drivers.setter
     def allowed_csi_drivers(self, value: Optional[pulumi.Input[List[pulumi.Input['AllowedCSIDriverArgs']]]]):
-        ...
+        pulumi.set(self, "allowed_csi_drivers", value)
 
     @property
     @pulumi.getter(name="allowedCapabilities")
@@ -690,11 +728,11 @@ class PodSecurityPolicySpecArgs:
         """
         allowedCapabilities is a list of capabilities that can be requested to add to the container. Capabilities in this field may be added at the pod author's discretion. You must not list a capability in both allowedCapabilities and requiredDropCapabilities.
         """
-        ...
+        return pulumi.get(self, "allowed_capabilities")
 
     @allowed_capabilities.setter
     def allowed_capabilities(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
-        ...
+        pulumi.set(self, "allowed_capabilities", value)
 
     @property
     @pulumi.getter(name="allowedFlexVolumes")
@@ -702,11 +740,11 @@ class PodSecurityPolicySpecArgs:
         """
         allowedFlexVolumes is a whitelist of allowed Flexvolumes.  Empty or nil indicates that all Flexvolumes may be used.  This parameter is effective only when the usage of the Flexvolumes is allowed in the "volumes" field.
         """
-        ...
+        return pulumi.get(self, "allowed_flex_volumes")
 
     @allowed_flex_volumes.setter
     def allowed_flex_volumes(self, value: Optional[pulumi.Input[List[pulumi.Input['AllowedFlexVolumeArgs']]]]):
-        ...
+        pulumi.set(self, "allowed_flex_volumes", value)
 
     @property
     @pulumi.getter(name="allowedHostPaths")
@@ -714,11 +752,11 @@ class PodSecurityPolicySpecArgs:
         """
         allowedHostPaths is a white list of allowed host paths. Empty indicates that all host paths may be used.
         """
-        ...
+        return pulumi.get(self, "allowed_host_paths")
 
     @allowed_host_paths.setter
     def allowed_host_paths(self, value: Optional[pulumi.Input[List[pulumi.Input['AllowedHostPathArgs']]]]):
-        ...
+        pulumi.set(self, "allowed_host_paths", value)
 
     @property
     @pulumi.getter(name="allowedProcMountTypes")
@@ -726,11 +764,11 @@ class PodSecurityPolicySpecArgs:
         """
         AllowedProcMountTypes is a whitelist of allowed ProcMountTypes. Empty or nil indicates that only the DefaultProcMountType may be used. This requires the ProcMountType feature flag to be enabled.
         """
-        ...
+        return pulumi.get(self, "allowed_proc_mount_types")
 
     @allowed_proc_mount_types.setter
     def allowed_proc_mount_types(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
-        ...
+        pulumi.set(self, "allowed_proc_mount_types", value)
 
     @property
     @pulumi.getter(name="allowedUnsafeSysctls")
@@ -740,11 +778,11 @@ class PodSecurityPolicySpecArgs:
 
         Examples: e.g. "foo/*" allows "foo/bar", "foo/baz", etc. e.g. "foo.*" allows "foo.bar", "foo.baz", etc.
         """
-        ...
+        return pulumi.get(self, "allowed_unsafe_sysctls")
 
     @allowed_unsafe_sysctls.setter
     def allowed_unsafe_sysctls(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
-        ...
+        pulumi.set(self, "allowed_unsafe_sysctls", value)
 
     @property
     @pulumi.getter(name="defaultAddCapabilities")
@@ -752,11 +790,11 @@ class PodSecurityPolicySpecArgs:
         """
         defaultAddCapabilities is the default set of capabilities that will be added to the container unless the pod spec specifically drops the capability.  You may not list a capability in both defaultAddCapabilities and requiredDropCapabilities. Capabilities added here are implicitly allowed, and need not be included in the allowedCapabilities list.
         """
-        ...
+        return pulumi.get(self, "default_add_capabilities")
 
     @default_add_capabilities.setter
     def default_add_capabilities(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
-        ...
+        pulumi.set(self, "default_add_capabilities", value)
 
     @property
     @pulumi.getter(name="defaultAllowPrivilegeEscalation")
@@ -764,11 +802,11 @@ class PodSecurityPolicySpecArgs:
         """
         defaultAllowPrivilegeEscalation controls the default setting for whether a process can gain more privileges than its parent process.
         """
-        ...
+        return pulumi.get(self, "default_allow_privilege_escalation")
 
     @default_allow_privilege_escalation.setter
     def default_allow_privilege_escalation(self, value: Optional[pulumi.Input[bool]]):
-        ...
+        pulumi.set(self, "default_allow_privilege_escalation", value)
 
     @property
     @pulumi.getter(name="forbiddenSysctls")
@@ -778,11 +816,11 @@ class PodSecurityPolicySpecArgs:
 
         Examples: e.g. "foo/*" forbids "foo/bar", "foo/baz", etc. e.g. "foo.*" forbids "foo.bar", "foo.baz", etc.
         """
-        ...
+        return pulumi.get(self, "forbidden_sysctls")
 
     @forbidden_sysctls.setter
     def forbidden_sysctls(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
-        ...
+        pulumi.set(self, "forbidden_sysctls", value)
 
     @property
     @pulumi.getter(name="hostIPC")
@@ -790,11 +828,11 @@ class PodSecurityPolicySpecArgs:
         """
         hostIPC determines if the policy allows the use of HostIPC in the pod spec.
         """
-        ...
+        return pulumi.get(self, "host_ipc")
 
     @host_ipc.setter
     def host_ipc(self, value: Optional[pulumi.Input[bool]]):
-        ...
+        pulumi.set(self, "host_ipc", value)
 
     @property
     @pulumi.getter(name="hostNetwork")
@@ -802,11 +840,11 @@ class PodSecurityPolicySpecArgs:
         """
         hostNetwork determines if the policy allows the use of HostNetwork in the pod spec.
         """
-        ...
+        return pulumi.get(self, "host_network")
 
     @host_network.setter
     def host_network(self, value: Optional[pulumi.Input[bool]]):
-        ...
+        pulumi.set(self, "host_network", value)
 
     @property
     @pulumi.getter(name="hostPID")
@@ -814,11 +852,11 @@ class PodSecurityPolicySpecArgs:
         """
         hostPID determines if the policy allows the use of HostPID in the pod spec.
         """
-        ...
+        return pulumi.get(self, "host_pid")
 
     @host_pid.setter
     def host_pid(self, value: Optional[pulumi.Input[bool]]):
-        ...
+        pulumi.set(self, "host_pid", value)
 
     @property
     @pulumi.getter(name="hostPorts")
@@ -826,11 +864,11 @@ class PodSecurityPolicySpecArgs:
         """
         hostPorts determines which host port ranges are allowed to be exposed.
         """
-        ...
+        return pulumi.get(self, "host_ports")
 
     @host_ports.setter
     def host_ports(self, value: Optional[pulumi.Input[List[pulumi.Input['HostPortRangeArgs']]]]):
-        ...
+        pulumi.set(self, "host_ports", value)
 
     @property
     @pulumi.getter
@@ -838,11 +876,11 @@ class PodSecurityPolicySpecArgs:
         """
         privileged determines if a pod can request to be run as privileged.
         """
-        ...
+        return pulumi.get(self, "privileged")
 
     @privileged.setter
     def privileged(self, value: Optional[pulumi.Input[bool]]):
-        ...
+        pulumi.set(self, "privileged", value)
 
     @property
     @pulumi.getter(name="readOnlyRootFilesystem")
@@ -850,11 +888,11 @@ class PodSecurityPolicySpecArgs:
         """
         readOnlyRootFilesystem when set to true will force containers to run with a read only root file system.  If the container specifically requests to run with a non-read only root file system the PSP should deny the pod. If set to false the container may run with a read only root file system if it wishes but it will not be forced to.
         """
-        ...
+        return pulumi.get(self, "read_only_root_filesystem")
 
     @read_only_root_filesystem.setter
     def read_only_root_filesystem(self, value: Optional[pulumi.Input[bool]]):
-        ...
+        pulumi.set(self, "read_only_root_filesystem", value)
 
     @property
     @pulumi.getter(name="requiredDropCapabilities")
@@ -862,11 +900,11 @@ class PodSecurityPolicySpecArgs:
         """
         requiredDropCapabilities are the capabilities that will be dropped from the container.  These are required to be dropped and cannot be added.
         """
-        ...
+        return pulumi.get(self, "required_drop_capabilities")
 
     @required_drop_capabilities.setter
     def required_drop_capabilities(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
-        ...
+        pulumi.set(self, "required_drop_capabilities", value)
 
     @property
     @pulumi.getter(name="runAsGroup")
@@ -874,11 +912,11 @@ class PodSecurityPolicySpecArgs:
         """
         RunAsGroup is the strategy that will dictate the allowable RunAsGroup values that may be set. If this field is omitted, the pod's RunAsGroup can take any value. This field requires the RunAsGroup feature gate to be enabled.
         """
-        ...
+        return pulumi.get(self, "run_as_group")
 
     @run_as_group.setter
     def run_as_group(self, value: Optional[pulumi.Input['RunAsGroupStrategyOptionsArgs']]):
-        ...
+        pulumi.set(self, "run_as_group", value)
 
     @property
     @pulumi.getter(name="runtimeClass")
@@ -886,11 +924,11 @@ class PodSecurityPolicySpecArgs:
         """
         runtimeClass is the strategy that will dictate the allowable RuntimeClasses for a pod. If this field is omitted, the pod's runtimeClassName field is unrestricted. Enforcement of this field depends on the RuntimeClass feature gate being enabled.
         """
-        ...
+        return pulumi.get(self, "runtime_class")
 
     @runtime_class.setter
     def runtime_class(self, value: Optional[pulumi.Input['RuntimeClassStrategyOptionsArgs']]):
-        ...
+        pulumi.set(self, "runtime_class", value)
 
     @property
     @pulumi.getter
@@ -898,11 +936,11 @@ class PodSecurityPolicySpecArgs:
         """
         volumes is a white list of allowed volume plugins. Empty indicates that no volumes may be used. To allow all volumes you may use '*'.
         """
-        ...
+        return pulumi.get(self, "volumes")
 
     @volumes.setter
     def volumes(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
-        ...
+        pulumi.set(self, "volumes", value)
 
 
 @pulumi.input_type
@@ -916,7 +954,8 @@ class RunAsGroupStrategyOptionsArgs:
         :param pulumi.Input[List[pulumi.Input['IDRangeArgs']]] ranges: ranges are the allowed ranges of gids that may be used. If you would like to force a single gid then supply a single range with the same start and end. Required for MustRunAs.
         """
         pulumi.set(__self__, "rule", rule)
-        pulumi.set(__self__, "ranges", ranges)
+        if ranges is not None:
+            pulumi.set(__self__, "ranges", ranges)
 
     @property
     @pulumi.getter
@@ -924,11 +963,11 @@ class RunAsGroupStrategyOptionsArgs:
         """
         rule is the strategy that will dictate the allowable RunAsGroup values that may be set.
         """
-        ...
+        return pulumi.get(self, "rule")
 
     @rule.setter
     def rule(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "rule", value)
 
     @property
     @pulumi.getter
@@ -936,11 +975,11 @@ class RunAsGroupStrategyOptionsArgs:
         """
         ranges are the allowed ranges of gids that may be used. If you would like to force a single gid then supply a single range with the same start and end. Required for MustRunAs.
         """
-        ...
+        return pulumi.get(self, "ranges")
 
     @ranges.setter
     def ranges(self, value: Optional[pulumi.Input[List[pulumi.Input['IDRangeArgs']]]]):
-        ...
+        pulumi.set(self, "ranges", value)
 
 
 @pulumi.input_type
@@ -954,7 +993,8 @@ class RunAsUserStrategyOptionsArgs:
         :param pulumi.Input[List[pulumi.Input['IDRangeArgs']]] ranges: ranges are the allowed ranges of uids that may be used. If you would like to force a single uid then supply a single range with the same start and end. Required for MustRunAs.
         """
         pulumi.set(__self__, "rule", rule)
-        pulumi.set(__self__, "ranges", ranges)
+        if ranges is not None:
+            pulumi.set(__self__, "ranges", ranges)
 
     @property
     @pulumi.getter
@@ -962,11 +1002,11 @@ class RunAsUserStrategyOptionsArgs:
         """
         rule is the strategy that will dictate the allowable RunAsUser values that may be set.
         """
-        ...
+        return pulumi.get(self, "rule")
 
     @rule.setter
     def rule(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "rule", value)
 
     @property
     @pulumi.getter
@@ -974,11 +1014,11 @@ class RunAsUserStrategyOptionsArgs:
         """
         ranges are the allowed ranges of uids that may be used. If you would like to force a single uid then supply a single range with the same start and end. Required for MustRunAs.
         """
-        ...
+        return pulumi.get(self, "ranges")
 
     @ranges.setter
     def ranges(self, value: Optional[pulumi.Input[List[pulumi.Input['IDRangeArgs']]]]):
-        ...
+        pulumi.set(self, "ranges", value)
 
 
 @pulumi.input_type
@@ -991,8 +1031,9 @@ class RuntimeClassStrategyOptionsArgs:
         :param pulumi.Input[List[pulumi.Input[str]]] allowed_runtime_class_names: allowedRuntimeClassNames is a whitelist of RuntimeClass names that may be specified on a pod. A value of "*" means that any RuntimeClass name is allowed, and must be the only item in the list. An empty list requires the RuntimeClassName field to be unset.
         :param pulumi.Input[str] default_runtime_class_name: defaultRuntimeClassName is the default RuntimeClassName to set on the pod. The default MUST be allowed by the allowedRuntimeClassNames list. A value of nil does not mutate the Pod.
         """
-        pulumi.set(__self__, "allowedRuntimeClassNames", allowed_runtime_class_names)
-        pulumi.set(__self__, "defaultRuntimeClassName", default_runtime_class_name)
+        pulumi.set(__self__, "allowed_runtime_class_names", allowed_runtime_class_names)
+        if default_runtime_class_name is not None:
+            pulumi.set(__self__, "default_runtime_class_name", default_runtime_class_name)
 
     @property
     @pulumi.getter(name="allowedRuntimeClassNames")
@@ -1000,11 +1041,11 @@ class RuntimeClassStrategyOptionsArgs:
         """
         allowedRuntimeClassNames is a whitelist of RuntimeClass names that may be specified on a pod. A value of "*" means that any RuntimeClass name is allowed, and must be the only item in the list. An empty list requires the RuntimeClassName field to be unset.
         """
-        ...
+        return pulumi.get(self, "allowed_runtime_class_names")
 
     @allowed_runtime_class_names.setter
     def allowed_runtime_class_names(self, value: pulumi.Input[List[pulumi.Input[str]]]):
-        ...
+        pulumi.set(self, "allowed_runtime_class_names", value)
 
     @property
     @pulumi.getter(name="defaultRuntimeClassName")
@@ -1012,11 +1053,11 @@ class RuntimeClassStrategyOptionsArgs:
         """
         defaultRuntimeClassName is the default RuntimeClassName to set on the pod. The default MUST be allowed by the allowedRuntimeClassNames list. A value of nil does not mutate the Pod.
         """
-        ...
+        return pulumi.get(self, "default_runtime_class_name")
 
     @default_runtime_class_name.setter
     def default_runtime_class_name(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "default_runtime_class_name", value)
 
 
 @pulumi.input_type
@@ -1030,7 +1071,8 @@ class SELinuxStrategyOptionsArgs:
         :param pulumi.Input['_core.v1.SELinuxOptionsArgs'] se_linux_options: seLinuxOptions required to run as; required for MustRunAs More info: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
         """
         pulumi.set(__self__, "rule", rule)
-        pulumi.set(__self__, "seLinuxOptions", se_linux_options)
+        if se_linux_options is not None:
+            pulumi.set(__self__, "se_linux_options", se_linux_options)
 
     @property
     @pulumi.getter
@@ -1038,11 +1080,11 @@ class SELinuxStrategyOptionsArgs:
         """
         rule is the strategy that will dictate the allowable labels that may be set.
         """
-        ...
+        return pulumi.get(self, "rule")
 
     @rule.setter
     def rule(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "rule", value)
 
     @property
     @pulumi.getter(name="seLinuxOptions")
@@ -1050,11 +1092,11 @@ class SELinuxStrategyOptionsArgs:
         """
         seLinuxOptions required to run as; required for MustRunAs More info: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
         """
-        ...
+        return pulumi.get(self, "se_linux_options")
 
     @se_linux_options.setter
     def se_linux_options(self, value: Optional[pulumi.Input['_core.v1.SELinuxOptionsArgs']]):
-        ...
+        pulumi.set(self, "se_linux_options", value)
 
 
 @pulumi.input_type
@@ -1067,8 +1109,10 @@ class SupplementalGroupsStrategyOptionsArgs:
         :param pulumi.Input[List[pulumi.Input['IDRangeArgs']]] ranges: ranges are the allowed ranges of supplemental groups.  If you would like to force a single supplemental group then supply a single range with the same start and end. Required for MustRunAs.
         :param pulumi.Input[str] rule: rule is the strategy that will dictate what supplemental groups is used in the SecurityContext.
         """
-        pulumi.set(__self__, "ranges", ranges)
-        pulumi.set(__self__, "rule", rule)
+        if ranges is not None:
+            pulumi.set(__self__, "ranges", ranges)
+        if rule is not None:
+            pulumi.set(__self__, "rule", rule)
 
     @property
     @pulumi.getter
@@ -1076,11 +1120,11 @@ class SupplementalGroupsStrategyOptionsArgs:
         """
         ranges are the allowed ranges of supplemental groups.  If you would like to force a single supplemental group then supply a single range with the same start and end. Required for MustRunAs.
         """
-        ...
+        return pulumi.get(self, "ranges")
 
     @ranges.setter
     def ranges(self, value: Optional[pulumi.Input[List[pulumi.Input['IDRangeArgs']]]]):
-        ...
+        pulumi.set(self, "ranges", value)
 
     @property
     @pulumi.getter
@@ -1088,10 +1132,10 @@ class SupplementalGroupsStrategyOptionsArgs:
         """
         rule is the strategy that will dictate what supplemental groups is used in the SecurityContext.
         """
-        ...
+        return pulumi.get(self, "rule")
 
     @rule.setter
     def rule(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "rule", value)
 
 

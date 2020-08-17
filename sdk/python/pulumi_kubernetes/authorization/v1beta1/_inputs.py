@@ -26,8 +26,10 @@ class NonResourceAttributesArgs:
         :param pulumi.Input[str] path: Path is the URL path of the request
         :param pulumi.Input[str] verb: Verb is the standard HTTP verb
         """
-        pulumi.set(__self__, "path", path)
-        pulumi.set(__self__, "verb", verb)
+        if path is not None:
+            pulumi.set(__self__, "path", path)
+        if verb is not None:
+            pulumi.set(__self__, "verb", verb)
 
     @property
     @pulumi.getter
@@ -35,11 +37,11 @@ class NonResourceAttributesArgs:
         """
         Path is the URL path of the request
         """
-        ...
+        return pulumi.get(self, "path")
 
     @path.setter
     def path(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "path", value)
 
     @property
     @pulumi.getter
@@ -47,11 +49,11 @@ class NonResourceAttributesArgs:
         """
         Verb is the standard HTTP verb
         """
-        ...
+        return pulumi.get(self, "verb")
 
     @verb.setter
     def verb(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "verb", value)
 
 
 @pulumi.input_type
@@ -74,13 +76,20 @@ class ResourceAttributesArgs:
         :param pulumi.Input[str] verb: Verb is a kubernetes resource API verb, like: get, list, watch, create, update, delete, proxy.  "*" means all.
         :param pulumi.Input[str] version: Version is the API Version of the Resource.  "*" means all.
         """
-        pulumi.set(__self__, "group", group)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "namespace", namespace)
-        pulumi.set(__self__, "resource", resource)
-        pulumi.set(__self__, "subresource", subresource)
-        pulumi.set(__self__, "verb", verb)
-        pulumi.set(__self__, "version", version)
+        if group is not None:
+            pulumi.set(__self__, "group", group)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
+        if resource is not None:
+            pulumi.set(__self__, "resource", resource)
+        if subresource is not None:
+            pulumi.set(__self__, "subresource", subresource)
+        if verb is not None:
+            pulumi.set(__self__, "verb", verb)
+        if version is not None:
+            pulumi.set(__self__, "version", version)
 
     @property
     @pulumi.getter
@@ -88,11 +97,11 @@ class ResourceAttributesArgs:
         """
         Group is the API Group of the Resource.  "*" means all.
         """
-        ...
+        return pulumi.get(self, "group")
 
     @group.setter
     def group(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "group", value)
 
     @property
     @pulumi.getter
@@ -100,11 +109,11 @@ class ResourceAttributesArgs:
         """
         Name is the name of the resource being requested for a "get" or deleted for a "delete". "" (empty) means all.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "name", value)
 
     @property
     @pulumi.getter
@@ -112,11 +121,11 @@ class ResourceAttributesArgs:
         """
         Namespace is the namespace of the action being requested.  Currently, there is no distinction between no namespace and all namespaces "" (empty) is defaulted for LocalSubjectAccessReviews "" (empty) is empty for cluster-scoped resources "" (empty) means "all" for namespace scoped resources from a SubjectAccessReview or SelfSubjectAccessReview
         """
-        ...
+        return pulumi.get(self, "namespace")
 
     @namespace.setter
     def namespace(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "namespace", value)
 
     @property
     @pulumi.getter
@@ -124,11 +133,11 @@ class ResourceAttributesArgs:
         """
         Resource is one of the existing resource types.  "*" means all.
         """
-        ...
+        return pulumi.get(self, "resource")
 
     @resource.setter
     def resource(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "resource", value)
 
     @property
     @pulumi.getter
@@ -136,11 +145,11 @@ class ResourceAttributesArgs:
         """
         Subresource is one of the existing resource types.  "" means none.
         """
-        ...
+        return pulumi.get(self, "subresource")
 
     @subresource.setter
     def subresource(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "subresource", value)
 
     @property
     @pulumi.getter
@@ -148,11 +157,11 @@ class ResourceAttributesArgs:
         """
         Verb is a kubernetes resource API verb, like: get, list, watch, create, update, delete, proxy.  "*" means all.
         """
-        ...
+        return pulumi.get(self, "verb")
 
     @verb.setter
     def verb(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "verb", value)
 
     @property
     @pulumi.getter
@@ -160,11 +169,11 @@ class ResourceAttributesArgs:
         """
         Version is the API Version of the Resource.  "*" means all.
         """
-        ...
+        return pulumi.get(self, "version")
 
     @version.setter
     def version(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "version", value)
 
 
 @pulumi.input_type
@@ -177,8 +186,10 @@ class SelfSubjectAccessReviewSpecArgs:
         :param pulumi.Input['NonResourceAttributesArgs'] non_resource_attributes: NonResourceAttributes describes information for a non-resource access request
         :param pulumi.Input['ResourceAttributesArgs'] resource_attributes: ResourceAuthorizationAttributes describes information for a resource access request
         """
-        pulumi.set(__self__, "nonResourceAttributes", non_resource_attributes)
-        pulumi.set(__self__, "resourceAttributes", resource_attributes)
+        if non_resource_attributes is not None:
+            pulumi.set(__self__, "non_resource_attributes", non_resource_attributes)
+        if resource_attributes is not None:
+            pulumi.set(__self__, "resource_attributes", resource_attributes)
 
     @property
     @pulumi.getter(name="nonResourceAttributes")
@@ -186,11 +197,11 @@ class SelfSubjectAccessReviewSpecArgs:
         """
         NonResourceAttributes describes information for a non-resource access request
         """
-        ...
+        return pulumi.get(self, "non_resource_attributes")
 
     @non_resource_attributes.setter
     def non_resource_attributes(self, value: Optional[pulumi.Input['NonResourceAttributesArgs']]):
-        ...
+        pulumi.set(self, "non_resource_attributes", value)
 
     @property
     @pulumi.getter(name="resourceAttributes")
@@ -198,11 +209,11 @@ class SelfSubjectAccessReviewSpecArgs:
         """
         ResourceAuthorizationAttributes describes information for a resource access request
         """
-        ...
+        return pulumi.get(self, "resource_attributes")
 
     @resource_attributes.setter
     def resource_attributes(self, value: Optional[pulumi.Input['ResourceAttributesArgs']]):
-        ...
+        pulumi.set(self, "resource_attributes", value)
 
 
 @pulumi.input_type
@@ -212,7 +223,8 @@ class SelfSubjectRulesReviewSpecArgs:
         """
         :param pulumi.Input[str] namespace: Namespace to evaluate rules for. Required.
         """
-        pulumi.set(__self__, "namespace", namespace)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
 
     @property
     @pulumi.getter
@@ -220,11 +232,11 @@ class SelfSubjectRulesReviewSpecArgs:
         """
         Namespace to evaluate rules for. Required.
         """
-        ...
+        return pulumi.get(self, "namespace")
 
     @namespace.setter
     def namespace(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "namespace", value)
 
 
 @pulumi.input_type
@@ -245,12 +257,18 @@ class SubjectAccessReviewSpecArgs:
         :param pulumi.Input[str] uid: UID information about the requesting user.
         :param pulumi.Input[str] user: User is the user you're testing for. If you specify "User" but not "Group", then is it interpreted as "What if User were not a member of any groups
         """
-        pulumi.set(__self__, "extra", extra)
-        pulumi.set(__self__, "group", group)
-        pulumi.set(__self__, "nonResourceAttributes", non_resource_attributes)
-        pulumi.set(__self__, "resourceAttributes", resource_attributes)
-        pulumi.set(__self__, "uid", uid)
-        pulumi.set(__self__, "user", user)
+        if extra is not None:
+            pulumi.set(__self__, "extra", extra)
+        if group is not None:
+            pulumi.set(__self__, "group", group)
+        if non_resource_attributes is not None:
+            pulumi.set(__self__, "non_resource_attributes", non_resource_attributes)
+        if resource_attributes is not None:
+            pulumi.set(__self__, "resource_attributes", resource_attributes)
+        if uid is not None:
+            pulumi.set(__self__, "uid", uid)
+        if user is not None:
+            pulumi.set(__self__, "user", user)
 
     @property
     @pulumi.getter
@@ -258,11 +276,11 @@ class SubjectAccessReviewSpecArgs:
         """
         Extra corresponds to the user.Info.GetExtra() method from the authenticator.  Since that is input to the authorizer it needs a reflection here.
         """
-        ...
+        return pulumi.get(self, "extra")
 
     @extra.setter
     def extra(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[List[pulumi.Input[str]]]]]]):
-        ...
+        pulumi.set(self, "extra", value)
 
     @property
     @pulumi.getter
@@ -270,11 +288,11 @@ class SubjectAccessReviewSpecArgs:
         """
         Groups is the groups you're testing for.
         """
-        ...
+        return pulumi.get(self, "group")
 
     @group.setter
     def group(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
-        ...
+        pulumi.set(self, "group", value)
 
     @property
     @pulumi.getter(name="nonResourceAttributes")
@@ -282,11 +300,11 @@ class SubjectAccessReviewSpecArgs:
         """
         NonResourceAttributes describes information for a non-resource access request
         """
-        ...
+        return pulumi.get(self, "non_resource_attributes")
 
     @non_resource_attributes.setter
     def non_resource_attributes(self, value: Optional[pulumi.Input['NonResourceAttributesArgs']]):
-        ...
+        pulumi.set(self, "non_resource_attributes", value)
 
     @property
     @pulumi.getter(name="resourceAttributes")
@@ -294,11 +312,11 @@ class SubjectAccessReviewSpecArgs:
         """
         ResourceAuthorizationAttributes describes information for a resource access request
         """
-        ...
+        return pulumi.get(self, "resource_attributes")
 
     @resource_attributes.setter
     def resource_attributes(self, value: Optional[pulumi.Input['ResourceAttributesArgs']]):
-        ...
+        pulumi.set(self, "resource_attributes", value)
 
     @property
     @pulumi.getter
@@ -306,11 +324,11 @@ class SubjectAccessReviewSpecArgs:
         """
         UID information about the requesting user.
         """
-        ...
+        return pulumi.get(self, "uid")
 
     @uid.setter
     def uid(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "uid", value)
 
     @property
     @pulumi.getter
@@ -318,10 +336,10 @@ class SubjectAccessReviewSpecArgs:
         """
         User is the user you're testing for. If you specify "User" but not "Group", then is it interpreted as "What if User were not a member of any groups
         """
-        ...
+        return pulumi.get(self, "user")
 
     @user.setter
     def user(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "user", value)
 
 
