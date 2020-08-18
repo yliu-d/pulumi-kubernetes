@@ -53,7 +53,7 @@ class APIService(dict):
         """
         APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
         """
-        ...
+        return pulumi.get(self, "api_version")
 
     @property
     @pulumi.getter
@@ -61,12 +61,12 @@ class APIService(dict):
         """
         Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         """
-        ...
+        return pulumi.get(self, "kind")
 
     @property
     @pulumi.getter
     def metadata(self) -> Optional['_meta.v1.outputs.ObjectMeta']:
-        ...
+        return pulumi.get(self, "metadata")
 
     @property
     @pulumi.getter
@@ -74,7 +74,7 @@ class APIService(dict):
         """
         Spec contains information for locating and communicating with a server
         """
-        ...
+        return pulumi.get(self, "spec")
 
     @property
     @pulumi.getter
@@ -82,7 +82,7 @@ class APIService(dict):
         """
         Status contains derived information about an API server
         """
-        ...
+        return pulumi.get(self, "status")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -122,7 +122,7 @@ class APIServiceCondition(dict):
         """
         Status is the status of the condition. Can be True, False, Unknown.
         """
-        ...
+        return pulumi.get(self, "status")
 
     @property
     @pulumi.getter
@@ -130,7 +130,7 @@ class APIServiceCondition(dict):
         """
         Type is the type of the condition.
         """
-        ...
+        return pulumi.get(self, "type")
 
     @property
     @pulumi.getter(name="lastTransitionTime")
@@ -138,7 +138,7 @@ class APIServiceCondition(dict):
         """
         Last time the condition transitioned from one status to another.
         """
-        ...
+        return pulumi.get(self, "last_transition_time")
 
     @property
     @pulumi.getter
@@ -146,7 +146,7 @@ class APIServiceCondition(dict):
         """
         Human-readable message indicating details about last transition.
         """
-        ...
+        return pulumi.get(self, "message")
 
     @property
     @pulumi.getter
@@ -154,7 +154,7 @@ class APIServiceCondition(dict):
         """
         Unique, one-word, CamelCase reason for the condition's last transition.
         """
-        ...
+        return pulumi.get(self, "reason")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -202,7 +202,7 @@ class APIServiceSpec(dict):
         """
         GroupPriorityMininum is the priority this group should have at least. Higher priority means that the group is preferred by clients over lower priority ones. Note that other versions of this group might specify even higher GroupPriorityMininum values such that the whole group gets a higher priority. The primary sort is based on GroupPriorityMinimum, ordered highest number to lowest (20 before 10). The secondary sort is based on the alphabetical comparison of the name of the object.  (v1.bar before v1.foo) We'd recommend something like: *.k8s.io (except extensions) at 18000 and PaaSes (OpenShift, Deis) are recommended to be in the 2000s
         """
-        ...
+        return pulumi.get(self, "group_priority_minimum")
 
     @property
     @pulumi.getter(name="versionPriority")
@@ -210,7 +210,7 @@ class APIServiceSpec(dict):
         """
         VersionPriority controls the ordering of this API version inside of its group.  Must be greater than zero. The primary sort is based on VersionPriority, ordered highest to lowest (20 before 10). Since it's inside of a group, the number can be small, probably in the 10s. In case of equal version priorities, the version string will be used to compute the order inside a group. If the version string is "kube-like", it will sort above non "kube-like" version strings, which are ordered lexicographically. "Kube-like" versions start with a "v", then are followed by a number (the major version), then optionally the string "alpha" or "beta" and another number (the minor version). These are sorted first by GA > beta > alpha (where GA is a version with no suffix such as beta or alpha), and then by comparing major version, then minor version. An example sorted list of versions: v10, v2, v1, v11beta2, v10beta3, v3beta1, v12alpha1, v11alpha2, foo1, foo10.
         """
-        ...
+        return pulumi.get(self, "version_priority")
 
     @property
     @pulumi.getter(name="caBundle")
@@ -218,7 +218,7 @@ class APIServiceSpec(dict):
         """
         CABundle is a PEM encoded CA bundle which will be used to validate an API server's serving certificate. If unspecified, system trust roots on the apiserver are used.
         """
-        ...
+        return pulumi.get(self, "ca_bundle")
 
     @property
     @pulumi.getter
@@ -226,7 +226,7 @@ class APIServiceSpec(dict):
         """
         Group is the API group name this server hosts
         """
-        ...
+        return pulumi.get(self, "group")
 
     @property
     @pulumi.getter(name="insecureSkipTLSVerify")
@@ -234,7 +234,7 @@ class APIServiceSpec(dict):
         """
         InsecureSkipTLSVerify disables TLS certificate verification when communicating with this server. This is strongly discouraged.  You should use the CABundle instead.
         """
-        ...
+        return pulumi.get(self, "insecure_skip_tls_verify")
 
     @property
     @pulumi.getter
@@ -242,7 +242,7 @@ class APIServiceSpec(dict):
         """
         Service is a reference to the service for this API server.  It must communicate on port 443 If the Service is nil, that means the handling for the API groupversion is handled locally on this server. The call will simply delegate to the normal handler chain to be fulfilled.
         """
-        ...
+        return pulumi.get(self, "service")
 
     @property
     @pulumi.getter
@@ -250,7 +250,7 @@ class APIServiceSpec(dict):
         """
         Version is the API version this server hosts.  For example, "v1"
         """
-        ...
+        return pulumi.get(self, "version")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -276,7 +276,7 @@ class APIServiceStatus(dict):
         """
         Current service state of apiService.
         """
-        ...
+        return pulumi.get(self, "conditions")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -310,7 +310,7 @@ class ServiceReference(dict):
         """
         Name is the name of the service
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -318,7 +318,7 @@ class ServiceReference(dict):
         """
         Namespace is the namespace of the service
         """
-        ...
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter
@@ -326,7 +326,7 @@ class ServiceReference(dict):
         """
         If specified, the port on the service that hosting webhook. Default to 443 for backward compatibility. `port` should be a valid port number (1-65535, inclusive).
         """
-        ...
+        return pulumi.get(self, "port")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -57,7 +57,7 @@ class CSIDriver(dict):
         """
         Specification of the CSI Driver.
         """
-        ...
+        return pulumi.get(self, "spec")
 
     @property
     @pulumi.getter(name="apiVersion")
@@ -65,7 +65,7 @@ class CSIDriver(dict):
         """
         APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
         """
-        ...
+        return pulumi.get(self, "api_version")
 
     @property
     @pulumi.getter
@@ -73,7 +73,7 @@ class CSIDriver(dict):
         """
         Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         """
-        ...
+        return pulumi.get(self, "kind")
 
     @property
     @pulumi.getter
@@ -81,7 +81,7 @@ class CSIDriver(dict):
         """
         Standard object metadata. metadata.Name indicates the name of the CSI driver that this object refers to; it MUST be the same name returned by the CSI GetPluginName() call for that driver. The driver name must be 63 characters or less, beginning and ending with an alphanumeric character ([a-z0-9A-Z]) with dashes (-), dots (.), and alphanumerics between. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         """
-        ...
+        return pulumi.get(self, "metadata")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -118,7 +118,7 @@ class CSIDriverSpec(dict):
         """
         attachRequired indicates this CSI volume driver requires an attach operation (because it implements the CSI ControllerPublishVolume() method), and that the Kubernetes attach detach controller should call the attach volume interface which checks the volumeattachment status and waits until the volume is attached before proceeding to mounting. The CSI external-attacher coordinates with CSI volume driver and updates the volumeattachment status when the attach operation is complete. If the CSIDriverRegistry feature gate is enabled and the value is specified to false, the attach operation will be skipped. Otherwise the attach operation will be called.
         """
-        ...
+        return pulumi.get(self, "attach_required")
 
     @property
     @pulumi.getter(name="podInfoOnMount")
@@ -129,7 +129,7 @@ class CSIDriverSpec(dict):
 
         "csi.storage.k8s.io/ephemeral" is a new feature in Kubernetes 1.16. It is only required for drivers which support both the "Persistent" and "Ephemeral" VolumeLifecycleMode. Other drivers can leave pod info disabled and/or ignore this field. As Kubernetes 1.15 doesn't support this field, drivers can only support one mode when deployed on such a cluster and the deployment determines which mode that is, for example via a command line parameter of the driver.
         """
-        ...
+        return pulumi.get(self, "pod_info_on_mount")
 
     @property
     @pulumi.getter(name="volumeLifecycleModes")
@@ -137,7 +137,7 @@ class CSIDriverSpec(dict):
         """
         volumeLifecycleModes defines what kind of volumes this CSI volume driver supports. The default if the list is empty is "Persistent", which is the usage defined by the CSI specification and implemented in Kubernetes via the usual PV/PVC mechanism. The other mode is "Ephemeral". In this mode, volumes are defined inline inside the pod spec with CSIVolumeSource and their lifecycle is tied to the lifecycle of that pod. A driver has to be aware of this because it is only going to get a NodePublishVolume call for such a volume. For more information about implementing this mode, see https://kubernetes-csi.github.io/docs/ephemeral-local-volumes.html A driver can support one or more of these modes and more modes may be added in the future. This field is beta.
         """
-        ...
+        return pulumi.get(self, "volume_lifecycle_modes")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -174,7 +174,7 @@ class CSINode(dict):
         """
         spec is the specification of CSINode
         """
-        ...
+        return pulumi.get(self, "spec")
 
     @property
     @pulumi.getter(name="apiVersion")
@@ -182,7 +182,7 @@ class CSINode(dict):
         """
         APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
         """
-        ...
+        return pulumi.get(self, "api_version")
 
     @property
     @pulumi.getter
@@ -190,7 +190,7 @@ class CSINode(dict):
         """
         Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         """
-        ...
+        return pulumi.get(self, "kind")
 
     @property
     @pulumi.getter
@@ -198,7 +198,7 @@ class CSINode(dict):
         """
         metadata.name must be the Kubernetes node name.
         """
-        ...
+        return pulumi.get(self, "metadata")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -234,7 +234,7 @@ class CSINodeDriver(dict):
         """
         This is the name of the CSI driver that this object refers to. This MUST be the same name returned by the CSI GetPluginName() call for that driver.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="nodeID")
@@ -242,7 +242,7 @@ class CSINodeDriver(dict):
         """
         nodeID of the node from the driver point of view. This field enables Kubernetes to communicate with storage systems that do not share the same nomenclature for nodes. For example, Kubernetes may refer to a given node as "node1", but the storage system may refer to the same node as "nodeA". When Kubernetes issues a command to the storage system to attach a volume to a specific node, it can use this field to refer to the node name using the ID that the storage system will understand, e.g. "nodeA" instead of "node1". This field is required.
         """
-        ...
+        return pulumi.get(self, "node_id")
 
     @property
     @pulumi.getter
@@ -250,7 +250,7 @@ class CSINodeDriver(dict):
         """
         allocatable represents the volume resources of a node that are available for scheduling. This field is beta.
         """
-        ...
+        return pulumi.get(self, "allocatable")
 
     @property
     @pulumi.getter(name="topologyKeys")
@@ -258,7 +258,7 @@ class CSINodeDriver(dict):
         """
         topologyKeys is the list of keys supported by the driver. When a driver is initialized on a cluster, it provides a set of topology keys that it understands (e.g. "company.com/zone", "company.com/region"). When a driver is initialized on a node, it provides the same topology keys along with values. Kubelet will expose these topology keys as labels on its own node object. When Kubernetes does topology aware provisioning, it can use this list to determine which labels it should retrieve from the node object and pass back to the driver. It is possible for different nodes to use different topology keys. This can be empty if driver does not support topology.
         """
-        ...
+        return pulumi.get(self, "topology_keys")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -283,7 +283,7 @@ class CSINodeSpec(dict):
         """
         drivers is a list of information of all CSI Drivers existing on a node. If all drivers in the list are uninstalled, this can become empty.
         """
-        ...
+        return pulumi.get(self, "drivers")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -348,7 +348,7 @@ class StorageClass(dict):
         """
         Provisioner indicates the type of the provisioner.
         """
-        ...
+        return pulumi.get(self, "provisioner")
 
     @property
     @pulumi.getter(name="allowVolumeExpansion")
@@ -356,7 +356,7 @@ class StorageClass(dict):
         """
         AllowVolumeExpansion shows whether the storage class allow volume expand
         """
-        ...
+        return pulumi.get(self, "allow_volume_expansion")
 
     @property
     @pulumi.getter(name="allowedTopologies")
@@ -364,7 +364,7 @@ class StorageClass(dict):
         """
         Restrict the node topologies where volumes can be dynamically provisioned. Each volume plugin defines its own supported topology specifications. An empty TopologySelectorTerm list means there is no topology restriction. This field is only honored by servers that enable the VolumeScheduling feature.
         """
-        ...
+        return pulumi.get(self, "allowed_topologies")
 
     @property
     @pulumi.getter(name="apiVersion")
@@ -372,7 +372,7 @@ class StorageClass(dict):
         """
         APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
         """
-        ...
+        return pulumi.get(self, "api_version")
 
     @property
     @pulumi.getter
@@ -380,7 +380,7 @@ class StorageClass(dict):
         """
         Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         """
-        ...
+        return pulumi.get(self, "kind")
 
     @property
     @pulumi.getter
@@ -388,7 +388,7 @@ class StorageClass(dict):
         """
         Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         """
-        ...
+        return pulumi.get(self, "metadata")
 
     @property
     @pulumi.getter(name="mountOptions")
@@ -396,7 +396,7 @@ class StorageClass(dict):
         """
         Dynamically provisioned PersistentVolumes of this storage class are created with these mountOptions, e.g. ["ro", "soft"]. Not validated - mount of the PVs will simply fail if one is invalid.
         """
-        ...
+        return pulumi.get(self, "mount_options")
 
     @property
     @pulumi.getter
@@ -404,7 +404,7 @@ class StorageClass(dict):
         """
         Parameters holds the parameters for the provisioner that should create volumes of this storage class.
         """
-        ...
+        return pulumi.get(self, "parameters")
 
     @property
     @pulumi.getter(name="reclaimPolicy")
@@ -412,7 +412,7 @@ class StorageClass(dict):
         """
         Dynamically provisioned PersistentVolumes of this storage class are created with this reclaimPolicy. Defaults to Delete.
         """
-        ...
+        return pulumi.get(self, "reclaim_policy")
 
     @property
     @pulumi.getter(name="volumeBindingMode")
@@ -420,7 +420,7 @@ class StorageClass(dict):
         """
         VolumeBindingMode indicates how PersistentVolumeClaims should be provisioned and bound.  When unset, VolumeBindingImmediate is used. This field is only honored by servers that enable the VolumeScheduling feature.
         """
-        ...
+        return pulumi.get(self, "volume_binding_mode")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -465,7 +465,7 @@ class VolumeAttachment(dict):
         """
         Specification of the desired attach/detach volume behavior. Populated by the Kubernetes system.
         """
-        ...
+        return pulumi.get(self, "spec")
 
     @property
     @pulumi.getter(name="apiVersion")
@@ -473,7 +473,7 @@ class VolumeAttachment(dict):
         """
         APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
         """
-        ...
+        return pulumi.get(self, "api_version")
 
     @property
     @pulumi.getter
@@ -481,7 +481,7 @@ class VolumeAttachment(dict):
         """
         Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         """
-        ...
+        return pulumi.get(self, "kind")
 
     @property
     @pulumi.getter
@@ -489,7 +489,7 @@ class VolumeAttachment(dict):
         """
         Standard object metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         """
-        ...
+        return pulumi.get(self, "metadata")
 
     @property
     @pulumi.getter
@@ -497,7 +497,7 @@ class VolumeAttachment(dict):
         """
         Status of the VolumeAttachment request. Populated by the entity completing the attach or detach operation, i.e. the external-attacher.
         """
-        ...
+        return pulumi.get(self, "status")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -527,7 +527,7 @@ class VolumeAttachmentSource(dict):
         """
         inlineVolumeSpec contains all the information necessary to attach a persistent volume defined by a pod's inline VolumeSource. This field is populated only for the CSIMigration feature. It contains translated fields from a pod's inline VolumeSource to a PersistentVolumeSpec. This field is alpha-level and is only honored by servers that enabled the CSIMigration feature.
         """
-        ...
+        return pulumi.get(self, "inline_volume_spec")
 
     @property
     @pulumi.getter(name="persistentVolumeName")
@@ -535,7 +535,7 @@ class VolumeAttachmentSource(dict):
         """
         Name of the persistent volume to attach.
         """
-        ...
+        return pulumi.get(self, "persistent_volume_name")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -566,7 +566,7 @@ class VolumeAttachmentSpec(dict):
         """
         Attacher indicates the name of the volume driver that MUST handle this request. This is the name returned by GetPluginName().
         """
-        ...
+        return pulumi.get(self, "attacher")
 
     @property
     @pulumi.getter(name="nodeName")
@@ -574,7 +574,7 @@ class VolumeAttachmentSpec(dict):
         """
         The node that the volume should be attached to.
         """
-        ...
+        return pulumi.get(self, "node_name")
 
     @property
     @pulumi.getter
@@ -582,7 +582,7 @@ class VolumeAttachmentSpec(dict):
         """
         Source represents the volume that should be attached.
         """
-        ...
+        return pulumi.get(self, "source")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -619,7 +619,7 @@ class VolumeAttachmentStatus(dict):
         """
         Indicates the volume is successfully attached. This field must only be set by the entity completing the attach operation, i.e. the external-attacher.
         """
-        ...
+        return pulumi.get(self, "attached")
 
     @property
     @pulumi.getter(name="attachError")
@@ -627,7 +627,7 @@ class VolumeAttachmentStatus(dict):
         """
         The last error encountered during attach operation, if any. This field must only be set by the entity completing the attach operation, i.e. the external-attacher.
         """
-        ...
+        return pulumi.get(self, "attach_error")
 
     @property
     @pulumi.getter(name="attachmentMetadata")
@@ -635,7 +635,7 @@ class VolumeAttachmentStatus(dict):
         """
         Upon successful attach, this field is populated with any information returned by the attach operation that must be passed into subsequent WaitForAttach or Mount calls. This field must only be set by the entity completing the attach operation, i.e. the external-attacher.
         """
-        ...
+        return pulumi.get(self, "attachment_metadata")
 
     @property
     @pulumi.getter(name="detachError")
@@ -643,7 +643,7 @@ class VolumeAttachmentStatus(dict):
         """
         The last error encountered during detach operation, if any. This field must only be set by the entity completing the detach operation, i.e. the external-attacher.
         """
-        ...
+        return pulumi.get(self, "detach_error")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -673,7 +673,7 @@ class VolumeError(dict):
         """
         String detailing the error encountered during Attach or Detach operation. This string may be logged, so it should not contain sensitive information.
         """
-        ...
+        return pulumi.get(self, "message")
 
     @property
     @pulumi.getter
@@ -681,7 +681,7 @@ class VolumeError(dict):
         """
         Time the error was encountered.
         """
-        ...
+        return pulumi.get(self, "time")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -707,7 +707,7 @@ class VolumeNodeResources(dict):
         """
         Maximum number of unique volumes managed by the CSI driver that can be used on a node. A volume that is both attached and mounted on a node is considered to be used once, not twice. The same rule applies for a unique volume that is shared among multiple pods on the same node. If this field is not specified, then the supported number of volumes on this node is unbounded.
         """
-        ...
+        return pulumi.get(self, "count")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

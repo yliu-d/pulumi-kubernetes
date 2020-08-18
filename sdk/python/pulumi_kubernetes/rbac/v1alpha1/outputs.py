@@ -41,7 +41,7 @@ class AggregationRule(dict):
         """
         ClusterRoleSelectors holds a list of selectors which will be used to find ClusterRoles and create the rules. If any of the selectors match, then the ClusterRole's permissions will be added
         """
-        ...
+        return pulumi.get(self, "cluster_role_selectors")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -83,7 +83,7 @@ class ClusterRole(dict):
         """
         AggregationRule is an optional field that describes how to build the Rules for this ClusterRole. If AggregationRule is set, then the Rules are controller managed and direct changes to Rules will be stomped by the controller.
         """
-        ...
+        return pulumi.get(self, "aggregation_rule")
 
     @property
     @pulumi.getter(name="apiVersion")
@@ -91,7 +91,7 @@ class ClusterRole(dict):
         """
         APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
         """
-        ...
+        return pulumi.get(self, "api_version")
 
     @property
     @pulumi.getter
@@ -99,7 +99,7 @@ class ClusterRole(dict):
         """
         Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         """
-        ...
+        return pulumi.get(self, "kind")
 
     @property
     @pulumi.getter
@@ -107,7 +107,7 @@ class ClusterRole(dict):
         """
         Standard object's metadata.
         """
-        ...
+        return pulumi.get(self, "metadata")
 
     @property
     @pulumi.getter
@@ -115,7 +115,7 @@ class ClusterRole(dict):
         """
         Rules holds all the PolicyRules for this ClusterRole
         """
-        ...
+        return pulumi.get(self, "rules")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -156,7 +156,7 @@ class ClusterRoleBinding(dict):
         """
         RoleRef can only reference a ClusterRole in the global namespace. If the RoleRef cannot be resolved, the Authorizer must return an error.
         """
-        ...
+        return pulumi.get(self, "role_ref")
 
     @property
     @pulumi.getter(name="apiVersion")
@@ -164,7 +164,7 @@ class ClusterRoleBinding(dict):
         """
         APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
         """
-        ...
+        return pulumi.get(self, "api_version")
 
     @property
     @pulumi.getter
@@ -172,7 +172,7 @@ class ClusterRoleBinding(dict):
         """
         Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         """
-        ...
+        return pulumi.get(self, "kind")
 
     @property
     @pulumi.getter
@@ -180,7 +180,7 @@ class ClusterRoleBinding(dict):
         """
         Standard object's metadata.
         """
-        ...
+        return pulumi.get(self, "metadata")
 
     @property
     @pulumi.getter
@@ -188,7 +188,7 @@ class ClusterRoleBinding(dict):
         """
         Subjects holds references to the objects the role applies to.
         """
-        ...
+        return pulumi.get(self, "subjects")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -229,7 +229,7 @@ class PolicyRule(dict):
         """
         Verbs is a list of Verbs that apply to ALL the ResourceKinds and AttributeRestrictions contained in this rule.  VerbAll represents all kinds.
         """
-        ...
+        return pulumi.get(self, "verbs")
 
     @property
     @pulumi.getter(name="apiGroups")
@@ -237,7 +237,7 @@ class PolicyRule(dict):
         """
         APIGroups is the name of the APIGroup that contains the resources.  If multiple API groups are specified, any action requested against one of the enumerated resources in any API group will be allowed.
         """
-        ...
+        return pulumi.get(self, "api_groups")
 
     @property
     @pulumi.getter(name="nonResourceURLs")
@@ -245,7 +245,7 @@ class PolicyRule(dict):
         """
         NonResourceURLs is a set of partial urls that a user should have access to.  *s are allowed, but only as the full, final step in the path Since non-resource URLs are not namespaced, this field is only applicable for ClusterRoles referenced from a ClusterRoleBinding. Rules can either apply to API resources (such as "pods" or "secrets") or non-resource URL paths (such as "/api"),  but not both.
         """
-        ...
+        return pulumi.get(self, "non_resource_urls")
 
     @property
     @pulumi.getter(name="resourceNames")
@@ -253,7 +253,7 @@ class PolicyRule(dict):
         """
         ResourceNames is an optional white list of names that the rule applies to.  An empty set means that everything is allowed.
         """
-        ...
+        return pulumi.get(self, "resource_names")
 
     @property
     @pulumi.getter
@@ -261,7 +261,7 @@ class PolicyRule(dict):
         """
         Resources is a list of resources this rule applies to.  ResourceAll represents all resources.
         """
-        ...
+        return pulumi.get(self, "resources")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -299,7 +299,7 @@ class Role(dict):
         """
         APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
         """
-        ...
+        return pulumi.get(self, "api_version")
 
     @property
     @pulumi.getter
@@ -307,7 +307,7 @@ class Role(dict):
         """
         Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         """
-        ...
+        return pulumi.get(self, "kind")
 
     @property
     @pulumi.getter
@@ -315,7 +315,7 @@ class Role(dict):
         """
         Standard object's metadata.
         """
-        ...
+        return pulumi.get(self, "metadata")
 
     @property
     @pulumi.getter
@@ -323,7 +323,7 @@ class Role(dict):
         """
         Rules holds all the PolicyRules for this Role
         """
-        ...
+        return pulumi.get(self, "rules")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -364,7 +364,7 @@ class RoleBinding(dict):
         """
         RoleRef can reference a Role in the current namespace or a ClusterRole in the global namespace. If the RoleRef cannot be resolved, the Authorizer must return an error.
         """
-        ...
+        return pulumi.get(self, "role_ref")
 
     @property
     @pulumi.getter(name="apiVersion")
@@ -372,7 +372,7 @@ class RoleBinding(dict):
         """
         APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
         """
-        ...
+        return pulumi.get(self, "api_version")
 
     @property
     @pulumi.getter
@@ -380,7 +380,7 @@ class RoleBinding(dict):
         """
         Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         """
-        ...
+        return pulumi.get(self, "kind")
 
     @property
     @pulumi.getter
@@ -388,7 +388,7 @@ class RoleBinding(dict):
         """
         Standard object's metadata.
         """
-        ...
+        return pulumi.get(self, "metadata")
 
     @property
     @pulumi.getter
@@ -396,7 +396,7 @@ class RoleBinding(dict):
         """
         Subjects holds references to the objects the role applies to.
         """
-        ...
+        return pulumi.get(self, "subjects")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -427,7 +427,7 @@ class RoleRef(dict):
         """
         APIGroup is the group for the resource being referenced
         """
-        ...
+        return pulumi.get(self, "api_group")
 
     @property
     @pulumi.getter
@@ -435,7 +435,7 @@ class RoleRef(dict):
         """
         Kind is the type of resource being referenced
         """
-        ...
+        return pulumi.get(self, "kind")
 
     @property
     @pulumi.getter
@@ -443,7 +443,7 @@ class RoleRef(dict):
         """
         Name is the name of resource being referenced
         """
-        ...
+        return pulumi.get(self, "name")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -479,7 +479,7 @@ class Subject(dict):
         """
         Kind of object being referenced. Values defined by this API group are "User", "Group", and "ServiceAccount". If the Authorizer does not recognized the kind value, the Authorizer should report an error.
         """
-        ...
+        return pulumi.get(self, "kind")
 
     @property
     @pulumi.getter
@@ -487,7 +487,7 @@ class Subject(dict):
         """
         Name of the object being referenced.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="apiVersion")
@@ -495,7 +495,7 @@ class Subject(dict):
         """
         APIVersion holds the API group and version of the referenced subject. Defaults to "v1" for ServiceAccount subjects. Defaults to "rbac.authorization.k8s.io/v1alpha1" for User and Group subjects.
         """
-        ...
+        return pulumi.get(self, "api_version")
 
     @property
     @pulumi.getter
@@ -503,7 +503,7 @@ class Subject(dict):
         """
         Namespace of the referenced object.  If the object kind is non-namespace, such as "User" or "Group", and this value is not empty the Authorizer should report an error.
         """
-        ...
+        return pulumi.get(self, "namespace")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

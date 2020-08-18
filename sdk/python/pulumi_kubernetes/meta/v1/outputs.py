@@ -44,7 +44,7 @@ class LabelSelector(dict):
         """
         matchExpressions is a list of label selector requirements. The requirements are ANDed.
         """
-        ...
+        return pulumi.get(self, "match_expressions")
 
     @property
     @pulumi.getter(name="matchLabels")
@@ -52,7 +52,7 @@ class LabelSelector(dict):
         """
         matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed.
         """
-        ...
+        return pulumi.get(self, "match_labels")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -84,7 +84,7 @@ class LabelSelectorRequirement(dict):
         """
         key is the label key that the selector applies to.
         """
-        ...
+        return pulumi.get(self, "key")
 
     @property
     @pulumi.getter
@@ -92,7 +92,7 @@ class LabelSelectorRequirement(dict):
         """
         operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
         """
-        ...
+        return pulumi.get(self, "operator")
 
     @property
     @pulumi.getter
@@ -100,7 +100,7 @@ class LabelSelectorRequirement(dict):
         """
         values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
         """
-        ...
+        return pulumi.get(self, "values")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -140,7 +140,7 @@ class ListMeta(dict):
         """
         continue may be set if the user set a limit on the number of items returned, and indicates that the server has more data available. The value is opaque and may be used to issue another request to the endpoint that served this list to retrieve the next set of available objects. Continuing a consistent list may not be possible if the server configuration has changed or more than a few minutes have passed. The resourceVersion field returned when using this continue value will be identical to the value in the first response, unless you have received this token from an error message.
         """
-        ...
+        return pulumi.get(self, "continue_")
 
     @property
     @pulumi.getter(name="remainingItemCount")
@@ -148,7 +148,7 @@ class ListMeta(dict):
         """
         remainingItemCount is the number of subsequent items in the list which are not included in this list response. If the list request contained label or field selectors, then the number of remaining items is unknown and the field will be left unset and omitted during serialization. If the list is complete (either because it is not chunking or because this is the last chunk), then there are no more remaining items and this field will be left unset and omitted during serialization. Servers older than v1.15 do not set this field. The intended use of the remainingItemCount is *estimating* the size of a collection. Clients should not rely on the remainingItemCount to be set or to be exact.
         """
-        ...
+        return pulumi.get(self, "remaining_item_count")
 
     @property
     @pulumi.getter(name="resourceVersion")
@@ -156,7 +156,7 @@ class ListMeta(dict):
         """
         String that identifies the server's internal version of this object that can be used by clients to determine when objects have changed. Value must be treated as opaque by clients and passed unmodified back to the server. Populated by the system. Read-only. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
         """
-        ...
+        return pulumi.get(self, "resource_version")
 
     @property
     @pulumi.getter(name="selfLink")
@@ -166,7 +166,7 @@ class ListMeta(dict):
 
         DEPRECATED Kubernetes will stop propagating this field in 1.20 release and the field is planned to be removed in 1.21 release.
         """
-        ...
+        return pulumi.get(self, "self_link")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -212,7 +212,7 @@ class ManagedFieldsEntry(dict):
         """
         APIVersion defines the version of this resource that this field set applies to. The format is "group/version" just like the top-level APIVersion field. It is necessary to track the version of a field set because it cannot be automatically converted.
         """
-        ...
+        return pulumi.get(self, "api_version")
 
     @property
     @pulumi.getter(name="fieldsType")
@@ -220,7 +220,7 @@ class ManagedFieldsEntry(dict):
         """
         FieldsType is the discriminator for the different fields format and version. There is currently only one possible value: "FieldsV1"
         """
-        ...
+        return pulumi.get(self, "fields_type")
 
     @property
     @pulumi.getter(name="fieldsV1")
@@ -228,7 +228,7 @@ class ManagedFieldsEntry(dict):
         """
         FieldsV1 holds the first JSON version format as described in the "FieldsV1" type.
         """
-        ...
+        return pulumi.get(self, "fields_v1")
 
     @property
     @pulumi.getter
@@ -236,7 +236,7 @@ class ManagedFieldsEntry(dict):
         """
         Manager is an identifier of the workflow managing these fields.
         """
-        ...
+        return pulumi.get(self, "manager")
 
     @property
     @pulumi.getter
@@ -244,7 +244,7 @@ class ManagedFieldsEntry(dict):
         """
         Operation is the type of operation which lead to this ManagedFieldsEntry being created. The only valid values for this field are 'Apply' and 'Update'.
         """
-        ...
+        return pulumi.get(self, "operation")
 
     @property
     @pulumi.getter
@@ -252,7 +252,7 @@ class ManagedFieldsEntry(dict):
         """
         Time is timestamp of when these fields were set. It should always be empty if Operation is 'Apply'
         """
-        ...
+        return pulumi.get(self, "time")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -354,7 +354,7 @@ class ObjectMeta(dict):
         """
         Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations
         """
-        ...
+        return pulumi.get(self, "annotations")
 
     @property
     @pulumi.getter(name="clusterName")
@@ -362,7 +362,7 @@ class ObjectMeta(dict):
         """
         The name of the cluster which the object belongs to. This is used to distinguish resources with same name and namespace in different clusters. This field is not set anywhere right now and apiserver is going to ignore it if set in create or update request.
         """
-        ...
+        return pulumi.get(self, "cluster_name")
 
     @property
     @pulumi.getter(name="creationTimestamp")
@@ -372,7 +372,7 @@ class ObjectMeta(dict):
 
         Populated by the system. Read-only. Null for lists. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         """
-        ...
+        return pulumi.get(self, "creation_timestamp")
 
     @property
     @pulumi.getter(name="deletionGracePeriodSeconds")
@@ -380,7 +380,7 @@ class ObjectMeta(dict):
         """
         Number of seconds allowed for this object to gracefully terminate before it will be removed from the system. Only set when deletionTimestamp is also set. May only be shortened. Read-only.
         """
-        ...
+        return pulumi.get(self, "deletion_grace_period_seconds")
 
     @property
     @pulumi.getter(name="deletionTimestamp")
@@ -390,7 +390,7 @@ class ObjectMeta(dict):
 
         Populated by the system when a graceful deletion is requested. Read-only. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         """
-        ...
+        return pulumi.get(self, "deletion_timestamp")
 
     @property
     @pulumi.getter
@@ -398,7 +398,7 @@ class ObjectMeta(dict):
         """
         Must be empty before the object is deleted from the registry. Each entry is an identifier for the responsible component that will remove the entry from the list. If the deletionTimestamp of the object is non-nil, entries in this list can only be removed. Finalizers may be processed and removed in any order.  Order is NOT enforced because it introduces significant risk of stuck finalizers. finalizers is a shared field, any actor with permission can reorder it. If the finalizer list is processed in order, then this can lead to a situation in which the component responsible for the first finalizer in the list is waiting for a signal (field value, external system, or other) produced by a component responsible for a finalizer later in the list, resulting in a deadlock. Without enforced ordering finalizers are free to order amongst themselves and are not vulnerable to ordering changes in the list.
         """
-        ...
+        return pulumi.get(self, "finalizers")
 
     @property
     @pulumi.getter(name="generateName")
@@ -410,7 +410,7 @@ class ObjectMeta(dict):
 
         Applied only if Name is not specified. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#idempotency
         """
-        ...
+        return pulumi.get(self, "generate_name")
 
     @property
     @pulumi.getter
@@ -418,7 +418,7 @@ class ObjectMeta(dict):
         """
         A sequence number representing a specific generation of the desired state. Populated by the system. Read-only.
         """
-        ...
+        return pulumi.get(self, "generation")
 
     @property
     @pulumi.getter
@@ -426,7 +426,7 @@ class ObjectMeta(dict):
         """
         Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and services. More info: http://kubernetes.io/docs/user-guide/labels
         """
-        ...
+        return pulumi.get(self, "labels")
 
     @property
     @pulumi.getter(name="managedFields")
@@ -434,7 +434,7 @@ class ObjectMeta(dict):
         """
         ManagedFields maps workflow-id and version to the set of fields that are managed by that workflow. This is mostly for internal housekeeping, and users typically shouldn't need to set or understand this field. A workflow can be the user's name, a controller's name, or the name of a specific apply path like "ci-cd". The set of fields is always in the version that the workflow used when modifying the object.
         """
-        ...
+        return pulumi.get(self, "managed_fields")
 
     @property
     @pulumi.getter
@@ -442,7 +442,7 @@ class ObjectMeta(dict):
         """
         Name must be unique within a namespace. Is required when creating resources, although some resources may allow a client to request the generation of an appropriate name automatically. Name is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/identifiers#names
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -452,7 +452,7 @@ class ObjectMeta(dict):
 
         Must be a DNS_LABEL. Cannot be updated. More info: http://kubernetes.io/docs/user-guide/namespaces
         """
-        ...
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter(name="ownerReferences")
@@ -460,7 +460,7 @@ class ObjectMeta(dict):
         """
         List of objects depended by this object. If ALL objects in the list have been deleted, this object will be garbage collected. If this object is managed by a controller, then an entry in this list will point to this controller, with the controller field set to true. There cannot be more than one managing controller.
         """
-        ...
+        return pulumi.get(self, "owner_references")
 
     @property
     @pulumi.getter(name="resourceVersion")
@@ -470,7 +470,7 @@ class ObjectMeta(dict):
 
         Populated by the system. Read-only. Value must be treated as opaque by clients and . More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
         """
-        ...
+        return pulumi.get(self, "resource_version")
 
     @property
     @pulumi.getter(name="selfLink")
@@ -480,7 +480,7 @@ class ObjectMeta(dict):
 
         DEPRECATED Kubernetes will stop propagating this field in 1.20 release and the field is planned to be removed in 1.21 release.
         """
-        ...
+        return pulumi.get(self, "self_link")
 
     @property
     @pulumi.getter
@@ -490,7 +490,7 @@ class ObjectMeta(dict):
 
         Populated by the system. Read-only. More info: http://kubernetes.io/docs/user-guide/identifiers#uids
         """
-        ...
+        return pulumi.get(self, "uid")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -532,7 +532,7 @@ class OwnerReference(dict):
         """
         API version of the referent.
         """
-        ...
+        return pulumi.get(self, "api_version")
 
     @property
     @pulumi.getter
@@ -540,7 +540,7 @@ class OwnerReference(dict):
         """
         Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         """
-        ...
+        return pulumi.get(self, "kind")
 
     @property
     @pulumi.getter
@@ -548,7 +548,7 @@ class OwnerReference(dict):
         """
         Name of the referent. More info: http://kubernetes.io/docs/user-guide/identifiers#names
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -556,7 +556,7 @@ class OwnerReference(dict):
         """
         UID of the referent. More info: http://kubernetes.io/docs/user-guide/identifiers#uids
         """
-        ...
+        return pulumi.get(self, "uid")
 
     @property
     @pulumi.getter(name="blockOwnerDeletion")
@@ -564,7 +564,7 @@ class OwnerReference(dict):
         """
         If true, AND if the owner has the "foregroundDeletion" finalizer, then the owner cannot be deleted from the key-value store until this reference is removed. Defaults to false. To set this field, a user needs "delete" permission of the owner, otherwise 422 (Unprocessable Entity) will be returned.
         """
-        ...
+        return pulumi.get(self, "block_owner_deletion")
 
     @property
     @pulumi.getter
@@ -572,7 +572,7 @@ class OwnerReference(dict):
         """
         If true, this reference points to the managing controller.
         """
-        ...
+        return pulumi.get(self, "controller")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -614,7 +614,7 @@ class StatusCause(dict):
           "name" - the field "name" on the current resource
           "items[0].name" - the field "name" on the first array entry in "items"
         """
-        ...
+        return pulumi.get(self, "field")
 
     @property
     @pulumi.getter
@@ -622,7 +622,7 @@ class StatusCause(dict):
         """
         A human-readable description of the cause of the error.  This field may be presented as-is to a reader.
         """
-        ...
+        return pulumi.get(self, "message")
 
     @property
     @pulumi.getter
@@ -630,7 +630,7 @@ class StatusCause(dict):
         """
         A machine-readable description of the cause of the error. If this value is empty there is no information available.
         """
-        ...
+        return pulumi.get(self, "reason")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -676,7 +676,7 @@ class StatusDetails(dict):
         """
         The Causes array includes more details associated with the StatusReason failure. Not all StatusReasons may provide detailed causes.
         """
-        ...
+        return pulumi.get(self, "causes")
 
     @property
     @pulumi.getter
@@ -684,7 +684,7 @@ class StatusDetails(dict):
         """
         The group attribute of the resource associated with the status StatusReason.
         """
-        ...
+        return pulumi.get(self, "group")
 
     @property
     @pulumi.getter
@@ -692,7 +692,7 @@ class StatusDetails(dict):
         """
         The kind attribute of the resource associated with the status StatusReason. On some operations may differ from the requested resource Kind. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         """
-        ...
+        return pulumi.get(self, "kind")
 
     @property
     @pulumi.getter
@@ -700,7 +700,7 @@ class StatusDetails(dict):
         """
         The name attribute of the resource associated with the status StatusReason (when there is a single name which can be described).
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="retryAfterSeconds")
@@ -708,7 +708,7 @@ class StatusDetails(dict):
         """
         If specified, the time in seconds before the operation should be retried. Some errors may indicate the client must take an alternate action - for those errors this field may indicate how long to wait before taking the alternate action.
         """
-        ...
+        return pulumi.get(self, "retry_after_seconds")
 
     @property
     @pulumi.getter
@@ -716,7 +716,7 @@ class StatusDetails(dict):
         """
         UID of the resource. (when there is a single resource which can be described). More info: http://kubernetes.io/docs/user-guide/identifiers#uids
         """
-        ...
+        return pulumi.get(self, "uid")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

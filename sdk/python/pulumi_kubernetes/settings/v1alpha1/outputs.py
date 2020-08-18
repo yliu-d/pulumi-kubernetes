@@ -46,7 +46,7 @@ class PodPreset(dict):
         """
         APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
         """
-        ...
+        return pulumi.get(self, "api_version")
 
     @property
     @pulumi.getter
@@ -54,17 +54,17 @@ class PodPreset(dict):
         """
         Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         """
-        ...
+        return pulumi.get(self, "kind")
 
     @property
     @pulumi.getter
     def metadata(self) -> Optional['_meta.v1.outputs.ObjectMeta']:
-        ...
+        return pulumi.get(self, "metadata")
 
     @property
     @pulumi.getter
     def spec(self) -> Optional['outputs.PodPresetSpec']:
-        ...
+        return pulumi.get(self, "spec")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -106,7 +106,7 @@ class PodPresetSpec(dict):
         """
         Env defines the collection of EnvVar to inject into containers.
         """
-        ...
+        return pulumi.get(self, "env")
 
     @property
     @pulumi.getter(name="envFrom")
@@ -114,7 +114,7 @@ class PodPresetSpec(dict):
         """
         EnvFrom defines the collection of EnvFromSource to inject into containers.
         """
-        ...
+        return pulumi.get(self, "env_from")
 
     @property
     @pulumi.getter
@@ -122,7 +122,7 @@ class PodPresetSpec(dict):
         """
         Selector is a label query over a set of resources, in this case pods. Required.
         """
-        ...
+        return pulumi.get(self, "selector")
 
     @property
     @pulumi.getter(name="volumeMounts")
@@ -130,7 +130,7 @@ class PodPresetSpec(dict):
         """
         VolumeMounts defines the collection of VolumeMount to inject into containers.
         """
-        ...
+        return pulumi.get(self, "volume_mounts")
 
     @property
     @pulumi.getter
@@ -138,7 +138,7 @@ class PodPresetSpec(dict):
         """
         Volumes defines the collection of Volume to inject into the pod.
         """
-        ...
+        return pulumi.get(self, "volumes")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

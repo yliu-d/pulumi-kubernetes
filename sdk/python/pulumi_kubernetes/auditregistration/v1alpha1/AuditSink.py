@@ -85,7 +85,7 @@ class AuditSink(pulumi.CustomResource):
         """
         APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
         """
-        ...
+        return pulumi.get(self, "api_version")
 
     @property
     @pulumi.getter
@@ -93,12 +93,12 @@ class AuditSink(pulumi.CustomResource):
         """
         Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         """
-        ...
+        return pulumi.get(self, "kind")
 
     @property
     @pulumi.getter
     def metadata(self) -> Optional['_meta.v1.outputs.ObjectMeta']:
-        ...
+        return pulumi.get(self, "metadata")
 
     @property
     @pulumi.getter
@@ -106,7 +106,7 @@ class AuditSink(pulumi.CustomResource):
         """
         Spec defines the audit configuration spec
         """
-        ...
+        return pulumi.get(self, "spec")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

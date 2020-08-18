@@ -91,7 +91,7 @@ class ClusterRole(pulumi.CustomResource):
         """
         AggregationRule is an optional field that describes how to build the Rules for this ClusterRole. If AggregationRule is set, then the Rules are controller managed and direct changes to Rules will be stomped by the controller.
         """
-        ...
+        return pulumi.get(self, "aggregation_rule")
 
     @property
     @pulumi.getter(name="apiVersion")
@@ -99,7 +99,7 @@ class ClusterRole(pulumi.CustomResource):
         """
         APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
         """
-        ...
+        return pulumi.get(self, "api_version")
 
     @property
     @pulumi.getter
@@ -107,7 +107,7 @@ class ClusterRole(pulumi.CustomResource):
         """
         Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         """
-        ...
+        return pulumi.get(self, "kind")
 
     @property
     @pulumi.getter
@@ -115,7 +115,7 @@ class ClusterRole(pulumi.CustomResource):
         """
         Standard object's metadata.
         """
-        ...
+        return pulumi.get(self, "metadata")
 
     @property
     @pulumi.getter
@@ -123,7 +123,7 @@ class ClusterRole(pulumi.CustomResource):
         """
         Rules holds all the PolicyRules for this ClusterRole
         """
-        ...
+        return pulumi.get(self, "rules")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

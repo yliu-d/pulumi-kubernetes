@@ -39,7 +39,7 @@ class TokenReviewSpec(dict):
         """
         Audiences is a list of the identifiers that the resource server presented with the token identifies as. Audience-aware token authenticators will verify that the token was intended for at least one of the audiences in this list. If no audiences are provided, the audience will default to the audience of the Kubernetes apiserver.
         """
-        ...
+        return pulumi.get(self, "audiences")
 
     @property
     @pulumi.getter
@@ -47,7 +47,7 @@ class TokenReviewSpec(dict):
         """
         Token is the opaque bearer token.
         """
-        ...
+        return pulumi.get(self, "token")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -85,7 +85,7 @@ class TokenReviewStatus(dict):
         """
         Audiences are audience identifiers chosen by the authenticator that are compatible with both the TokenReview and token. An identifier is any identifier in the intersection of the TokenReviewSpec audiences and the token's audiences. A client of the TokenReview API that sets the spec.audiences field should validate that a compatible audience identifier is returned in the status.audiences field to ensure that the TokenReview server is audience aware. If a TokenReview returns an empty status.audience field where status.authenticated is "true", the token is valid against the audience of the Kubernetes API server.
         """
-        ...
+        return pulumi.get(self, "audiences")
 
     @property
     @pulumi.getter
@@ -93,7 +93,7 @@ class TokenReviewStatus(dict):
         """
         Authenticated indicates that the token was associated with a known user.
         """
-        ...
+        return pulumi.get(self, "authenticated")
 
     @property
     @pulumi.getter
@@ -101,7 +101,7 @@ class TokenReviewStatus(dict):
         """
         Error indicates that the token couldn't be checked
         """
-        ...
+        return pulumi.get(self, "error")
 
     @property
     @pulumi.getter
@@ -109,7 +109,7 @@ class TokenReviewStatus(dict):
         """
         User is the UserInfo associated with the provided token.
         """
-        ...
+        return pulumi.get(self, "user")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -147,7 +147,7 @@ class UserInfo(dict):
         """
         Any additional information provided by the authenticator.
         """
-        ...
+        return pulumi.get(self, "extra")
 
     @property
     @pulumi.getter
@@ -155,7 +155,7 @@ class UserInfo(dict):
         """
         The names of groups this user is a part of.
         """
-        ...
+        return pulumi.get(self, "groups")
 
     @property
     @pulumi.getter
@@ -163,7 +163,7 @@ class UserInfo(dict):
         """
         A unique value that identifies this user across time. If this user is deleted and another user by the same name is added, they will have different UIDs.
         """
-        ...
+        return pulumi.get(self, "uid")
 
     @property
     @pulumi.getter
@@ -171,7 +171,7 @@ class UserInfo(dict):
         """
         The name that uniquely identifies this user among all active users.
         """
-        ...
+        return pulumi.get(self, "username")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

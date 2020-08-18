@@ -48,11 +48,11 @@ class CertificateSigningRequestArgs:
         """
         APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
         """
-        ...
+        return pulumi.get(self, "api_version")
 
     @api_version.setter
     def api_version(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "api_version", value)
 
     @property
     @pulumi.getter
@@ -60,20 +60,20 @@ class CertificateSigningRequestArgs:
         """
         Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         """
-        ...
+        return pulumi.get(self, "kind")
 
     @kind.setter
     def kind(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "kind", value)
 
     @property
     @pulumi.getter
     def metadata(self) -> Optional[pulumi.Input['_meta.v1.ObjectMetaArgs']]:
-        ...
+        return pulumi.get(self, "metadata")
 
     @metadata.setter
     def metadata(self, value: Optional[pulumi.Input['_meta.v1.ObjectMetaArgs']]):
-        ...
+        pulumi.set(self, "metadata", value)
 
     @property
     @pulumi.getter
@@ -81,11 +81,11 @@ class CertificateSigningRequestArgs:
         """
         The certificate request itself and any additional information.
         """
-        ...
+        return pulumi.get(self, "spec")
 
     @spec.setter
     def spec(self, value: Optional[pulumi.Input['CertificateSigningRequestSpecArgs']]):
-        ...
+        pulumi.set(self, "spec", value)
 
     @property
     @pulumi.getter
@@ -93,11 +93,11 @@ class CertificateSigningRequestArgs:
         """
         Derived information about the request.
         """
-        ...
+        return pulumi.get(self, "status")
 
     @status.setter
     def status(self, value: Optional[pulumi.Input['CertificateSigningRequestStatusArgs']]):
-        ...
+        pulumi.set(self, "status", value)
 
 
 @pulumi.input_type
@@ -127,11 +127,11 @@ class CertificateSigningRequestConditionArgs:
         """
         request approval state, currently Approved or Denied.
         """
-        ...
+        return pulumi.get(self, "type")
 
     @type.setter
     def type(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "type", value)
 
     @property
     @pulumi.getter(name="lastUpdateTime")
@@ -139,11 +139,11 @@ class CertificateSigningRequestConditionArgs:
         """
         timestamp for the last update to this condition
         """
-        ...
+        return pulumi.get(self, "last_update_time")
 
     @last_update_time.setter
     def last_update_time(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "last_update_time", value)
 
     @property
     @pulumi.getter
@@ -151,11 +151,11 @@ class CertificateSigningRequestConditionArgs:
         """
         human readable message with details about the request state
         """
-        ...
+        return pulumi.get(self, "message")
 
     @message.setter
     def message(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "message", value)
 
     @property
     @pulumi.getter
@@ -163,11 +163,11 @@ class CertificateSigningRequestConditionArgs:
         """
         brief reason for the request state
         """
-        ...
+        return pulumi.get(self, "reason")
 
     @reason.setter
     def reason(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "reason", value)
 
 
 @pulumi.input_type
@@ -217,11 +217,11 @@ class CertificateSigningRequestSpecArgs:
         """
         Base64-encoded PKCS#10 CSR data
         """
-        ...
+        return pulumi.get(self, "request")
 
     @request.setter
     def request(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "request", value)
 
     @property
     @pulumi.getter
@@ -229,11 +229,11 @@ class CertificateSigningRequestSpecArgs:
         """
         Extra information about the requesting user. See user.Info interface for details.
         """
-        ...
+        return pulumi.get(self, "extra")
 
     @extra.setter
     def extra(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[List[pulumi.Input[str]]]]]]):
-        ...
+        pulumi.set(self, "extra", value)
 
     @property
     @pulumi.getter
@@ -241,11 +241,11 @@ class CertificateSigningRequestSpecArgs:
         """
         Group information about the requesting user. See user.Info interface for details.
         """
-        ...
+        return pulumi.get(self, "groups")
 
     @groups.setter
     def groups(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
-        ...
+        pulumi.set(self, "groups", value)
 
     @property
     @pulumi.getter(name="signerName")
@@ -259,11 +259,11 @@ class CertificateSigningRequestSpecArgs:
          3. Otherwise, it is assigned "kubernetes.io/legacy-unknown".
         Distribution of trust for signers happens out of band. You can select on this field using `spec.signerName`.
         """
-        ...
+        return pulumi.get(self, "signer_name")
 
     @signer_name.setter
     def signer_name(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "signer_name", value)
 
     @property
     @pulumi.getter
@@ -271,11 +271,11 @@ class CertificateSigningRequestSpecArgs:
         """
         UID information about the requesting user. See user.Info interface for details.
         """
-        ...
+        return pulumi.get(self, "uid")
 
     @uid.setter
     def uid(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "uid", value)
 
     @property
     @pulumi.getter
@@ -284,11 +284,11 @@ class CertificateSigningRequestSpecArgs:
         allowedUsages specifies a set of usage contexts the key will be valid for. See: https://tools.ietf.org/html/rfc5280#section-4.2.1.3
              https://tools.ietf.org/html/rfc5280#section-4.2.1.12
         """
-        ...
+        return pulumi.get(self, "usages")
 
     @usages.setter
     def usages(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
-        ...
+        pulumi.set(self, "usages", value)
 
     @property
     @pulumi.getter
@@ -296,11 +296,11 @@ class CertificateSigningRequestSpecArgs:
         """
         Information about the requesting user. See user.Info interface for details.
         """
-        ...
+        return pulumi.get(self, "username")
 
     @username.setter
     def username(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "username", value)
 
 
 @pulumi.input_type
@@ -323,11 +323,11 @@ class CertificateSigningRequestStatusArgs:
         """
         If request was approved, the controller will place the issued certificate here.
         """
-        ...
+        return pulumi.get(self, "certificate")
 
     @certificate.setter
     def certificate(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "certificate", value)
 
     @property
     @pulumi.getter
@@ -335,10 +335,10 @@ class CertificateSigningRequestStatusArgs:
         """
         Conditions applied to the request, such as approval or denial.
         """
-        ...
+        return pulumi.get(self, "conditions")
 
     @conditions.setter
     def conditions(self, value: Optional[pulumi.Input[List[pulumi.Input['CertificateSigningRequestConditionArgs']]]]):
-        ...
+        pulumi.set(self, "conditions", value)
 
 

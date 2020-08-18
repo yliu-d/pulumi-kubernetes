@@ -51,7 +51,7 @@ class AuditSink(dict):
         """
         APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
         """
-        ...
+        return pulumi.get(self, "api_version")
 
     @property
     @pulumi.getter
@@ -59,12 +59,12 @@ class AuditSink(dict):
         """
         Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         """
-        ...
+        return pulumi.get(self, "kind")
 
     @property
     @pulumi.getter
     def metadata(self) -> Optional['_meta.v1.outputs.ObjectMeta']:
-        ...
+        return pulumi.get(self, "metadata")
 
     @property
     @pulumi.getter
@@ -72,7 +72,7 @@ class AuditSink(dict):
         """
         Spec defines the audit configuration spec
         """
-        ...
+        return pulumi.get(self, "spec")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -100,7 +100,7 @@ class AuditSinkSpec(dict):
         """
         Policy defines the policy for selecting which events should be sent to the webhook required
         """
-        ...
+        return pulumi.get(self, "policy")
 
     @property
     @pulumi.getter
@@ -108,7 +108,7 @@ class AuditSinkSpec(dict):
         """
         Webhook to send events required
         """
-        ...
+        return pulumi.get(self, "webhook")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -137,7 +137,7 @@ class Policy(dict):
         """
         The Level that all requests are recorded at. available options: None, Metadata, Request, RequestResponse required
         """
-        ...
+        return pulumi.get(self, "level")
 
     @property
     @pulumi.getter
@@ -145,7 +145,7 @@ class Policy(dict):
         """
         Stages is a list of stages for which events are created.
         """
-        ...
+        return pulumi.get(self, "stages")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -181,7 +181,7 @@ class ServiceReference(dict):
         """
         `name` is the name of the service. Required
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -189,7 +189,7 @@ class ServiceReference(dict):
         """
         `namespace` is the namespace of the service. Required
         """
-        ...
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter
@@ -197,7 +197,7 @@ class ServiceReference(dict):
         """
         `path` is an optional URL path which will be sent in any request to this service.
         """
-        ...
+        return pulumi.get(self, "path")
 
     @property
     @pulumi.getter
@@ -205,7 +205,7 @@ class ServiceReference(dict):
         """
         If specified, the port on the service that hosting webhook. Default to 443 for backward compatibility. `port` should be a valid port number (1-65535, inclusive).
         """
-        ...
+        return pulumi.get(self, "port")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -234,7 +234,7 @@ class Webhook(dict):
         """
         ClientConfig holds the connection parameters for the webhook required
         """
-        ...
+        return pulumi.get(self, "client_config")
 
     @property
     @pulumi.getter
@@ -242,7 +242,7 @@ class Webhook(dict):
         """
         Throttle holds the options for throttling the webhook
         """
-        ...
+        return pulumi.get(self, "throttle")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -288,7 +288,7 @@ class WebhookClientConfig(dict):
         """
         `caBundle` is a PEM encoded CA bundle which will be used to validate the webhook's server certificate. If unspecified, system trust roots on the apiserver are used.
         """
-        ...
+        return pulumi.get(self, "ca_bundle")
 
     @property
     @pulumi.getter
@@ -298,7 +298,7 @@ class WebhookClientConfig(dict):
 
         If the webhook is running within the cluster, then you should use `service`.
         """
-        ...
+        return pulumi.get(self, "service")
 
     @property
     @pulumi.getter
@@ -316,7 +316,7 @@ class WebhookClientConfig(dict):
 
         Attempting to use a user or basic auth e.g. "user:password@" is not allowed. Fragments ("#...") and query parameters ("?...") are not allowed, either.
         """
-        ...
+        return pulumi.get(self, "url")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -346,7 +346,7 @@ class WebhookThrottleConfig(dict):
         """
         ThrottleBurst is the maximum number of events sent at the same moment default 15 QPS
         """
-        ...
+        return pulumi.get(self, "burst")
 
     @property
     @pulumi.getter
@@ -354,7 +354,7 @@ class WebhookThrottleConfig(dict):
         """
         ThrottleQPS maximum number of batches per second default 10 QPS
         """
-        ...
+        return pulumi.get(self, "qps")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

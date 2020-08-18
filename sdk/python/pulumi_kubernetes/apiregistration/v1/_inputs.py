@@ -49,11 +49,11 @@ class APIServiceArgs:
         """
         APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
         """
-        ...
+        return pulumi.get(self, "api_version")
 
     @api_version.setter
     def api_version(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "api_version", value)
 
     @property
     @pulumi.getter
@@ -61,20 +61,20 @@ class APIServiceArgs:
         """
         Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         """
-        ...
+        return pulumi.get(self, "kind")
 
     @kind.setter
     def kind(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "kind", value)
 
     @property
     @pulumi.getter
     def metadata(self) -> Optional[pulumi.Input['_meta.v1.ObjectMetaArgs']]:
-        ...
+        return pulumi.get(self, "metadata")
 
     @metadata.setter
     def metadata(self, value: Optional[pulumi.Input['_meta.v1.ObjectMetaArgs']]):
-        ...
+        pulumi.set(self, "metadata", value)
 
     @property
     @pulumi.getter
@@ -82,11 +82,11 @@ class APIServiceArgs:
         """
         Spec contains information for locating and communicating with a server
         """
-        ...
+        return pulumi.get(self, "spec")
 
     @spec.setter
     def spec(self, value: Optional[pulumi.Input['APIServiceSpecArgs']]):
-        ...
+        pulumi.set(self, "spec", value)
 
     @property
     @pulumi.getter
@@ -94,11 +94,11 @@ class APIServiceArgs:
         """
         Status contains derived information about an API server
         """
-        ...
+        return pulumi.get(self, "status")
 
     @status.setter
     def status(self, value: Optional[pulumi.Input['APIServiceStatusArgs']]):
-        ...
+        pulumi.set(self, "status", value)
 
 
 @pulumi.input_type
@@ -132,11 +132,11 @@ class APIServiceConditionArgs:
         """
         Status is the status of the condition. Can be True, False, Unknown.
         """
-        ...
+        return pulumi.get(self, "status")
 
     @status.setter
     def status(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "status", value)
 
     @property
     @pulumi.getter
@@ -144,11 +144,11 @@ class APIServiceConditionArgs:
         """
         Type is the type of the condition.
         """
-        ...
+        return pulumi.get(self, "type")
 
     @type.setter
     def type(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "type", value)
 
     @property
     @pulumi.getter(name="lastTransitionTime")
@@ -156,11 +156,11 @@ class APIServiceConditionArgs:
         """
         Last time the condition transitioned from one status to another.
         """
-        ...
+        return pulumi.get(self, "last_transition_time")
 
     @last_transition_time.setter
     def last_transition_time(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "last_transition_time", value)
 
     @property
     @pulumi.getter
@@ -168,11 +168,11 @@ class APIServiceConditionArgs:
         """
         Human-readable message indicating details about last transition.
         """
-        ...
+        return pulumi.get(self, "message")
 
     @message.setter
     def message(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "message", value)
 
     @property
     @pulumi.getter
@@ -180,11 +180,11 @@ class APIServiceConditionArgs:
         """
         Unique, one-word, CamelCase reason for the condition's last transition.
         """
-        ...
+        return pulumi.get(self, "reason")
 
     @reason.setter
     def reason(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "reason", value)
 
 
 @pulumi.input_type
@@ -226,11 +226,11 @@ class APIServiceSpecArgs:
         """
         GroupPriorityMininum is the priority this group should have at least. Higher priority means that the group is preferred by clients over lower priority ones. Note that other versions of this group might specify even higher GroupPriorityMininum values such that the whole group gets a higher priority. The primary sort is based on GroupPriorityMinimum, ordered highest number to lowest (20 before 10). The secondary sort is based on the alphabetical comparison of the name of the object.  (v1.bar before v1.foo) We'd recommend something like: *.k8s.io (except extensions) at 18000 and PaaSes (OpenShift, Deis) are recommended to be in the 2000s
         """
-        ...
+        return pulumi.get(self, "group_priority_minimum")
 
     @group_priority_minimum.setter
     def group_priority_minimum(self, value: pulumi.Input[float]):
-        ...
+        pulumi.set(self, "group_priority_minimum", value)
 
     @property
     @pulumi.getter(name="versionPriority")
@@ -238,11 +238,11 @@ class APIServiceSpecArgs:
         """
         VersionPriority controls the ordering of this API version inside of its group.  Must be greater than zero. The primary sort is based on VersionPriority, ordered highest to lowest (20 before 10). Since it's inside of a group, the number can be small, probably in the 10s. In case of equal version priorities, the version string will be used to compute the order inside a group. If the version string is "kube-like", it will sort above non "kube-like" version strings, which are ordered lexicographically. "Kube-like" versions start with a "v", then are followed by a number (the major version), then optionally the string "alpha" or "beta" and another number (the minor version). These are sorted first by GA > beta > alpha (where GA is a version with no suffix such as beta or alpha), and then by comparing major version, then minor version. An example sorted list of versions: v10, v2, v1, v11beta2, v10beta3, v3beta1, v12alpha1, v11alpha2, foo1, foo10.
         """
-        ...
+        return pulumi.get(self, "version_priority")
 
     @version_priority.setter
     def version_priority(self, value: pulumi.Input[float]):
-        ...
+        pulumi.set(self, "version_priority", value)
 
     @property
     @pulumi.getter(name="caBundle")
@@ -250,11 +250,11 @@ class APIServiceSpecArgs:
         """
         CABundle is a PEM encoded CA bundle which will be used to validate an API server's serving certificate. If unspecified, system trust roots on the apiserver are used.
         """
-        ...
+        return pulumi.get(self, "ca_bundle")
 
     @ca_bundle.setter
     def ca_bundle(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "ca_bundle", value)
 
     @property
     @pulumi.getter
@@ -262,11 +262,11 @@ class APIServiceSpecArgs:
         """
         Group is the API group name this server hosts
         """
-        ...
+        return pulumi.get(self, "group")
 
     @group.setter
     def group(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "group", value)
 
     @property
     @pulumi.getter(name="insecureSkipTLSVerify")
@@ -274,11 +274,11 @@ class APIServiceSpecArgs:
         """
         InsecureSkipTLSVerify disables TLS certificate verification when communicating with this server. This is strongly discouraged.  You should use the CABundle instead.
         """
-        ...
+        return pulumi.get(self, "insecure_skip_tls_verify")
 
     @insecure_skip_tls_verify.setter
     def insecure_skip_tls_verify(self, value: Optional[pulumi.Input[bool]]):
-        ...
+        pulumi.set(self, "insecure_skip_tls_verify", value)
 
     @property
     @pulumi.getter
@@ -286,11 +286,11 @@ class APIServiceSpecArgs:
         """
         Service is a reference to the service for this API server.  It must communicate on port 443 If the Service is nil, that means the handling for the API groupversion is handled locally on this server. The call will simply delegate to the normal handler chain to be fulfilled.
         """
-        ...
+        return pulumi.get(self, "service")
 
     @service.setter
     def service(self, value: Optional[pulumi.Input['ServiceReferenceArgs']]):
-        ...
+        pulumi.set(self, "service", value)
 
     @property
     @pulumi.getter
@@ -298,11 +298,11 @@ class APIServiceSpecArgs:
         """
         Version is the API version this server hosts.  For example, "v1"
         """
-        ...
+        return pulumi.get(self, "version")
 
     @version.setter
     def version(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "version", value)
 
 
 @pulumi.input_type
@@ -322,11 +322,11 @@ class APIServiceStatusArgs:
         """
         Current service state of apiService.
         """
-        ...
+        return pulumi.get(self, "conditions")
 
     @conditions.setter
     def conditions(self, value: Optional[pulumi.Input[List[pulumi.Input['APIServiceConditionArgs']]]]):
-        ...
+        pulumi.set(self, "conditions", value)
 
 
 @pulumi.input_type
@@ -354,11 +354,11 @@ class ServiceReferenceArgs:
         """
         Name is the name of the service
         """
-        ...
+        return pulumi.get(self, "name")
 
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "name", value)
 
     @property
     @pulumi.getter
@@ -366,11 +366,11 @@ class ServiceReferenceArgs:
         """
         Namespace is the namespace of the service
         """
-        ...
+        return pulumi.get(self, "namespace")
 
     @namespace.setter
     def namespace(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "namespace", value)
 
     @property
     @pulumi.getter
@@ -378,10 +378,10 @@ class ServiceReferenceArgs:
         """
         If specified, the port on the service that hosting webhook. Default to 443 for backward compatibility. `port` should be a valid port number (1-65535, inclusive).
         """
-        ...
+        return pulumi.get(self, "port")
 
     @port.setter
     def port(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "port", value)
 
 

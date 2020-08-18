@@ -39,11 +39,11 @@ class IPBlockArgs:
         """
         CIDR is a string representing the IP Block Valid examples are "192.168.1.1/24" or "2001:db9::/64"
         """
-        ...
+        return pulumi.get(self, "cidr")
 
     @cidr.setter
     def cidr(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "cidr", value)
 
     @property
     @pulumi.getter(name="except")
@@ -51,11 +51,11 @@ class IPBlockArgs:
         """
         Except is a slice of CIDRs that should not be included within an IP Block Valid examples are "192.168.1.1/24" or "2001:db9::/64" Except values will be rejected if they are outside the CIDR range
         """
-        ...
+        return pulumi.get(self, "except_")
 
     @except_.setter
     def except_(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
-        ...
+        pulumi.set(self, "except_", value)
 
 
 @pulumi.input_type
@@ -87,11 +87,11 @@ class NetworkPolicyArgs:
         """
         APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
         """
-        ...
+        return pulumi.get(self, "api_version")
 
     @api_version.setter
     def api_version(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "api_version", value)
 
     @property
     @pulumi.getter
@@ -99,11 +99,11 @@ class NetworkPolicyArgs:
         """
         Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         """
-        ...
+        return pulumi.get(self, "kind")
 
     @kind.setter
     def kind(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "kind", value)
 
     @property
     @pulumi.getter
@@ -111,11 +111,11 @@ class NetworkPolicyArgs:
         """
         Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         """
-        ...
+        return pulumi.get(self, "metadata")
 
     @metadata.setter
     def metadata(self, value: Optional[pulumi.Input['_meta.v1.ObjectMetaArgs']]):
-        ...
+        pulumi.set(self, "metadata", value)
 
     @property
     @pulumi.getter
@@ -123,11 +123,11 @@ class NetworkPolicyArgs:
         """
         Specification of the desired behavior for this NetworkPolicy.
         """
-        ...
+        return pulumi.get(self, "spec")
 
     @spec.setter
     def spec(self, value: Optional[pulumi.Input['NetworkPolicySpecArgs']]):
-        ...
+        pulumi.set(self, "spec", value)
 
 
 @pulumi.input_type
@@ -151,11 +151,11 @@ class NetworkPolicyEgressRuleArgs:
         """
         List of destination ports for outgoing traffic. Each item in this list is combined using a logical OR. If this field is empty or missing, this rule matches all ports (traffic not restricted by port). If this field is present and contains at least one item, then this rule allows traffic only if the traffic matches at least one port in the list.
         """
-        ...
+        return pulumi.get(self, "ports")
 
     @ports.setter
     def ports(self, value: Optional[pulumi.Input[List[pulumi.Input['NetworkPolicyPortArgs']]]]):
-        ...
+        pulumi.set(self, "ports", value)
 
     @property
     @pulumi.getter
@@ -163,11 +163,11 @@ class NetworkPolicyEgressRuleArgs:
         """
         List of destinations for outgoing traffic of pods selected for this rule. Items in this list are combined using a logical OR operation. If this field is empty or missing, this rule matches all destinations (traffic not restricted by destination). If this field is present and contains at least one item, this rule allows traffic only if the traffic matches at least one item in the to list.
         """
-        ...
+        return pulumi.get(self, "to")
 
     @to.setter
     def to(self, value: Optional[pulumi.Input[List[pulumi.Input['NetworkPolicyPeerArgs']]]]):
-        ...
+        pulumi.set(self, "to", value)
 
 
 @pulumi.input_type
@@ -191,11 +191,11 @@ class NetworkPolicyIngressRuleArgs:
         """
         List of sources which should be able to access the pods selected for this rule. Items in this list are combined using a logical OR operation. If this field is empty or missing, this rule matches all sources (traffic not restricted by source). If this field is present and contains at least one item, this rule allows traffic only if the traffic matches at least one item in the from list.
         """
-        ...
+        return pulumi.get(self, "from_")
 
     @from_.setter
     def from_(self, value: Optional[pulumi.Input[List[pulumi.Input['NetworkPolicyPeerArgs']]]]):
-        ...
+        pulumi.set(self, "from_", value)
 
     @property
     @pulumi.getter
@@ -203,11 +203,11 @@ class NetworkPolicyIngressRuleArgs:
         """
         List of ports which should be made accessible on the pods selected for this rule. Each item in this list is combined using a logical OR. If this field is empty or missing, this rule matches all ports (traffic not restricted by port). If this field is present and contains at least one item, then this rule allows traffic only if the traffic matches at least one port in the list.
         """
-        ...
+        return pulumi.get(self, "ports")
 
     @ports.setter
     def ports(self, value: Optional[pulumi.Input[List[pulumi.Input['NetworkPolicyPortArgs']]]]):
-        ...
+        pulumi.set(self, "ports", value)
 
 
 @pulumi.input_type
@@ -239,11 +239,11 @@ class NetworkPolicyPeerArgs:
         """
         IPBlock defines policy on a particular IPBlock. If this field is set then neither of the other fields can be.
         """
-        ...
+        return pulumi.get(self, "ip_block")
 
     @ip_block.setter
     def ip_block(self, value: Optional[pulumi.Input['IPBlockArgs']]):
-        ...
+        pulumi.set(self, "ip_block", value)
 
     @property
     @pulumi.getter(name="namespaceSelector")
@@ -253,11 +253,11 @@ class NetworkPolicyPeerArgs:
 
         If PodSelector is also set, then the NetworkPolicyPeer as a whole selects the Pods matching PodSelector in the Namespaces selected by NamespaceSelector. Otherwise it selects all Pods in the Namespaces selected by NamespaceSelector.
         """
-        ...
+        return pulumi.get(self, "namespace_selector")
 
     @namespace_selector.setter
     def namespace_selector(self, value: Optional[pulumi.Input['_meta.v1.LabelSelectorArgs']]):
-        ...
+        pulumi.set(self, "namespace_selector", value)
 
     @property
     @pulumi.getter(name="podSelector")
@@ -267,11 +267,11 @@ class NetworkPolicyPeerArgs:
 
         If NamespaceSelector is also set, then the NetworkPolicyPeer as a whole selects the Pods matching PodSelector in the Namespaces selected by NamespaceSelector. Otherwise it selects the Pods matching PodSelector in the policy's own Namespace.
         """
-        ...
+        return pulumi.get(self, "pod_selector")
 
     @pod_selector.setter
     def pod_selector(self, value: Optional[pulumi.Input['_meta.v1.LabelSelectorArgs']]):
-        ...
+        pulumi.set(self, "pod_selector", value)
 
 
 @pulumi.input_type
@@ -295,11 +295,11 @@ class NetworkPolicyPortArgs:
         """
         The port on the given protocol. This can either be a numerical or named port on a pod. If this field is not provided, this matches all port names and numbers.
         """
-        ...
+        return pulumi.get(self, "port")
 
     @port.setter
     def port(self, value: Optional[pulumi.Input[Union[float, str]]]):
-        ...
+        pulumi.set(self, "port", value)
 
     @property
     @pulumi.getter
@@ -307,11 +307,11 @@ class NetworkPolicyPortArgs:
         """
         The protocol (TCP, UDP, or SCTP) which traffic must match. If not specified, this field defaults to TCP.
         """
-        ...
+        return pulumi.get(self, "protocol")
 
     @protocol.setter
     def protocol(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "protocol", value)
 
 
 @pulumi.input_type
@@ -342,11 +342,11 @@ class NetworkPolicySpecArgs:
         """
         Selects the pods to which this NetworkPolicy object applies. The array of ingress rules is applied to any pods selected by this field. Multiple network policies can select the same set of pods. In this case, the ingress rules for each are combined additively. This field is NOT optional and follows standard label selector semantics. An empty podSelector matches all pods in this namespace.
         """
-        ...
+        return pulumi.get(self, "pod_selector")
 
     @pod_selector.setter
     def pod_selector(self, value: pulumi.Input['_meta.v1.LabelSelectorArgs']):
-        ...
+        pulumi.set(self, "pod_selector", value)
 
     @property
     @pulumi.getter
@@ -354,11 +354,11 @@ class NetworkPolicySpecArgs:
         """
         List of egress rules to be applied to the selected pods. Outgoing traffic is allowed if there are no NetworkPolicies selecting the pod (and cluster policy otherwise allows the traffic), OR if the traffic matches at least one egress rule across all of the NetworkPolicy objects whose podSelector matches the pod. If this field is empty then this NetworkPolicy limits all outgoing traffic (and serves solely to ensure that the pods it selects are isolated by default). This field is beta-level in 1.8
         """
-        ...
+        return pulumi.get(self, "egress")
 
     @egress.setter
     def egress(self, value: Optional[pulumi.Input[List[pulumi.Input['NetworkPolicyEgressRuleArgs']]]]):
-        ...
+        pulumi.set(self, "egress", value)
 
     @property
     @pulumi.getter
@@ -366,11 +366,11 @@ class NetworkPolicySpecArgs:
         """
         List of ingress rules to be applied to the selected pods. Traffic is allowed to a pod if there are no NetworkPolicies selecting the pod (and cluster policy otherwise allows the traffic), OR if the traffic source is the pod's local node, OR if the traffic matches at least one ingress rule across all of the NetworkPolicy objects whose podSelector matches the pod. If this field is empty then this NetworkPolicy does not allow any traffic (and serves solely to ensure that the pods it selects are isolated by default)
         """
-        ...
+        return pulumi.get(self, "ingress")
 
     @ingress.setter
     def ingress(self, value: Optional[pulumi.Input[List[pulumi.Input['NetworkPolicyIngressRuleArgs']]]]):
-        ...
+        pulumi.set(self, "ingress", value)
 
     @property
     @pulumi.getter(name="policyTypes")
@@ -378,10 +378,10 @@ class NetworkPolicySpecArgs:
         """
         List of rule types that the NetworkPolicy relates to. Valid options are "Ingress", "Egress", or "Ingress,Egress". If this field is not specified, it will default based on the existence of Ingress or Egress rules; policies that contain an Egress section are assumed to affect Egress, and all policies (whether or not they contain an Ingress section) are assumed to affect Ingress. If you want to write an egress-only policy, you must explicitly specify policyTypes [ "Egress" ]. Likewise, if you want to write a policy that specifies that no egress is allowed, you must specify a policyTypes value that include "Egress" (since such a policy would not include an Egress section and would otherwise default to just [ "Ingress" ]). This field is beta-level in 1.8
         """
-        ...
+        return pulumi.get(self, "policy_types")
 
     @policy_types.setter
     def policy_types(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
-        ...
+        pulumi.set(self, "policy_types", value)
 
 

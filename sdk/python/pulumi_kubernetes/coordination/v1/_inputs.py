@@ -43,11 +43,11 @@ class LeaseArgs:
         """
         APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
         """
-        ...
+        return pulumi.get(self, "api_version")
 
     @api_version.setter
     def api_version(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "api_version", value)
 
     @property
     @pulumi.getter
@@ -55,11 +55,11 @@ class LeaseArgs:
         """
         Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         """
-        ...
+        return pulumi.get(self, "kind")
 
     @kind.setter
     def kind(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "kind", value)
 
     @property
     @pulumi.getter
@@ -67,11 +67,11 @@ class LeaseArgs:
         """
         More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         """
-        ...
+        return pulumi.get(self, "metadata")
 
     @metadata.setter
     def metadata(self, value: Optional[pulumi.Input['_meta.v1.ObjectMetaArgs']]):
-        ...
+        pulumi.set(self, "metadata", value)
 
     @property
     @pulumi.getter
@@ -79,11 +79,11 @@ class LeaseArgs:
         """
         Specification of the Lease. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
         """
-        ...
+        return pulumi.get(self, "spec")
 
     @spec.setter
     def spec(self, value: Optional[pulumi.Input['LeaseSpecArgs']]):
-        ...
+        pulumi.set(self, "spec", value)
 
 
 @pulumi.input_type
@@ -119,11 +119,11 @@ class LeaseSpecArgs:
         """
         acquireTime is a time when the current lease was acquired.
         """
-        ...
+        return pulumi.get(self, "acquire_time")
 
     @acquire_time.setter
     def acquire_time(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "acquire_time", value)
 
     @property
     @pulumi.getter(name="holderIdentity")
@@ -131,11 +131,11 @@ class LeaseSpecArgs:
         """
         holderIdentity contains the identity of the holder of a current lease.
         """
-        ...
+        return pulumi.get(self, "holder_identity")
 
     @holder_identity.setter
     def holder_identity(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "holder_identity", value)
 
     @property
     @pulumi.getter(name="leaseDurationSeconds")
@@ -143,11 +143,11 @@ class LeaseSpecArgs:
         """
         leaseDurationSeconds is a duration that candidates for a lease need to wait to force acquire it. This is measure against time of last observed RenewTime.
         """
-        ...
+        return pulumi.get(self, "lease_duration_seconds")
 
     @lease_duration_seconds.setter
     def lease_duration_seconds(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "lease_duration_seconds", value)
 
     @property
     @pulumi.getter(name="leaseTransitions")
@@ -155,11 +155,11 @@ class LeaseSpecArgs:
         """
         leaseTransitions is the number of transitions of a lease between holders.
         """
-        ...
+        return pulumi.get(self, "lease_transitions")
 
     @lease_transitions.setter
     def lease_transitions(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "lease_transitions", value)
 
     @property
     @pulumi.getter(name="renewTime")
@@ -167,10 +167,10 @@ class LeaseSpecArgs:
         """
         renewTime is a time when the current holder of a lease has last updated the lease.
         """
-        ...
+        return pulumi.get(self, "renew_time")
 
     @renew_time.setter
     def renew_time(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "renew_time", value)
 
 

@@ -84,7 +84,7 @@ class Job(dict):
         """
         APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
         """
-        ...
+        return pulumi.get(self, "api_version")
 
     @property
     @pulumi.getter
@@ -92,7 +92,7 @@ class Job(dict):
         """
         Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         """
-        ...
+        return pulumi.get(self, "kind")
 
     @property
     @pulumi.getter
@@ -100,7 +100,7 @@ class Job(dict):
         """
         Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         """
-        ...
+        return pulumi.get(self, "metadata")
 
     @property
     @pulumi.getter
@@ -108,7 +108,7 @@ class Job(dict):
         """
         Specification of the desired behavior of a job. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
         """
-        ...
+        return pulumi.get(self, "spec")
 
     @property
     @pulumi.getter
@@ -116,7 +116,7 @@ class Job(dict):
         """
         Current status of a job. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
         """
-        ...
+        return pulumi.get(self, "status")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -160,7 +160,7 @@ class JobCondition(dict):
         """
         Status of the condition, one of True, False, Unknown.
         """
-        ...
+        return pulumi.get(self, "status")
 
     @property
     @pulumi.getter
@@ -168,7 +168,7 @@ class JobCondition(dict):
         """
         Type of job condition, Complete or Failed.
         """
-        ...
+        return pulumi.get(self, "type")
 
     @property
     @pulumi.getter(name="lastProbeTime")
@@ -176,7 +176,7 @@ class JobCondition(dict):
         """
         Last time the condition was checked.
         """
-        ...
+        return pulumi.get(self, "last_probe_time")
 
     @property
     @pulumi.getter(name="lastTransitionTime")
@@ -184,7 +184,7 @@ class JobCondition(dict):
         """
         Last time the condition transit from one status to another.
         """
-        ...
+        return pulumi.get(self, "last_transition_time")
 
     @property
     @pulumi.getter
@@ -192,7 +192,7 @@ class JobCondition(dict):
         """
         Human readable message indicating details about last transition.
         """
-        ...
+        return pulumi.get(self, "message")
 
     @property
     @pulumi.getter
@@ -200,7 +200,7 @@ class JobCondition(dict):
         """
         (brief) reason for the condition's last transition.
         """
-        ...
+        return pulumi.get(self, "reason")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -253,7 +253,7 @@ class JobSpec(dict):
         """
         Describes the pod that will be created when executing a job. More info: https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/
         """
-        ...
+        return pulumi.get(self, "template")
 
     @property
     @pulumi.getter(name="activeDeadlineSeconds")
@@ -261,7 +261,7 @@ class JobSpec(dict):
         """
         Specifies the duration in seconds relative to the startTime that the job may be active before the system tries to terminate it; value must be positive integer
         """
-        ...
+        return pulumi.get(self, "active_deadline_seconds")
 
     @property
     @pulumi.getter(name="backoffLimit")
@@ -269,7 +269,7 @@ class JobSpec(dict):
         """
         Specifies the number of retries before marking this job failed. Defaults to 6
         """
-        ...
+        return pulumi.get(self, "backoff_limit")
 
     @property
     @pulumi.getter
@@ -277,7 +277,7 @@ class JobSpec(dict):
         """
         Specifies the desired number of successfully finished pods the job should be run with.  Setting to nil means that the success of any pod signals the success of all pods, and allows parallelism to have any positive value.  Setting to 1 means that parallelism is limited to 1 and the success of that pod signals the success of the job. More info: https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/
         """
-        ...
+        return pulumi.get(self, "completions")
 
     @property
     @pulumi.getter(name="manualSelector")
@@ -285,7 +285,7 @@ class JobSpec(dict):
         """
         manualSelector controls generation of pod labels and pod selectors. Leave `manualSelector` unset unless you are certain what you are doing. When false or unset, the system pick labels unique to this job and appends those labels to the pod template.  When true, the user is responsible for picking unique labels and specifying the selector.  Failure to pick a unique label may cause this and other jobs to not function correctly.  However, You may see `manualSelector=true` in jobs that were created with the old `extensions/v1beta1` API. More info: https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/#specifying-your-own-pod-selector
         """
-        ...
+        return pulumi.get(self, "manual_selector")
 
     @property
     @pulumi.getter
@@ -293,7 +293,7 @@ class JobSpec(dict):
         """
         Specifies the maximum desired number of pods the job should run at any given time. The actual number of pods running in steady state will be less than this number when ((.spec.completions - .status.successful) < .spec.parallelism), i.e. when the work left to do is less than max parallelism. More info: https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/
         """
-        ...
+        return pulumi.get(self, "parallelism")
 
     @property
     @pulumi.getter
@@ -301,7 +301,7 @@ class JobSpec(dict):
         """
         A label query over pods that should match the pod count. Normally, the system sets this field for you. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors
         """
-        ...
+        return pulumi.get(self, "selector")
 
     @property
     @pulumi.getter(name="ttlSecondsAfterFinished")
@@ -309,7 +309,7 @@ class JobSpec(dict):
         """
         ttlSecondsAfterFinished limits the lifetime of a Job that has finished execution (either Complete or Failed). If this field is set, ttlSecondsAfterFinished after the Job finishes, it is eligible to be automatically deleted. When the Job is being deleted, its lifecycle guarantees (e.g. finalizers) will be honored. If this field is unset, the Job won't be automatically deleted. If this field is set to zero, the Job becomes eligible to be deleted immediately after it finishes. This field is alpha-level and is only honored by servers that enable the TTLAfterFinished feature.
         """
-        ...
+        return pulumi.get(self, "ttl_seconds_after_finished")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -355,7 +355,7 @@ class JobStatus(dict):
         """
         The number of actively running pods.
         """
-        ...
+        return pulumi.get(self, "active")
 
     @property
     @pulumi.getter(name="completionTime")
@@ -363,7 +363,7 @@ class JobStatus(dict):
         """
         Represents time when the job was completed. It is not guaranteed to be set in happens-before order across separate operations. It is represented in RFC3339 form and is in UTC.
         """
-        ...
+        return pulumi.get(self, "completion_time")
 
     @property
     @pulumi.getter
@@ -371,7 +371,7 @@ class JobStatus(dict):
         """
         The latest available observations of an object's current state. More info: https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/
         """
-        ...
+        return pulumi.get(self, "conditions")
 
     @property
     @pulumi.getter
@@ -379,7 +379,7 @@ class JobStatus(dict):
         """
         The number of pods which reached phase Failed.
         """
-        ...
+        return pulumi.get(self, "failed")
 
     @property
     @pulumi.getter(name="startTime")
@@ -387,7 +387,7 @@ class JobStatus(dict):
         """
         Represents time when the job was acknowledged by the job controller. It is not guaranteed to be set in happens-before order across separate operations. It is represented in RFC3339 form and is in UTC.
         """
-        ...
+        return pulumi.get(self, "start_time")
 
     @property
     @pulumi.getter
@@ -395,7 +395,7 @@ class JobStatus(dict):
         """
         The number of pods which reached phase Succeeded.
         """
-        ...
+        return pulumi.get(self, "succeeded")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

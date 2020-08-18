@@ -129,7 +129,7 @@ class Event(pulumi.CustomResource):
         """
         What action was taken/failed regarding to the regarding object.
         """
-        ...
+        return pulumi.get(self, "action")
 
     @property
     @pulumi.getter(name="apiVersion")
@@ -137,7 +137,7 @@ class Event(pulumi.CustomResource):
         """
         APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
         """
-        ...
+        return pulumi.get(self, "api_version")
 
     @property
     @pulumi.getter(name="deprecatedCount")
@@ -145,7 +145,7 @@ class Event(pulumi.CustomResource):
         """
         Deprecated field assuring backward compatibility with core.v1 Event type
         """
-        ...
+        return pulumi.get(self, "deprecated_count")
 
     @property
     @pulumi.getter(name="deprecatedFirstTimestamp")
@@ -153,7 +153,7 @@ class Event(pulumi.CustomResource):
         """
         Deprecated field assuring backward compatibility with core.v1 Event type
         """
-        ...
+        return pulumi.get(self, "deprecated_first_timestamp")
 
     @property
     @pulumi.getter(name="deprecatedLastTimestamp")
@@ -161,7 +161,7 @@ class Event(pulumi.CustomResource):
         """
         Deprecated field assuring backward compatibility with core.v1 Event type
         """
-        ...
+        return pulumi.get(self, "deprecated_last_timestamp")
 
     @property
     @pulumi.getter(name="deprecatedSource")
@@ -169,7 +169,7 @@ class Event(pulumi.CustomResource):
         """
         Deprecated field assuring backward compatibility with core.v1 Event type
         """
-        ...
+        return pulumi.get(self, "deprecated_source")
 
     @property
     @pulumi.getter(name="eventTime")
@@ -177,7 +177,7 @@ class Event(pulumi.CustomResource):
         """
         Required. Time when this Event was first observed.
         """
-        ...
+        return pulumi.get(self, "event_time")
 
     @property
     @pulumi.getter
@@ -185,12 +185,12 @@ class Event(pulumi.CustomResource):
         """
         Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         """
-        ...
+        return pulumi.get(self, "kind")
 
     @property
     @pulumi.getter
     def metadata(self) -> Optional['_meta.v1.outputs.ObjectMeta']:
-        ...
+        return pulumi.get(self, "metadata")
 
     @property
     @pulumi.getter
@@ -198,7 +198,7 @@ class Event(pulumi.CustomResource):
         """
         Optional. A human-readable description of the status of this operation. Maximal length of the note is 1kB, but libraries should be prepared to handle values up to 64kB.
         """
-        ...
+        return pulumi.get(self, "note")
 
     @property
     @pulumi.getter
@@ -206,7 +206,7 @@ class Event(pulumi.CustomResource):
         """
         Why the action was taken.
         """
-        ...
+        return pulumi.get(self, "reason")
 
     @property
     @pulumi.getter
@@ -214,7 +214,7 @@ class Event(pulumi.CustomResource):
         """
         The object this Event is about. In most cases it's an Object reporting controller implements. E.g. ReplicaSetController implements ReplicaSets and this event is emitted because it acts on some changes in a ReplicaSet object.
         """
-        ...
+        return pulumi.get(self, "regarding")
 
     @property
     @pulumi.getter
@@ -222,7 +222,7 @@ class Event(pulumi.CustomResource):
         """
         Optional secondary object for more complex actions. E.g. when regarding object triggers a creation or deletion of related object.
         """
-        ...
+        return pulumi.get(self, "related")
 
     @property
     @pulumi.getter(name="reportingController")
@@ -230,7 +230,7 @@ class Event(pulumi.CustomResource):
         """
         Name of the controller that emitted this Event, e.g. `kubernetes.io/kubelet`.
         """
-        ...
+        return pulumi.get(self, "reporting_controller")
 
     @property
     @pulumi.getter(name="reportingInstance")
@@ -238,7 +238,7 @@ class Event(pulumi.CustomResource):
         """
         ID of the controller instance, e.g. `kubelet-xyzf`.
         """
-        ...
+        return pulumi.get(self, "reporting_instance")
 
     @property
     @pulumi.getter
@@ -246,7 +246,7 @@ class Event(pulumi.CustomResource):
         """
         Data about the Event series this event represents or nil if it's a singleton Event.
         """
-        ...
+        return pulumi.get(self, "series")
 
     @property
     @pulumi.getter
@@ -254,7 +254,7 @@ class Event(pulumi.CustomResource):
         """
         Type of this event (Normal, Warning), new types could be added in the future.
         """
-        ...
+        return pulumi.get(self, "type")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

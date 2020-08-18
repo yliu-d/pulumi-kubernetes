@@ -78,7 +78,7 @@ class AllowedCSIDriver(dict):
         """
         Name is the registered name of the CSI driver
         """
-        ...
+        return pulumi.get(self, "name")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -103,7 +103,7 @@ class AllowedFlexVolume(dict):
         """
         driver is the name of the Flexvolume driver.
         """
-        ...
+        return pulumi.get(self, "driver")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -137,7 +137,7 @@ class AllowedHostPath(dict):
 
         Examples: `/foo` would allow `/foo`, `/foo/` and `/foo/bar` `/foo` would not allow `/food` or `/etc/foo`
         """
-        ...
+        return pulumi.get(self, "path_prefix")
 
     @property
     @pulumi.getter(name="readOnly")
@@ -145,7 +145,7 @@ class AllowedHostPath(dict):
         """
         when set to true, will allow host volumes matching the pathPrefix only if all volume mounts are readOnly.
         """
-        ...
+        return pulumi.get(self, "read_only")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -187,7 +187,7 @@ class DaemonSet(dict):
         """
         APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
         """
-        ...
+        return pulumi.get(self, "api_version")
 
     @property
     @pulumi.getter
@@ -195,7 +195,7 @@ class DaemonSet(dict):
         """
         Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         """
-        ...
+        return pulumi.get(self, "kind")
 
     @property
     @pulumi.getter
@@ -203,7 +203,7 @@ class DaemonSet(dict):
         """
         Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         """
-        ...
+        return pulumi.get(self, "metadata")
 
     @property
     @pulumi.getter
@@ -211,7 +211,7 @@ class DaemonSet(dict):
         """
         The desired behavior of this daemon set. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
         """
-        ...
+        return pulumi.get(self, "spec")
 
     @property
     @pulumi.getter
@@ -219,7 +219,7 @@ class DaemonSet(dict):
         """
         The current status of this daemon set. This data may be out of date by some window of time. Populated by the system. Read-only. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
         """
-        ...
+        return pulumi.get(self, "status")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -259,7 +259,7 @@ class DaemonSetCondition(dict):
         """
         Status of the condition, one of True, False, Unknown.
         """
-        ...
+        return pulumi.get(self, "status")
 
     @property
     @pulumi.getter
@@ -267,7 +267,7 @@ class DaemonSetCondition(dict):
         """
         Type of DaemonSet condition.
         """
-        ...
+        return pulumi.get(self, "type")
 
     @property
     @pulumi.getter(name="lastTransitionTime")
@@ -275,7 +275,7 @@ class DaemonSetCondition(dict):
         """
         Last time the condition transitioned from one status to another.
         """
-        ...
+        return pulumi.get(self, "last_transition_time")
 
     @property
     @pulumi.getter
@@ -283,7 +283,7 @@ class DaemonSetCondition(dict):
         """
         A human readable message indicating details about the transition.
         """
-        ...
+        return pulumi.get(self, "message")
 
     @property
     @pulumi.getter
@@ -291,7 +291,7 @@ class DaemonSetCondition(dict):
         """
         The reason for the condition's last transition.
         """
-        ...
+        return pulumi.get(self, "reason")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -336,7 +336,7 @@ class DaemonSetSpec(dict):
         """
         An object that describes the pod that will be created. The DaemonSet will create exactly one copy of this pod on every node that matches the template's node selector (or on every node if no node selector is specified). More info: https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller#pod-template
         """
-        ...
+        return pulumi.get(self, "template")
 
     @property
     @pulumi.getter(name="minReadySeconds")
@@ -344,7 +344,7 @@ class DaemonSetSpec(dict):
         """
         The minimum number of seconds for which a newly created DaemonSet pod should be ready without any of its container crashing, for it to be considered available. Defaults to 0 (pod will be considered available as soon as it is ready).
         """
-        ...
+        return pulumi.get(self, "min_ready_seconds")
 
     @property
     @pulumi.getter(name="revisionHistoryLimit")
@@ -352,7 +352,7 @@ class DaemonSetSpec(dict):
         """
         The number of old history to retain to allow rollback. This is a pointer to distinguish between explicit zero and not specified. Defaults to 10.
         """
-        ...
+        return pulumi.get(self, "revision_history_limit")
 
     @property
     @pulumi.getter
@@ -360,7 +360,7 @@ class DaemonSetSpec(dict):
         """
         A label query over pods that are managed by the daemon set. Must match in order to be controlled. If empty, defaulted to labels on Pod template. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors
         """
-        ...
+        return pulumi.get(self, "selector")
 
     @property
     @pulumi.getter(name="templateGeneration")
@@ -368,7 +368,7 @@ class DaemonSetSpec(dict):
         """
         DEPRECATED. A sequence number representing a specific generation of the template. Populated by the system. It can be set only during the creation.
         """
-        ...
+        return pulumi.get(self, "template_generation")
 
     @property
     @pulumi.getter(name="updateStrategy")
@@ -376,7 +376,7 @@ class DaemonSetSpec(dict):
         """
         An update strategy to replace existing DaemonSet pods with new pods.
         """
-        ...
+        return pulumi.get(self, "update_strategy")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -434,7 +434,7 @@ class DaemonSetStatus(dict):
         """
         The number of nodes that are running at least 1 daemon pod and are supposed to run the daemon pod. More info: https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/
         """
-        ...
+        return pulumi.get(self, "current_number_scheduled")
 
     @property
     @pulumi.getter(name="desiredNumberScheduled")
@@ -442,7 +442,7 @@ class DaemonSetStatus(dict):
         """
         The total number of nodes that should be running the daemon pod (including nodes correctly running the daemon pod). More info: https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/
         """
-        ...
+        return pulumi.get(self, "desired_number_scheduled")
 
     @property
     @pulumi.getter(name="numberMisscheduled")
@@ -450,7 +450,7 @@ class DaemonSetStatus(dict):
         """
         The number of nodes that are running the daemon pod, but are not supposed to run the daemon pod. More info: https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/
         """
-        ...
+        return pulumi.get(self, "number_misscheduled")
 
     @property
     @pulumi.getter(name="numberReady")
@@ -458,7 +458,7 @@ class DaemonSetStatus(dict):
         """
         The number of nodes that should be running the daemon pod and have one or more of the daemon pod running and ready.
         """
-        ...
+        return pulumi.get(self, "number_ready")
 
     @property
     @pulumi.getter(name="collisionCount")
@@ -466,7 +466,7 @@ class DaemonSetStatus(dict):
         """
         Count of hash collisions for the DaemonSet. The DaemonSet controller uses this field as a collision avoidance mechanism when it needs to create the name for the newest ControllerRevision.
         """
-        ...
+        return pulumi.get(self, "collision_count")
 
     @property
     @pulumi.getter
@@ -474,7 +474,7 @@ class DaemonSetStatus(dict):
         """
         Represents the latest available observations of a DaemonSet's current state.
         """
-        ...
+        return pulumi.get(self, "conditions")
 
     @property
     @pulumi.getter(name="numberAvailable")
@@ -482,7 +482,7 @@ class DaemonSetStatus(dict):
         """
         The number of nodes that should be running the daemon pod and have one or more of the daemon pod running and available (ready for at least spec.minReadySeconds)
         """
-        ...
+        return pulumi.get(self, "number_available")
 
     @property
     @pulumi.getter(name="numberUnavailable")
@@ -490,7 +490,7 @@ class DaemonSetStatus(dict):
         """
         The number of nodes that should be running the daemon pod and have none of the daemon pod running and available (ready for at least spec.minReadySeconds)
         """
-        ...
+        return pulumi.get(self, "number_unavailable")
 
     @property
     @pulumi.getter(name="observedGeneration")
@@ -498,7 +498,7 @@ class DaemonSetStatus(dict):
         """
         The most recent generation observed by the daemon set controller.
         """
-        ...
+        return pulumi.get(self, "observed_generation")
 
     @property
     @pulumi.getter(name="updatedNumberScheduled")
@@ -506,7 +506,7 @@ class DaemonSetStatus(dict):
         """
         The total number of nodes that are running updated daemon pod
         """
-        ...
+        return pulumi.get(self, "updated_number_scheduled")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -532,7 +532,7 @@ class DaemonSetUpdateStrategy(dict):
         """
         Rolling update config params. Present only if type = "RollingUpdate".
         """
-        ...
+        return pulumi.get(self, "rolling_update")
 
     @property
     @pulumi.getter
@@ -540,7 +540,7 @@ class DaemonSetUpdateStrategy(dict):
         """
         Type of daemon set update. Can be "RollingUpdate" or "OnDelete". Default is OnDelete.
         """
-        ...
+        return pulumi.get(self, "type")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -626,7 +626,7 @@ class Deployment(dict):
         """
         APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
         """
-        ...
+        return pulumi.get(self, "api_version")
 
     @property
     @pulumi.getter
@@ -634,7 +634,7 @@ class Deployment(dict):
         """
         Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         """
-        ...
+        return pulumi.get(self, "kind")
 
     @property
     @pulumi.getter
@@ -642,7 +642,7 @@ class Deployment(dict):
         """
         Standard object metadata.
         """
-        ...
+        return pulumi.get(self, "metadata")
 
     @property
     @pulumi.getter
@@ -650,7 +650,7 @@ class Deployment(dict):
         """
         Specification of the desired behavior of the Deployment.
         """
-        ...
+        return pulumi.get(self, "spec")
 
     @property
     @pulumi.getter
@@ -658,7 +658,7 @@ class Deployment(dict):
         """
         Most recently observed status of the Deployment.
         """
-        ...
+        return pulumi.get(self, "status")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -702,7 +702,7 @@ class DeploymentCondition(dict):
         """
         Status of the condition, one of True, False, Unknown.
         """
-        ...
+        return pulumi.get(self, "status")
 
     @property
     @pulumi.getter
@@ -710,7 +710,7 @@ class DeploymentCondition(dict):
         """
         Type of deployment condition.
         """
-        ...
+        return pulumi.get(self, "type")
 
     @property
     @pulumi.getter(name="lastTransitionTime")
@@ -718,7 +718,7 @@ class DeploymentCondition(dict):
         """
         Last time the condition transitioned from one status to another.
         """
-        ...
+        return pulumi.get(self, "last_transition_time")
 
     @property
     @pulumi.getter(name="lastUpdateTime")
@@ -726,7 +726,7 @@ class DeploymentCondition(dict):
         """
         The last time this condition was updated.
         """
-        ...
+        return pulumi.get(self, "last_update_time")
 
     @property
     @pulumi.getter
@@ -734,7 +734,7 @@ class DeploymentCondition(dict):
         """
         A human readable message indicating details about the transition.
         """
-        ...
+        return pulumi.get(self, "message")
 
     @property
     @pulumi.getter
@@ -742,7 +742,7 @@ class DeploymentCondition(dict):
         """
         The reason for the condition's last transition.
         """
-        ...
+        return pulumi.get(self, "reason")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -799,7 +799,7 @@ class DeploymentSpec(dict):
         """
         Template describes the pods that will be created.
         """
-        ...
+        return pulumi.get(self, "template")
 
     @property
     @pulumi.getter(name="minReadySeconds")
@@ -807,7 +807,7 @@ class DeploymentSpec(dict):
         """
         Minimum number of seconds for which a newly created pod should be ready without any of its container crashing, for it to be considered available. Defaults to 0 (pod will be considered available as soon as it is ready)
         """
-        ...
+        return pulumi.get(self, "min_ready_seconds")
 
     @property
     @pulumi.getter
@@ -815,7 +815,7 @@ class DeploymentSpec(dict):
         """
         Indicates that the deployment is paused and will not be processed by the deployment controller.
         """
-        ...
+        return pulumi.get(self, "paused")
 
     @property
     @pulumi.getter(name="progressDeadlineSeconds")
@@ -823,7 +823,7 @@ class DeploymentSpec(dict):
         """
         The maximum time in seconds for a deployment to make progress before it is considered to be failed. The deployment controller will continue to process failed deployments and a condition with a ProgressDeadlineExceeded reason will be surfaced in the deployment status. Note that progress will not be estimated during the time a deployment is paused. This is set to the max value of int32 (i.e. 2147483647) by default, which means "no deadline".
         """
-        ...
+        return pulumi.get(self, "progress_deadline_seconds")
 
     @property
     @pulumi.getter
@@ -831,7 +831,7 @@ class DeploymentSpec(dict):
         """
         Number of desired pods. This is a pointer to distinguish between explicit zero and not specified. Defaults to 1.
         """
-        ...
+        return pulumi.get(self, "replicas")
 
     @property
     @pulumi.getter(name="revisionHistoryLimit")
@@ -839,7 +839,7 @@ class DeploymentSpec(dict):
         """
         The number of old ReplicaSets to retain to allow rollback. This is a pointer to distinguish between explicit zero and not specified. This is set to the max value of int32 (i.e. 2147483647) by default, which means "retaining all old RelicaSets".
         """
-        ...
+        return pulumi.get(self, "revision_history_limit")
 
     @property
     @pulumi.getter(name="rollbackTo")
@@ -847,7 +847,7 @@ class DeploymentSpec(dict):
         """
         DEPRECATED. The config this deployment is rolling back to. Will be cleared after rollback is done.
         """
-        ...
+        return pulumi.get(self, "rollback_to")
 
     @property
     @pulumi.getter
@@ -855,7 +855,7 @@ class DeploymentSpec(dict):
         """
         Label selector for pods. Existing ReplicaSets whose pods are selected by this will be the ones affected by this deployment.
         """
-        ...
+        return pulumi.get(self, "selector")
 
     @property
     @pulumi.getter
@@ -863,7 +863,7 @@ class DeploymentSpec(dict):
         """
         The deployment strategy to use to replace existing pods with new ones.
         """
-        ...
+        return pulumi.get(self, "strategy")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -917,7 +917,7 @@ class DeploymentStatus(dict):
         """
         Total number of available pods (ready for at least minReadySeconds) targeted by this deployment.
         """
-        ...
+        return pulumi.get(self, "available_replicas")
 
     @property
     @pulumi.getter(name="collisionCount")
@@ -925,7 +925,7 @@ class DeploymentStatus(dict):
         """
         Count of hash collisions for the Deployment. The Deployment controller uses this field as a collision avoidance mechanism when it needs to create the name for the newest ReplicaSet.
         """
-        ...
+        return pulumi.get(self, "collision_count")
 
     @property
     @pulumi.getter
@@ -933,7 +933,7 @@ class DeploymentStatus(dict):
         """
         Represents the latest available observations of a deployment's current state.
         """
-        ...
+        return pulumi.get(self, "conditions")
 
     @property
     @pulumi.getter(name="observedGeneration")
@@ -941,7 +941,7 @@ class DeploymentStatus(dict):
         """
         The generation observed by the deployment controller.
         """
-        ...
+        return pulumi.get(self, "observed_generation")
 
     @property
     @pulumi.getter(name="readyReplicas")
@@ -949,7 +949,7 @@ class DeploymentStatus(dict):
         """
         Total number of ready pods targeted by this deployment.
         """
-        ...
+        return pulumi.get(self, "ready_replicas")
 
     @property
     @pulumi.getter
@@ -957,7 +957,7 @@ class DeploymentStatus(dict):
         """
         Total number of non-terminated pods targeted by this deployment (their labels match the selector).
         """
-        ...
+        return pulumi.get(self, "replicas")
 
     @property
     @pulumi.getter(name="unavailableReplicas")
@@ -965,7 +965,7 @@ class DeploymentStatus(dict):
         """
         Total number of unavailable pods targeted by this deployment. This is the total number of pods that are still required for the deployment to have 100% available capacity. They may either be pods that are running but not yet available or pods that still have not been created.
         """
-        ...
+        return pulumi.get(self, "unavailable_replicas")
 
     @property
     @pulumi.getter(name="updatedReplicas")
@@ -973,7 +973,7 @@ class DeploymentStatus(dict):
         """
         Total number of non-terminated pods targeted by this deployment that have the desired template spec.
         """
-        ...
+        return pulumi.get(self, "updated_replicas")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1003,7 +1003,7 @@ class DeploymentStrategy(dict):
         """
         Rolling update config params. Present only if DeploymentStrategyType = RollingUpdate.
         """
-        ...
+        return pulumi.get(self, "rolling_update")
 
     @property
     @pulumi.getter
@@ -1011,7 +1011,7 @@ class DeploymentStrategy(dict):
         """
         Type of deployment. Can be "Recreate" or "RollingUpdate". Default is RollingUpdate.
         """
-        ...
+        return pulumi.get(self, "type")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1041,7 +1041,7 @@ class FSGroupStrategyOptions(dict):
         """
         ranges are the allowed ranges of fs groups.  If you would like to force a single fs group then supply a single range with the same start and end. Required for MustRunAs.
         """
-        ...
+        return pulumi.get(self, "ranges")
 
     @property
     @pulumi.getter
@@ -1049,7 +1049,7 @@ class FSGroupStrategyOptions(dict):
         """
         rule is the strategy that will dictate what FSGroup is used in the SecurityContext.
         """
-        ...
+        return pulumi.get(self, "rule")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1092,7 +1092,7 @@ class HTTPIngressPath(dict):
         """
         Backend defines the referenced service endpoint to which the traffic will be forwarded to.
         """
-        ...
+        return pulumi.get(self, "backend")
 
     @property
     @pulumi.getter
@@ -1100,7 +1100,7 @@ class HTTPIngressPath(dict):
         """
         Path is matched against the path of an incoming request. Currently it can contain characters disallowed from the conventional "path" part of a URL as defined by RFC 3986. Paths must begin with a '/'. When unspecified, all paths from incoming requests are matched.
         """
-        ...
+        return pulumi.get(self, "path")
 
     @property
     @pulumi.getter(name="pathType")
@@ -1118,7 +1118,7 @@ class HTTPIngressPath(dict):
           or treat it identically to Prefix or Exact path types.
         Implementations are required to support all path types. Defaults to ImplementationSpecific.
         """
-        ...
+        return pulumi.get(self, "path_type")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1143,7 +1143,7 @@ class HTTPIngressRuleValue(dict):
         """
         A collection of paths that map requests to backends.
         """
-        ...
+        return pulumi.get(self, "paths")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1171,7 +1171,7 @@ class HostPortRange(dict):
         """
         max is the end of the range, inclusive.
         """
-        ...
+        return pulumi.get(self, "max")
 
     @property
     @pulumi.getter
@@ -1179,7 +1179,7 @@ class HostPortRange(dict):
         """
         min is the start of the range, inclusive.
         """
-        ...
+        return pulumi.get(self, "min")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1207,7 +1207,7 @@ class IDRange(dict):
         """
         max is the end of the range, inclusive.
         """
-        ...
+        return pulumi.get(self, "max")
 
     @property
     @pulumi.getter
@@ -1215,7 +1215,7 @@ class IDRange(dict):
         """
         min is the start of the range, inclusive.
         """
-        ...
+        return pulumi.get(self, "min")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1244,7 +1244,7 @@ class IPBlock(dict):
         """
         CIDR is a string representing the IP Block Valid examples are "192.168.1.1/24"
         """
-        ...
+        return pulumi.get(self, "cidr")
 
     @property
     @pulumi.getter(name="except")
@@ -1252,7 +1252,7 @@ class IPBlock(dict):
         """
         Except is a slice of CIDRs that should not be included within an IP Block Valid examples are "192.168.1.1/24" Except values will be rejected if they are outside the CIDR range
         """
-        ...
+        return pulumi.get(self, "except_")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1322,7 +1322,7 @@ class Ingress(dict):
         """
         APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
         """
-        ...
+        return pulumi.get(self, "api_version")
 
     @property
     @pulumi.getter
@@ -1330,7 +1330,7 @@ class Ingress(dict):
         """
         Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         """
-        ...
+        return pulumi.get(self, "kind")
 
     @property
     @pulumi.getter
@@ -1338,7 +1338,7 @@ class Ingress(dict):
         """
         Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         """
-        ...
+        return pulumi.get(self, "metadata")
 
     @property
     @pulumi.getter
@@ -1346,7 +1346,7 @@ class Ingress(dict):
         """
         Spec is the desired state of the Ingress. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
         """
-        ...
+        return pulumi.get(self, "spec")
 
     @property
     @pulumi.getter
@@ -1354,7 +1354,7 @@ class Ingress(dict):
         """
         Status is the current state of the Ingress. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
         """
-        ...
+        return pulumi.get(self, "status")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1386,7 +1386,7 @@ class IngressBackend(dict):
         """
         Specifies the name of the referenced service.
         """
-        ...
+        return pulumi.get(self, "service_name")
 
     @property
     @pulumi.getter(name="servicePort")
@@ -1394,7 +1394,7 @@ class IngressBackend(dict):
         """
         Specifies the port of the referenced service.
         """
-        ...
+        return pulumi.get(self, "service_port")
 
     @property
     @pulumi.getter
@@ -1402,7 +1402,7 @@ class IngressBackend(dict):
         """
         Resource is an ObjectRef to another Kubernetes resource in the namespace of the Ingress object. If resource is specified, serviceName and servicePort must not be specified.
         """
-        ...
+        return pulumi.get(self, "resource")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1445,12 +1445,12 @@ class IngressRule(dict):
 
         Host can be "precise" which is a domain name without the terminating dot of a network host (e.g. "foo.bar.com") or "wildcard", which is a domain name prefixed with a single wildcard label (e.g. "*.foo.com"). The wildcard character '*' must appear by itself as the first DNS label and matches only a single label. You cannot have a wildcard label by itself (e.g. Host == "*"). Requests will be matched against the Host field in the following way: 1. If Host is precise, the request matches this rule if the http host header is equal to Host. 2. If Host is a wildcard, then the request matches this rule if the http host header is to equal to the suffix (removing the first label) of the wildcard rule.
         """
-        ...
+        return pulumi.get(self, "host")
 
     @property
     @pulumi.getter
     def http(self) -> Optional['outputs.HTTPIngressRuleValue']:
-        ...
+        return pulumi.get(self, "http")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1488,7 +1488,7 @@ class IngressSpec(dict):
         """
         A default backend capable of servicing requests that don't match any rule. At least one of 'backend' or 'rules' must be specified. This field is optional to allow the loadbalancer controller or defaulting logic to specify a global default.
         """
-        ...
+        return pulumi.get(self, "backend")
 
     @property
     @pulumi.getter(name="ingressClassName")
@@ -1496,7 +1496,7 @@ class IngressSpec(dict):
         """
         IngressClassName is the name of the IngressClass cluster resource. The associated IngressClass defines which controller will implement the resource. This replaces the deprecated `kubernetes.io/ingress.class` annotation. For backwards compatibility, when that annotation is set, it must be given precedence over this field. The controller may emit a warning if the field and annotation have different values. Implementations of this API should ignore Ingresses without a class specified. An IngressClass resource may be marked as default, which can be used to set a default value for this field. For more information, refer to the IngressClass documentation.
         """
-        ...
+        return pulumi.get(self, "ingress_class_name")
 
     @property
     @pulumi.getter
@@ -1504,7 +1504,7 @@ class IngressSpec(dict):
         """
         A list of host rules used to configure the Ingress. If unspecified, or no rule matches, all traffic is sent to the default backend.
         """
-        ...
+        return pulumi.get(self, "rules")
 
     @property
     @pulumi.getter
@@ -1512,7 +1512,7 @@ class IngressSpec(dict):
         """
         TLS configuration. Currently the Ingress only supports a single TLS port, 443. If multiple members of this list specify different hosts, they will be multiplexed on the same port according to the hostname specified through the SNI TLS extension, if the ingress controller fulfilling the ingress supports SNI.
         """
-        ...
+        return pulumi.get(self, "tls")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1538,7 +1538,7 @@ class IngressStatus(dict):
         """
         LoadBalancer contains the current status of the load-balancer.
         """
-        ...
+        return pulumi.get(self, "load_balancer")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1568,7 +1568,7 @@ class IngressTLS(dict):
         """
         Hosts are a list of hosts included in the TLS certificate. The values in this list must match the name/s used in the tlsSecret. Defaults to the wildcard host setting for the loadbalancer controller fulfilling this Ingress, if left unspecified.
         """
-        ...
+        return pulumi.get(self, "hosts")
 
     @property
     @pulumi.getter(name="secretName")
@@ -1576,7 +1576,7 @@ class IngressTLS(dict):
         """
         SecretName is the name of the secret used to terminate SSL traffic on 443. Field is left optional to allow SSL routing based on SNI hostname alone. If the SNI host in a listener conflicts with the "Host" header field used by an IngressRule, the SNI host is used for termination and value of the Host header is used for routing.
         """
-        ...
+        return pulumi.get(self, "secret_name")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1614,7 +1614,7 @@ class NetworkPolicy(dict):
         """
         APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
         """
-        ...
+        return pulumi.get(self, "api_version")
 
     @property
     @pulumi.getter
@@ -1622,7 +1622,7 @@ class NetworkPolicy(dict):
         """
         Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         """
-        ...
+        return pulumi.get(self, "kind")
 
     @property
     @pulumi.getter
@@ -1630,7 +1630,7 @@ class NetworkPolicy(dict):
         """
         Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         """
-        ...
+        return pulumi.get(self, "metadata")
 
     @property
     @pulumi.getter
@@ -1638,7 +1638,7 @@ class NetworkPolicy(dict):
         """
         Specification of the desired behavior for this NetworkPolicy.
         """
-        ...
+        return pulumi.get(self, "spec")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1668,7 +1668,7 @@ class NetworkPolicyEgressRule(dict):
         """
         List of destination ports for outgoing traffic. Each item in this list is combined using a logical OR. If this field is empty or missing, this rule matches all ports (traffic not restricted by port). If this field is present and contains at least one item, then this rule allows traffic only if the traffic matches at least one port in the list.
         """
-        ...
+        return pulumi.get(self, "ports")
 
     @property
     @pulumi.getter
@@ -1676,7 +1676,7 @@ class NetworkPolicyEgressRule(dict):
         """
         List of destinations for outgoing traffic of pods selected for this rule. Items in this list are combined using a logical OR operation. If this field is empty or missing, this rule matches all destinations (traffic not restricted by destination). If this field is present and contains at least one item, this rule allows traffic only if the traffic matches at least one item in the to list.
         """
-        ...
+        return pulumi.get(self, "to")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1706,7 +1706,7 @@ class NetworkPolicyIngressRule(dict):
         """
         List of sources which should be able to access the pods selected for this rule. Items in this list are combined using a logical OR operation. If this field is empty or missing, this rule matches all sources (traffic not restricted by source). If this field is present and contains at least one item, this rule allows traffic only if the traffic matches at least one item in the from list.
         """
-        ...
+        return pulumi.get(self, "from_")
 
     @property
     @pulumi.getter
@@ -1714,7 +1714,7 @@ class NetworkPolicyIngressRule(dict):
         """
         List of ports which should be made accessible on the pods selected for this rule. Each item in this list is combined using a logical OR. If this field is empty or missing, this rule matches all ports (traffic not restricted by port). If this field is present and contains at least one item, then this rule allows traffic only if the traffic matches at least one port in the list.
         """
-        ...
+        return pulumi.get(self, "ports")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1752,7 +1752,7 @@ class NetworkPolicyPeer(dict):
         """
         IPBlock defines policy on a particular IPBlock. If this field is set then neither of the other fields can be.
         """
-        ...
+        return pulumi.get(self, "ip_block")
 
     @property
     @pulumi.getter(name="namespaceSelector")
@@ -1762,7 +1762,7 @@ class NetworkPolicyPeer(dict):
 
         If PodSelector is also set, then the NetworkPolicyPeer as a whole selects the Pods matching PodSelector in the Namespaces selected by NamespaceSelector. Otherwise it selects all Pods in the Namespaces selected by NamespaceSelector.
         """
-        ...
+        return pulumi.get(self, "namespace_selector")
 
     @property
     @pulumi.getter(name="podSelector")
@@ -1772,7 +1772,7 @@ class NetworkPolicyPeer(dict):
 
         If NamespaceSelector is also set, then the NetworkPolicyPeer as a whole selects the Pods matching PodSelector in the Namespaces selected by NamespaceSelector. Otherwise it selects the Pods matching PodSelector in the policy's own Namespace.
         """
-        ...
+        return pulumi.get(self, "pod_selector")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1802,7 +1802,7 @@ class NetworkPolicyPort(dict):
         """
         If specified, the port on the given protocol.  This can either be a numerical or named port on a pod.  If this field is not provided, this matches all port names and numbers. If present, only traffic on the specified protocol AND port will be matched.
         """
-        ...
+        return pulumi.get(self, "port")
 
     @property
     @pulumi.getter
@@ -1810,7 +1810,7 @@ class NetworkPolicyPort(dict):
         """
         Optional.  The protocol (TCP, UDP, or SCTP) which traffic must match. If not specified, this field defaults to TCP.
         """
-        ...
+        return pulumi.get(self, "protocol")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1847,7 +1847,7 @@ class NetworkPolicySpec(dict):
         """
         Selects the pods to which this NetworkPolicy object applies.  The array of ingress rules is applied to any pods selected by this field. Multiple network policies can select the same set of pods.  In this case, the ingress rules for each are combined additively. This field is NOT optional and follows standard label selector semantics. An empty podSelector matches all pods in this namespace.
         """
-        ...
+        return pulumi.get(self, "pod_selector")
 
     @property
     @pulumi.getter
@@ -1855,7 +1855,7 @@ class NetworkPolicySpec(dict):
         """
         List of egress rules to be applied to the selected pods. Outgoing traffic is allowed if there are no NetworkPolicies selecting the pod (and cluster policy otherwise allows the traffic), OR if the traffic matches at least one egress rule across all of the NetworkPolicy objects whose podSelector matches the pod. If this field is empty then this NetworkPolicy limits all outgoing traffic (and serves solely to ensure that the pods it selects are isolated by default). This field is beta-level in 1.8
         """
-        ...
+        return pulumi.get(self, "egress")
 
     @property
     @pulumi.getter
@@ -1863,7 +1863,7 @@ class NetworkPolicySpec(dict):
         """
         List of ingress rules to be applied to the selected pods. Traffic is allowed to a pod if there are no NetworkPolicies selecting the pod OR if the traffic source is the pod's local node, OR if the traffic matches at least one ingress rule across all of the NetworkPolicy objects whose podSelector matches the pod. If this field is empty then this NetworkPolicy does not allow any traffic (and serves solely to ensure that the pods it selects are isolated by default).
         """
-        ...
+        return pulumi.get(self, "ingress")
 
     @property
     @pulumi.getter(name="policyTypes")
@@ -1871,7 +1871,7 @@ class NetworkPolicySpec(dict):
         """
         List of rule types that the NetworkPolicy relates to. Valid options are "Ingress", "Egress", or "Ingress,Egress". If this field is not specified, it will default based on the existence of Ingress or Egress rules; policies that contain an Egress section are assumed to affect Egress, and all policies (whether or not they contain an Ingress section) are assumed to affect Ingress. If you want to write an egress-only policy, you must explicitly specify policyTypes [ "Egress" ]. Likewise, if you want to write a policy that specifies that no egress is allowed, you must specify a policyTypes value that include "Egress" (since such a policy would not include an Egress section and would otherwise default to just [ "Ingress" ]). This field is beta-level in 1.8
         """
-        ...
+        return pulumi.get(self, "policy_types")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1909,7 +1909,7 @@ class PodSecurityPolicy(dict):
         """
         APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
         """
-        ...
+        return pulumi.get(self, "api_version")
 
     @property
     @pulumi.getter
@@ -1917,7 +1917,7 @@ class PodSecurityPolicy(dict):
         """
         Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         """
-        ...
+        return pulumi.get(self, "kind")
 
     @property
     @pulumi.getter
@@ -1925,7 +1925,7 @@ class PodSecurityPolicy(dict):
         """
         Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         """
-        ...
+        return pulumi.get(self, "metadata")
 
     @property
     @pulumi.getter
@@ -1933,7 +1933,7 @@ class PodSecurityPolicy(dict):
         """
         spec defines the policy enforced.
         """
-        ...
+        return pulumi.get(self, "spec")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -2051,7 +2051,7 @@ class PodSecurityPolicySpec(dict):
         """
         fsGroup is the strategy that will dictate what fs group is used by the SecurityContext.
         """
-        ...
+        return pulumi.get(self, "fs_group")
 
     @property
     @pulumi.getter(name="runAsUser")
@@ -2059,7 +2059,7 @@ class PodSecurityPolicySpec(dict):
         """
         runAsUser is the strategy that will dictate the allowable RunAsUser values that may be set.
         """
-        ...
+        return pulumi.get(self, "run_as_user")
 
     @property
     @pulumi.getter(name="seLinux")
@@ -2067,7 +2067,7 @@ class PodSecurityPolicySpec(dict):
         """
         seLinux is the strategy that will dictate the allowable labels that may be set.
         """
-        ...
+        return pulumi.get(self, "se_linux")
 
     @property
     @pulumi.getter(name="supplementalGroups")
@@ -2075,7 +2075,7 @@ class PodSecurityPolicySpec(dict):
         """
         supplementalGroups is the strategy that will dictate what supplemental groups are used by the SecurityContext.
         """
-        ...
+        return pulumi.get(self, "supplemental_groups")
 
     @property
     @pulumi.getter(name="allowPrivilegeEscalation")
@@ -2083,7 +2083,7 @@ class PodSecurityPolicySpec(dict):
         """
         allowPrivilegeEscalation determines if a pod can request to allow privilege escalation. If unspecified, defaults to true.
         """
-        ...
+        return pulumi.get(self, "allow_privilege_escalation")
 
     @property
     @pulumi.getter(name="allowedCSIDrivers")
@@ -2091,7 +2091,7 @@ class PodSecurityPolicySpec(dict):
         """
         AllowedCSIDrivers is a whitelist of inline CSI drivers that must be explicitly set to be embedded within a pod spec. An empty value indicates that any CSI driver can be used for inline ephemeral volumes.
         """
-        ...
+        return pulumi.get(self, "allowed_csi_drivers")
 
     @property
     @pulumi.getter(name="allowedCapabilities")
@@ -2099,7 +2099,7 @@ class PodSecurityPolicySpec(dict):
         """
         allowedCapabilities is a list of capabilities that can be requested to add to the container. Capabilities in this field may be added at the pod author's discretion. You must not list a capability in both allowedCapabilities and requiredDropCapabilities.
         """
-        ...
+        return pulumi.get(self, "allowed_capabilities")
 
     @property
     @pulumi.getter(name="allowedFlexVolumes")
@@ -2107,7 +2107,7 @@ class PodSecurityPolicySpec(dict):
         """
         allowedFlexVolumes is a whitelist of allowed Flexvolumes.  Empty or nil indicates that all Flexvolumes may be used.  This parameter is effective only when the usage of the Flexvolumes is allowed in the "volumes" field.
         """
-        ...
+        return pulumi.get(self, "allowed_flex_volumes")
 
     @property
     @pulumi.getter(name="allowedHostPaths")
@@ -2115,7 +2115,7 @@ class PodSecurityPolicySpec(dict):
         """
         allowedHostPaths is a white list of allowed host paths. Empty indicates that all host paths may be used.
         """
-        ...
+        return pulumi.get(self, "allowed_host_paths")
 
     @property
     @pulumi.getter(name="allowedProcMountTypes")
@@ -2123,7 +2123,7 @@ class PodSecurityPolicySpec(dict):
         """
         AllowedProcMountTypes is a whitelist of allowed ProcMountTypes. Empty or nil indicates that only the DefaultProcMountType may be used. This requires the ProcMountType feature flag to be enabled.
         """
-        ...
+        return pulumi.get(self, "allowed_proc_mount_types")
 
     @property
     @pulumi.getter(name="allowedUnsafeSysctls")
@@ -2133,7 +2133,7 @@ class PodSecurityPolicySpec(dict):
 
         Examples: e.g. "foo/*" allows "foo/bar", "foo/baz", etc. e.g. "foo.*" allows "foo.bar", "foo.baz", etc.
         """
-        ...
+        return pulumi.get(self, "allowed_unsafe_sysctls")
 
     @property
     @pulumi.getter(name="defaultAddCapabilities")
@@ -2141,7 +2141,7 @@ class PodSecurityPolicySpec(dict):
         """
         defaultAddCapabilities is the default set of capabilities that will be added to the container unless the pod spec specifically drops the capability.  You may not list a capability in both defaultAddCapabilities and requiredDropCapabilities. Capabilities added here are implicitly allowed, and need not be included in the allowedCapabilities list.
         """
-        ...
+        return pulumi.get(self, "default_add_capabilities")
 
     @property
     @pulumi.getter(name="defaultAllowPrivilegeEscalation")
@@ -2149,7 +2149,7 @@ class PodSecurityPolicySpec(dict):
         """
         defaultAllowPrivilegeEscalation controls the default setting for whether a process can gain more privileges than its parent process.
         """
-        ...
+        return pulumi.get(self, "default_allow_privilege_escalation")
 
     @property
     @pulumi.getter(name="forbiddenSysctls")
@@ -2159,7 +2159,7 @@ class PodSecurityPolicySpec(dict):
 
         Examples: e.g. "foo/*" forbids "foo/bar", "foo/baz", etc. e.g. "foo.*" forbids "foo.bar", "foo.baz", etc.
         """
-        ...
+        return pulumi.get(self, "forbidden_sysctls")
 
     @property
     @pulumi.getter(name="hostIPC")
@@ -2167,7 +2167,7 @@ class PodSecurityPolicySpec(dict):
         """
         hostIPC determines if the policy allows the use of HostIPC in the pod spec.
         """
-        ...
+        return pulumi.get(self, "host_ipc")
 
     @property
     @pulumi.getter(name="hostNetwork")
@@ -2175,7 +2175,7 @@ class PodSecurityPolicySpec(dict):
         """
         hostNetwork determines if the policy allows the use of HostNetwork in the pod spec.
         """
-        ...
+        return pulumi.get(self, "host_network")
 
     @property
     @pulumi.getter(name="hostPID")
@@ -2183,7 +2183,7 @@ class PodSecurityPolicySpec(dict):
         """
         hostPID determines if the policy allows the use of HostPID in the pod spec.
         """
-        ...
+        return pulumi.get(self, "host_pid")
 
     @property
     @pulumi.getter(name="hostPorts")
@@ -2191,7 +2191,7 @@ class PodSecurityPolicySpec(dict):
         """
         hostPorts determines which host port ranges are allowed to be exposed.
         """
-        ...
+        return pulumi.get(self, "host_ports")
 
     @property
     @pulumi.getter
@@ -2199,7 +2199,7 @@ class PodSecurityPolicySpec(dict):
         """
         privileged determines if a pod can request to be run as privileged.
         """
-        ...
+        return pulumi.get(self, "privileged")
 
     @property
     @pulumi.getter(name="readOnlyRootFilesystem")
@@ -2207,7 +2207,7 @@ class PodSecurityPolicySpec(dict):
         """
         readOnlyRootFilesystem when set to true will force containers to run with a read only root file system.  If the container specifically requests to run with a non-read only root file system the PSP should deny the pod. If set to false the container may run with a read only root file system if it wishes but it will not be forced to.
         """
-        ...
+        return pulumi.get(self, "read_only_root_filesystem")
 
     @property
     @pulumi.getter(name="requiredDropCapabilities")
@@ -2215,7 +2215,7 @@ class PodSecurityPolicySpec(dict):
         """
         requiredDropCapabilities are the capabilities that will be dropped from the container.  These are required to be dropped and cannot be added.
         """
-        ...
+        return pulumi.get(self, "required_drop_capabilities")
 
     @property
     @pulumi.getter(name="runAsGroup")
@@ -2223,7 +2223,7 @@ class PodSecurityPolicySpec(dict):
         """
         RunAsGroup is the strategy that will dictate the allowable RunAsGroup values that may be set. If this field is omitted, the pod's RunAsGroup can take any value. This field requires the RunAsGroup feature gate to be enabled.
         """
-        ...
+        return pulumi.get(self, "run_as_group")
 
     @property
     @pulumi.getter(name="runtimeClass")
@@ -2231,7 +2231,7 @@ class PodSecurityPolicySpec(dict):
         """
         runtimeClass is the strategy that will dictate the allowable RuntimeClasses for a pod. If this field is omitted, the pod's runtimeClassName field is unrestricted. Enforcement of this field depends on the RuntimeClass feature gate being enabled.
         """
-        ...
+        return pulumi.get(self, "runtime_class")
 
     @property
     @pulumi.getter
@@ -2239,7 +2239,7 @@ class PodSecurityPolicySpec(dict):
         """
         volumes is a white list of allowed volume plugins. Empty indicates that no volumes may be used. To allow all volumes you may use '*'.
         """
-        ...
+        return pulumi.get(self, "volumes")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -2281,7 +2281,7 @@ class ReplicaSet(dict):
         """
         APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
         """
-        ...
+        return pulumi.get(self, "api_version")
 
     @property
     @pulumi.getter
@@ -2289,7 +2289,7 @@ class ReplicaSet(dict):
         """
         Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         """
-        ...
+        return pulumi.get(self, "kind")
 
     @property
     @pulumi.getter
@@ -2297,7 +2297,7 @@ class ReplicaSet(dict):
         """
         If the Labels of a ReplicaSet are empty, they are defaulted to be the same as the Pod(s) that the ReplicaSet manages. Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         """
-        ...
+        return pulumi.get(self, "metadata")
 
     @property
     @pulumi.getter
@@ -2305,7 +2305,7 @@ class ReplicaSet(dict):
         """
         Spec defines the specification of the desired behavior of the ReplicaSet. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
         """
-        ...
+        return pulumi.get(self, "spec")
 
     @property
     @pulumi.getter
@@ -2313,7 +2313,7 @@ class ReplicaSet(dict):
         """
         Status is the most recently observed status of the ReplicaSet. This data may be out of date by some window of time. Populated by the system. Read-only. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
         """
-        ...
+        return pulumi.get(self, "status")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -2353,7 +2353,7 @@ class ReplicaSetCondition(dict):
         """
         Status of the condition, one of True, False, Unknown.
         """
-        ...
+        return pulumi.get(self, "status")
 
     @property
     @pulumi.getter
@@ -2361,7 +2361,7 @@ class ReplicaSetCondition(dict):
         """
         Type of replica set condition.
         """
-        ...
+        return pulumi.get(self, "type")
 
     @property
     @pulumi.getter(name="lastTransitionTime")
@@ -2369,7 +2369,7 @@ class ReplicaSetCondition(dict):
         """
         The last time the condition transitioned from one status to another.
         """
-        ...
+        return pulumi.get(self, "last_transition_time")
 
     @property
     @pulumi.getter
@@ -2377,7 +2377,7 @@ class ReplicaSetCondition(dict):
         """
         A human readable message indicating details about the transition.
         """
-        ...
+        return pulumi.get(self, "message")
 
     @property
     @pulumi.getter
@@ -2385,7 +2385,7 @@ class ReplicaSetCondition(dict):
         """
         The reason for the condition's last transition.
         """
-        ...
+        return pulumi.get(self, "reason")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -2423,7 +2423,7 @@ class ReplicaSetSpec(dict):
         """
         Minimum number of seconds for which a newly created pod should be ready without any of its container crashing, for it to be considered available. Defaults to 0 (pod will be considered available as soon as it is ready)
         """
-        ...
+        return pulumi.get(self, "min_ready_seconds")
 
     @property
     @pulumi.getter
@@ -2431,7 +2431,7 @@ class ReplicaSetSpec(dict):
         """
         Replicas is the number of desired replicas. This is a pointer to distinguish between explicit zero and unspecified. Defaults to 1. More info: https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller/#what-is-a-replicationcontroller
         """
-        ...
+        return pulumi.get(self, "replicas")
 
     @property
     @pulumi.getter
@@ -2439,7 +2439,7 @@ class ReplicaSetSpec(dict):
         """
         Selector is a label query over pods that should match the replica count. If the selector is empty, it is defaulted to the labels present on the pod template. Label keys and values that must match in order to be controlled by this replica set. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors
         """
-        ...
+        return pulumi.get(self, "selector")
 
     @property
     @pulumi.getter
@@ -2447,7 +2447,7 @@ class ReplicaSetSpec(dict):
         """
         Template is the object that describes the pod that will be created if insufficient replicas are detected. More info: https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller#pod-template
         """
-        ...
+        return pulumi.get(self, "template")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -2492,7 +2492,7 @@ class ReplicaSetStatus(dict):
         """
         Replicas is the most recently oberved number of replicas. More info: https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller/#what-is-a-replicationcontroller
         """
-        ...
+        return pulumi.get(self, "replicas")
 
     @property
     @pulumi.getter(name="availableReplicas")
@@ -2500,7 +2500,7 @@ class ReplicaSetStatus(dict):
         """
         The number of available replicas (ready for at least minReadySeconds) for this replica set.
         """
-        ...
+        return pulumi.get(self, "available_replicas")
 
     @property
     @pulumi.getter
@@ -2508,7 +2508,7 @@ class ReplicaSetStatus(dict):
         """
         Represents the latest available observations of a replica set's current state.
         """
-        ...
+        return pulumi.get(self, "conditions")
 
     @property
     @pulumi.getter(name="fullyLabeledReplicas")
@@ -2516,7 +2516,7 @@ class ReplicaSetStatus(dict):
         """
         The number of pods that have labels matching the labels of the pod template of the replicaset.
         """
-        ...
+        return pulumi.get(self, "fully_labeled_replicas")
 
     @property
     @pulumi.getter(name="observedGeneration")
@@ -2524,7 +2524,7 @@ class ReplicaSetStatus(dict):
         """
         ObservedGeneration reflects the generation of the most recently observed ReplicaSet.
         """
-        ...
+        return pulumi.get(self, "observed_generation")
 
     @property
     @pulumi.getter(name="readyReplicas")
@@ -2532,7 +2532,7 @@ class ReplicaSetStatus(dict):
         """
         The number of ready replicas for this replica set.
         """
-        ...
+        return pulumi.get(self, "ready_replicas")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -2558,7 +2558,7 @@ class RollbackConfig(dict):
         """
         The revision to rollback to. If set to 0, rollback to the last revision.
         """
-        ...
+        return pulumi.get(self, "revision")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -2584,7 +2584,7 @@ class RollingUpdateDaemonSet(dict):
         """
         The maximum number of DaemonSet pods that can be unavailable during the update. Value can be an absolute number (ex: 5) or a percentage of total number of DaemonSet pods at the start of the update (ex: 10%). Absolute number is calculated from percentage by rounding up. This cannot be 0. Default value is 1. Example: when this is set to 30%, at most 30% of the total number of nodes that should be running the daemon pod (i.e. status.desiredNumberScheduled) can have their pods stopped for an update at any given time. The update starts by stopping at most 30% of those DaemonSet pods and then brings up new DaemonSet pods in their place. Once the new pods are available, it then proceeds onto other DaemonSet pods, thus ensuring that at least 70% of original number of DaemonSet pods are available at all times during the update.
         """
-        ...
+        return pulumi.get(self, "max_unavailable")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -2614,7 +2614,7 @@ class RollingUpdateDeployment(dict):
         """
         The maximum number of pods that can be scheduled above the desired number of pods. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). This can not be 0 if MaxUnavailable is 0. Absolute number is calculated from percentage by rounding up. By default, a value of 1 is used. Example: when this is set to 30%, the new RC can be scaled up immediately when the rolling update starts, such that the total number of old and new pods do not exceed 130% of desired pods. Once old pods have been killed, new RC can be scaled up further, ensuring that total number of pods running at any time during the update is at most 130% of desired pods.
         """
-        ...
+        return pulumi.get(self, "max_surge")
 
     @property
     @pulumi.getter(name="maxUnavailable")
@@ -2622,7 +2622,7 @@ class RollingUpdateDeployment(dict):
         """
         The maximum number of pods that can be unavailable during the update. Value can be an absolute number (ex: 5) or a percentage of desired pods (ex: 10%). Absolute number is calculated from percentage by rounding down. This can not be 0 if MaxSurge is 0. By default, a fixed value of 1 is used. Example: when this is set to 30%, the old RC can be scaled down to 70% of desired pods immediately when the rolling update starts. Once new pods are ready, old RC can be scaled down further, followed by scaling up the new RC, ensuring that the total number of pods available at all times during the update is at least 70% of desired pods.
         """
-        ...
+        return pulumi.get(self, "max_unavailable")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -2651,7 +2651,7 @@ class RunAsGroupStrategyOptions(dict):
         """
         rule is the strategy that will dictate the allowable RunAsGroup values that may be set.
         """
-        ...
+        return pulumi.get(self, "rule")
 
     @property
     @pulumi.getter
@@ -2659,7 +2659,7 @@ class RunAsGroupStrategyOptions(dict):
         """
         ranges are the allowed ranges of gids that may be used. If you would like to force a single gid then supply a single range with the same start and end. Required for MustRunAs.
         """
-        ...
+        return pulumi.get(self, "ranges")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -2688,7 +2688,7 @@ class RunAsUserStrategyOptions(dict):
         """
         rule is the strategy that will dictate the allowable RunAsUser values that may be set.
         """
-        ...
+        return pulumi.get(self, "rule")
 
     @property
     @pulumi.getter
@@ -2696,7 +2696,7 @@ class RunAsUserStrategyOptions(dict):
         """
         ranges are the allowed ranges of uids that may be used. If you would like to force a single uid then supply a single range with the same start and end. Required for MustRunAs.
         """
-        ...
+        return pulumi.get(self, "ranges")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -2725,7 +2725,7 @@ class RuntimeClassStrategyOptions(dict):
         """
         allowedRuntimeClassNames is a whitelist of RuntimeClass names that may be specified on a pod. A value of "*" means that any RuntimeClass name is allowed, and must be the only item in the list. An empty list requires the RuntimeClassName field to be unset.
         """
-        ...
+        return pulumi.get(self, "allowed_runtime_class_names")
 
     @property
     @pulumi.getter(name="defaultRuntimeClassName")
@@ -2733,7 +2733,7 @@ class RuntimeClassStrategyOptions(dict):
         """
         defaultRuntimeClassName is the default RuntimeClassName to set on the pod. The default MUST be allowed by the allowedRuntimeClassNames list. A value of nil does not mutate the Pod.
         """
-        ...
+        return pulumi.get(self, "default_runtime_class_name")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -2762,7 +2762,7 @@ class SELinuxStrategyOptions(dict):
         """
         rule is the strategy that will dictate the allowable labels that may be set.
         """
-        ...
+        return pulumi.get(self, "rule")
 
     @property
     @pulumi.getter(name="seLinuxOptions")
@@ -2770,7 +2770,7 @@ class SELinuxStrategyOptions(dict):
         """
         seLinuxOptions required to run as; required for MustRunAs More info: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
         """
-        ...
+        return pulumi.get(self, "se_linux_options")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -2800,7 +2800,7 @@ class SupplementalGroupsStrategyOptions(dict):
         """
         ranges are the allowed ranges of supplemental groups.  If you would like to force a single supplemental group then supply a single range with the same start and end. Required for MustRunAs.
         """
-        ...
+        return pulumi.get(self, "ranges")
 
     @property
     @pulumi.getter
@@ -2808,7 +2808,7 @@ class SupplementalGroupsStrategyOptions(dict):
         """
         rule is the strategy that will dictate what supplemental groups is used in the SecurityContext.
         """
-        ...
+        return pulumi.get(self, "rule")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

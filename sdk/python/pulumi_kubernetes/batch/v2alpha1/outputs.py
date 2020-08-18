@@ -55,7 +55,7 @@ class CronJob(dict):
         """
         APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
         """
-        ...
+        return pulumi.get(self, "api_version")
 
     @property
     @pulumi.getter
@@ -63,7 +63,7 @@ class CronJob(dict):
         """
         Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         """
-        ...
+        return pulumi.get(self, "kind")
 
     @property
     @pulumi.getter
@@ -71,7 +71,7 @@ class CronJob(dict):
         """
         Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         """
-        ...
+        return pulumi.get(self, "metadata")
 
     @property
     @pulumi.getter
@@ -79,7 +79,7 @@ class CronJob(dict):
         """
         Specification of the desired behavior of a cron job, including the schedule. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
         """
-        ...
+        return pulumi.get(self, "spec")
 
     @property
     @pulumi.getter
@@ -87,7 +87,7 @@ class CronJob(dict):
         """
         Current status of a cron job. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
         """
-        ...
+        return pulumi.get(self, "status")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -135,7 +135,7 @@ class CronJobSpec(dict):
         """
         Specifies the job that will be created when executing a CronJob.
         """
-        ...
+        return pulumi.get(self, "job_template")
 
     @property
     @pulumi.getter
@@ -143,7 +143,7 @@ class CronJobSpec(dict):
         """
         The schedule in Cron format, see https://en.wikipedia.org/wiki/Cron.
         """
-        ...
+        return pulumi.get(self, "schedule")
 
     @property
     @pulumi.getter(name="concurrencyPolicy")
@@ -151,7 +151,7 @@ class CronJobSpec(dict):
         """
         Specifies how to treat concurrent executions of a Job. Valid values are: - "Allow" (default): allows CronJobs to run concurrently; - "Forbid": forbids concurrent runs, skipping next run if previous run hasn't finished yet; - "Replace": cancels currently running job and replaces it with a new one
         """
-        ...
+        return pulumi.get(self, "concurrency_policy")
 
     @property
     @pulumi.getter(name="failedJobsHistoryLimit")
@@ -159,7 +159,7 @@ class CronJobSpec(dict):
         """
         The number of failed finished jobs to retain. This is a pointer to distinguish between explicit zero and not specified.
         """
-        ...
+        return pulumi.get(self, "failed_jobs_history_limit")
 
     @property
     @pulumi.getter(name="startingDeadlineSeconds")
@@ -167,7 +167,7 @@ class CronJobSpec(dict):
         """
         Optional deadline in seconds for starting the job if it misses scheduled time for any reason.  Missed jobs executions will be counted as failed ones.
         """
-        ...
+        return pulumi.get(self, "starting_deadline_seconds")
 
     @property
     @pulumi.getter(name="successfulJobsHistoryLimit")
@@ -175,7 +175,7 @@ class CronJobSpec(dict):
         """
         The number of successful finished jobs to retain. This is a pointer to distinguish between explicit zero and not specified.
         """
-        ...
+        return pulumi.get(self, "successful_jobs_history_limit")
 
     @property
     @pulumi.getter
@@ -183,7 +183,7 @@ class CronJobSpec(dict):
         """
         This flag tells the controller to suspend subsequent executions, it does not apply to already started executions.  Defaults to false.
         """
-        ...
+        return pulumi.get(self, "suspend")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -213,7 +213,7 @@ class CronJobStatus(dict):
         """
         A list of pointers to currently running jobs.
         """
-        ...
+        return pulumi.get(self, "active")
 
     @property
     @pulumi.getter(name="lastScheduleTime")
@@ -221,7 +221,7 @@ class CronJobStatus(dict):
         """
         Information when was the last time the job was successfully scheduled.
         """
-        ...
+        return pulumi.get(self, "last_schedule_time")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -251,7 +251,7 @@ class JobTemplateSpec(dict):
         """
         Standard object's metadata of the jobs created from this template. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         """
-        ...
+        return pulumi.get(self, "metadata")
 
     @property
     @pulumi.getter
@@ -259,7 +259,7 @@ class JobTemplateSpec(dict):
         """
         Specification of the desired behavior of the job. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
         """
-        ...
+        return pulumi.get(self, "spec")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

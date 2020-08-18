@@ -66,7 +66,7 @@ class CustomResourceColumnDefinition(dict):
         """
         jsonPath is a simple JSON path (i.e. with array notation) which is evaluated against each custom resource to produce the value for this column.
         """
-        ...
+        return pulumi.get(self, "json_path")
 
     @property
     @pulumi.getter
@@ -74,7 +74,7 @@ class CustomResourceColumnDefinition(dict):
         """
         name is a human readable name for the column.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -82,7 +82,7 @@ class CustomResourceColumnDefinition(dict):
         """
         type is an OpenAPI type definition for this column. See https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#data-types for details.
         """
-        ...
+        return pulumi.get(self, "type")
 
     @property
     @pulumi.getter
@@ -90,7 +90,7 @@ class CustomResourceColumnDefinition(dict):
         """
         description is a human readable description of this column.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
@@ -98,7 +98,7 @@ class CustomResourceColumnDefinition(dict):
         """
         format is an optional OpenAPI type definition for this column. The 'name' format is applied to the primary identifier column to assist in clients identifying column is the resource name. See https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#data-types for details.
         """
-        ...
+        return pulumi.get(self, "format")
 
     @property
     @pulumi.getter
@@ -106,7 +106,7 @@ class CustomResourceColumnDefinition(dict):
         """
         priority is an integer defining the relative importance of this column compared to others. Lower numbers are considered higher priority. Columns that may be omitted in limited space scenarios should be given a priority greater than 0.
         """
-        ...
+        return pulumi.get(self, "priority")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -137,7 +137,7 @@ class CustomResourceConversion(dict):
         strategy specifies how custom resources are converted between versions. Allowed values are: - `None`: The converter only change the apiVersion and would not touch any other field in the custom resource. - `Webhook`: API Server will call to an external webhook to do the conversion. Additional information
           is needed for this option. This requires spec.preserveUnknownFields to be false, and spec.conversion.webhook to be set.
         """
-        ...
+        return pulumi.get(self, "strategy")
 
     @property
     @pulumi.getter
@@ -145,7 +145,7 @@ class CustomResourceConversion(dict):
         """
         webhook describes how to call the conversion webhook. Required when `strategy` is set to `Webhook`.
         """
-        ...
+        return pulumi.get(self, "webhook")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -185,7 +185,7 @@ class CustomResourceDefinition(dict):
         """
         spec describes how the user wants the resources to appear
         """
-        ...
+        return pulumi.get(self, "spec")
 
     @property
     @pulumi.getter(name="apiVersion")
@@ -193,7 +193,7 @@ class CustomResourceDefinition(dict):
         """
         APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
         """
-        ...
+        return pulumi.get(self, "api_version")
 
     @property
     @pulumi.getter
@@ -201,12 +201,12 @@ class CustomResourceDefinition(dict):
         """
         Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         """
-        ...
+        return pulumi.get(self, "kind")
 
     @property
     @pulumi.getter
     def metadata(self) -> Optional['_meta.v1.outputs.ObjectMeta']:
-        ...
+        return pulumi.get(self, "metadata")
 
     @property
     @pulumi.getter
@@ -214,7 +214,7 @@ class CustomResourceDefinition(dict):
         """
         status indicates the actual state of the CustomResourceDefinition
         """
-        ...
+        return pulumi.get(self, "status")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -254,7 +254,7 @@ class CustomResourceDefinitionCondition(dict):
         """
         status is the status of the condition. Can be True, False, Unknown.
         """
-        ...
+        return pulumi.get(self, "status")
 
     @property
     @pulumi.getter
@@ -262,7 +262,7 @@ class CustomResourceDefinitionCondition(dict):
         """
         type is the type of the condition. Types include Established, NamesAccepted and Terminating.
         """
-        ...
+        return pulumi.get(self, "type")
 
     @property
     @pulumi.getter(name="lastTransitionTime")
@@ -270,7 +270,7 @@ class CustomResourceDefinitionCondition(dict):
         """
         lastTransitionTime last time the condition transitioned from one status to another.
         """
-        ...
+        return pulumi.get(self, "last_transition_time")
 
     @property
     @pulumi.getter
@@ -278,7 +278,7 @@ class CustomResourceDefinitionCondition(dict):
         """
         message is a human-readable message indicating details about last transition.
         """
-        ...
+        return pulumi.get(self, "message")
 
     @property
     @pulumi.getter
@@ -286,7 +286,7 @@ class CustomResourceDefinitionCondition(dict):
         """
         reason is a unique, one-word, CamelCase reason for the condition's last transition.
         """
-        ...
+        return pulumi.get(self, "reason")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -330,7 +330,7 @@ class CustomResourceDefinitionNames(dict):
         """
         kind is the serialized kind of the resource. It is normally CamelCase and singular. Custom resource instances will use this value as the `kind` attribute in API calls.
         """
-        ...
+        return pulumi.get(self, "kind")
 
     @property
     @pulumi.getter
@@ -338,7 +338,7 @@ class CustomResourceDefinitionNames(dict):
         """
         plural is the plural name of the resource to serve. The custom resources are served under `/apis/<group>/<version>/.../<plural>`. Must match the name of the CustomResourceDefinition (in the form `<names.plural>.<group>`). Must be all lowercase.
         """
-        ...
+        return pulumi.get(self, "plural")
 
     @property
     @pulumi.getter
@@ -346,7 +346,7 @@ class CustomResourceDefinitionNames(dict):
         """
         categories is a list of grouped resources this custom resource belongs to (e.g. 'all'). This is published in API discovery documents, and used by clients to support invocations like `kubectl get all`.
         """
-        ...
+        return pulumi.get(self, "categories")
 
     @property
     @pulumi.getter(name="listKind")
@@ -354,7 +354,7 @@ class CustomResourceDefinitionNames(dict):
         """
         listKind is the serialized kind of the list for this resource. Defaults to "`kind`List".
         """
-        ...
+        return pulumi.get(self, "list_kind")
 
     @property
     @pulumi.getter(name="shortNames")
@@ -362,7 +362,7 @@ class CustomResourceDefinitionNames(dict):
         """
         shortNames are short names for the resource, exposed in API discovery documents, and used by clients to support invocations like `kubectl get <shortname>`. It must be all lowercase.
         """
-        ...
+        return pulumi.get(self, "short_names")
 
     @property
     @pulumi.getter
@@ -370,7 +370,7 @@ class CustomResourceDefinitionNames(dict):
         """
         singular is the singular name of the resource. It must be all lowercase. Defaults to lowercased `kind`.
         """
-        ...
+        return pulumi.get(self, "singular")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -412,7 +412,7 @@ class CustomResourceDefinitionSpec(dict):
         """
         group is the API group of the defined custom resource. The custom resources are served under `/apis/<group>/...`. Must match the name of the CustomResourceDefinition (in the form `<names.plural>.<group>`).
         """
-        ...
+        return pulumi.get(self, "group")
 
     @property
     @pulumi.getter
@@ -420,7 +420,7 @@ class CustomResourceDefinitionSpec(dict):
         """
         names specify the resource and kind names for the custom resource.
         """
-        ...
+        return pulumi.get(self, "names")
 
     @property
     @pulumi.getter
@@ -428,7 +428,7 @@ class CustomResourceDefinitionSpec(dict):
         """
         scope indicates whether the defined custom resource is cluster- or namespace-scoped. Allowed values are `Cluster` and `Namespaced`.
         """
-        ...
+        return pulumi.get(self, "scope")
 
     @property
     @pulumi.getter
@@ -436,7 +436,7 @@ class CustomResourceDefinitionSpec(dict):
         """
         versions is the list of all API versions of the defined custom resource. Version names are used to compute the order in which served versions are listed in API discovery. If the version string is "kube-like", it will sort above non "kube-like" version strings, which are ordered lexicographically. "Kube-like" versions start with a "v", then are followed by a number (the major version), then optionally the string "alpha" or "beta" and another number (the minor version). These are sorted first by GA > beta > alpha (where GA is a version with no suffix such as beta or alpha), and then by comparing major version, then minor version. An example sorted list of versions: v10, v2, v1, v11beta2, v10beta3, v3beta1, v12alpha1, v11alpha2, foo1, foo10.
         """
-        ...
+        return pulumi.get(self, "versions")
 
     @property
     @pulumi.getter
@@ -444,7 +444,7 @@ class CustomResourceDefinitionSpec(dict):
         """
         conversion defines conversion settings for the CRD.
         """
-        ...
+        return pulumi.get(self, "conversion")
 
     @property
     @pulumi.getter(name="preserveUnknownFields")
@@ -452,7 +452,7 @@ class CustomResourceDefinitionSpec(dict):
         """
         preserveUnknownFields indicates that object fields which are not specified in the OpenAPI schema should be preserved when persisting to storage. apiVersion, kind, metadata and known fields inside metadata are always preserved. This field is deprecated in favor of setting `x-preserve-unknown-fields` to true in `spec.versions[*].schema.openAPIV3Schema`. See https://kubernetes.io/docs/tasks/access-kubernetes-api/custom-resources/custom-resource-definitions/#pruning-versus-preserving-unknown-fields for details.
         """
-        ...
+        return pulumi.get(self, "preserve_unknown_fields")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -484,7 +484,7 @@ class CustomResourceDefinitionStatus(dict):
         """
         acceptedNames are the names that are actually being used to serve discovery. They may be different than the names in spec.
         """
-        ...
+        return pulumi.get(self, "accepted_names")
 
     @property
     @pulumi.getter(name="storedVersions")
@@ -492,7 +492,7 @@ class CustomResourceDefinitionStatus(dict):
         """
         storedVersions lists all versions of CustomResources that were ever persisted. Tracking these versions allows a migration path for stored versions in etcd. The field is mutable so a migration controller can finish a migration to another version (ensuring no old objects are left in storage), and then remove the rest of the versions from this list. Versions may not be removed from `spec.versions` while they exist in this list.
         """
-        ...
+        return pulumi.get(self, "stored_versions")
 
     @property
     @pulumi.getter
@@ -500,7 +500,7 @@ class CustomResourceDefinitionStatus(dict):
         """
         conditions indicate state for particular aspects of a CustomResourceDefinition
         """
-        ...
+        return pulumi.get(self, "conditions")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -543,7 +543,7 @@ class CustomResourceDefinitionVersion(dict):
         """
         name is the version name, e.g. “v1”, “v2beta1”, etc. The custom resources are served under this version at `/apis/<group>/<version>/...` if `served` is true.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -551,7 +551,7 @@ class CustomResourceDefinitionVersion(dict):
         """
         served is a flag enabling/disabling this version from being served via REST APIs
         """
-        ...
+        return pulumi.get(self, "served")
 
     @property
     @pulumi.getter
@@ -559,7 +559,7 @@ class CustomResourceDefinitionVersion(dict):
         """
         storage indicates this version should be used when persisting custom resources to storage. There must be exactly one version with storage=true.
         """
-        ...
+        return pulumi.get(self, "storage")
 
     @property
     @pulumi.getter(name="additionalPrinterColumns")
@@ -567,7 +567,7 @@ class CustomResourceDefinitionVersion(dict):
         """
         additionalPrinterColumns specifies additional columns returned in Table output. See https://kubernetes.io/docs/reference/using-api/api-concepts/#receiving-resources-as-tables for details. If no columns are specified, a single column displaying the age of the custom resource is used.
         """
-        ...
+        return pulumi.get(self, "additional_printer_columns")
 
     @property
     @pulumi.getter
@@ -575,7 +575,7 @@ class CustomResourceDefinitionVersion(dict):
         """
         schema describes the schema used for validation, pruning, and defaulting of this version of the custom resource.
         """
-        ...
+        return pulumi.get(self, "schema")
 
     @property
     @pulumi.getter
@@ -583,7 +583,7 @@ class CustomResourceDefinitionVersion(dict):
         """
         subresources specify what subresources this version of the defined custom resource have.
         """
-        ...
+        return pulumi.get(self, "subresources")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -615,7 +615,7 @@ class CustomResourceSubresourceScale(dict):
         """
         specReplicasPath defines the JSON path inside of a custom resource that corresponds to Scale `spec.replicas`. Only JSON paths without the array notation are allowed. Must be a JSON Path under `.spec`. If there is no value under the given path in the custom resource, the `/scale` subresource will return an error on GET.
         """
-        ...
+        return pulumi.get(self, "spec_replicas_path")
 
     @property
     @pulumi.getter(name="statusReplicasPath")
@@ -623,7 +623,7 @@ class CustomResourceSubresourceScale(dict):
         """
         statusReplicasPath defines the JSON path inside of a custom resource that corresponds to Scale `status.replicas`. Only JSON paths without the array notation are allowed. Must be a JSON Path under `.status`. If there is no value under the given path in the custom resource, the `status.replicas` value in the `/scale` subresource will default to 0.
         """
-        ...
+        return pulumi.get(self, "status_replicas_path")
 
     @property
     @pulumi.getter(name="labelSelectorPath")
@@ -631,7 +631,7 @@ class CustomResourceSubresourceScale(dict):
         """
         labelSelectorPath defines the JSON path inside of a custom resource that corresponds to Scale `status.selector`. Only JSON paths without the array notation are allowed. Must be a JSON Path under `.status` or `.spec`. Must be set to work with HorizontalPodAutoscaler. The field pointed by this JSON path must be a string field (not a complex selector struct) which contains a serialized label selector in string form. More info: https://kubernetes.io/docs/tasks/access-kubernetes-api/custom-resources/custom-resource-definitions#scale-subresource If there is no value under the given path in the custom resource, the `status.selector` value in the `/scale` subresource will default to the empty string.
         """
-        ...
+        return pulumi.get(self, "label_selector_path")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -661,7 +661,7 @@ class CustomResourceSubresources(dict):
         """
         scale indicates the custom resource should serve a `/scale` subresource that returns an `autoscaling/v1` Scale object.
         """
-        ...
+        return pulumi.get(self, "scale")
 
     @property
     @pulumi.getter
@@ -669,7 +669,7 @@ class CustomResourceSubresources(dict):
         """
         status indicates the custom resource should serve a `/status` subresource. When enabled: 1. requests to the custom resource primary endpoint ignore changes to the `status` stanza of the object. 2. requests to the custom resource `/status` subresource ignore changes to anything other than the `status` stanza of the object.
         """
-        ...
+        return pulumi.get(self, "status")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -695,7 +695,7 @@ class CustomResourceValidation(dict):
         """
         openAPIV3Schema is the OpenAPI v3 schema to use for validation and pruning.
         """
-        ...
+        return pulumi.get(self, "open_apiv3_schema")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -720,12 +720,12 @@ class ExternalDocumentation(dict):
     @property
     @pulumi.getter
     def description(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
     def url(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "url")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -916,32 +916,32 @@ class JSONSchemaProps(dict):
     @property
     @pulumi.getter(name="$ref")
     def _ref(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "_ref")
 
     @property
     @pulumi.getter(name="$schema")
     def _schema(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "_schema")
 
     @property
     @pulumi.getter(name="additionalItems")
     def additional_items(self) -> Optional[Any]:
-        ...
+        return pulumi.get(self, "additional_items")
 
     @property
     @pulumi.getter(name="additionalProperties")
     def additional_properties(self) -> Optional[Any]:
-        ...
+        return pulumi.get(self, "additional_properties")
 
     @property
     @pulumi.getter(name="allOf")
     def all_of(self) -> Optional[List['outputs.JSONSchemaProps']]:
-        ...
+        return pulumi.get(self, "all_of")
 
     @property
     @pulumi.getter(name="anyOf")
     def any_of(self) -> Optional[List['outputs.JSONSchemaProps']]:
-        ...
+        return pulumi.get(self, "any_of")
 
     @property
     @pulumi.getter
@@ -949,47 +949,47 @@ class JSONSchemaProps(dict):
         """
         default is a default value for undefined object fields. Defaulting is a beta feature under the CustomResourceDefaulting feature gate. Defaulting requires spec.preserveUnknownFields to be false.
         """
-        ...
+        return pulumi.get(self, "default")
 
     @property
     @pulumi.getter
     def definitions(self) -> Optional[Mapping[str, 'outputs.JSONSchemaProps']]:
-        ...
+        return pulumi.get(self, "definitions")
 
     @property
     @pulumi.getter
     def dependencies(self) -> Optional[Mapping[str, Any]]:
-        ...
+        return pulumi.get(self, "dependencies")
 
     @property
     @pulumi.getter
     def description(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
     def enum(self) -> Optional[List[Any]]:
-        ...
+        return pulumi.get(self, "enum")
 
     @property
     @pulumi.getter
     def example(self) -> Optional[Any]:
-        ...
+        return pulumi.get(self, "example")
 
     @property
     @pulumi.getter(name="exclusiveMaximum")
     def exclusive_maximum(self) -> Optional[bool]:
-        ...
+        return pulumi.get(self, "exclusive_maximum")
 
     @property
     @pulumi.getter(name="exclusiveMinimum")
     def exclusive_minimum(self) -> Optional[bool]:
-        ...
+        return pulumi.get(self, "exclusive_minimum")
 
     @property
     @pulumi.getter(name="externalDocs")
     def external_docs(self) -> Optional['outputs.ExternalDocumentation']:
-        ...
+        return pulumi.get(self, "external_docs")
 
     @property
     @pulumi.getter
@@ -999,112 +999,112 @@ class JSONSchemaProps(dict):
 
         - bsonobjectid: a bson object ID, i.e. a 24 characters hex string - uri: an URI as parsed by Golang net/url.ParseRequestURI - email: an email address as parsed by Golang net/mail.ParseAddress - hostname: a valid representation for an Internet host name, as defined by RFC 1034, section 3.1 [RFC1034]. - ipv4: an IPv4 IP as parsed by Golang net.ParseIP - ipv6: an IPv6 IP as parsed by Golang net.ParseIP - cidr: a CIDR as parsed by Golang net.ParseCIDR - mac: a MAC address as parsed by Golang net.ParseMAC - uuid: an UUID that allows uppercase defined by the regex (?i)^[0-9a-f]{8}-?[0-9a-f]{4}-?[0-9a-f]{4}-?[0-9a-f]{4}-?[0-9a-f]{12}$ - uuid3: an UUID3 that allows uppercase defined by the regex (?i)^[0-9a-f]{8}-?[0-9a-f]{4}-?3[0-9a-f]{3}-?[0-9a-f]{4}-?[0-9a-f]{12}$ - uuid4: an UUID4 that allows uppercase defined by the regex (?i)^[0-9a-f]{8}-?[0-9a-f]{4}-?4[0-9a-f]{3}-?[89ab][0-9a-f]{3}-?[0-9a-f]{12}$ - uuid5: an UUID5 that allows uppercase defined by the regex (?i)^[0-9a-f]{8}-?[0-9a-f]{4}-?5[0-9a-f]{3}-?[89ab][0-9a-f]{3}-?[0-9a-f]{12}$ - isbn: an ISBN10 or ISBN13 number string like "0321751043" or "978-0321751041" - isbn10: an ISBN10 number string like "0321751043" - isbn13: an ISBN13 number string like "978-0321751041" - creditcard: a credit card number defined by the regex ^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$ with any non digit characters mixed in - ssn: a U.S. social security number following the regex ^\d{3}[- ]?\d{2}[- ]?\d{4}$ - hexcolor: an hexadecimal color code like "#FFFFFF: following the regex ^#?([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$ - rgbcolor: an RGB color code like rgb like "rgb(255,255,2559" - byte: base64 encoded binary data - password: any kind of string - date: a date string like "2006-01-02" as defined by full-date in RFC3339 - duration: a duration string like "22 ns" as parsed by Golang time.ParseDuration or compatible with Scala duration format - datetime: a date time string like "2014-12-15T19:30:20.000Z" as defined by date-time in RFC3339.
         """
-        ...
+        return pulumi.get(self, "format")
 
     @property
     @pulumi.getter
     def id(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
     def items(self) -> Optional[Any]:
-        ...
+        return pulumi.get(self, "items")
 
     @property
     @pulumi.getter(name="maxItems")
     def max_items(self) -> Optional[float]:
-        ...
+        return pulumi.get(self, "max_items")
 
     @property
     @pulumi.getter(name="maxLength")
     def max_length(self) -> Optional[float]:
-        ...
+        return pulumi.get(self, "max_length")
 
     @property
     @pulumi.getter(name="maxProperties")
     def max_properties(self) -> Optional[float]:
-        ...
+        return pulumi.get(self, "max_properties")
 
     @property
     @pulumi.getter
     def maximum(self) -> Optional[float]:
-        ...
+        return pulumi.get(self, "maximum")
 
     @property
     @pulumi.getter(name="minItems")
     def min_items(self) -> Optional[float]:
-        ...
+        return pulumi.get(self, "min_items")
 
     @property
     @pulumi.getter(name="minLength")
     def min_length(self) -> Optional[float]:
-        ...
+        return pulumi.get(self, "min_length")
 
     @property
     @pulumi.getter(name="minProperties")
     def min_properties(self) -> Optional[float]:
-        ...
+        return pulumi.get(self, "min_properties")
 
     @property
     @pulumi.getter
     def minimum(self) -> Optional[float]:
-        ...
+        return pulumi.get(self, "minimum")
 
     @property
     @pulumi.getter(name="multipleOf")
     def multiple_of(self) -> Optional[float]:
-        ...
+        return pulumi.get(self, "multiple_of")
 
     @property
     @pulumi.getter(name="not")
     def not_(self) -> Optional['outputs.JSONSchemaProps']:
-        ...
+        return pulumi.get(self, "not_")
 
     @property
     @pulumi.getter
     def nullable(self) -> Optional[bool]:
-        ...
+        return pulumi.get(self, "nullable")
 
     @property
     @pulumi.getter(name="oneOf")
     def one_of(self) -> Optional[List['outputs.JSONSchemaProps']]:
-        ...
+        return pulumi.get(self, "one_of")
 
     @property
     @pulumi.getter
     def pattern(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "pattern")
 
     @property
     @pulumi.getter(name="patternProperties")
     def pattern_properties(self) -> Optional[Mapping[str, 'outputs.JSONSchemaProps']]:
-        ...
+        return pulumi.get(self, "pattern_properties")
 
     @property
     @pulumi.getter
     def properties(self) -> Optional[Mapping[str, 'outputs.JSONSchemaProps']]:
-        ...
+        return pulumi.get(self, "properties")
 
     @property
     @pulumi.getter
     def required(self) -> Optional[List[str]]:
-        ...
+        return pulumi.get(self, "required")
 
     @property
     @pulumi.getter
     def title(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "title")
 
     @property
     @pulumi.getter
     def type(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "type")
 
     @property
     @pulumi.getter(name="uniqueItems")
     def unique_items(self) -> Optional[bool]:
-        ...
+        return pulumi.get(self, "unique_items")
 
     @property
     @pulumi.getter
@@ -1112,7 +1112,7 @@ class JSONSchemaProps(dict):
         """
         x-kubernetes-embedded-resource defines that the value is an embedded Kubernetes runtime.Object, with TypeMeta and ObjectMeta. The type must be object. It is allowed to further restrict the embedded object. kind, apiVersion and metadata are validated automatically. x-kubernetes-preserve-unknown-fields is allowed to be true, but does not have to be if the object is fully specified (up to kind, apiVersion, metadata).
         """
-        ...
+        return pulumi.get(self, "x_kubernetes_embedded_resource")
 
     @property
     @pulumi.getter
@@ -1129,7 +1129,7 @@ class JSONSchemaProps(dict):
              - type: string
            - ... zero or more
         """
-        ...
+        return pulumi.get(self, "x_kubernetes_int_or_string")
 
     @property
     @pulumi.getter
@@ -1141,7 +1141,7 @@ class JSONSchemaProps(dict):
 
         The properties specified must either be required or have a default value, to ensure those properties are present for all list items.
         """
-        ...
+        return pulumi.get(self, "x_kubernetes_list_map_keys")
 
     @property
     @pulumi.getter
@@ -1162,7 +1162,7 @@ class JSONSchemaProps(dict):
              must only be used on a list with elements of type object.
         Defaults to atomic for arrays.
         """
-        ...
+        return pulumi.get(self, "x_kubernetes_list_type")
 
     @property
     @pulumi.getter
@@ -1177,7 +1177,7 @@ class JSONSchemaProps(dict):
         2) `atomic`: the list is treated as a single entity, like a scalar.
              Atomic maps will be entirely replaced when updated.
         """
-        ...
+        return pulumi.get(self, "x_kubernetes_map_type")
 
     @property
     @pulumi.getter
@@ -1185,7 +1185,7 @@ class JSONSchemaProps(dict):
         """
         x-kubernetes-preserve-unknown-fields stops the API server decoding step from pruning fields which are not specified in the validation schema. This affects fields recursively, but switches back to normal pruning behaviour if nested properties or additionalProperties are specified in the schema. This can either be true or undefined. False is forbidden.
         """
-        ...
+        return pulumi.get(self, "x_kubernetes_preserve_unknown_fields")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1221,7 +1221,7 @@ class ServiceReference(dict):
         """
         name is the name of the service. Required
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -1229,7 +1229,7 @@ class ServiceReference(dict):
         """
         namespace is the namespace of the service. Required
         """
-        ...
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter
@@ -1237,7 +1237,7 @@ class ServiceReference(dict):
         """
         path is an optional URL path at which the webhook will be contacted.
         """
-        ...
+        return pulumi.get(self, "path")
 
     @property
     @pulumi.getter
@@ -1245,7 +1245,7 @@ class ServiceReference(dict):
         """
         port is an optional service port at which the webhook will be contacted. `port` should be a valid port number (1-65535, inclusive). Defaults to 443 for backward compatibility.
         """
-        ...
+        return pulumi.get(self, "port")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1291,7 +1291,7 @@ class WebhookClientConfig(dict):
         """
         caBundle is a PEM encoded CA bundle which will be used to validate the webhook's server certificate. If unspecified, system trust roots on the apiserver are used.
         """
-        ...
+        return pulumi.get(self, "ca_bundle")
 
     @property
     @pulumi.getter
@@ -1301,7 +1301,7 @@ class WebhookClientConfig(dict):
 
         If the webhook is running within the cluster, then you should use `service`.
         """
-        ...
+        return pulumi.get(self, "service")
 
     @property
     @pulumi.getter
@@ -1319,7 +1319,7 @@ class WebhookClientConfig(dict):
 
         Attempting to use a user or basic auth e.g. "user:password@" is not allowed. Fragments ("#...") and query parameters ("?...") are not allowed, either.
         """
-        ...
+        return pulumi.get(self, "url")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1348,7 +1348,7 @@ class WebhookConversion(dict):
         """
         conversionReviewVersions is an ordered list of preferred `ConversionReview` versions the Webhook expects. The API server will use the first version in the list which it supports. If none of the versions specified in this list are supported by API server, conversion will fail for the custom resource. If a persisted Webhook configuration specifies allowed versions and does not include any versions known to the API Server, calls to the webhook will fail.
         """
-        ...
+        return pulumi.get(self, "conversion_review_versions")
 
     @property
     @pulumi.getter(name="clientConfig")
@@ -1356,7 +1356,7 @@ class WebhookConversion(dict):
         """
         clientConfig is the instructions for how to call the webhook if strategy is `Webhook`.
         """
-        ...
+        return pulumi.get(self, "client_config")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

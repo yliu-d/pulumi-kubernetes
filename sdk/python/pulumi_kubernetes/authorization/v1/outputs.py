@@ -45,7 +45,7 @@ class NonResourceAttributes(dict):
         """
         Path is the URL path of the request
         """
-        ...
+        return pulumi.get(self, "path")
 
     @property
     @pulumi.getter
@@ -53,7 +53,7 @@ class NonResourceAttributes(dict):
         """
         Verb is the standard HTTP verb
         """
-        ...
+        return pulumi.get(self, "verb")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -82,7 +82,7 @@ class NonResourceRule(dict):
         """
         Verb is a list of kubernetes non-resource API verbs, like: get, post, put, delete, patch, head, options.  "*" means all.
         """
-        ...
+        return pulumi.get(self, "verbs")
 
     @property
     @pulumi.getter(name="nonResourceURLs")
@@ -90,7 +90,7 @@ class NonResourceRule(dict):
         """
         NonResourceURLs is a set of partial urls that a user should have access to.  *s are allowed, but only as the full, final step in the path.  "*" means all.
         """
-        ...
+        return pulumi.get(self, "non_resource_urls")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -140,7 +140,7 @@ class ResourceAttributes(dict):
         """
         Group is the API Group of the Resource.  "*" means all.
         """
-        ...
+        return pulumi.get(self, "group")
 
     @property
     @pulumi.getter
@@ -148,7 +148,7 @@ class ResourceAttributes(dict):
         """
         Name is the name of the resource being requested for a "get" or deleted for a "delete". "" (empty) means all.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -156,7 +156,7 @@ class ResourceAttributes(dict):
         """
         Namespace is the namespace of the action being requested.  Currently, there is no distinction between no namespace and all namespaces "" (empty) is defaulted for LocalSubjectAccessReviews "" (empty) is empty for cluster-scoped resources "" (empty) means "all" for namespace scoped resources from a SubjectAccessReview or SelfSubjectAccessReview
         """
-        ...
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter
@@ -164,7 +164,7 @@ class ResourceAttributes(dict):
         """
         Resource is one of the existing resource types.  "*" means all.
         """
-        ...
+        return pulumi.get(self, "resource")
 
     @property
     @pulumi.getter
@@ -172,7 +172,7 @@ class ResourceAttributes(dict):
         """
         Subresource is one of the existing resource types.  "" means none.
         """
-        ...
+        return pulumi.get(self, "subresource")
 
     @property
     @pulumi.getter
@@ -180,7 +180,7 @@ class ResourceAttributes(dict):
         """
         Verb is a kubernetes resource API verb, like: get, list, watch, create, update, delete, proxy.  "*" means all.
         """
-        ...
+        return pulumi.get(self, "verb")
 
     @property
     @pulumi.getter
@@ -188,7 +188,7 @@ class ResourceAttributes(dict):
         """
         Version is the API Version of the Resource.  "*" means all.
         """
-        ...
+        return pulumi.get(self, "version")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -226,7 +226,7 @@ class ResourceRule(dict):
         """
         Verb is a list of kubernetes resource API verbs, like: get, list, watch, create, update, delete, proxy.  "*" means all.
         """
-        ...
+        return pulumi.get(self, "verbs")
 
     @property
     @pulumi.getter(name="apiGroups")
@@ -234,7 +234,7 @@ class ResourceRule(dict):
         """
         APIGroups is the name of the APIGroup that contains the resources.  If multiple API groups are specified, any action requested against one of the enumerated resources in any API group will be allowed.  "*" means all.
         """
-        ...
+        return pulumi.get(self, "api_groups")
 
     @property
     @pulumi.getter(name="resourceNames")
@@ -242,7 +242,7 @@ class ResourceRule(dict):
         """
         ResourceNames is an optional white list of names that the rule applies to.  An empty set means that everything is allowed.  "*" means all.
         """
-        ...
+        return pulumi.get(self, "resource_names")
 
     @property
     @pulumi.getter
@@ -251,7 +251,7 @@ class ResourceRule(dict):
         Resources is a list of resources this rule applies to.  "*" means all in the specified apiGroups.
          "*/foo" represents the subresource 'foo' for all resources in the specified apiGroups.
         """
-        ...
+        return pulumi.get(self, "resources")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -281,7 +281,7 @@ class SelfSubjectAccessReviewSpec(dict):
         """
         NonResourceAttributes describes information for a non-resource access request
         """
-        ...
+        return pulumi.get(self, "non_resource_attributes")
 
     @property
     @pulumi.getter(name="resourceAttributes")
@@ -289,7 +289,7 @@ class SelfSubjectAccessReviewSpec(dict):
         """
         ResourceAuthorizationAttributes describes information for a resource access request
         """
-        ...
+        return pulumi.get(self, "resource_attributes")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -311,7 +311,7 @@ class SelfSubjectRulesReviewSpec(dict):
         """
         Namespace to evaluate rules for. Required.
         """
-        ...
+        return pulumi.get(self, "namespace")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -357,7 +357,7 @@ class SubjectAccessReviewSpec(dict):
         """
         Extra corresponds to the user.Info.GetExtra() method from the authenticator.  Since that is input to the authorizer it needs a reflection here.
         """
-        ...
+        return pulumi.get(self, "extra")
 
     @property
     @pulumi.getter
@@ -365,7 +365,7 @@ class SubjectAccessReviewSpec(dict):
         """
         Groups is the groups you're testing for.
         """
-        ...
+        return pulumi.get(self, "groups")
 
     @property
     @pulumi.getter(name="nonResourceAttributes")
@@ -373,7 +373,7 @@ class SubjectAccessReviewSpec(dict):
         """
         NonResourceAttributes describes information for a non-resource access request
         """
-        ...
+        return pulumi.get(self, "non_resource_attributes")
 
     @property
     @pulumi.getter(name="resourceAttributes")
@@ -381,7 +381,7 @@ class SubjectAccessReviewSpec(dict):
         """
         ResourceAuthorizationAttributes describes information for a resource access request
         """
-        ...
+        return pulumi.get(self, "resource_attributes")
 
     @property
     @pulumi.getter
@@ -389,7 +389,7 @@ class SubjectAccessReviewSpec(dict):
         """
         UID information about the requesting user.
         """
-        ...
+        return pulumi.get(self, "uid")
 
     @property
     @pulumi.getter
@@ -397,7 +397,7 @@ class SubjectAccessReviewSpec(dict):
         """
         User is the user you're testing for. If you specify "User" but not "Groups", then is it interpreted as "What if User were not a member of any groups
         """
-        ...
+        return pulumi.get(self, "user")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -434,7 +434,7 @@ class SubjectAccessReviewStatus(dict):
         """
         Allowed is required. True if the action would be allowed, false otherwise.
         """
-        ...
+        return pulumi.get(self, "allowed")
 
     @property
     @pulumi.getter
@@ -442,7 +442,7 @@ class SubjectAccessReviewStatus(dict):
         """
         Denied is optional. True if the action would be denied, otherwise false. If both allowed is false and denied is false, then the authorizer has no opinion on whether to authorize the action. Denied may not be true if Allowed is true.
         """
-        ...
+        return pulumi.get(self, "denied")
 
     @property
     @pulumi.getter(name="evaluationError")
@@ -450,7 +450,7 @@ class SubjectAccessReviewStatus(dict):
         """
         EvaluationError is an indication that some error occurred during the authorization check. It is entirely possible to get an error and be able to continue determine authorization status in spite of it. For instance, RBAC can be missing a role, but enough roles are still present and bound to reason about the request.
         """
-        ...
+        return pulumi.get(self, "evaluation_error")
 
     @property
     @pulumi.getter
@@ -458,7 +458,7 @@ class SubjectAccessReviewStatus(dict):
         """
         Reason is optional.  It indicates why a request was allowed or denied.
         """
-        ...
+        return pulumi.get(self, "reason")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -493,7 +493,7 @@ class SubjectRulesReviewStatus(dict):
         """
         Incomplete is true when the rules returned by this call are incomplete. This is most commonly encountered when an authorizer, such as an external authorizer, doesn't support rules evaluation.
         """
-        ...
+        return pulumi.get(self, "incomplete")
 
     @property
     @pulumi.getter(name="nonResourceRules")
@@ -501,7 +501,7 @@ class SubjectRulesReviewStatus(dict):
         """
         NonResourceRules is the list of actions the subject is allowed to perform on non-resources. The list ordering isn't significant, may contain duplicates, and possibly be incomplete.
         """
-        ...
+        return pulumi.get(self, "non_resource_rules")
 
     @property
     @pulumi.getter(name="resourceRules")
@@ -509,7 +509,7 @@ class SubjectRulesReviewStatus(dict):
         """
         ResourceRules is the list of actions the subject is allowed to perform on resources. The list ordering isn't significant, may contain duplicates, and possibly be incomplete.
         """
-        ...
+        return pulumi.get(self, "resource_rules")
 
     @property
     @pulumi.getter(name="evaluationError")
@@ -517,7 +517,7 @@ class SubjectRulesReviewStatus(dict):
         """
         EvaluationError can appear in combination with Rules. It indicates an error occurred during rule evaluation, such as an authorizer that doesn't support rule evaluation, and that ResourceRules and/or NonResourceRules may be incomplete.
         """
-        ...
+        return pulumi.get(self, "evaluation_error")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

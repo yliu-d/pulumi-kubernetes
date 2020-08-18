@@ -118,7 +118,7 @@ class MutatingWebhook(dict):
         """
         AdmissionReviewVersions is an ordered list of preferred `AdmissionReview` versions the Webhook expects. API server will try to use first version in the list which it supports. If none of the versions specified in this list supported by API server, validation will fail for this object. If a persisted webhook configuration specifies allowed versions and does not include any versions known to the API Server, calls to the webhook will fail and be subject to the failure policy.
         """
-        ...
+        return pulumi.get(self, "admission_review_versions")
 
     @property
     @pulumi.getter(name="clientConfig")
@@ -126,7 +126,7 @@ class MutatingWebhook(dict):
         """
         ClientConfig defines how to communicate with the hook. Required
         """
-        ...
+        return pulumi.get(self, "client_config")
 
     @property
     @pulumi.getter
@@ -134,7 +134,7 @@ class MutatingWebhook(dict):
         """
         The name of the admission webhook. Name should be fully qualified, e.g., imagepolicy.kubernetes.io, where "imagepolicy" is the name of the webhook, and kubernetes.io is the name of the organization. Required.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="sideEffects")
@@ -142,7 +142,7 @@ class MutatingWebhook(dict):
         """
         SideEffects states whether this webhook has side effects. Acceptable values are: None, NoneOnDryRun (webhooks created via v1beta1 may also specify Some or Unknown). Webhooks with side effects MUST implement a reconciliation system, since a request may be rejected by a future step in the admission change and the side effects therefore need to be undone. Requests with the dryRun attribute will be auto-rejected if they match a webhook with sideEffects == Unknown or Some.
         """
-        ...
+        return pulumi.get(self, "side_effects")
 
     @property
     @pulumi.getter(name="failurePolicy")
@@ -150,7 +150,7 @@ class MutatingWebhook(dict):
         """
         FailurePolicy defines how unrecognized errors from the admission endpoint are handled - allowed values are Ignore or Fail. Defaults to Fail.
         """
-        ...
+        return pulumi.get(self, "failure_policy")
 
     @property
     @pulumi.getter(name="matchPolicy")
@@ -164,7 +164,7 @@ class MutatingWebhook(dict):
 
         Defaults to "Equivalent"
         """
-        ...
+        return pulumi.get(self, "match_policy")
 
     @property
     @pulumi.getter(name="namespaceSelector")
@@ -202,7 +202,7 @@ class MutatingWebhook(dict):
 
         Default to the empty LabelSelector, which matches everything.
         """
-        ...
+        return pulumi.get(self, "namespace_selector")
 
     @property
     @pulumi.getter(name="objectSelector")
@@ -210,7 +210,7 @@ class MutatingWebhook(dict):
         """
         ObjectSelector decides whether to run the webhook based on if the object has matching labels. objectSelector is evaluated against both the oldObject and newObject that would be sent to the webhook, and is considered to match if either object matches the selector. A null object (oldObject in the case of create, or newObject in the case of delete) or an object that cannot have labels (like a DeploymentRollback or a PodProxyOptions object) is not considered to match. Use the object selector only if the webhook is opt-in, because end users may skip the admission webhook by setting the labels. Default to the empty LabelSelector, which matches everything.
         """
-        ...
+        return pulumi.get(self, "object_selector")
 
     @property
     @pulumi.getter(name="reinvocationPolicy")
@@ -224,7 +224,7 @@ class MutatingWebhook(dict):
 
         Defaults to "Never".
         """
-        ...
+        return pulumi.get(self, "reinvocation_policy")
 
     @property
     @pulumi.getter
@@ -232,7 +232,7 @@ class MutatingWebhook(dict):
         """
         Rules describes what operations on what resources/subresources the webhook cares about. The webhook cares about an operation if it matches _any_ Rule. However, in order to prevent ValidatingAdmissionWebhooks and MutatingAdmissionWebhooks from putting the cluster in a state which cannot be recovered from without completely disabling the plugin, ValidatingAdmissionWebhooks and MutatingAdmissionWebhooks are never called on admission requests for ValidatingWebhookConfiguration and MutatingWebhookConfiguration objects.
         """
-        ...
+        return pulumi.get(self, "rules")
 
     @property
     @pulumi.getter(name="timeoutSeconds")
@@ -240,7 +240,7 @@ class MutatingWebhook(dict):
         """
         TimeoutSeconds specifies the timeout for this webhook. After the timeout passes, the webhook call will be ignored or the API call will fail based on the failure policy. The timeout value must be between 1 and 30 seconds. Default to 10 seconds.
         """
-        ...
+        return pulumi.get(self, "timeout_seconds")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -278,7 +278,7 @@ class MutatingWebhookConfiguration(dict):
         """
         APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
         """
-        ...
+        return pulumi.get(self, "api_version")
 
     @property
     @pulumi.getter
@@ -286,7 +286,7 @@ class MutatingWebhookConfiguration(dict):
         """
         Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         """
-        ...
+        return pulumi.get(self, "kind")
 
     @property
     @pulumi.getter
@@ -294,7 +294,7 @@ class MutatingWebhookConfiguration(dict):
         """
         Standard object metadata; More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata.
         """
-        ...
+        return pulumi.get(self, "metadata")
 
     @property
     @pulumi.getter
@@ -302,7 +302,7 @@ class MutatingWebhookConfiguration(dict):
         """
         Webhooks is a list of webhooks and the affected resources and operations.
         """
-        ...
+        return pulumi.get(self, "webhooks")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -350,7 +350,7 @@ class RuleWithOperations(dict):
         """
         APIGroups is the API groups the resources belong to. '*' is all groups. If '*' is present, the length of the slice must be one. Required.
         """
-        ...
+        return pulumi.get(self, "api_groups")
 
     @property
     @pulumi.getter(name="apiVersions")
@@ -358,7 +358,7 @@ class RuleWithOperations(dict):
         """
         APIVersions is the API versions the resources belong to. '*' is all versions. If '*' is present, the length of the slice must be one. Required.
         """
-        ...
+        return pulumi.get(self, "api_versions")
 
     @property
     @pulumi.getter
@@ -366,7 +366,7 @@ class RuleWithOperations(dict):
         """
         Operations is the operations the admission hook cares about - CREATE, UPDATE, or * for all operations. If '*' is present, the length of the slice must be one. Required.
         """
-        ...
+        return pulumi.get(self, "operations")
 
     @property
     @pulumi.getter
@@ -380,7 +380,7 @@ class RuleWithOperations(dict):
 
         Depending on the enclosing object, subresources might not be allowed. Required.
         """
-        ...
+        return pulumi.get(self, "resources")
 
     @property
     @pulumi.getter
@@ -388,7 +388,7 @@ class RuleWithOperations(dict):
         """
         scope specifies the scope of this rule. Valid values are "Cluster", "Namespaced", and "*" "Cluster" means that only cluster-scoped resources will match this rule. Namespace API objects are cluster-scoped. "Namespaced" means that only namespaced resources will match this rule. "*" means that there are no scope restrictions. Subresources match the scope of their parent resource. Default is "*".
         """
-        ...
+        return pulumi.get(self, "scope")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -424,7 +424,7 @@ class ServiceReference(dict):
         """
         `name` is the name of the service. Required
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -432,7 +432,7 @@ class ServiceReference(dict):
         """
         `namespace` is the namespace of the service. Required
         """
-        ...
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter
@@ -440,7 +440,7 @@ class ServiceReference(dict):
         """
         `path` is an optional URL path which will be sent in any request to this service.
         """
-        ...
+        return pulumi.get(self, "path")
 
     @property
     @pulumi.getter
@@ -448,7 +448,7 @@ class ServiceReference(dict):
         """
         If specified, the port on the service that hosting webhook. Default to 443 for backward compatibility. `port` should be a valid port number (1-65535, inclusive).
         """
-        ...
+        return pulumi.get(self, "port")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -542,7 +542,7 @@ class ValidatingWebhook(dict):
         """
         AdmissionReviewVersions is an ordered list of preferred `AdmissionReview` versions the Webhook expects. API server will try to use first version in the list which it supports. If none of the versions specified in this list supported by API server, validation will fail for this object. If a persisted webhook configuration specifies allowed versions and does not include any versions known to the API Server, calls to the webhook will fail and be subject to the failure policy.
         """
-        ...
+        return pulumi.get(self, "admission_review_versions")
 
     @property
     @pulumi.getter(name="clientConfig")
@@ -550,7 +550,7 @@ class ValidatingWebhook(dict):
         """
         ClientConfig defines how to communicate with the hook. Required
         """
-        ...
+        return pulumi.get(self, "client_config")
 
     @property
     @pulumi.getter
@@ -558,7 +558,7 @@ class ValidatingWebhook(dict):
         """
         The name of the admission webhook. Name should be fully qualified, e.g., imagepolicy.kubernetes.io, where "imagepolicy" is the name of the webhook, and kubernetes.io is the name of the organization. Required.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="sideEffects")
@@ -566,7 +566,7 @@ class ValidatingWebhook(dict):
         """
         SideEffects states whether this webhook has side effects. Acceptable values are: None, NoneOnDryRun (webhooks created via v1beta1 may also specify Some or Unknown). Webhooks with side effects MUST implement a reconciliation system, since a request may be rejected by a future step in the admission change and the side effects therefore need to be undone. Requests with the dryRun attribute will be auto-rejected if they match a webhook with sideEffects == Unknown or Some.
         """
-        ...
+        return pulumi.get(self, "side_effects")
 
     @property
     @pulumi.getter(name="failurePolicy")
@@ -574,7 +574,7 @@ class ValidatingWebhook(dict):
         """
         FailurePolicy defines how unrecognized errors from the admission endpoint are handled - allowed values are Ignore or Fail. Defaults to Fail.
         """
-        ...
+        return pulumi.get(self, "failure_policy")
 
     @property
     @pulumi.getter(name="matchPolicy")
@@ -588,7 +588,7 @@ class ValidatingWebhook(dict):
 
         Defaults to "Equivalent"
         """
-        ...
+        return pulumi.get(self, "match_policy")
 
     @property
     @pulumi.getter(name="namespaceSelector")
@@ -626,7 +626,7 @@ class ValidatingWebhook(dict):
 
         Default to the empty LabelSelector, which matches everything.
         """
-        ...
+        return pulumi.get(self, "namespace_selector")
 
     @property
     @pulumi.getter(name="objectSelector")
@@ -634,7 +634,7 @@ class ValidatingWebhook(dict):
         """
         ObjectSelector decides whether to run the webhook based on if the object has matching labels. objectSelector is evaluated against both the oldObject and newObject that would be sent to the webhook, and is considered to match if either object matches the selector. A null object (oldObject in the case of create, or newObject in the case of delete) or an object that cannot have labels (like a DeploymentRollback or a PodProxyOptions object) is not considered to match. Use the object selector only if the webhook is opt-in, because end users may skip the admission webhook by setting the labels. Default to the empty LabelSelector, which matches everything.
         """
-        ...
+        return pulumi.get(self, "object_selector")
 
     @property
     @pulumi.getter
@@ -642,7 +642,7 @@ class ValidatingWebhook(dict):
         """
         Rules describes what operations on what resources/subresources the webhook cares about. The webhook cares about an operation if it matches _any_ Rule. However, in order to prevent ValidatingAdmissionWebhooks and MutatingAdmissionWebhooks from putting the cluster in a state which cannot be recovered from without completely disabling the plugin, ValidatingAdmissionWebhooks and MutatingAdmissionWebhooks are never called on admission requests for ValidatingWebhookConfiguration and MutatingWebhookConfiguration objects.
         """
-        ...
+        return pulumi.get(self, "rules")
 
     @property
     @pulumi.getter(name="timeoutSeconds")
@@ -650,7 +650,7 @@ class ValidatingWebhook(dict):
         """
         TimeoutSeconds specifies the timeout for this webhook. After the timeout passes, the webhook call will be ignored or the API call will fail based on the failure policy. The timeout value must be between 1 and 30 seconds. Default to 10 seconds.
         """
-        ...
+        return pulumi.get(self, "timeout_seconds")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -688,7 +688,7 @@ class ValidatingWebhookConfiguration(dict):
         """
         APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
         """
-        ...
+        return pulumi.get(self, "api_version")
 
     @property
     @pulumi.getter
@@ -696,7 +696,7 @@ class ValidatingWebhookConfiguration(dict):
         """
         Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         """
-        ...
+        return pulumi.get(self, "kind")
 
     @property
     @pulumi.getter
@@ -704,7 +704,7 @@ class ValidatingWebhookConfiguration(dict):
         """
         Standard object metadata; More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata.
         """
-        ...
+        return pulumi.get(self, "metadata")
 
     @property
     @pulumi.getter
@@ -712,7 +712,7 @@ class ValidatingWebhookConfiguration(dict):
         """
         Webhooks is a list of webhooks and the affected resources and operations.
         """
-        ...
+        return pulumi.get(self, "webhooks")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -758,7 +758,7 @@ class WebhookClientConfig(dict):
         """
         `caBundle` is a PEM encoded CA bundle which will be used to validate the webhook's server certificate. If unspecified, system trust roots on the apiserver are used.
         """
-        ...
+        return pulumi.get(self, "ca_bundle")
 
     @property
     @pulumi.getter
@@ -768,7 +768,7 @@ class WebhookClientConfig(dict):
 
         If the webhook is running within the cluster, then you should use `service`.
         """
-        ...
+        return pulumi.get(self, "service")
 
     @property
     @pulumi.getter
@@ -786,7 +786,7 @@ class WebhookClientConfig(dict):
 
         Attempting to use a user or basic auth e.g. "user:password@" is not allowed. Fragments ("#...") and query parameters ("?...") are not allowed, either.
         """
-        ...
+        return pulumi.get(self, "url")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

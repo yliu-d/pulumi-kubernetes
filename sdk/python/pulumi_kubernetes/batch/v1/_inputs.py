@@ -65,11 +65,11 @@ class JobArgs:
         """
         APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
         """
-        ...
+        return pulumi.get(self, "api_version")
 
     @api_version.setter
     def api_version(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "api_version", value)
 
     @property
     @pulumi.getter
@@ -77,11 +77,11 @@ class JobArgs:
         """
         Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         """
-        ...
+        return pulumi.get(self, "kind")
 
     @kind.setter
     def kind(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "kind", value)
 
     @property
     @pulumi.getter
@@ -89,11 +89,11 @@ class JobArgs:
         """
         Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         """
-        ...
+        return pulumi.get(self, "metadata")
 
     @metadata.setter
     def metadata(self, value: Optional[pulumi.Input['_meta.v1.ObjectMetaArgs']]):
-        ...
+        pulumi.set(self, "metadata", value)
 
     @property
     @pulumi.getter
@@ -101,11 +101,11 @@ class JobArgs:
         """
         Specification of the desired behavior of a job. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
         """
-        ...
+        return pulumi.get(self, "spec")
 
     @spec.setter
     def spec(self, value: Optional[pulumi.Input['JobSpecArgs']]):
-        ...
+        pulumi.set(self, "spec", value)
 
     @property
     @pulumi.getter
@@ -113,11 +113,11 @@ class JobArgs:
         """
         Current status of a job. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
         """
-        ...
+        return pulumi.get(self, "status")
 
     @status.setter
     def status(self, value: Optional[pulumi.Input['JobStatusArgs']]):
-        ...
+        pulumi.set(self, "status", value)
 
 
 @pulumi.input_type
@@ -155,11 +155,11 @@ class JobConditionArgs:
         """
         Status of the condition, one of True, False, Unknown.
         """
-        ...
+        return pulumi.get(self, "status")
 
     @status.setter
     def status(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "status", value)
 
     @property
     @pulumi.getter
@@ -167,11 +167,11 @@ class JobConditionArgs:
         """
         Type of job condition, Complete or Failed.
         """
-        ...
+        return pulumi.get(self, "type")
 
     @type.setter
     def type(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "type", value)
 
     @property
     @pulumi.getter(name="lastProbeTime")
@@ -179,11 +179,11 @@ class JobConditionArgs:
         """
         Last time the condition was checked.
         """
-        ...
+        return pulumi.get(self, "last_probe_time")
 
     @last_probe_time.setter
     def last_probe_time(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "last_probe_time", value)
 
     @property
     @pulumi.getter(name="lastTransitionTime")
@@ -191,11 +191,11 @@ class JobConditionArgs:
         """
         Last time the condition transit from one status to another.
         """
-        ...
+        return pulumi.get(self, "last_transition_time")
 
     @last_transition_time.setter
     def last_transition_time(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "last_transition_time", value)
 
     @property
     @pulumi.getter
@@ -203,11 +203,11 @@ class JobConditionArgs:
         """
         Human readable message indicating details about last transition.
         """
-        ...
+        return pulumi.get(self, "message")
 
     @message.setter
     def message(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "message", value)
 
     @property
     @pulumi.getter
@@ -215,11 +215,11 @@ class JobConditionArgs:
         """
         (brief) reason for the condition's last transition.
         """
-        ...
+        return pulumi.get(self, "reason")
 
     @reason.setter
     def reason(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "reason", value)
 
 
 @pulumi.input_type
@@ -266,11 +266,11 @@ class JobSpecArgs:
         """
         Describes the pod that will be created when executing a job. More info: https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/
         """
-        ...
+        return pulumi.get(self, "template")
 
     @template.setter
     def template(self, value: pulumi.Input['_core.v1.PodTemplateSpecArgs']):
-        ...
+        pulumi.set(self, "template", value)
 
     @property
     @pulumi.getter(name="activeDeadlineSeconds")
@@ -278,11 +278,11 @@ class JobSpecArgs:
         """
         Specifies the duration in seconds relative to the startTime that the job may be active before the system tries to terminate it; value must be positive integer
         """
-        ...
+        return pulumi.get(self, "active_deadline_seconds")
 
     @active_deadline_seconds.setter
     def active_deadline_seconds(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "active_deadline_seconds", value)
 
     @property
     @pulumi.getter(name="backoffLimit")
@@ -290,11 +290,11 @@ class JobSpecArgs:
         """
         Specifies the number of retries before marking this job failed. Defaults to 6
         """
-        ...
+        return pulumi.get(self, "backoff_limit")
 
     @backoff_limit.setter
     def backoff_limit(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "backoff_limit", value)
 
     @property
     @pulumi.getter
@@ -302,11 +302,11 @@ class JobSpecArgs:
         """
         Specifies the desired number of successfully finished pods the job should be run with.  Setting to nil means that the success of any pod signals the success of all pods, and allows parallelism to have any positive value.  Setting to 1 means that parallelism is limited to 1 and the success of that pod signals the success of the job. More info: https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/
         """
-        ...
+        return pulumi.get(self, "completions")
 
     @completions.setter
     def completions(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "completions", value)
 
     @property
     @pulumi.getter(name="manualSelector")
@@ -314,11 +314,11 @@ class JobSpecArgs:
         """
         manualSelector controls generation of pod labels and pod selectors. Leave `manualSelector` unset unless you are certain what you are doing. When false or unset, the system pick labels unique to this job and appends those labels to the pod template.  When true, the user is responsible for picking unique labels and specifying the selector.  Failure to pick a unique label may cause this and other jobs to not function correctly.  However, You may see `manualSelector=true` in jobs that were created with the old `extensions/v1beta1` API. More info: https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/#specifying-your-own-pod-selector
         """
-        ...
+        return pulumi.get(self, "manual_selector")
 
     @manual_selector.setter
     def manual_selector(self, value: Optional[pulumi.Input[bool]]):
-        ...
+        pulumi.set(self, "manual_selector", value)
 
     @property
     @pulumi.getter
@@ -326,11 +326,11 @@ class JobSpecArgs:
         """
         Specifies the maximum desired number of pods the job should run at any given time. The actual number of pods running in steady state will be less than this number when ((.spec.completions - .status.successful) < .spec.parallelism), i.e. when the work left to do is less than max parallelism. More info: https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/
         """
-        ...
+        return pulumi.get(self, "parallelism")
 
     @parallelism.setter
     def parallelism(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "parallelism", value)
 
     @property
     @pulumi.getter
@@ -338,11 +338,11 @@ class JobSpecArgs:
         """
         A label query over pods that should match the pod count. Normally, the system sets this field for you. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors
         """
-        ...
+        return pulumi.get(self, "selector")
 
     @selector.setter
     def selector(self, value: Optional[pulumi.Input['_meta.v1.LabelSelectorArgs']]):
-        ...
+        pulumi.set(self, "selector", value)
 
     @property
     @pulumi.getter(name="ttlSecondsAfterFinished")
@@ -350,11 +350,11 @@ class JobSpecArgs:
         """
         ttlSecondsAfterFinished limits the lifetime of a Job that has finished execution (either Complete or Failed). If this field is set, ttlSecondsAfterFinished after the Job finishes, it is eligible to be automatically deleted. When the Job is being deleted, its lifecycle guarantees (e.g. finalizers) will be honored. If this field is unset, the Job won't be automatically deleted. If this field is set to zero, the Job becomes eligible to be deleted immediately after it finishes. This field is alpha-level and is only honored by servers that enable the TTLAfterFinished feature.
         """
-        ...
+        return pulumi.get(self, "ttl_seconds_after_finished")
 
     @ttl_seconds_after_finished.setter
     def ttl_seconds_after_finished(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "ttl_seconds_after_finished", value)
 
 
 @pulumi.input_type
@@ -394,11 +394,11 @@ class JobStatusArgs:
         """
         The number of actively running pods.
         """
-        ...
+        return pulumi.get(self, "active")
 
     @active.setter
     def active(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "active", value)
 
     @property
     @pulumi.getter(name="completionTime")
@@ -406,11 +406,11 @@ class JobStatusArgs:
         """
         Represents time when the job was completed. It is not guaranteed to be set in happens-before order across separate operations. It is represented in RFC3339 form and is in UTC.
         """
-        ...
+        return pulumi.get(self, "completion_time")
 
     @completion_time.setter
     def completion_time(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "completion_time", value)
 
     @property
     @pulumi.getter
@@ -418,11 +418,11 @@ class JobStatusArgs:
         """
         The latest available observations of an object's current state. More info: https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/
         """
-        ...
+        return pulumi.get(self, "conditions")
 
     @conditions.setter
     def conditions(self, value: Optional[pulumi.Input[List[pulumi.Input['JobConditionArgs']]]]):
-        ...
+        pulumi.set(self, "conditions", value)
 
     @property
     @pulumi.getter
@@ -430,11 +430,11 @@ class JobStatusArgs:
         """
         The number of pods which reached phase Failed.
         """
-        ...
+        return pulumi.get(self, "failed")
 
     @failed.setter
     def failed(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "failed", value)
 
     @property
     @pulumi.getter(name="startTime")
@@ -442,11 +442,11 @@ class JobStatusArgs:
         """
         Represents time when the job was acknowledged by the job controller. It is not guaranteed to be set in happens-before order across separate operations. It is represented in RFC3339 form and is in UTC.
         """
-        ...
+        return pulumi.get(self, "start_time")
 
     @start_time.setter
     def start_time(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "start_time", value)
 
     @property
     @pulumi.getter
@@ -454,10 +454,10 @@ class JobStatusArgs:
         """
         The number of pods which reached phase Succeeded.
         """
-        ...
+        return pulumi.get(self, "succeeded")
 
     @succeeded.setter
     def succeeded(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "succeeded", value)
 
 

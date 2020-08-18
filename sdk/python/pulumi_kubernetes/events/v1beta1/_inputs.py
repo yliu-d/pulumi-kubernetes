@@ -94,11 +94,11 @@ class EventArgs:
         """
         Required. Time when this Event was first observed.
         """
-        ...
+        return pulumi.get(self, "event_time")
 
     @event_time.setter
     def event_time(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "event_time", value)
 
     @property
     @pulumi.getter
@@ -106,11 +106,11 @@ class EventArgs:
         """
         What action was taken/failed regarding to the regarding object.
         """
-        ...
+        return pulumi.get(self, "action")
 
     @action.setter
     def action(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "action", value)
 
     @property
     @pulumi.getter(name="apiVersion")
@@ -118,11 +118,11 @@ class EventArgs:
         """
         APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
         """
-        ...
+        return pulumi.get(self, "api_version")
 
     @api_version.setter
     def api_version(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "api_version", value)
 
     @property
     @pulumi.getter(name="deprecatedCount")
@@ -130,11 +130,11 @@ class EventArgs:
         """
         Deprecated field assuring backward compatibility with core.v1 Event type
         """
-        ...
+        return pulumi.get(self, "deprecated_count")
 
     @deprecated_count.setter
     def deprecated_count(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "deprecated_count", value)
 
     @property
     @pulumi.getter(name="deprecatedFirstTimestamp")
@@ -142,11 +142,11 @@ class EventArgs:
         """
         Deprecated field assuring backward compatibility with core.v1 Event type
         """
-        ...
+        return pulumi.get(self, "deprecated_first_timestamp")
 
     @deprecated_first_timestamp.setter
     def deprecated_first_timestamp(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "deprecated_first_timestamp", value)
 
     @property
     @pulumi.getter(name="deprecatedLastTimestamp")
@@ -154,11 +154,11 @@ class EventArgs:
         """
         Deprecated field assuring backward compatibility with core.v1 Event type
         """
-        ...
+        return pulumi.get(self, "deprecated_last_timestamp")
 
     @deprecated_last_timestamp.setter
     def deprecated_last_timestamp(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "deprecated_last_timestamp", value)
 
     @property
     @pulumi.getter(name="deprecatedSource")
@@ -166,11 +166,11 @@ class EventArgs:
         """
         Deprecated field assuring backward compatibility with core.v1 Event type
         """
-        ...
+        return pulumi.get(self, "deprecated_source")
 
     @deprecated_source.setter
     def deprecated_source(self, value: Optional[pulumi.Input['_core.v1.EventSourceArgs']]):
-        ...
+        pulumi.set(self, "deprecated_source", value)
 
     @property
     @pulumi.getter
@@ -178,20 +178,20 @@ class EventArgs:
         """
         Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         """
-        ...
+        return pulumi.get(self, "kind")
 
     @kind.setter
     def kind(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "kind", value)
 
     @property
     @pulumi.getter
     def metadata(self) -> Optional[pulumi.Input['_meta.v1.ObjectMetaArgs']]:
-        ...
+        return pulumi.get(self, "metadata")
 
     @metadata.setter
     def metadata(self, value: Optional[pulumi.Input['_meta.v1.ObjectMetaArgs']]):
-        ...
+        pulumi.set(self, "metadata", value)
 
     @property
     @pulumi.getter
@@ -199,11 +199,11 @@ class EventArgs:
         """
         Optional. A human-readable description of the status of this operation. Maximal length of the note is 1kB, but libraries should be prepared to handle values up to 64kB.
         """
-        ...
+        return pulumi.get(self, "note")
 
     @note.setter
     def note(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "note", value)
 
     @property
     @pulumi.getter
@@ -211,11 +211,11 @@ class EventArgs:
         """
         Why the action was taken.
         """
-        ...
+        return pulumi.get(self, "reason")
 
     @reason.setter
     def reason(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "reason", value)
 
     @property
     @pulumi.getter
@@ -223,11 +223,11 @@ class EventArgs:
         """
         The object this Event is about. In most cases it's an Object reporting controller implements. E.g. ReplicaSetController implements ReplicaSets and this event is emitted because it acts on some changes in a ReplicaSet object.
         """
-        ...
+        return pulumi.get(self, "regarding")
 
     @regarding.setter
     def regarding(self, value: Optional[pulumi.Input['_core.v1.ObjectReferenceArgs']]):
-        ...
+        pulumi.set(self, "regarding", value)
 
     @property
     @pulumi.getter
@@ -235,11 +235,11 @@ class EventArgs:
         """
         Optional secondary object for more complex actions. E.g. when regarding object triggers a creation or deletion of related object.
         """
-        ...
+        return pulumi.get(self, "related")
 
     @related.setter
     def related(self, value: Optional[pulumi.Input['_core.v1.ObjectReferenceArgs']]):
-        ...
+        pulumi.set(self, "related", value)
 
     @property
     @pulumi.getter(name="reportingController")
@@ -247,11 +247,11 @@ class EventArgs:
         """
         Name of the controller that emitted this Event, e.g. `kubernetes.io/kubelet`.
         """
-        ...
+        return pulumi.get(self, "reporting_controller")
 
     @reporting_controller.setter
     def reporting_controller(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "reporting_controller", value)
 
     @property
     @pulumi.getter(name="reportingInstance")
@@ -259,11 +259,11 @@ class EventArgs:
         """
         ID of the controller instance, e.g. `kubelet-xyzf`.
         """
-        ...
+        return pulumi.get(self, "reporting_instance")
 
     @reporting_instance.setter
     def reporting_instance(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "reporting_instance", value)
 
     @property
     @pulumi.getter
@@ -271,11 +271,11 @@ class EventArgs:
         """
         Data about the Event series this event represents or nil if it's a singleton Event.
         """
-        ...
+        return pulumi.get(self, "series")
 
     @series.setter
     def series(self, value: Optional[pulumi.Input['EventSeriesArgs']]):
-        ...
+        pulumi.set(self, "series", value)
 
     @property
     @pulumi.getter
@@ -283,11 +283,11 @@ class EventArgs:
         """
         Type of this event (Normal, Warning), new types could be added in the future.
         """
-        ...
+        return pulumi.get(self, "type")
 
     @type.setter
     def type(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "type", value)
 
 
 @pulumi.input_type
@@ -312,11 +312,11 @@ class EventSeriesArgs:
         """
         Number of occurrences in this series up to the last heartbeat time
         """
-        ...
+        return pulumi.get(self, "count")
 
     @count.setter
     def count(self, value: pulumi.Input[float]):
-        ...
+        pulumi.set(self, "count", value)
 
     @property
     @pulumi.getter(name="lastObservedTime")
@@ -324,11 +324,11 @@ class EventSeriesArgs:
         """
         Time when last Event from the series was seen before last heartbeat.
         """
-        ...
+        return pulumi.get(self, "last_observed_time")
 
     @last_observed_time.setter
     def last_observed_time(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "last_observed_time", value)
 
     @property
     @pulumi.getter
@@ -336,10 +336,10 @@ class EventSeriesArgs:
         """
         Information whether this series is ongoing or finished. Deprecated. Planned removal for 1.18
         """
-        ...
+        return pulumi.get(self, "state")
 
     @state.setter
     def state(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "state", value)
 
 

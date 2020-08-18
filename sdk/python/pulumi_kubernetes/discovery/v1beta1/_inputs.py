@@ -55,11 +55,11 @@ class EndpointArgs:
         """
         addresses of this endpoint. The contents of this field are interpreted according to the corresponding EndpointSlice addressType field. Consumers must handle different types of addresses in the context of their own capabilities. This must contain at least one address but no more than 100.
         """
-        ...
+        return pulumi.get(self, "addresses")
 
     @addresses.setter
     def addresses(self, value: pulumi.Input[List[pulumi.Input[str]]]):
-        ...
+        pulumi.set(self, "addresses", value)
 
     @property
     @pulumi.getter
@@ -67,11 +67,11 @@ class EndpointArgs:
         """
         conditions contains information about the current status of the endpoint.
         """
-        ...
+        return pulumi.get(self, "conditions")
 
     @conditions.setter
     def conditions(self, value: Optional[pulumi.Input['EndpointConditionsArgs']]):
-        ...
+        pulumi.set(self, "conditions", value)
 
     @property
     @pulumi.getter
@@ -79,11 +79,11 @@ class EndpointArgs:
         """
         hostname of this endpoint. This field may be used by consumers of endpoints to distinguish endpoints from each other (e.g. in DNS names). Multiple endpoints which use the same hostname should be considered fungible (e.g. multiple A values in DNS). Must pass DNS Label (RFC 1123) validation.
         """
-        ...
+        return pulumi.get(self, "hostname")
 
     @hostname.setter
     def hostname(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "hostname", value)
 
     @property
     @pulumi.getter(name="targetRef")
@@ -91,11 +91,11 @@ class EndpointArgs:
         """
         targetRef is a reference to a Kubernetes object that represents this endpoint.
         """
-        ...
+        return pulumi.get(self, "target_ref")
 
     @target_ref.setter
     def target_ref(self, value: Optional[pulumi.Input['_core.v1.ObjectReferenceArgs']]):
-        ...
+        pulumi.set(self, "target_ref", value)
 
     @property
     @pulumi.getter
@@ -109,11 +109,11 @@ class EndpointArgs:
         * topology.kubernetes.io/region: the value indicates the region where the
           endpoint is located. This should match the corresponding node label.
         """
-        ...
+        return pulumi.get(self, "topology")
 
     @topology.setter
     def topology(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
-        ...
+        pulumi.set(self, "topology", value)
 
 
 @pulumi.input_type
@@ -133,11 +133,11 @@ class EndpointConditionsArgs:
         """
         ready indicates that this endpoint is prepared to receive traffic, according to whatever system is managing the endpoint. A nil value indicates an unknown state. In most cases consumers should interpret this unknown state as ready.
         """
-        ...
+        return pulumi.get(self, "ready")
 
     @ready.setter
     def ready(self, value: Optional[pulumi.Input[bool]]):
-        ...
+        pulumi.set(self, "ready", value)
 
 
 @pulumi.input_type
@@ -169,11 +169,11 @@ class EndpointPortArgs:
         """
         The application protocol for this port. This field follows standard Kubernetes label syntax. Un-prefixed names are reserved for IANA standard service names (as per RFC-6335 and http://www.iana.org/assignments/service-names). Non-standard protocols should use prefixed names such as mycompany.com/my-custom-protocol.
         """
-        ...
+        return pulumi.get(self, "app_protocol")
 
     @app_protocol.setter
     def app_protocol(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "app_protocol", value)
 
     @property
     @pulumi.getter
@@ -181,11 +181,11 @@ class EndpointPortArgs:
         """
         The name of this port. All ports in an EndpointSlice must have a unique name. If the EndpointSlice is dervied from a Kubernetes service, this corresponds to the Service.ports[].name. Name must either be an empty string or pass DNS_LABEL validation: * must be no more than 63 characters long. * must consist of lower case alphanumeric characters or '-'. * must start and end with an alphanumeric character. Default is empty string.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "name", value)
 
     @property
     @pulumi.getter
@@ -193,11 +193,11 @@ class EndpointPortArgs:
         """
         The port number of the endpoint. If this is not specified, ports are not restricted and must be interpreted in the context of the specific consumer.
         """
-        ...
+        return pulumi.get(self, "port")
 
     @port.setter
     def port(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "port", value)
 
     @property
     @pulumi.getter
@@ -205,11 +205,11 @@ class EndpointPortArgs:
         """
         The IP protocol for this port. Must be UDP, TCP, or SCTP. Default is TCP.
         """
-        ...
+        return pulumi.get(self, "protocol")
 
     @protocol.setter
     def protocol(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "protocol", value)
 
 
 @pulumi.input_type
@@ -247,11 +247,11 @@ class EndpointSliceArgs:
         """
         addressType specifies the type of address carried by this EndpointSlice. All addresses in this slice must be the same type. This field is immutable after creation. The following address types are currently supported: * IPv4: Represents an IPv4 Address. * IPv6: Represents an IPv6 Address. * FQDN: Represents a Fully Qualified Domain Name.
         """
-        ...
+        return pulumi.get(self, "address_type")
 
     @address_type.setter
     def address_type(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "address_type", value)
 
     @property
     @pulumi.getter
@@ -259,11 +259,11 @@ class EndpointSliceArgs:
         """
         endpoints is a list of unique endpoints in this slice. Each slice may include a maximum of 1000 endpoints.
         """
-        ...
+        return pulumi.get(self, "endpoints")
 
     @endpoints.setter
     def endpoints(self, value: pulumi.Input[List[pulumi.Input['EndpointArgs']]]):
-        ...
+        pulumi.set(self, "endpoints", value)
 
     @property
     @pulumi.getter(name="apiVersion")
@@ -271,11 +271,11 @@ class EndpointSliceArgs:
         """
         APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
         """
-        ...
+        return pulumi.get(self, "api_version")
 
     @api_version.setter
     def api_version(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "api_version", value)
 
     @property
     @pulumi.getter
@@ -283,11 +283,11 @@ class EndpointSliceArgs:
         """
         Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         """
-        ...
+        return pulumi.get(self, "kind")
 
     @kind.setter
     def kind(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "kind", value)
 
     @property
     @pulumi.getter
@@ -295,11 +295,11 @@ class EndpointSliceArgs:
         """
         Standard object's metadata.
         """
-        ...
+        return pulumi.get(self, "metadata")
 
     @metadata.setter
     def metadata(self, value: Optional[pulumi.Input['_meta.v1.ObjectMetaArgs']]):
-        ...
+        pulumi.set(self, "metadata", value)
 
     @property
     @pulumi.getter
@@ -307,10 +307,10 @@ class EndpointSliceArgs:
         """
         ports specifies the list of network ports exposed by each endpoint in this slice. Each port must have a unique name. When ports is empty, it indicates that there are no defined ports. When a port is defined with a nil port value, it indicates "all ports". Each slice may include a maximum of 100 ports.
         """
-        ...
+        return pulumi.get(self, "ports")
 
     @ports.setter
     def ports(self, value: Optional[pulumi.Input[List[pulumi.Input['EndpointPortArgs']]]]):
-        ...
+        pulumi.set(self, "ports", value)
 
 

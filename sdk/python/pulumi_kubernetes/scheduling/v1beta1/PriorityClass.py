@@ -97,7 +97,7 @@ class PriorityClass(pulumi.CustomResource):
         """
         APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
         """
-        ...
+        return pulumi.get(self, "api_version")
 
     @property
     @pulumi.getter
@@ -105,7 +105,7 @@ class PriorityClass(pulumi.CustomResource):
         """
         description is an arbitrary string that usually provides guidelines on when this priority class should be used.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="globalDefault")
@@ -113,7 +113,7 @@ class PriorityClass(pulumi.CustomResource):
         """
         globalDefault specifies whether this PriorityClass should be considered as the default priority for pods that do not have any priority class. Only one PriorityClass can be marked as `globalDefault`. However, if more than one PriorityClasses exists with their `globalDefault` field set to true, the smallest value of such global default PriorityClasses will be used as the default priority.
         """
-        ...
+        return pulumi.get(self, "global_default")
 
     @property
     @pulumi.getter
@@ -121,7 +121,7 @@ class PriorityClass(pulumi.CustomResource):
         """
         Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         """
-        ...
+        return pulumi.get(self, "kind")
 
     @property
     @pulumi.getter
@@ -129,7 +129,7 @@ class PriorityClass(pulumi.CustomResource):
         """
         Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         """
-        ...
+        return pulumi.get(self, "metadata")
 
     @property
     @pulumi.getter(name="preemptionPolicy")
@@ -137,7 +137,7 @@ class PriorityClass(pulumi.CustomResource):
         """
         PreemptionPolicy is the Policy for preempting pods with lower priority. One of Never, PreemptLowerPriority. Defaults to PreemptLowerPriority if unset. This field is alpha-level and is only honored by servers that enable the NonPreemptingPriority feature.
         """
-        ...
+        return pulumi.get(self, "preemption_policy")
 
     @property
     @pulumi.getter
@@ -145,7 +145,7 @@ class PriorityClass(pulumi.CustomResource):
         """
         The value of this priority class. This is the actual priority that pods receive when they have the name of this class in their pod spec.
         """
-        ...
+        return pulumi.get(self, "value")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

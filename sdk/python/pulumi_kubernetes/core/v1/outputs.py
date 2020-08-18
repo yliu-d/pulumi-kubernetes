@@ -215,7 +215,7 @@ class AWSElasticBlockStoreVolumeSource(dict):
         """
         Unique ID of the persistent disk resource in AWS (Amazon EBS volume). More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore
         """
-        ...
+        return pulumi.get(self, "volume_id")
 
     @property
     @pulumi.getter(name="fsType")
@@ -223,7 +223,7 @@ class AWSElasticBlockStoreVolumeSource(dict):
         """
         Filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore
         """
-        ...
+        return pulumi.get(self, "fs_type")
 
     @property
     @pulumi.getter
@@ -231,7 +231,7 @@ class AWSElasticBlockStoreVolumeSource(dict):
         """
         The partition in the volume that you want to mount. If omitted, the default is to mount by volume name. Examples: For volume /dev/sda1, you specify the partition as "1". Similarly, the volume partition for /dev/sda is "0" (or you can leave the property empty).
         """
-        ...
+        return pulumi.get(self, "partition")
 
     @property
     @pulumi.getter(name="readOnly")
@@ -239,7 +239,7 @@ class AWSElasticBlockStoreVolumeSource(dict):
         """
         Specify "true" to force and set the ReadOnly property in VolumeMounts to "true". If omitted, the default is "false". More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore
         """
-        ...
+        return pulumi.get(self, "read_only")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -273,7 +273,7 @@ class Affinity(dict):
         """
         Describes node affinity scheduling rules for the pod.
         """
-        ...
+        return pulumi.get(self, "node_affinity")
 
     @property
     @pulumi.getter(name="podAffinity")
@@ -281,7 +281,7 @@ class Affinity(dict):
         """
         Describes pod affinity scheduling rules (e.g. co-locate this pod in the same node, zone, etc. as some other pod(s)).
         """
-        ...
+        return pulumi.get(self, "pod_affinity")
 
     @property
     @pulumi.getter(name="podAntiAffinity")
@@ -289,7 +289,7 @@ class Affinity(dict):
         """
         Describes pod anti-affinity scheduling rules (e.g. avoid putting this pod in the same node, zone, etc. as some other pod(s)).
         """
-        ...
+        return pulumi.get(self, "pod_anti_affinity")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -317,7 +317,7 @@ class AttachedVolume(dict):
         """
         DevicePath represents the device path where the volume should be available
         """
-        ...
+        return pulumi.get(self, "device_path")
 
     @property
     @pulumi.getter
@@ -325,7 +325,7 @@ class AttachedVolume(dict):
         """
         Name of the attached volume
         """
-        ...
+        return pulumi.get(self, "name")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -369,7 +369,7 @@ class AzureDiskVolumeSource(dict):
         """
         The Name of the data disk in the blob storage
         """
-        ...
+        return pulumi.get(self, "disk_name")
 
     @property
     @pulumi.getter(name="diskURI")
@@ -377,7 +377,7 @@ class AzureDiskVolumeSource(dict):
         """
         The URI the data disk in the blob storage
         """
-        ...
+        return pulumi.get(self, "disk_uri")
 
     @property
     @pulumi.getter(name="cachingMode")
@@ -385,7 +385,7 @@ class AzureDiskVolumeSource(dict):
         """
         Host Caching mode: None, Read Only, Read Write.
         """
-        ...
+        return pulumi.get(self, "caching_mode")
 
     @property
     @pulumi.getter(name="fsType")
@@ -393,7 +393,7 @@ class AzureDiskVolumeSource(dict):
         """
         Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified.
         """
-        ...
+        return pulumi.get(self, "fs_type")
 
     @property
     @pulumi.getter
@@ -401,7 +401,7 @@ class AzureDiskVolumeSource(dict):
         """
         Expected values Shared: multiple blob disks per storage account  Dedicated: single blob disk per storage account  Managed: azure managed data disk (only in managed availability set). defaults to shared
         """
-        ...
+        return pulumi.get(self, "kind")
 
     @property
     @pulumi.getter(name="readOnly")
@@ -409,7 +409,7 @@ class AzureDiskVolumeSource(dict):
         """
         Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
         """
-        ...
+        return pulumi.get(self, "read_only")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -445,7 +445,7 @@ class AzureFilePersistentVolumeSource(dict):
         """
         the name of secret that contains Azure Storage Account Name and Key
         """
-        ...
+        return pulumi.get(self, "secret_name")
 
     @property
     @pulumi.getter(name="shareName")
@@ -453,7 +453,7 @@ class AzureFilePersistentVolumeSource(dict):
         """
         Share Name
         """
-        ...
+        return pulumi.get(self, "share_name")
 
     @property
     @pulumi.getter(name="readOnly")
@@ -461,7 +461,7 @@ class AzureFilePersistentVolumeSource(dict):
         """
         Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
         """
-        ...
+        return pulumi.get(self, "read_only")
 
     @property
     @pulumi.getter(name="secretNamespace")
@@ -469,7 +469,7 @@ class AzureFilePersistentVolumeSource(dict):
         """
         the namespace of the secret that contains Azure Storage Account Name and Key default is the same as the Pod
         """
-        ...
+        return pulumi.get(self, "secret_namespace")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -501,7 +501,7 @@ class AzureFileVolumeSource(dict):
         """
         the name of secret that contains Azure Storage Account Name and Key
         """
-        ...
+        return pulumi.get(self, "secret_name")
 
     @property
     @pulumi.getter(name="shareName")
@@ -509,7 +509,7 @@ class AzureFileVolumeSource(dict):
         """
         Share Name
         """
-        ...
+        return pulumi.get(self, "share_name")
 
     @property
     @pulumi.getter(name="readOnly")
@@ -517,7 +517,7 @@ class AzureFileVolumeSource(dict):
         """
         Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
         """
-        ...
+        return pulumi.get(self, "read_only")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -573,7 +573,7 @@ class CSIPersistentVolumeSource(dict):
         """
         Driver is the name of the driver to use for this volume. Required.
         """
-        ...
+        return pulumi.get(self, "driver")
 
     @property
     @pulumi.getter(name="volumeHandle")
@@ -581,7 +581,7 @@ class CSIPersistentVolumeSource(dict):
         """
         VolumeHandle is the unique volume name returned by the CSI volume plugin’s CreateVolume to refer to the volume on all subsequent calls. Required.
         """
-        ...
+        return pulumi.get(self, "volume_handle")
 
     @property
     @pulumi.getter(name="controllerExpandSecretRef")
@@ -589,7 +589,7 @@ class CSIPersistentVolumeSource(dict):
         """
         ControllerExpandSecretRef is a reference to the secret object containing sensitive information to pass to the CSI driver to complete the CSI ControllerExpandVolume call. This is an alpha field and requires enabling ExpandCSIVolumes feature gate. This field is optional, and may be empty if no secret is required. If the secret object contains more than one secret, all secrets are passed.
         """
-        ...
+        return pulumi.get(self, "controller_expand_secret_ref")
 
     @property
     @pulumi.getter(name="controllerPublishSecretRef")
@@ -597,7 +597,7 @@ class CSIPersistentVolumeSource(dict):
         """
         ControllerPublishSecretRef is a reference to the secret object containing sensitive information to pass to the CSI driver to complete the CSI ControllerPublishVolume and ControllerUnpublishVolume calls. This field is optional, and may be empty if no secret is required. If the secret object contains more than one secret, all secrets are passed.
         """
-        ...
+        return pulumi.get(self, "controller_publish_secret_ref")
 
     @property
     @pulumi.getter(name="fsType")
@@ -605,7 +605,7 @@ class CSIPersistentVolumeSource(dict):
         """
         Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs", "ntfs".
         """
-        ...
+        return pulumi.get(self, "fs_type")
 
     @property
     @pulumi.getter(name="nodePublishSecretRef")
@@ -613,7 +613,7 @@ class CSIPersistentVolumeSource(dict):
         """
         NodePublishSecretRef is a reference to the secret object containing sensitive information to pass to the CSI driver to complete the CSI NodePublishVolume and NodeUnpublishVolume calls. This field is optional, and may be empty if no secret is required. If the secret object contains more than one secret, all secrets are passed.
         """
-        ...
+        return pulumi.get(self, "node_publish_secret_ref")
 
     @property
     @pulumi.getter(name="nodeStageSecretRef")
@@ -621,7 +621,7 @@ class CSIPersistentVolumeSource(dict):
         """
         NodeStageSecretRef is a reference to the secret object containing sensitive information to pass to the CSI driver to complete the CSI NodeStageVolume and NodeStageVolume and NodeUnstageVolume calls. This field is optional, and may be empty if no secret is required. If the secret object contains more than one secret, all secrets are passed.
         """
-        ...
+        return pulumi.get(self, "node_stage_secret_ref")
 
     @property
     @pulumi.getter(name="readOnly")
@@ -629,7 +629,7 @@ class CSIPersistentVolumeSource(dict):
         """
         Optional: The value to pass to ControllerPublishVolumeRequest. Defaults to false (read/write).
         """
-        ...
+        return pulumi.get(self, "read_only")
 
     @property
     @pulumi.getter(name="volumeAttributes")
@@ -637,7 +637,7 @@ class CSIPersistentVolumeSource(dict):
         """
         Attributes of the volume to publish.
         """
-        ...
+        return pulumi.get(self, "volume_attributes")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -678,7 +678,7 @@ class CSIVolumeSource(dict):
         """
         Driver is the name of the CSI driver that handles this volume. Consult with your admin for the correct name as registered in the cluster.
         """
-        ...
+        return pulumi.get(self, "driver")
 
     @property
     @pulumi.getter(name="fsType")
@@ -686,7 +686,7 @@ class CSIVolumeSource(dict):
         """
         Filesystem type to mount. Ex. "ext4", "xfs", "ntfs". If not provided, the empty value is passed to the associated CSI driver which will determine the default filesystem to apply.
         """
-        ...
+        return pulumi.get(self, "fs_type")
 
     @property
     @pulumi.getter(name="nodePublishSecretRef")
@@ -694,7 +694,7 @@ class CSIVolumeSource(dict):
         """
         NodePublishSecretRef is a reference to the secret object containing sensitive information to pass to the CSI driver to complete the CSI NodePublishVolume and NodeUnpublishVolume calls. This field is optional, and  may be empty if no secret is required. If the secret object contains more than one secret, all secret references are passed.
         """
-        ...
+        return pulumi.get(self, "node_publish_secret_ref")
 
     @property
     @pulumi.getter(name="readOnly")
@@ -702,7 +702,7 @@ class CSIVolumeSource(dict):
         """
         Specifies a read-only configuration for the volume. Defaults to false (read/write).
         """
-        ...
+        return pulumi.get(self, "read_only")
 
     @property
     @pulumi.getter(name="volumeAttributes")
@@ -710,7 +710,7 @@ class CSIVolumeSource(dict):
         """
         VolumeAttributes stores driver-specific properties that are passed to the CSI driver. Consult your driver's documentation for supported values.
         """
-        ...
+        return pulumi.get(self, "volume_attributes")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -740,7 +740,7 @@ class Capabilities(dict):
         """
         Added capabilities
         """
-        ...
+        return pulumi.get(self, "add")
 
     @property
     @pulumi.getter
@@ -748,7 +748,7 @@ class Capabilities(dict):
         """
         Removed capabilities
         """
-        ...
+        return pulumi.get(self, "drop")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -793,7 +793,7 @@ class CephFSPersistentVolumeSource(dict):
         """
         Required: Monitors is a collection of Ceph monitors More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
         """
-        ...
+        return pulumi.get(self, "monitors")
 
     @property
     @pulumi.getter
@@ -801,7 +801,7 @@ class CephFSPersistentVolumeSource(dict):
         """
         Optional: Used as the mounted root, rather than the full Ceph tree, default is /
         """
-        ...
+        return pulumi.get(self, "path")
 
     @property
     @pulumi.getter(name="readOnly")
@@ -809,7 +809,7 @@ class CephFSPersistentVolumeSource(dict):
         """
         Optional: Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts. More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
         """
-        ...
+        return pulumi.get(self, "read_only")
 
     @property
     @pulumi.getter(name="secretFile")
@@ -817,7 +817,7 @@ class CephFSPersistentVolumeSource(dict):
         """
         Optional: SecretFile is the path to key ring for User, default is /etc/ceph/user.secret More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
         """
-        ...
+        return pulumi.get(self, "secret_file")
 
     @property
     @pulumi.getter(name="secretRef")
@@ -825,7 +825,7 @@ class CephFSPersistentVolumeSource(dict):
         """
         Optional: SecretRef is reference to the authentication secret for User, default is empty. More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
         """
-        ...
+        return pulumi.get(self, "secret_ref")
 
     @property
     @pulumi.getter
@@ -833,7 +833,7 @@ class CephFSPersistentVolumeSource(dict):
         """
         Optional: User is the rados user name, default is admin More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
         """
-        ...
+        return pulumi.get(self, "user")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -878,7 +878,7 @@ class CephFSVolumeSource(dict):
         """
         Required: Monitors is a collection of Ceph monitors More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
         """
-        ...
+        return pulumi.get(self, "monitors")
 
     @property
     @pulumi.getter
@@ -886,7 +886,7 @@ class CephFSVolumeSource(dict):
         """
         Optional: Used as the mounted root, rather than the full Ceph tree, default is /
         """
-        ...
+        return pulumi.get(self, "path")
 
     @property
     @pulumi.getter(name="readOnly")
@@ -894,7 +894,7 @@ class CephFSVolumeSource(dict):
         """
         Optional: Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts. More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
         """
-        ...
+        return pulumi.get(self, "read_only")
 
     @property
     @pulumi.getter(name="secretFile")
@@ -902,7 +902,7 @@ class CephFSVolumeSource(dict):
         """
         Optional: SecretFile is the path to key ring for User, default is /etc/ceph/user.secret More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
         """
-        ...
+        return pulumi.get(self, "secret_file")
 
     @property
     @pulumi.getter(name="secretRef")
@@ -910,7 +910,7 @@ class CephFSVolumeSource(dict):
         """
         Optional: SecretRef is reference to the authentication secret for User, default is empty. More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
         """
-        ...
+        return pulumi.get(self, "secret_ref")
 
     @property
     @pulumi.getter
@@ -918,7 +918,7 @@ class CephFSVolumeSource(dict):
         """
         Optional: User is the rados user name, default is admin More info: https://examples.k8s.io/volumes/cephfs/README.md#how-to-use-it
         """
-        ...
+        return pulumi.get(self, "user")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -955,7 +955,7 @@ class CinderPersistentVolumeSource(dict):
         """
         volume id used to identify the volume in cinder. More info: https://examples.k8s.io/mysql-cinder-pd/README.md
         """
-        ...
+        return pulumi.get(self, "volume_id")
 
     @property
     @pulumi.getter(name="fsType")
@@ -963,7 +963,7 @@ class CinderPersistentVolumeSource(dict):
         """
         Filesystem type to mount. Must be a filesystem type supported by the host operating system. Examples: "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified. More info: https://examples.k8s.io/mysql-cinder-pd/README.md
         """
-        ...
+        return pulumi.get(self, "fs_type")
 
     @property
     @pulumi.getter(name="readOnly")
@@ -971,7 +971,7 @@ class CinderPersistentVolumeSource(dict):
         """
         Optional: Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts. More info: https://examples.k8s.io/mysql-cinder-pd/README.md
         """
-        ...
+        return pulumi.get(self, "read_only")
 
     @property
     @pulumi.getter(name="secretRef")
@@ -979,7 +979,7 @@ class CinderPersistentVolumeSource(dict):
         """
         Optional: points to a secret object containing parameters used to connect to OpenStack.
         """
-        ...
+        return pulumi.get(self, "secret_ref")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1016,7 +1016,7 @@ class CinderVolumeSource(dict):
         """
         volume id used to identify the volume in cinder. More info: https://examples.k8s.io/mysql-cinder-pd/README.md
         """
-        ...
+        return pulumi.get(self, "volume_id")
 
     @property
     @pulumi.getter(name="fsType")
@@ -1024,7 +1024,7 @@ class CinderVolumeSource(dict):
         """
         Filesystem type to mount. Must be a filesystem type supported by the host operating system. Examples: "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified. More info: https://examples.k8s.io/mysql-cinder-pd/README.md
         """
-        ...
+        return pulumi.get(self, "fs_type")
 
     @property
     @pulumi.getter(name="readOnly")
@@ -1032,7 +1032,7 @@ class CinderVolumeSource(dict):
         """
         Optional: Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts. More info: https://examples.k8s.io/mysql-cinder-pd/README.md
         """
-        ...
+        return pulumi.get(self, "read_only")
 
     @property
     @pulumi.getter(name="secretRef")
@@ -1040,7 +1040,7 @@ class CinderVolumeSource(dict):
         """
         Optional: points to a secret object containing parameters used to connect to OpenStack.
         """
-        ...
+        return pulumi.get(self, "secret_ref")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1066,7 +1066,7 @@ class ClientIPConfig(dict):
         """
         timeoutSeconds specifies the seconds of ClientIP type session sticky time. The value must be >0 && <=86400(for 1 day) if ServiceAffinity == "ClientIP". Default value is 10800(for 3 hours).
         """
-        ...
+        return pulumi.get(self, "timeout_seconds")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1102,7 +1102,7 @@ class ComponentCondition(dict):
         """
         Status of the condition for a component. Valid values for "Healthy": "True", "False", or "Unknown".
         """
-        ...
+        return pulumi.get(self, "status")
 
     @property
     @pulumi.getter
@@ -1110,7 +1110,7 @@ class ComponentCondition(dict):
         """
         Type of condition for a component. Valid value: "Healthy"
         """
-        ...
+        return pulumi.get(self, "type")
 
     @property
     @pulumi.getter
@@ -1118,7 +1118,7 @@ class ComponentCondition(dict):
         """
         Condition error code for a component. For example, a health check error code.
         """
-        ...
+        return pulumi.get(self, "error")
 
     @property
     @pulumi.getter
@@ -1126,7 +1126,7 @@ class ComponentCondition(dict):
         """
         Message about the condition for a component. For example, information about a health check.
         """
-        ...
+        return pulumi.get(self, "message")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1164,7 +1164,7 @@ class ComponentStatus(dict):
         """
         APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
         """
-        ...
+        return pulumi.get(self, "api_version")
 
     @property
     @pulumi.getter
@@ -1172,7 +1172,7 @@ class ComponentStatus(dict):
         """
         List of component conditions observed
         """
-        ...
+        return pulumi.get(self, "conditions")
 
     @property
     @pulumi.getter
@@ -1180,7 +1180,7 @@ class ComponentStatus(dict):
         """
         Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         """
-        ...
+        return pulumi.get(self, "kind")
 
     @property
     @pulumi.getter
@@ -1188,7 +1188,7 @@ class ComponentStatus(dict):
         """
         Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         """
-        ...
+        return pulumi.get(self, "metadata")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1234,7 +1234,7 @@ class ConfigMap(dict):
         """
         APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
         """
-        ...
+        return pulumi.get(self, "api_version")
 
     @property
     @pulumi.getter(name="binaryData")
@@ -1242,7 +1242,7 @@ class ConfigMap(dict):
         """
         BinaryData contains the binary data. Each key must consist of alphanumeric characters, '-', '_' or '.'. BinaryData can contain byte sequences that are not in the UTF-8 range. The keys stored in BinaryData must not overlap with the ones in the Data field, this is enforced during validation process. Using this field will require 1.10+ apiserver and kubelet.
         """
-        ...
+        return pulumi.get(self, "binary_data")
 
     @property
     @pulumi.getter
@@ -1250,7 +1250,7 @@ class ConfigMap(dict):
         """
         Data contains the configuration data. Each key must consist of alphanumeric characters, '-', '_' or '.'. Values with non-UTF-8 byte sequences must use the BinaryData field. The keys stored in Data must not overlap with the keys in the BinaryData field, this is enforced during validation process.
         """
-        ...
+        return pulumi.get(self, "data")
 
     @property
     @pulumi.getter
@@ -1258,7 +1258,7 @@ class ConfigMap(dict):
         """
         Immutable, if set to true, ensures that data stored in the ConfigMap cannot be updated (only object metadata can be modified). If not set to true, the field can be modified at any time. Defaulted to nil. This is an alpha field enabled by ImmutableEphemeralVolumes feature gate.
         """
-        ...
+        return pulumi.get(self, "immutable")
 
     @property
     @pulumi.getter
@@ -1266,7 +1266,7 @@ class ConfigMap(dict):
         """
         Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         """
-        ...
+        return pulumi.get(self, "kind")
 
     @property
     @pulumi.getter
@@ -1274,7 +1274,7 @@ class ConfigMap(dict):
         """
         Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         """
-        ...
+        return pulumi.get(self, "metadata")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1308,7 +1308,7 @@ class ConfigMapEnvSource(dict):
         """
         Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -1316,7 +1316,7 @@ class ConfigMapEnvSource(dict):
         """
         Specify whether the ConfigMap must be defined
         """
-        ...
+        return pulumi.get(self, "optional")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1349,7 +1349,7 @@ class ConfigMapKeySelector(dict):
         """
         The key to select.
         """
-        ...
+        return pulumi.get(self, "key")
 
     @property
     @pulumi.getter
@@ -1357,7 +1357,7 @@ class ConfigMapKeySelector(dict):
         """
         Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -1365,7 +1365,7 @@ class ConfigMapKeySelector(dict):
         """
         Specify whether the ConfigMap or its key must be defined
         """
-        ...
+        return pulumi.get(self, "optional")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1404,7 +1404,7 @@ class ConfigMapNodeConfigSource(dict):
         """
         KubeletConfigKey declares which key of the referenced ConfigMap corresponds to the KubeletConfiguration structure This field is required in all cases.
         """
-        ...
+        return pulumi.get(self, "kubelet_config_key")
 
     @property
     @pulumi.getter
@@ -1412,7 +1412,7 @@ class ConfigMapNodeConfigSource(dict):
         """
         Name is the metadata.name of the referenced ConfigMap. This field is required in all cases.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -1420,7 +1420,7 @@ class ConfigMapNodeConfigSource(dict):
         """
         Namespace is the metadata.namespace of the referenced ConfigMap. This field is required in all cases.
         """
-        ...
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter(name="resourceVersion")
@@ -1428,7 +1428,7 @@ class ConfigMapNodeConfigSource(dict):
         """
         ResourceVersion is the metadata.ResourceVersion of the referenced ConfigMap. This field is forbidden in Node.Spec, and required in Node.Status.
         """
-        ...
+        return pulumi.get(self, "resource_version")
 
     @property
     @pulumi.getter
@@ -1436,7 +1436,7 @@ class ConfigMapNodeConfigSource(dict):
         """
         UID is the metadata.UID of the referenced ConfigMap. This field is forbidden in Node.Spec, and required in Node.Status.
         """
-        ...
+        return pulumi.get(self, "uid")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1474,7 +1474,7 @@ class ConfigMapProjection(dict):
         """
         If unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.
         """
-        ...
+        return pulumi.get(self, "items")
 
     @property
     @pulumi.getter
@@ -1482,7 +1482,7 @@ class ConfigMapProjection(dict):
         """
         Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -1490,7 +1490,7 @@ class ConfigMapProjection(dict):
         """
         Specify whether the ConfigMap or its keys must be defined
         """
-        ...
+        return pulumi.get(self, "optional")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1532,7 +1532,7 @@ class ConfigMapVolumeSource(dict):
         """
         Optional: mode bits to use on created files by default. Must be a value between 0 and 0777. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
         """
-        ...
+        return pulumi.get(self, "default_mode")
 
     @property
     @pulumi.getter
@@ -1540,7 +1540,7 @@ class ConfigMapVolumeSource(dict):
         """
         If unspecified, each key-value pair in the Data field of the referenced ConfigMap will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the ConfigMap, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.
         """
-        ...
+        return pulumi.get(self, "items")
 
     @property
     @pulumi.getter
@@ -1548,7 +1548,7 @@ class ConfigMapVolumeSource(dict):
         """
         Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -1556,7 +1556,7 @@ class ConfigMapVolumeSource(dict):
         """
         Specify whether the ConfigMap or its keys must be defined
         """
-        ...
+        return pulumi.get(self, "optional")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1665,7 +1665,7 @@ class Container(dict):
         """
         Name of the container specified as a DNS_LABEL. Each container in a pod must have a unique name (DNS_LABEL). Cannot be updated.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -1673,7 +1673,7 @@ class Container(dict):
         """
         Arguments to the entrypoint. The docker image's CMD is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. The $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME). Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell
         """
-        ...
+        return pulumi.get(self, "args")
 
     @property
     @pulumi.getter
@@ -1681,7 +1681,7 @@ class Container(dict):
         """
         Entrypoint array. Not executed within a shell. The docker image's ENTRYPOINT is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. The $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME). Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell
         """
-        ...
+        return pulumi.get(self, "command")
 
     @property
     @pulumi.getter
@@ -1689,7 +1689,7 @@ class Container(dict):
         """
         List of environment variables to set in the container. Cannot be updated.
         """
-        ...
+        return pulumi.get(self, "env")
 
     @property
     @pulumi.getter(name="envFrom")
@@ -1697,7 +1697,7 @@ class Container(dict):
         """
         List of sources to populate environment variables in the container. The keys defined within a source must be a C_IDENTIFIER. All invalid keys will be reported as an event when the container is starting. When a key exists in multiple sources, the value associated with the last source will take precedence. Values defined by an Env with a duplicate key will take precedence. Cannot be updated.
         """
-        ...
+        return pulumi.get(self, "env_from")
 
     @property
     @pulumi.getter
@@ -1705,7 +1705,7 @@ class Container(dict):
         """
         Docker image name. More info: https://kubernetes.io/docs/concepts/containers/images This field is optional to allow higher level config management to default or override container images in workload controllers like Deployments and StatefulSets.
         """
-        ...
+        return pulumi.get(self, "image")
 
     @property
     @pulumi.getter(name="imagePullPolicy")
@@ -1713,7 +1713,7 @@ class Container(dict):
         """
         Image pull policy. One of Always, Never, IfNotPresent. Defaults to Always if :latest tag is specified, or IfNotPresent otherwise. Cannot be updated. More info: https://kubernetes.io/docs/concepts/containers/images#updating-images
         """
-        ...
+        return pulumi.get(self, "image_pull_policy")
 
     @property
     @pulumi.getter
@@ -1721,7 +1721,7 @@ class Container(dict):
         """
         Actions that the management system should take in response to container lifecycle events. Cannot be updated.
         """
-        ...
+        return pulumi.get(self, "lifecycle")
 
     @property
     @pulumi.getter(name="livenessProbe")
@@ -1729,7 +1729,7 @@ class Container(dict):
         """
         Periodic probe of container liveness. Container will be restarted if the probe fails. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
         """
-        ...
+        return pulumi.get(self, "liveness_probe")
 
     @property
     @pulumi.getter
@@ -1737,7 +1737,7 @@ class Container(dict):
         """
         List of ports to expose from the container. Exposing a port here gives the system additional information about the network connections a container uses, but is primarily informational. Not specifying a port here DOES NOT prevent that port from being exposed. Any port which is listening on the default "0.0.0.0" address inside a container will be accessible from the network. Cannot be updated.
         """
-        ...
+        return pulumi.get(self, "ports")
 
     @property
     @pulumi.getter(name="readinessProbe")
@@ -1745,7 +1745,7 @@ class Container(dict):
         """
         Periodic probe of container service readiness. Container will be removed from service endpoints if the probe fails. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
         """
-        ...
+        return pulumi.get(self, "readiness_probe")
 
     @property
     @pulumi.getter
@@ -1753,7 +1753,7 @@ class Container(dict):
         """
         Compute Resources required by this container. Cannot be updated. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/
         """
-        ...
+        return pulumi.get(self, "resources")
 
     @property
     @pulumi.getter(name="securityContext")
@@ -1761,7 +1761,7 @@ class Container(dict):
         """
         Security options the pod should run with. More info: https://kubernetes.io/docs/concepts/policy/security-context/ More info: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
         """
-        ...
+        return pulumi.get(self, "security_context")
 
     @property
     @pulumi.getter(name="startupProbe")
@@ -1769,7 +1769,7 @@ class Container(dict):
         """
         StartupProbe indicates that the Pod has successfully initialized. If specified, no other probes are executed until this completes successfully. If this probe fails, the Pod will be restarted, just as if the livenessProbe failed. This can be used to provide different probe parameters at the beginning of a Pod's lifecycle, when it might take a long time to load data or warm a cache, than during steady-state operation. This cannot be updated. This is a beta feature enabled by the StartupProbe feature flag. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
         """
-        ...
+        return pulumi.get(self, "startup_probe")
 
     @property
     @pulumi.getter
@@ -1777,7 +1777,7 @@ class Container(dict):
         """
         Whether this container should allocate a buffer for stdin in the container runtime. If this is not set, reads from stdin in the container will always result in EOF. Default is false.
         """
-        ...
+        return pulumi.get(self, "stdin")
 
     @property
     @pulumi.getter(name="stdinOnce")
@@ -1785,7 +1785,7 @@ class Container(dict):
         """
         Whether the container runtime should close the stdin channel after it has been opened by a single attach. When stdin is true the stdin stream will remain open across multiple attach sessions. If stdinOnce is set to true, stdin is opened on container start, is empty until the first client attaches to stdin, and then remains open and accepts data until the client disconnects, at which time stdin is closed and remains closed until the container is restarted. If this flag is false, a container processes that reads from stdin will never receive an EOF. Default is false
         """
-        ...
+        return pulumi.get(self, "stdin_once")
 
     @property
     @pulumi.getter(name="terminationMessagePath")
@@ -1793,7 +1793,7 @@ class Container(dict):
         """
         Optional: Path at which the file to which the container's termination message will be written is mounted into the container's filesystem. Message written is intended to be brief final status, such as an assertion failure message. Will be truncated by the node if greater than 4096 bytes. The total message length across all containers will be limited to 12kb. Defaults to /dev/termination-log. Cannot be updated.
         """
-        ...
+        return pulumi.get(self, "termination_message_path")
 
     @property
     @pulumi.getter(name="terminationMessagePolicy")
@@ -1801,7 +1801,7 @@ class Container(dict):
         """
         Indicate how the termination message should be populated. File will use the contents of terminationMessagePath to populate the container status message on both success and failure. FallbackToLogsOnError will use the last chunk of container log output if the termination message file is empty and the container exited with an error. The log output is limited to 2048 bytes or 80 lines, whichever is smaller. Defaults to File. Cannot be updated.
         """
-        ...
+        return pulumi.get(self, "termination_message_policy")
 
     @property
     @pulumi.getter
@@ -1809,7 +1809,7 @@ class Container(dict):
         """
         Whether this container should allocate a TTY for itself, also requires 'stdin' to be true. Default is false.
         """
-        ...
+        return pulumi.get(self, "tty")
 
     @property
     @pulumi.getter(name="volumeDevices")
@@ -1817,7 +1817,7 @@ class Container(dict):
         """
         volumeDevices is the list of block devices to be used by the container.
         """
-        ...
+        return pulumi.get(self, "volume_devices")
 
     @property
     @pulumi.getter(name="volumeMounts")
@@ -1825,7 +1825,7 @@ class Container(dict):
         """
         Pod volumes to mount into the container's filesystem. Cannot be updated.
         """
-        ...
+        return pulumi.get(self, "volume_mounts")
 
     @property
     @pulumi.getter(name="workingDir")
@@ -1833,7 +1833,7 @@ class Container(dict):
         """
         Container's working directory. If not specified, the container runtime's default will be used, which might be configured in the container image. Cannot be updated.
         """
-        ...
+        return pulumi.get(self, "working_dir")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1862,7 +1862,7 @@ class ContainerImage(dict):
         """
         Names by which this image is known. e.g. ["k8s.gcr.io/hyperkube:v1.0.7", "dockerhub.io/google_containers/hyperkube:v1.0.7"]
         """
-        ...
+        return pulumi.get(self, "names")
 
     @property
     @pulumi.getter(name="sizeBytes")
@@ -1870,7 +1870,7 @@ class ContainerImage(dict):
         """
         The size of the image in bytes.
         """
-        ...
+        return pulumi.get(self, "size_bytes")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1911,7 +1911,7 @@ class ContainerPort(dict):
         """
         Number of port to expose on the pod's IP address. This must be a valid port number, 0 < x < 65536.
         """
-        ...
+        return pulumi.get(self, "container_port")
 
     @property
     @pulumi.getter(name="hostIP")
@@ -1919,7 +1919,7 @@ class ContainerPort(dict):
         """
         What host IP to bind the external port to.
         """
-        ...
+        return pulumi.get(self, "host_ip")
 
     @property
     @pulumi.getter(name="hostPort")
@@ -1927,7 +1927,7 @@ class ContainerPort(dict):
         """
         Number of port to expose on the host. If specified, this must be a valid port number, 0 < x < 65536. If HostNetwork is specified, this must match ContainerPort. Most containers do not need this.
         """
-        ...
+        return pulumi.get(self, "host_port")
 
     @property
     @pulumi.getter
@@ -1935,7 +1935,7 @@ class ContainerPort(dict):
         """
         If specified, this must be an IANA_SVC_NAME and unique within the pod. Each named port in a pod must have a unique name. Name for the port that can be referred to by services.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -1943,7 +1943,7 @@ class ContainerPort(dict):
         """
         Protocol for port. Must be UDP, TCP, or SCTP. Defaults to "TCP".
         """
-        ...
+        return pulumi.get(self, "protocol")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1977,7 +1977,7 @@ class ContainerState(dict):
         """
         Details about a running container
         """
-        ...
+        return pulumi.get(self, "running")
 
     @property
     @pulumi.getter
@@ -1985,7 +1985,7 @@ class ContainerState(dict):
         """
         Details about a terminated container
         """
-        ...
+        return pulumi.get(self, "terminated")
 
     @property
     @pulumi.getter
@@ -1993,7 +1993,7 @@ class ContainerState(dict):
         """
         Details about a waiting container
         """
-        ...
+        return pulumi.get(self, "waiting")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -2019,7 +2019,7 @@ class ContainerStateRunning(dict):
         """
         Time at which the container was last (re-)started
         """
-        ...
+        return pulumi.get(self, "started_at")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -2068,7 +2068,7 @@ class ContainerStateTerminated(dict):
         """
         Exit status from the last termination of the container
         """
-        ...
+        return pulumi.get(self, "exit_code")
 
     @property
     @pulumi.getter(name="containerID")
@@ -2076,7 +2076,7 @@ class ContainerStateTerminated(dict):
         """
         Container's ID in the format 'docker://<container_id>'
         """
-        ...
+        return pulumi.get(self, "container_id")
 
     @property
     @pulumi.getter(name="finishedAt")
@@ -2084,7 +2084,7 @@ class ContainerStateTerminated(dict):
         """
         Time at which the container last terminated
         """
-        ...
+        return pulumi.get(self, "finished_at")
 
     @property
     @pulumi.getter
@@ -2092,7 +2092,7 @@ class ContainerStateTerminated(dict):
         """
         Message regarding the last termination of the container
         """
-        ...
+        return pulumi.get(self, "message")
 
     @property
     @pulumi.getter
@@ -2100,7 +2100,7 @@ class ContainerStateTerminated(dict):
         """
         (brief) reason from the last termination of the container
         """
-        ...
+        return pulumi.get(self, "reason")
 
     @property
     @pulumi.getter
@@ -2108,7 +2108,7 @@ class ContainerStateTerminated(dict):
         """
         Signal from the last termination of the container
         """
-        ...
+        return pulumi.get(self, "signal")
 
     @property
     @pulumi.getter(name="startedAt")
@@ -2116,7 +2116,7 @@ class ContainerStateTerminated(dict):
         """
         Time at which previous execution of the container started
         """
-        ...
+        return pulumi.get(self, "started_at")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -2146,7 +2146,7 @@ class ContainerStateWaiting(dict):
         """
         Message regarding why the container is not yet running.
         """
-        ...
+        return pulumi.get(self, "message")
 
     @property
     @pulumi.getter
@@ -2154,7 +2154,7 @@ class ContainerStateWaiting(dict):
         """
         (brief) reason the container is not yet running.
         """
-        ...
+        return pulumi.get(self, "reason")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -2207,7 +2207,7 @@ class ContainerStatus(dict):
         """
         The image the container is running. More info: https://kubernetes.io/docs/concepts/containers/images
         """
-        ...
+        return pulumi.get(self, "image")
 
     @property
     @pulumi.getter(name="imageID")
@@ -2215,7 +2215,7 @@ class ContainerStatus(dict):
         """
         ImageID of the container's image.
         """
-        ...
+        return pulumi.get(self, "image_id")
 
     @property
     @pulumi.getter
@@ -2223,7 +2223,7 @@ class ContainerStatus(dict):
         """
         This must be a DNS_LABEL. Each container in a pod must have a unique name. Cannot be updated.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -2231,7 +2231,7 @@ class ContainerStatus(dict):
         """
         Specifies whether the container has passed its readiness probe.
         """
-        ...
+        return pulumi.get(self, "ready")
 
     @property
     @pulumi.getter(name="restartCount")
@@ -2239,7 +2239,7 @@ class ContainerStatus(dict):
         """
         The number of times the container has been restarted, currently based on the number of dead containers that have not yet been removed. Note that this is calculated from dead containers. But those containers are subject to garbage collection. This value will get capped at 5 by GC.
         """
-        ...
+        return pulumi.get(self, "restart_count")
 
     @property
     @pulumi.getter(name="containerID")
@@ -2247,7 +2247,7 @@ class ContainerStatus(dict):
         """
         Container's ID in the format 'docker://<container_id>'.
         """
-        ...
+        return pulumi.get(self, "container_id")
 
     @property
     @pulumi.getter(name="lastState")
@@ -2255,7 +2255,7 @@ class ContainerStatus(dict):
         """
         Details about the container's last termination condition.
         """
-        ...
+        return pulumi.get(self, "last_state")
 
     @property
     @pulumi.getter
@@ -2263,7 +2263,7 @@ class ContainerStatus(dict):
         """
         Specifies whether the container has passed its startup probe. Initialized as false, becomes true after startupProbe is considered successful. Resets to false when the container is restarted, or if kubelet loses state temporarily. Is always true when no startupProbe is defined.
         """
-        ...
+        return pulumi.get(self, "started")
 
     @property
     @pulumi.getter
@@ -2271,7 +2271,7 @@ class ContainerStatus(dict):
         """
         Details about the container's current condition.
         """
-        ...
+        return pulumi.get(self, "state")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -2296,7 +2296,7 @@ class DaemonEndpoint(dict):
         """
         Port number of the given endpoint.
         """
-        ...
+        return pulumi.get(self, "port")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -2322,7 +2322,7 @@ class DownwardAPIProjection(dict):
         """
         Items is a list of DownwardAPIVolume file
         """
-        ...
+        return pulumi.get(self, "items")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -2359,7 +2359,7 @@ class DownwardAPIVolumeFile(dict):
         """
         Required: Path is  the relative path name of the file to be created. Must not be absolute or contain the '..' path. Must be utf-8 encoded. The first item of the relative path must not start with '..'
         """
-        ...
+        return pulumi.get(self, "path")
 
     @property
     @pulumi.getter(name="fieldRef")
@@ -2367,7 +2367,7 @@ class DownwardAPIVolumeFile(dict):
         """
         Required: Selects a field of the pod: only annotations, labels, name and namespace are supported.
         """
-        ...
+        return pulumi.get(self, "field_ref")
 
     @property
     @pulumi.getter
@@ -2375,7 +2375,7 @@ class DownwardAPIVolumeFile(dict):
         """
         Optional: mode bits to use on this file, must be a value between 0 and 0777. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
         """
-        ...
+        return pulumi.get(self, "mode")
 
     @property
     @pulumi.getter(name="resourceFieldRef")
@@ -2383,7 +2383,7 @@ class DownwardAPIVolumeFile(dict):
         """
         Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, requests.cpu and requests.memory) are currently supported.
         """
-        ...
+        return pulumi.get(self, "resource_field_ref")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -2413,7 +2413,7 @@ class DownwardAPIVolumeSource(dict):
         """
         Optional: mode bits to use on created files by default. Must be a value between 0 and 0777. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
         """
-        ...
+        return pulumi.get(self, "default_mode")
 
     @property
     @pulumi.getter
@@ -2421,7 +2421,7 @@ class DownwardAPIVolumeSource(dict):
         """
         Items is a list of downward API volume file
         """
-        ...
+        return pulumi.get(self, "items")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -2451,7 +2451,7 @@ class EmptyDirVolumeSource(dict):
         """
         What type of storage medium should back this directory. The default is "" which means to use the node's default medium. Must be an empty string (default) or Memory. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir
         """
-        ...
+        return pulumi.get(self, "medium")
 
     @property
     @pulumi.getter(name="sizeLimit")
@@ -2459,7 +2459,7 @@ class EmptyDirVolumeSource(dict):
         """
         Total amount of local storage required for this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers in a pod. The default is nil which means that the limit is undefined. More info: http://kubernetes.io/docs/user-guide/volumes#emptydir
         """
-        ...
+        return pulumi.get(self, "size_limit")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -2496,7 +2496,7 @@ class EndpointAddress(dict):
         """
         The IP of this endpoint. May not be loopback (127.0.0.0/8), link-local (169.254.0.0/16), or link-local multicast ((224.0.0.0/24). IPv6 is also accepted but not fully supported on all platforms. Also, certain kubernetes components, like kube-proxy, are not IPv6 ready.
         """
-        ...
+        return pulumi.get(self, "ip")
 
     @property
     @pulumi.getter
@@ -2504,7 +2504,7 @@ class EndpointAddress(dict):
         """
         The Hostname of this endpoint
         """
-        ...
+        return pulumi.get(self, "hostname")
 
     @property
     @pulumi.getter(name="nodeName")
@@ -2512,7 +2512,7 @@ class EndpointAddress(dict):
         """
         Optional: Node hosting this endpoint. This can be used to determine endpoints local to a node.
         """
-        ...
+        return pulumi.get(self, "node_name")
 
     @property
     @pulumi.getter(name="targetRef")
@@ -2520,7 +2520,7 @@ class EndpointAddress(dict):
         """
         Reference to object providing the endpoint.
         """
-        ...
+        return pulumi.get(self, "target_ref")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -2557,7 +2557,7 @@ class EndpointPort(dict):
         """
         The port number of the endpoint.
         """
-        ...
+        return pulumi.get(self, "port")
 
     @property
     @pulumi.getter(name="appProtocol")
@@ -2565,7 +2565,7 @@ class EndpointPort(dict):
         """
         The application protocol for this port. This field follows standard Kubernetes label syntax. Un-prefixed names are reserved for IANA standard service names (as per RFC-6335 and http://www.iana.org/assignments/service-names). Non-standard protocols should use prefixed names such as mycompany.com/my-custom-protocol. Field can be enabled with ServiceAppProtocol feature gate.
         """
-        ...
+        return pulumi.get(self, "app_protocol")
 
     @property
     @pulumi.getter
@@ -2573,7 +2573,7 @@ class EndpointPort(dict):
         """
         The name of this port.  This must match the 'name' field in the corresponding ServicePort. Must be a DNS_LABEL. Optional only if one port is defined.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -2581,7 +2581,7 @@ class EndpointPort(dict):
         """
         The IP protocol for this port. Must be UDP, TCP, or SCTP. Default is TCP.
         """
-        ...
+        return pulumi.get(self, "protocol")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -2629,7 +2629,7 @@ class EndpointSubset(dict):
         """
         IP addresses which offer the related ports that are marked as ready. These endpoints should be considered safe for load balancers and clients to utilize.
         """
-        ...
+        return pulumi.get(self, "addresses")
 
     @property
     @pulumi.getter(name="notReadyAddresses")
@@ -2637,7 +2637,7 @@ class EndpointSubset(dict):
         """
         IP addresses which offer the related ports but are not currently marked as ready because they have not yet finished starting, have recently failed a readiness check, or have recently failed a liveness check.
         """
-        ...
+        return pulumi.get(self, "not_ready_addresses")
 
     @property
     @pulumi.getter
@@ -2645,7 +2645,7 @@ class EndpointSubset(dict):
         """
         Port numbers available on the related IP addresses.
         """
-        ...
+        return pulumi.get(self, "ports")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -2705,7 +2705,7 @@ class Endpoints(dict):
         """
         APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
         """
-        ...
+        return pulumi.get(self, "api_version")
 
     @property
     @pulumi.getter
@@ -2713,7 +2713,7 @@ class Endpoints(dict):
         """
         Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         """
-        ...
+        return pulumi.get(self, "kind")
 
     @property
     @pulumi.getter
@@ -2721,7 +2721,7 @@ class Endpoints(dict):
         """
         Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         """
-        ...
+        return pulumi.get(self, "metadata")
 
     @property
     @pulumi.getter
@@ -2729,7 +2729,7 @@ class Endpoints(dict):
         """
         The set of all endpoints is the union of all subsets. Addresses are placed into subsets according to the IPs they share. A single address with multiple ports, some of which are ready and some of which are not (because they come from different containers) will result in the address being displayed in different subsets for the different ports. No address will appear in both Addresses and NotReadyAddresses in the same subset. Sets of addresses and ports that comprise a service.
         """
-        ...
+        return pulumi.get(self, "subsets")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -2763,7 +2763,7 @@ class EnvFromSource(dict):
         """
         The ConfigMap to select from
         """
-        ...
+        return pulumi.get(self, "config_map_ref")
 
     @property
     @pulumi.getter
@@ -2771,7 +2771,7 @@ class EnvFromSource(dict):
         """
         An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER.
         """
-        ...
+        return pulumi.get(self, "prefix")
 
     @property
     @pulumi.getter(name="secretRef")
@@ -2779,7 +2779,7 @@ class EnvFromSource(dict):
         """
         The Secret to select from
         """
-        ...
+        return pulumi.get(self, "secret_ref")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -2812,7 +2812,7 @@ class EnvVar(dict):
         """
         Name of the environment variable. Must be a C_IDENTIFIER.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -2820,7 +2820,7 @@ class EnvVar(dict):
         """
         Variable references $(VAR_NAME) are expanded using the previous defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. The $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME). Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to "".
         """
-        ...
+        return pulumi.get(self, "value")
 
     @property
     @pulumi.getter(name="valueFrom")
@@ -2828,7 +2828,7 @@ class EnvVar(dict):
         """
         Source for the environment variable's value. Cannot be used if value is not empty.
         """
-        ...
+        return pulumi.get(self, "value_from")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -2866,7 +2866,7 @@ class EnvVarSource(dict):
         """
         Selects a key of a ConfigMap.
         """
-        ...
+        return pulumi.get(self, "config_map_key_ref")
 
     @property
     @pulumi.getter(name="fieldRef")
@@ -2874,7 +2874,7 @@ class EnvVarSource(dict):
         """
         Selects a field of the pod: supports metadata.name, metadata.namespace, metadata.labels, metadata.annotations, spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.
         """
-        ...
+        return pulumi.get(self, "field_ref")
 
     @property
     @pulumi.getter(name="resourceFieldRef")
@@ -2882,7 +2882,7 @@ class EnvVarSource(dict):
         """
         Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.
         """
-        ...
+        return pulumi.get(self, "resource_field_ref")
 
     @property
     @pulumi.getter(name="secretKeyRef")
@@ -2890,7 +2890,7 @@ class EnvVarSource(dict):
         """
         Selects a key of a secret in the pod's namespace
         """
-        ...
+        return pulumi.get(self, "secret_key_ref")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -3003,7 +3003,7 @@ class EphemeralContainer(dict):
         """
         Name of the ephemeral container specified as a DNS_LABEL. This name must be unique among all containers, init containers and ephemeral containers.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -3011,7 +3011,7 @@ class EphemeralContainer(dict):
         """
         Arguments to the entrypoint. The docker image's CMD is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. The $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME). Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell
         """
-        ...
+        return pulumi.get(self, "args")
 
     @property
     @pulumi.getter
@@ -3019,7 +3019,7 @@ class EphemeralContainer(dict):
         """
         Entrypoint array. Not executed within a shell. The docker image's ENTRYPOINT is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. The $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME). Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell
         """
-        ...
+        return pulumi.get(self, "command")
 
     @property
     @pulumi.getter
@@ -3027,7 +3027,7 @@ class EphemeralContainer(dict):
         """
         List of environment variables to set in the container. Cannot be updated.
         """
-        ...
+        return pulumi.get(self, "env")
 
     @property
     @pulumi.getter(name="envFrom")
@@ -3035,7 +3035,7 @@ class EphemeralContainer(dict):
         """
         List of sources to populate environment variables in the container. The keys defined within a source must be a C_IDENTIFIER. All invalid keys will be reported as an event when the container is starting. When a key exists in multiple sources, the value associated with the last source will take precedence. Values defined by an Env with a duplicate key will take precedence. Cannot be updated.
         """
-        ...
+        return pulumi.get(self, "env_from")
 
     @property
     @pulumi.getter
@@ -3043,7 +3043,7 @@ class EphemeralContainer(dict):
         """
         Docker image name. More info: https://kubernetes.io/docs/concepts/containers/images
         """
-        ...
+        return pulumi.get(self, "image")
 
     @property
     @pulumi.getter(name="imagePullPolicy")
@@ -3051,7 +3051,7 @@ class EphemeralContainer(dict):
         """
         Image pull policy. One of Always, Never, IfNotPresent. Defaults to Always if :latest tag is specified, or IfNotPresent otherwise. Cannot be updated. More info: https://kubernetes.io/docs/concepts/containers/images#updating-images
         """
-        ...
+        return pulumi.get(self, "image_pull_policy")
 
     @property
     @pulumi.getter
@@ -3059,7 +3059,7 @@ class EphemeralContainer(dict):
         """
         Lifecycle is not allowed for ephemeral containers.
         """
-        ...
+        return pulumi.get(self, "lifecycle")
 
     @property
     @pulumi.getter(name="livenessProbe")
@@ -3067,7 +3067,7 @@ class EphemeralContainer(dict):
         """
         Probes are not allowed for ephemeral containers.
         """
-        ...
+        return pulumi.get(self, "liveness_probe")
 
     @property
     @pulumi.getter
@@ -3075,7 +3075,7 @@ class EphemeralContainer(dict):
         """
         Ports are not allowed for ephemeral containers.
         """
-        ...
+        return pulumi.get(self, "ports")
 
     @property
     @pulumi.getter(name="readinessProbe")
@@ -3083,7 +3083,7 @@ class EphemeralContainer(dict):
         """
         Probes are not allowed for ephemeral containers.
         """
-        ...
+        return pulumi.get(self, "readiness_probe")
 
     @property
     @pulumi.getter
@@ -3091,7 +3091,7 @@ class EphemeralContainer(dict):
         """
         Resources are not allowed for ephemeral containers. Ephemeral containers use spare resources already allocated to the pod.
         """
-        ...
+        return pulumi.get(self, "resources")
 
     @property
     @pulumi.getter(name="securityContext")
@@ -3099,7 +3099,7 @@ class EphemeralContainer(dict):
         """
         SecurityContext is not allowed for ephemeral containers.
         """
-        ...
+        return pulumi.get(self, "security_context")
 
     @property
     @pulumi.getter(name="startupProbe")
@@ -3107,7 +3107,7 @@ class EphemeralContainer(dict):
         """
         Probes are not allowed for ephemeral containers.
         """
-        ...
+        return pulumi.get(self, "startup_probe")
 
     @property
     @pulumi.getter
@@ -3115,7 +3115,7 @@ class EphemeralContainer(dict):
         """
         Whether this container should allocate a buffer for stdin in the container runtime. If this is not set, reads from stdin in the container will always result in EOF. Default is false.
         """
-        ...
+        return pulumi.get(self, "stdin")
 
     @property
     @pulumi.getter(name="stdinOnce")
@@ -3123,7 +3123,7 @@ class EphemeralContainer(dict):
         """
         Whether the container runtime should close the stdin channel after it has been opened by a single attach. When stdin is true the stdin stream will remain open across multiple attach sessions. If stdinOnce is set to true, stdin is opened on container start, is empty until the first client attaches to stdin, and then remains open and accepts data until the client disconnects, at which time stdin is closed and remains closed until the container is restarted. If this flag is false, a container processes that reads from stdin will never receive an EOF. Default is false
         """
-        ...
+        return pulumi.get(self, "stdin_once")
 
     @property
     @pulumi.getter(name="targetContainerName")
@@ -3131,7 +3131,7 @@ class EphemeralContainer(dict):
         """
         If set, the name of the container from PodSpec that this ephemeral container targets. The ephemeral container will be run in the namespaces (IPC, PID, etc) of this container. If not set then the ephemeral container is run in whatever namespaces are shared for the pod. Note that the container runtime must support this feature.
         """
-        ...
+        return pulumi.get(self, "target_container_name")
 
     @property
     @pulumi.getter(name="terminationMessagePath")
@@ -3139,7 +3139,7 @@ class EphemeralContainer(dict):
         """
         Optional: Path at which the file to which the container's termination message will be written is mounted into the container's filesystem. Message written is intended to be brief final status, such as an assertion failure message. Will be truncated by the node if greater than 4096 bytes. The total message length across all containers will be limited to 12kb. Defaults to /dev/termination-log. Cannot be updated.
         """
-        ...
+        return pulumi.get(self, "termination_message_path")
 
     @property
     @pulumi.getter(name="terminationMessagePolicy")
@@ -3147,7 +3147,7 @@ class EphemeralContainer(dict):
         """
         Indicate how the termination message should be populated. File will use the contents of terminationMessagePath to populate the container status message on both success and failure. FallbackToLogsOnError will use the last chunk of container log output if the termination message file is empty and the container exited with an error. The log output is limited to 2048 bytes or 80 lines, whichever is smaller. Defaults to File. Cannot be updated.
         """
-        ...
+        return pulumi.get(self, "termination_message_policy")
 
     @property
     @pulumi.getter
@@ -3155,7 +3155,7 @@ class EphemeralContainer(dict):
         """
         Whether this container should allocate a TTY for itself, also requires 'stdin' to be true. Default is false.
         """
-        ...
+        return pulumi.get(self, "tty")
 
     @property
     @pulumi.getter(name="volumeDevices")
@@ -3163,7 +3163,7 @@ class EphemeralContainer(dict):
         """
         volumeDevices is the list of block devices to be used by the container.
         """
-        ...
+        return pulumi.get(self, "volume_devices")
 
     @property
     @pulumi.getter(name="volumeMounts")
@@ -3171,7 +3171,7 @@ class EphemeralContainer(dict):
         """
         Pod volumes to mount into the container's filesystem. Cannot be updated.
         """
-        ...
+        return pulumi.get(self, "volume_mounts")
 
     @property
     @pulumi.getter(name="workingDir")
@@ -3179,7 +3179,7 @@ class EphemeralContainer(dict):
         """
         Container's working directory. If not specified, the container runtime's default will be used, which might be configured in the container image. Cannot be updated.
         """
-        ...
+        return pulumi.get(self, "working_dir")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -3267,7 +3267,7 @@ class Event(dict):
         """
         The object that this event is about.
         """
-        ...
+        return pulumi.get(self, "involved_object")
 
     @property
     @pulumi.getter
@@ -3275,7 +3275,7 @@ class Event(dict):
         """
         Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         """
-        ...
+        return pulumi.get(self, "metadata")
 
     @property
     @pulumi.getter
@@ -3283,7 +3283,7 @@ class Event(dict):
         """
         What action was taken/failed regarding to the Regarding object.
         """
-        ...
+        return pulumi.get(self, "action")
 
     @property
     @pulumi.getter(name="apiVersion")
@@ -3291,7 +3291,7 @@ class Event(dict):
         """
         APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
         """
-        ...
+        return pulumi.get(self, "api_version")
 
     @property
     @pulumi.getter
@@ -3299,7 +3299,7 @@ class Event(dict):
         """
         The number of times this event has occurred.
         """
-        ...
+        return pulumi.get(self, "count")
 
     @property
     @pulumi.getter(name="eventTime")
@@ -3307,7 +3307,7 @@ class Event(dict):
         """
         Time when this Event was first observed.
         """
-        ...
+        return pulumi.get(self, "event_time")
 
     @property
     @pulumi.getter(name="firstTimestamp")
@@ -3315,7 +3315,7 @@ class Event(dict):
         """
         The time at which the event was first recorded. (Time of server receipt is in TypeMeta.)
         """
-        ...
+        return pulumi.get(self, "first_timestamp")
 
     @property
     @pulumi.getter
@@ -3323,7 +3323,7 @@ class Event(dict):
         """
         Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         """
-        ...
+        return pulumi.get(self, "kind")
 
     @property
     @pulumi.getter(name="lastTimestamp")
@@ -3331,7 +3331,7 @@ class Event(dict):
         """
         The time at which the most recent occurrence of this event was recorded.
         """
-        ...
+        return pulumi.get(self, "last_timestamp")
 
     @property
     @pulumi.getter
@@ -3339,7 +3339,7 @@ class Event(dict):
         """
         A human-readable description of the status of this operation.
         """
-        ...
+        return pulumi.get(self, "message")
 
     @property
     @pulumi.getter
@@ -3347,7 +3347,7 @@ class Event(dict):
         """
         This should be a short, machine understandable string that gives the reason for the transition into the object's current status.
         """
-        ...
+        return pulumi.get(self, "reason")
 
     @property
     @pulumi.getter
@@ -3355,7 +3355,7 @@ class Event(dict):
         """
         Optional secondary object for more complex actions.
         """
-        ...
+        return pulumi.get(self, "related")
 
     @property
     @pulumi.getter(name="reportingComponent")
@@ -3363,7 +3363,7 @@ class Event(dict):
         """
         Name of the controller that emitted this Event, e.g. `kubernetes.io/kubelet`.
         """
-        ...
+        return pulumi.get(self, "reporting_component")
 
     @property
     @pulumi.getter(name="reportingInstance")
@@ -3371,7 +3371,7 @@ class Event(dict):
         """
         ID of the controller instance, e.g. `kubelet-xyzf`.
         """
-        ...
+        return pulumi.get(self, "reporting_instance")
 
     @property
     @pulumi.getter
@@ -3379,7 +3379,7 @@ class Event(dict):
         """
         Data about the Event series this event represents or nil if it's a singleton Event.
         """
-        ...
+        return pulumi.get(self, "series")
 
     @property
     @pulumi.getter
@@ -3387,7 +3387,7 @@ class Event(dict):
         """
         The component reporting this event. Should be a short machine understandable string.
         """
-        ...
+        return pulumi.get(self, "source")
 
     @property
     @pulumi.getter
@@ -3395,7 +3395,7 @@ class Event(dict):
         """
         Type of this event (Normal, Warning), new types could be added in the future
         """
-        ...
+        return pulumi.get(self, "type")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -3429,7 +3429,7 @@ class EventSeries(dict):
         """
         Number of occurrences in this series up to the last heartbeat time
         """
-        ...
+        return pulumi.get(self, "count")
 
     @property
     @pulumi.getter(name="lastObservedTime")
@@ -3437,7 +3437,7 @@ class EventSeries(dict):
         """
         Time of the last occurrence observed
         """
-        ...
+        return pulumi.get(self, "last_observed_time")
 
     @property
     @pulumi.getter
@@ -3445,7 +3445,7 @@ class EventSeries(dict):
         """
         State of this Series: Ongoing or Finished Deprecated. Planned removal for 1.18
         """
-        ...
+        return pulumi.get(self, "state")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -3475,7 +3475,7 @@ class EventSource(dict):
         """
         Component from which the event is generated.
         """
-        ...
+        return pulumi.get(self, "component")
 
     @property
     @pulumi.getter
@@ -3483,7 +3483,7 @@ class EventSource(dict):
         """
         Node name on which the event is generated.
         """
-        ...
+        return pulumi.get(self, "host")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -3509,7 +3509,7 @@ class ExecAction(dict):
         """
         Command is the command line to execute inside the container, the working directory for the command  is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.
         """
-        ...
+        return pulumi.get(self, "command")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -3551,7 +3551,7 @@ class FCVolumeSource(dict):
         """
         Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified.
         """
-        ...
+        return pulumi.get(self, "fs_type")
 
     @property
     @pulumi.getter
@@ -3559,7 +3559,7 @@ class FCVolumeSource(dict):
         """
         Optional: FC target lun number
         """
-        ...
+        return pulumi.get(self, "lun")
 
     @property
     @pulumi.getter(name="readOnly")
@@ -3567,7 +3567,7 @@ class FCVolumeSource(dict):
         """
         Optional: Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
         """
-        ...
+        return pulumi.get(self, "read_only")
 
     @property
     @pulumi.getter(name="targetWWNs")
@@ -3575,7 +3575,7 @@ class FCVolumeSource(dict):
         """
         Optional: FC target worldwide names (WWNs)
         """
-        ...
+        return pulumi.get(self, "target_wwns")
 
     @property
     @pulumi.getter
@@ -3583,7 +3583,7 @@ class FCVolumeSource(dict):
         """
         Optional: FC volume world wide identifiers (wwids) Either wwids or combination of targetWWNs and lun must be set, but not both simultaneously.
         """
-        ...
+        return pulumi.get(self, "wwids")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -3624,7 +3624,7 @@ class FlexPersistentVolumeSource(dict):
         """
         Driver is the name of the driver to use for this volume.
         """
-        ...
+        return pulumi.get(self, "driver")
 
     @property
     @pulumi.getter(name="fsType")
@@ -3632,7 +3632,7 @@ class FlexPersistentVolumeSource(dict):
         """
         Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs", "ntfs". The default filesystem depends on FlexVolume script.
         """
-        ...
+        return pulumi.get(self, "fs_type")
 
     @property
     @pulumi.getter
@@ -3640,7 +3640,7 @@ class FlexPersistentVolumeSource(dict):
         """
         Optional: Extra command options if any.
         """
-        ...
+        return pulumi.get(self, "options")
 
     @property
     @pulumi.getter(name="readOnly")
@@ -3648,7 +3648,7 @@ class FlexPersistentVolumeSource(dict):
         """
         Optional: Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
         """
-        ...
+        return pulumi.get(self, "read_only")
 
     @property
     @pulumi.getter(name="secretRef")
@@ -3656,7 +3656,7 @@ class FlexPersistentVolumeSource(dict):
         """
         Optional: SecretRef is reference to the secret object containing sensitive information to pass to the plugin scripts. This may be empty if no secret object is specified. If the secret object contains more than one secret, all secrets are passed to the plugin scripts.
         """
-        ...
+        return pulumi.get(self, "secret_ref")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -3697,7 +3697,7 @@ class FlexVolumeSource(dict):
         """
         Driver is the name of the driver to use for this volume.
         """
-        ...
+        return pulumi.get(self, "driver")
 
     @property
     @pulumi.getter(name="fsType")
@@ -3705,7 +3705,7 @@ class FlexVolumeSource(dict):
         """
         Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs", "ntfs". The default filesystem depends on FlexVolume script.
         """
-        ...
+        return pulumi.get(self, "fs_type")
 
     @property
     @pulumi.getter
@@ -3713,7 +3713,7 @@ class FlexVolumeSource(dict):
         """
         Optional: Extra command options if any.
         """
-        ...
+        return pulumi.get(self, "options")
 
     @property
     @pulumi.getter(name="readOnly")
@@ -3721,7 +3721,7 @@ class FlexVolumeSource(dict):
         """
         Optional: Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
         """
-        ...
+        return pulumi.get(self, "read_only")
 
     @property
     @pulumi.getter(name="secretRef")
@@ -3729,7 +3729,7 @@ class FlexVolumeSource(dict):
         """
         Optional: SecretRef is reference to the secret object containing sensitive information to pass to the plugin scripts. This may be empty if no secret object is specified. If the secret object contains more than one secret, all secrets are passed to the plugin scripts.
         """
-        ...
+        return pulumi.get(self, "secret_ref")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -3759,7 +3759,7 @@ class FlockerVolumeSource(dict):
         """
         Name of the dataset stored as metadata -> name on the dataset for Flocker should be considered as deprecated
         """
-        ...
+        return pulumi.get(self, "dataset_name")
 
     @property
     @pulumi.getter(name="datasetUUID")
@@ -3767,7 +3767,7 @@ class FlockerVolumeSource(dict):
         """
         UUID of the dataset. This is unique identifier of a Flocker dataset
         """
-        ...
+        return pulumi.get(self, "dataset_uuid")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -3808,7 +3808,7 @@ class GCEPersistentDiskVolumeSource(dict):
         """
         Unique name of the PD resource in GCE. Used to identify the disk in GCE. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk
         """
-        ...
+        return pulumi.get(self, "pd_name")
 
     @property
     @pulumi.getter(name="fsType")
@@ -3816,7 +3816,7 @@ class GCEPersistentDiskVolumeSource(dict):
         """
         Filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk
         """
-        ...
+        return pulumi.get(self, "fs_type")
 
     @property
     @pulumi.getter
@@ -3824,7 +3824,7 @@ class GCEPersistentDiskVolumeSource(dict):
         """
         The partition in the volume that you want to mount. If omitted, the default is to mount by volume name. Examples: For volume /dev/sda1, you specify the partition as "1". Similarly, the volume partition for /dev/sda is "0" (or you can leave the property empty). More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk
         """
-        ...
+        return pulumi.get(self, "partition")
 
     @property
     @pulumi.getter(name="readOnly")
@@ -3832,7 +3832,7 @@ class GCEPersistentDiskVolumeSource(dict):
         """
         ReadOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk
         """
-        ...
+        return pulumi.get(self, "read_only")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -3869,7 +3869,7 @@ class GitRepoVolumeSource(dict):
         """
         Repository URL
         """
-        ...
+        return pulumi.get(self, "repository")
 
     @property
     @pulumi.getter
@@ -3877,7 +3877,7 @@ class GitRepoVolumeSource(dict):
         """
         Target directory name. Must not contain or start with '..'.  If '.' is supplied, the volume directory will be the git repository.  Otherwise, if specified, the volume will contain the git repository in the subdirectory with the given name.
         """
-        ...
+        return pulumi.get(self, "directory")
 
     @property
     @pulumi.getter
@@ -3885,7 +3885,7 @@ class GitRepoVolumeSource(dict):
         """
         Commit hash for the specified revision.
         """
-        ...
+        return pulumi.get(self, "revision")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -3921,7 +3921,7 @@ class GlusterfsPersistentVolumeSource(dict):
         """
         EndpointsName is the endpoint name that details Glusterfs topology. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod
         """
-        ...
+        return pulumi.get(self, "endpoints")
 
     @property
     @pulumi.getter
@@ -3929,7 +3929,7 @@ class GlusterfsPersistentVolumeSource(dict):
         """
         Path is the Glusterfs volume path. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod
         """
-        ...
+        return pulumi.get(self, "path")
 
     @property
     @pulumi.getter(name="endpointsNamespace")
@@ -3937,7 +3937,7 @@ class GlusterfsPersistentVolumeSource(dict):
         """
         EndpointsNamespace is the namespace that contains Glusterfs endpoint. If this field is empty, the EndpointNamespace defaults to the same namespace as the bound PVC. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod
         """
-        ...
+        return pulumi.get(self, "endpoints_namespace")
 
     @property
     @pulumi.getter(name="readOnly")
@@ -3945,7 +3945,7 @@ class GlusterfsPersistentVolumeSource(dict):
         """
         ReadOnly here will force the Glusterfs volume to be mounted with read-only permissions. Defaults to false. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod
         """
-        ...
+        return pulumi.get(self, "read_only")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -3977,7 +3977,7 @@ class GlusterfsVolumeSource(dict):
         """
         EndpointsName is the endpoint name that details Glusterfs topology. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod
         """
-        ...
+        return pulumi.get(self, "endpoints")
 
     @property
     @pulumi.getter
@@ -3985,7 +3985,7 @@ class GlusterfsVolumeSource(dict):
         """
         Path is the Glusterfs volume path. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod
         """
-        ...
+        return pulumi.get(self, "path")
 
     @property
     @pulumi.getter(name="readOnly")
@@ -3993,7 +3993,7 @@ class GlusterfsVolumeSource(dict):
         """
         ReadOnly here will force the Glusterfs volume to be mounted with read-only permissions. Defaults to false. More info: https://examples.k8s.io/volumes/glusterfs/README.md#create-a-pod
         """
-        ...
+        return pulumi.get(self, "read_only")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -4034,7 +4034,7 @@ class HTTPGetAction(dict):
         """
         Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
         """
-        ...
+        return pulumi.get(self, "port")
 
     @property
     @pulumi.getter
@@ -4042,7 +4042,7 @@ class HTTPGetAction(dict):
         """
         Host name to connect to, defaults to the pod IP. You probably want to set "Host" in httpHeaders instead.
         """
-        ...
+        return pulumi.get(self, "host")
 
     @property
     @pulumi.getter(name="httpHeaders")
@@ -4050,7 +4050,7 @@ class HTTPGetAction(dict):
         """
         Custom headers to set in the request. HTTP allows repeated headers.
         """
-        ...
+        return pulumi.get(self, "http_headers")
 
     @property
     @pulumi.getter
@@ -4058,7 +4058,7 @@ class HTTPGetAction(dict):
         """
         Path to access on the HTTP server.
         """
-        ...
+        return pulumi.get(self, "path")
 
     @property
     @pulumi.getter
@@ -4066,7 +4066,7 @@ class HTTPGetAction(dict):
         """
         Scheme to use for connecting to the host. Defaults to HTTP.
         """
-        ...
+        return pulumi.get(self, "scheme")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -4094,7 +4094,7 @@ class HTTPHeader(dict):
         """
         The header field name
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -4102,7 +4102,7 @@ class HTTPHeader(dict):
         """
         The header field value
         """
-        ...
+        return pulumi.get(self, "value")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -4136,7 +4136,7 @@ class Handler(dict):
         """
         One and only one of the following should be specified. Exec specifies the action to take.
         """
-        ...
+        return pulumi.get(self, "exec_")
 
     @property
     @pulumi.getter(name="httpGet")
@@ -4144,7 +4144,7 @@ class Handler(dict):
         """
         HTTPGet specifies the http request to perform.
         """
-        ...
+        return pulumi.get(self, "http_get")
 
     @property
     @pulumi.getter(name="tcpSocket")
@@ -4152,7 +4152,7 @@ class Handler(dict):
         """
         TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported
         """
-        ...
+        return pulumi.get(self, "tcp_socket")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -4182,7 +4182,7 @@ class HostAlias(dict):
         """
         Hostnames for the above IP address.
         """
-        ...
+        return pulumi.get(self, "hostnames")
 
     @property
     @pulumi.getter
@@ -4190,7 +4190,7 @@ class HostAlias(dict):
         """
         IP address of the host file entry.
         """
-        ...
+        return pulumi.get(self, "ip")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -4219,7 +4219,7 @@ class HostPathVolumeSource(dict):
         """
         Path of the directory on the host. If the path is a symlink, it will follow the link to the real path. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath
         """
-        ...
+        return pulumi.get(self, "path")
 
     @property
     @pulumi.getter
@@ -4227,7 +4227,7 @@ class HostPathVolumeSource(dict):
         """
         Type for HostPath Volume Defaults to "" More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath
         """
-        ...
+        return pulumi.get(self, "type")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -4290,7 +4290,7 @@ class ISCSIPersistentVolumeSource(dict):
         """
         Target iSCSI Qualified Name.
         """
-        ...
+        return pulumi.get(self, "iqn")
 
     @property
     @pulumi.getter
@@ -4298,7 +4298,7 @@ class ISCSIPersistentVolumeSource(dict):
         """
         iSCSI Target Lun number.
         """
-        ...
+        return pulumi.get(self, "lun")
 
     @property
     @pulumi.getter(name="targetPortal")
@@ -4306,7 +4306,7 @@ class ISCSIPersistentVolumeSource(dict):
         """
         iSCSI Target Portal. The Portal is either an IP or ip_addr:port if the port is other than default (typically TCP ports 860 and 3260).
         """
-        ...
+        return pulumi.get(self, "target_portal")
 
     @property
     @pulumi.getter(name="chapAuthDiscovery")
@@ -4314,7 +4314,7 @@ class ISCSIPersistentVolumeSource(dict):
         """
         whether support iSCSI Discovery CHAP authentication
         """
-        ...
+        return pulumi.get(self, "chap_auth_discovery")
 
     @property
     @pulumi.getter(name="chapAuthSession")
@@ -4322,7 +4322,7 @@ class ISCSIPersistentVolumeSource(dict):
         """
         whether support iSCSI Session CHAP authentication
         """
-        ...
+        return pulumi.get(self, "chap_auth_session")
 
     @property
     @pulumi.getter(name="fsType")
@@ -4330,7 +4330,7 @@ class ISCSIPersistentVolumeSource(dict):
         """
         Filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#iscsi
         """
-        ...
+        return pulumi.get(self, "fs_type")
 
     @property
     @pulumi.getter(name="initiatorName")
@@ -4338,7 +4338,7 @@ class ISCSIPersistentVolumeSource(dict):
         """
         Custom iSCSI Initiator Name. If initiatorName is specified with iscsiInterface simultaneously, new iSCSI interface <target portal>:<volume name> will be created for the connection.
         """
-        ...
+        return pulumi.get(self, "initiator_name")
 
     @property
     @pulumi.getter(name="iscsiInterface")
@@ -4346,7 +4346,7 @@ class ISCSIPersistentVolumeSource(dict):
         """
         iSCSI Interface Name that uses an iSCSI transport. Defaults to 'default' (tcp).
         """
-        ...
+        return pulumi.get(self, "iscsi_interface")
 
     @property
     @pulumi.getter
@@ -4354,7 +4354,7 @@ class ISCSIPersistentVolumeSource(dict):
         """
         iSCSI Target Portal List. The Portal is either an IP or ip_addr:port if the port is other than default (typically TCP ports 860 and 3260).
         """
-        ...
+        return pulumi.get(self, "portals")
 
     @property
     @pulumi.getter(name="readOnly")
@@ -4362,7 +4362,7 @@ class ISCSIPersistentVolumeSource(dict):
         """
         ReadOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false.
         """
-        ...
+        return pulumi.get(self, "read_only")
 
     @property
     @pulumi.getter(name="secretRef")
@@ -4370,7 +4370,7 @@ class ISCSIPersistentVolumeSource(dict):
         """
         CHAP Secret for iSCSI target and initiator authentication
         """
-        ...
+        return pulumi.get(self, "secret_ref")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -4433,7 +4433,7 @@ class ISCSIVolumeSource(dict):
         """
         Target iSCSI Qualified Name.
         """
-        ...
+        return pulumi.get(self, "iqn")
 
     @property
     @pulumi.getter
@@ -4441,7 +4441,7 @@ class ISCSIVolumeSource(dict):
         """
         iSCSI Target Lun number.
         """
-        ...
+        return pulumi.get(self, "lun")
 
     @property
     @pulumi.getter(name="targetPortal")
@@ -4449,7 +4449,7 @@ class ISCSIVolumeSource(dict):
         """
         iSCSI Target Portal. The Portal is either an IP or ip_addr:port if the port is other than default (typically TCP ports 860 and 3260).
         """
-        ...
+        return pulumi.get(self, "target_portal")
 
     @property
     @pulumi.getter(name="chapAuthDiscovery")
@@ -4457,7 +4457,7 @@ class ISCSIVolumeSource(dict):
         """
         whether support iSCSI Discovery CHAP authentication
         """
-        ...
+        return pulumi.get(self, "chap_auth_discovery")
 
     @property
     @pulumi.getter(name="chapAuthSession")
@@ -4465,7 +4465,7 @@ class ISCSIVolumeSource(dict):
         """
         whether support iSCSI Session CHAP authentication
         """
-        ...
+        return pulumi.get(self, "chap_auth_session")
 
     @property
     @pulumi.getter(name="fsType")
@@ -4473,7 +4473,7 @@ class ISCSIVolumeSource(dict):
         """
         Filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#iscsi
         """
-        ...
+        return pulumi.get(self, "fs_type")
 
     @property
     @pulumi.getter(name="initiatorName")
@@ -4481,7 +4481,7 @@ class ISCSIVolumeSource(dict):
         """
         Custom iSCSI Initiator Name. If initiatorName is specified with iscsiInterface simultaneously, new iSCSI interface <target portal>:<volume name> will be created for the connection.
         """
-        ...
+        return pulumi.get(self, "initiator_name")
 
     @property
     @pulumi.getter(name="iscsiInterface")
@@ -4489,7 +4489,7 @@ class ISCSIVolumeSource(dict):
         """
         iSCSI Interface Name that uses an iSCSI transport. Defaults to 'default' (tcp).
         """
-        ...
+        return pulumi.get(self, "iscsi_interface")
 
     @property
     @pulumi.getter
@@ -4497,7 +4497,7 @@ class ISCSIVolumeSource(dict):
         """
         iSCSI Target Portal List. The portal is either an IP or ip_addr:port if the port is other than default (typically TCP ports 860 and 3260).
         """
-        ...
+        return pulumi.get(self, "portals")
 
     @property
     @pulumi.getter(name="readOnly")
@@ -4505,7 +4505,7 @@ class ISCSIVolumeSource(dict):
         """
         ReadOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false.
         """
-        ...
+        return pulumi.get(self, "read_only")
 
     @property
     @pulumi.getter(name="secretRef")
@@ -4513,7 +4513,7 @@ class ISCSIVolumeSource(dict):
         """
         CHAP Secret for iSCSI target and initiator authentication
         """
-        ...
+        return pulumi.get(self, "secret_ref")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -4545,7 +4545,7 @@ class KeyToPath(dict):
         """
         The key to project.
         """
-        ...
+        return pulumi.get(self, "key")
 
     @property
     @pulumi.getter
@@ -4553,7 +4553,7 @@ class KeyToPath(dict):
         """
         The relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.
         """
-        ...
+        return pulumi.get(self, "path")
 
     @property
     @pulumi.getter
@@ -4561,7 +4561,7 @@ class KeyToPath(dict):
         """
         Optional: mode bits to use on this file, must be a value between 0 and 0777. If not specified, the volume defaultMode will be used. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
         """
-        ...
+        return pulumi.get(self, "mode")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -4591,7 +4591,7 @@ class Lifecycle(dict):
         """
         PostStart is called immediately after a container is created. If the handler fails, the container is terminated and restarted according to its restart policy. Other management of the container blocks until the hook completes. More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks
         """
-        ...
+        return pulumi.get(self, "post_start")
 
     @property
     @pulumi.getter(name="preStop")
@@ -4599,7 +4599,7 @@ class Lifecycle(dict):
         """
         PreStop is called immediately before a container is terminated due to an API request or management event such as liveness/startup probe failure, preemption, resource contention, etc. The handler is not called if the container crashes or exits. The reason for termination is passed to the handler. The Pod's termination grace period countdown begins before the PreStop hooked is executed. Regardless of the outcome of the handler, the container will eventually terminate within the Pod's termination grace period. Other management of the container blocks until the hook completes or until the termination grace period is reached. More info: https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/#container-hooks
         """
-        ...
+        return pulumi.get(self, "pre_stop")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -4637,7 +4637,7 @@ class LimitRange(dict):
         """
         APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
         """
-        ...
+        return pulumi.get(self, "api_version")
 
     @property
     @pulumi.getter
@@ -4645,7 +4645,7 @@ class LimitRange(dict):
         """
         Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         """
-        ...
+        return pulumi.get(self, "kind")
 
     @property
     @pulumi.getter
@@ -4653,7 +4653,7 @@ class LimitRange(dict):
         """
         Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         """
-        ...
+        return pulumi.get(self, "metadata")
 
     @property
     @pulumi.getter
@@ -4661,7 +4661,7 @@ class LimitRange(dict):
         """
         Spec defines the limits enforced. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
         """
-        ...
+        return pulumi.get(self, "spec")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -4706,7 +4706,7 @@ class LimitRangeItem(dict):
         """
         Type of resource that this limit applies to.
         """
-        ...
+        return pulumi.get(self, "type")
 
     @property
     @pulumi.getter
@@ -4714,7 +4714,7 @@ class LimitRangeItem(dict):
         """
         Default resource requirement limit value by resource name if resource limit is omitted.
         """
-        ...
+        return pulumi.get(self, "default")
 
     @property
     @pulumi.getter(name="defaultRequest")
@@ -4722,7 +4722,7 @@ class LimitRangeItem(dict):
         """
         DefaultRequest is the default resource requirement request value by resource name if resource request is omitted.
         """
-        ...
+        return pulumi.get(self, "default_request")
 
     @property
     @pulumi.getter
@@ -4730,7 +4730,7 @@ class LimitRangeItem(dict):
         """
         Max usage constraints on this kind by resource name.
         """
-        ...
+        return pulumi.get(self, "max")
 
     @property
     @pulumi.getter(name="maxLimitRequestRatio")
@@ -4738,7 +4738,7 @@ class LimitRangeItem(dict):
         """
         MaxLimitRequestRatio if specified, the named resource must have a request and limit that are both non-zero where limit divided by request is less than or equal to the enumerated value; this represents the max burst for the named resource.
         """
-        ...
+        return pulumi.get(self, "max_limit_request_ratio")
 
     @property
     @pulumi.getter
@@ -4746,7 +4746,7 @@ class LimitRangeItem(dict):
         """
         Min usage constraints on this kind by resource name.
         """
-        ...
+        return pulumi.get(self, "min")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -4771,7 +4771,7 @@ class LimitRangeSpec(dict):
         """
         Limits is the list of LimitRangeItem objects that are enforced.
         """
-        ...
+        return pulumi.get(self, "limits")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -4801,7 +4801,7 @@ class LoadBalancerIngress(dict):
         """
         Hostname is set for load-balancer ingress points that are DNS based (typically AWS load-balancers)
         """
-        ...
+        return pulumi.get(self, "hostname")
 
     @property
     @pulumi.getter
@@ -4809,7 +4809,7 @@ class LoadBalancerIngress(dict):
         """
         IP is set for load-balancer ingress points that are IP based (typically GCE or OpenStack load-balancers)
         """
-        ...
+        return pulumi.get(self, "ip")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -4835,7 +4835,7 @@ class LoadBalancerStatus(dict):
         """
         Ingress is a list containing ingress points for the load-balancer. Traffic intended for the service should be sent to these ingress points.
         """
-        ...
+        return pulumi.get(self, "ingress")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -4861,7 +4861,7 @@ class LocalObjectReference(dict):
         """
         Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
         """
-        ...
+        return pulumi.get(self, "name")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -4890,7 +4890,7 @@ class LocalVolumeSource(dict):
         """
         The full path to the volume on the node. It can be either a directory or block device (disk, partition, ...).
         """
-        ...
+        return pulumi.get(self, "path")
 
     @property
     @pulumi.getter(name="fsType")
@@ -4898,7 +4898,7 @@ class LocalVolumeSource(dict):
         """
         Filesystem type to mount. It applies only when the Path is a block device. Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs", "ntfs". The default value is to auto-select a fileystem if unspecified.
         """
-        ...
+        return pulumi.get(self, "fs_type")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -4930,7 +4930,7 @@ class NFSVolumeSource(dict):
         """
         Path that is exported by the NFS server. More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs
         """
-        ...
+        return pulumi.get(self, "path")
 
     @property
     @pulumi.getter
@@ -4938,7 +4938,7 @@ class NFSVolumeSource(dict):
         """
         Server is the hostname or IP address of the NFS server. More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs
         """
-        ...
+        return pulumi.get(self, "server")
 
     @property
     @pulumi.getter(name="readOnly")
@@ -4946,7 +4946,7 @@ class NFSVolumeSource(dict):
         """
         ReadOnly here will force the NFS export to be mounted with read-only permissions. Defaults to false. More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs
         """
-        ...
+        return pulumi.get(self, "read_only")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -4988,7 +4988,7 @@ class Namespace(dict):
         """
         APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
         """
-        ...
+        return pulumi.get(self, "api_version")
 
     @property
     @pulumi.getter
@@ -4996,7 +4996,7 @@ class Namespace(dict):
         """
         Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         """
-        ...
+        return pulumi.get(self, "kind")
 
     @property
     @pulumi.getter
@@ -5004,7 +5004,7 @@ class Namespace(dict):
         """
         Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         """
-        ...
+        return pulumi.get(self, "metadata")
 
     @property
     @pulumi.getter
@@ -5012,7 +5012,7 @@ class Namespace(dict):
         """
         Spec defines the behavior of the Namespace. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
         """
-        ...
+        return pulumi.get(self, "spec")
 
     @property
     @pulumi.getter
@@ -5020,7 +5020,7 @@ class Namespace(dict):
         """
         Status describes the current status of a Namespace. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
         """
-        ...
+        return pulumi.get(self, "status")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -5057,7 +5057,7 @@ class NamespaceCondition(dict):
         """
         Status of the condition, one of True, False, Unknown.
         """
-        ...
+        return pulumi.get(self, "status")
 
     @property
     @pulumi.getter
@@ -5065,22 +5065,22 @@ class NamespaceCondition(dict):
         """
         Type of namespace controller condition.
         """
-        ...
+        return pulumi.get(self, "type")
 
     @property
     @pulumi.getter(name="lastTransitionTime")
     def last_transition_time(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "last_transition_time")
 
     @property
     @pulumi.getter
     def message(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "message")
 
     @property
     @pulumi.getter
     def reason(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "reason")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -5106,7 +5106,7 @@ class NamespaceSpec(dict):
         """
         Finalizers is an opaque list of values that must be empty to permanently remove object from storage. More info: https://kubernetes.io/docs/tasks/administer-cluster/namespaces/
         """
-        ...
+        return pulumi.get(self, "finalizers")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -5136,7 +5136,7 @@ class NamespaceStatus(dict):
         """
         Represents the latest available observations of a namespace's current state.
         """
-        ...
+        return pulumi.get(self, "conditions")
 
     @property
     @pulumi.getter
@@ -5144,7 +5144,7 @@ class NamespaceStatus(dict):
         """
         Phase is the current lifecycle phase of the namespace. More info: https://kubernetes.io/docs/tasks/administer-cluster/namespaces/
         """
-        ...
+        return pulumi.get(self, "phase")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -5186,7 +5186,7 @@ class Node(dict):
         """
         APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
         """
-        ...
+        return pulumi.get(self, "api_version")
 
     @property
     @pulumi.getter
@@ -5194,7 +5194,7 @@ class Node(dict):
         """
         Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         """
-        ...
+        return pulumi.get(self, "kind")
 
     @property
     @pulumi.getter
@@ -5202,7 +5202,7 @@ class Node(dict):
         """
         Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         """
-        ...
+        return pulumi.get(self, "metadata")
 
     @property
     @pulumi.getter
@@ -5210,7 +5210,7 @@ class Node(dict):
         """
         Spec defines the behavior of a node. https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
         """
-        ...
+        return pulumi.get(self, "spec")
 
     @property
     @pulumi.getter
@@ -5218,7 +5218,7 @@ class Node(dict):
         """
         Most recently observed status of the node. Populated by the system. Read-only. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
         """
-        ...
+        return pulumi.get(self, "status")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -5246,7 +5246,7 @@ class NodeAddress(dict):
         """
         The node address.
         """
-        ...
+        return pulumi.get(self, "address")
 
     @property
     @pulumi.getter
@@ -5254,7 +5254,7 @@ class NodeAddress(dict):
         """
         Node address type, one of Hostname, ExternalIP or InternalIP.
         """
-        ...
+        return pulumi.get(self, "type")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -5284,7 +5284,7 @@ class NodeAffinity(dict):
         """
         The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding "weight" to the sum if the node matches the corresponding matchExpressions; the node(s) with the highest sum are the most preferred.
         """
-        ...
+        return pulumi.get(self, "preferred_during_scheduling_ignored_during_execution")
 
     @property
     @pulumi.getter(name="requiredDuringSchedulingIgnoredDuringExecution")
@@ -5292,7 +5292,7 @@ class NodeAffinity(dict):
         """
         If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to an update), the system may or may not try to eventually evict the pod from its node.
         """
-        ...
+        return pulumi.get(self, "required_during_scheduling_ignored_during_execution")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -5336,7 +5336,7 @@ class NodeCondition(dict):
         """
         Status of the condition, one of True, False, Unknown.
         """
-        ...
+        return pulumi.get(self, "status")
 
     @property
     @pulumi.getter
@@ -5344,7 +5344,7 @@ class NodeCondition(dict):
         """
         Type of node condition.
         """
-        ...
+        return pulumi.get(self, "type")
 
     @property
     @pulumi.getter(name="lastHeartbeatTime")
@@ -5352,7 +5352,7 @@ class NodeCondition(dict):
         """
         Last time we got an update on a given condition.
         """
-        ...
+        return pulumi.get(self, "last_heartbeat_time")
 
     @property
     @pulumi.getter(name="lastTransitionTime")
@@ -5360,7 +5360,7 @@ class NodeCondition(dict):
         """
         Last time the condition transit from one status to another.
         """
-        ...
+        return pulumi.get(self, "last_transition_time")
 
     @property
     @pulumi.getter
@@ -5368,7 +5368,7 @@ class NodeCondition(dict):
         """
         Human readable message indicating details about last transition.
         """
-        ...
+        return pulumi.get(self, "message")
 
     @property
     @pulumi.getter
@@ -5376,7 +5376,7 @@ class NodeCondition(dict):
         """
         (brief) reason for the condition's last transition.
         """
-        ...
+        return pulumi.get(self, "reason")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -5402,7 +5402,7 @@ class NodeConfigSource(dict):
         """
         ConfigMap is a reference to a Node's ConfigMap
         """
-        ...
+        return pulumi.get(self, "config_map")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -5440,7 +5440,7 @@ class NodeConfigStatus(dict):
         """
         Active reports the checkpointed config the node is actively using. Active will represent either the current version of the Assigned config, or the current LastKnownGood config, depending on whether attempting to use the Assigned config results in an error.
         """
-        ...
+        return pulumi.get(self, "active")
 
     @property
     @pulumi.getter
@@ -5448,7 +5448,7 @@ class NodeConfigStatus(dict):
         """
         Assigned reports the checkpointed config the node will try to use. When Node.Spec.ConfigSource is updated, the node checkpoints the associated config payload to local disk, along with a record indicating intended config. The node refers to this record to choose its config checkpoint, and reports this record in Assigned. Assigned only updates in the status after the record has been checkpointed to disk. When the Kubelet is restarted, it tries to make the Assigned config the Active config by loading and validating the checkpointed payload identified by Assigned.
         """
-        ...
+        return pulumi.get(self, "assigned")
 
     @property
     @pulumi.getter
@@ -5456,7 +5456,7 @@ class NodeConfigStatus(dict):
         """
         Error describes any problems reconciling the Spec.ConfigSource to the Active config. Errors may occur, for example, attempting to checkpoint Spec.ConfigSource to the local Assigned record, attempting to checkpoint the payload associated with Spec.ConfigSource, attempting to load or validate the Assigned config, etc. Errors may occur at different points while syncing config. Earlier errors (e.g. download or checkpointing errors) will not result in a rollback to LastKnownGood, and may resolve across Kubelet retries. Later errors (e.g. loading or validating a checkpointed config) will result in a rollback to LastKnownGood. In the latter case, it is usually possible to resolve the error by fixing the config assigned in Spec.ConfigSource. You can find additional information for debugging by searching the error message in the Kubelet log. Error is a human-readable description of the error state; machines can check whether or not Error is empty, but should not rely on the stability of the Error text across Kubelet versions.
         """
-        ...
+        return pulumi.get(self, "error")
 
     @property
     @pulumi.getter(name="lastKnownGood")
@@ -5464,7 +5464,7 @@ class NodeConfigStatus(dict):
         """
         LastKnownGood reports the checkpointed config the node will fall back to when it encounters an error attempting to use the Assigned config. The Assigned config becomes the LastKnownGood config when the node determines that the Assigned config is stable and correct. This is currently implemented as a 10-minute soak period starting when the local record of Assigned config is updated. If the Assigned config is Active at the end of this period, it becomes the LastKnownGood. Note that if Spec.ConfigSource is reset to nil (use local defaults), the LastKnownGood is also immediately reset to nil, because the local default config is always assumed good. You should not make assumptions about the node's method of determining config stability and correctness, as this may change or become configurable in the future.
         """
-        ...
+        return pulumi.get(self, "last_known_good")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -5490,7 +5490,7 @@ class NodeDaemonEndpoints(dict):
         """
         Endpoint on which Kubelet is listening.
         """
-        ...
+        return pulumi.get(self, "kubelet_endpoint")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -5515,7 +5515,7 @@ class NodeSelector(dict):
         """
         Required. A list of node selector terms. The terms are ORed.
         """
-        ...
+        return pulumi.get(self, "node_selector_terms")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -5547,7 +5547,7 @@ class NodeSelectorRequirement(dict):
         """
         The label key that the selector applies to.
         """
-        ...
+        return pulumi.get(self, "key")
 
     @property
     @pulumi.getter
@@ -5555,7 +5555,7 @@ class NodeSelectorRequirement(dict):
         """
         Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
         """
-        ...
+        return pulumi.get(self, "operator")
 
     @property
     @pulumi.getter
@@ -5563,7 +5563,7 @@ class NodeSelectorRequirement(dict):
         """
         An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
         """
-        ...
+        return pulumi.get(self, "values")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -5593,7 +5593,7 @@ class NodeSelectorTerm(dict):
         """
         A list of node selector requirements by node's labels.
         """
-        ...
+        return pulumi.get(self, "match_expressions")
 
     @property
     @pulumi.getter(name="matchFields")
@@ -5601,7 +5601,7 @@ class NodeSelectorTerm(dict):
         """
         A list of node selector requirements by node's fields.
         """
-        ...
+        return pulumi.get(self, "match_fields")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -5651,7 +5651,7 @@ class NodeSpec(dict):
         """
         If specified, the source to get node configuration from The DynamicKubeletConfig feature gate must be enabled for the Kubelet to use this field
         """
-        ...
+        return pulumi.get(self, "config_source")
 
     @property
     @pulumi.getter(name="externalID")
@@ -5659,7 +5659,7 @@ class NodeSpec(dict):
         """
         Deprecated. Not all kubelets will set this field. Remove field after 1.13. see: https://issues.k8s.io/61966
         """
-        ...
+        return pulumi.get(self, "external_id")
 
     @property
     @pulumi.getter(name="podCIDR")
@@ -5667,7 +5667,7 @@ class NodeSpec(dict):
         """
         PodCIDR represents the pod IP range assigned to the node.
         """
-        ...
+        return pulumi.get(self, "pod_cidr")
 
     @property
     @pulumi.getter(name="podCIDRs")
@@ -5675,7 +5675,7 @@ class NodeSpec(dict):
         """
         podCIDRs represents the IP ranges assigned to the node for usage by Pods on that node. If this field is specified, the 0th entry must match the podCIDR field. It may contain at most 1 value for each of IPv4 and IPv6.
         """
-        ...
+        return pulumi.get(self, "pod_cidrs")
 
     @property
     @pulumi.getter(name="providerID")
@@ -5683,7 +5683,7 @@ class NodeSpec(dict):
         """
         ID of the node assigned by the cloud provider in the format: <ProviderName>://<ProviderSpecificNodeID>
         """
-        ...
+        return pulumi.get(self, "provider_id")
 
     @property
     @pulumi.getter
@@ -5691,7 +5691,7 @@ class NodeSpec(dict):
         """
         If specified, the node's taints.
         """
-        ...
+        return pulumi.get(self, "taints")
 
     @property
     @pulumi.getter
@@ -5699,7 +5699,7 @@ class NodeSpec(dict):
         """
         Unschedulable controls node schedulability of new pods. By default, node is schedulable. More info: https://kubernetes.io/docs/concepts/nodes/node/#manual-node-administration
         """
-        ...
+        return pulumi.get(self, "unschedulable")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -5765,7 +5765,7 @@ class NodeStatus(dict):
         """
         List of addresses reachable to the node. Queried from cloud provider, if available. More info: https://kubernetes.io/docs/concepts/nodes/node/#addresses Note: This field is declared as mergeable, but the merge key is not sufficiently unique, which can cause data corruption when it is merged. Callers should instead use a full-replacement patch. See http://pr.k8s.io/79391 for an example.
         """
-        ...
+        return pulumi.get(self, "addresses")
 
     @property
     @pulumi.getter
@@ -5773,7 +5773,7 @@ class NodeStatus(dict):
         """
         Allocatable represents the resources of a node that are available for scheduling. Defaults to Capacity.
         """
-        ...
+        return pulumi.get(self, "allocatable")
 
     @property
     @pulumi.getter
@@ -5781,7 +5781,7 @@ class NodeStatus(dict):
         """
         Capacity represents the total resources of a node. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#capacity
         """
-        ...
+        return pulumi.get(self, "capacity")
 
     @property
     @pulumi.getter
@@ -5789,7 +5789,7 @@ class NodeStatus(dict):
         """
         Conditions is an array of current observed node conditions. More info: https://kubernetes.io/docs/concepts/nodes/node/#condition
         """
-        ...
+        return pulumi.get(self, "conditions")
 
     @property
     @pulumi.getter
@@ -5797,7 +5797,7 @@ class NodeStatus(dict):
         """
         Status of the config assigned to the node via the dynamic Kubelet config feature.
         """
-        ...
+        return pulumi.get(self, "config")
 
     @property
     @pulumi.getter(name="daemonEndpoints")
@@ -5805,7 +5805,7 @@ class NodeStatus(dict):
         """
         Endpoints of daemons running on the Node.
         """
-        ...
+        return pulumi.get(self, "daemon_endpoints")
 
     @property
     @pulumi.getter
@@ -5813,7 +5813,7 @@ class NodeStatus(dict):
         """
         List of container images on this node
         """
-        ...
+        return pulumi.get(self, "images")
 
     @property
     @pulumi.getter(name="nodeInfo")
@@ -5821,7 +5821,7 @@ class NodeStatus(dict):
         """
         Set of ids/uuids to uniquely identify the node. More info: https://kubernetes.io/docs/concepts/nodes/node/#info
         """
-        ...
+        return pulumi.get(self, "node_info")
 
     @property
     @pulumi.getter
@@ -5829,7 +5829,7 @@ class NodeStatus(dict):
         """
         NodePhase is the recently observed lifecycle phase of the node. More info: https://kubernetes.io/docs/concepts/nodes/node/#phase The field is never populated, and now is deprecated.
         """
-        ...
+        return pulumi.get(self, "phase")
 
     @property
     @pulumi.getter(name="volumesAttached")
@@ -5837,7 +5837,7 @@ class NodeStatus(dict):
         """
         List of volumes that are attached to the node.
         """
-        ...
+        return pulumi.get(self, "volumes_attached")
 
     @property
     @pulumi.getter(name="volumesInUse")
@@ -5845,7 +5845,7 @@ class NodeStatus(dict):
         """
         List of attachable volumes in use (mounted) by the node.
         """
-        ...
+        return pulumi.get(self, "volumes_in_use")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -5897,7 +5897,7 @@ class NodeSystemInfo(dict):
         """
         The Architecture reported by the node
         """
-        ...
+        return pulumi.get(self, "architecture")
 
     @property
     @pulumi.getter(name="bootID")
@@ -5905,7 +5905,7 @@ class NodeSystemInfo(dict):
         """
         Boot ID reported by the node.
         """
-        ...
+        return pulumi.get(self, "boot_id")
 
     @property
     @pulumi.getter(name="containerRuntimeVersion")
@@ -5913,7 +5913,7 @@ class NodeSystemInfo(dict):
         """
         ContainerRuntime Version reported by the node through runtime remote API (e.g. docker://1.5.0).
         """
-        ...
+        return pulumi.get(self, "container_runtime_version")
 
     @property
     @pulumi.getter(name="kernelVersion")
@@ -5921,7 +5921,7 @@ class NodeSystemInfo(dict):
         """
         Kernel Version reported by the node from 'uname -r' (e.g. 3.16.0-0.bpo.4-amd64).
         """
-        ...
+        return pulumi.get(self, "kernel_version")
 
     @property
     @pulumi.getter(name="kubeProxyVersion")
@@ -5929,7 +5929,7 @@ class NodeSystemInfo(dict):
         """
         KubeProxy Version reported by the node.
         """
-        ...
+        return pulumi.get(self, "kube_proxy_version")
 
     @property
     @pulumi.getter(name="kubeletVersion")
@@ -5937,7 +5937,7 @@ class NodeSystemInfo(dict):
         """
         Kubelet Version reported by the node.
         """
-        ...
+        return pulumi.get(self, "kubelet_version")
 
     @property
     @pulumi.getter(name="machineID")
@@ -5945,7 +5945,7 @@ class NodeSystemInfo(dict):
         """
         MachineID reported by the node. For unique machine identification in the cluster this field is preferred. Learn more from man(5) machine-id: http://man7.org/linux/man-pages/man5/machine-id.5.html
         """
-        ...
+        return pulumi.get(self, "machine_id")
 
     @property
     @pulumi.getter(name="operatingSystem")
@@ -5953,7 +5953,7 @@ class NodeSystemInfo(dict):
         """
         The Operating System reported by the node
         """
-        ...
+        return pulumi.get(self, "operating_system")
 
     @property
     @pulumi.getter(name="osImage")
@@ -5961,7 +5961,7 @@ class NodeSystemInfo(dict):
         """
         OS Image reported by the node from /etc/os-release (e.g. Debian GNU/Linux 7 (wheezy)).
         """
-        ...
+        return pulumi.get(self, "os_image")
 
     @property
     @pulumi.getter(name="systemUUID")
@@ -5969,7 +5969,7 @@ class NodeSystemInfo(dict):
         """
         SystemUUID reported by the node. For unique machine identification MachineID is preferred. This field is specific to Red Hat hosts https://access.redhat.com/documentation/en-US/Red_Hat_Subscription_Management/1/html/RHSM/getting-system-uuid.html
         """
-        ...
+        return pulumi.get(self, "system_uuid")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -5998,7 +5998,7 @@ class ObjectFieldSelector(dict):
         """
         Path of the field to select in the specified API version.
         """
-        ...
+        return pulumi.get(self, "field_path")
 
     @property
     @pulumi.getter(name="apiVersion")
@@ -6006,7 +6006,7 @@ class ObjectFieldSelector(dict):
         """
         Version of the schema the FieldPath is written in terms of, defaults to "v1".
         """
-        ...
+        return pulumi.get(self, "api_version")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -6056,7 +6056,7 @@ class ObjectReference(dict):
         """
         API version of the referent.
         """
-        ...
+        return pulumi.get(self, "api_version")
 
     @property
     @pulumi.getter(name="fieldPath")
@@ -6064,7 +6064,7 @@ class ObjectReference(dict):
         """
         If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers{name}" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers[2]" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object.
         """
-        ...
+        return pulumi.get(self, "field_path")
 
     @property
     @pulumi.getter
@@ -6072,7 +6072,7 @@ class ObjectReference(dict):
         """
         Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         """
-        ...
+        return pulumi.get(self, "kind")
 
     @property
     @pulumi.getter
@@ -6080,7 +6080,7 @@ class ObjectReference(dict):
         """
         Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -6088,7 +6088,7 @@ class ObjectReference(dict):
         """
         Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
         """
-        ...
+        return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter(name="resourceVersion")
@@ -6096,7 +6096,7 @@ class ObjectReference(dict):
         """
         Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
         """
-        ...
+        return pulumi.get(self, "resource_version")
 
     @property
     @pulumi.getter
@@ -6104,7 +6104,7 @@ class ObjectReference(dict):
         """
         UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids
         """
-        ...
+        return pulumi.get(self, "uid")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -6146,7 +6146,7 @@ class PersistentVolume(dict):
         """
         APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
         """
-        ...
+        return pulumi.get(self, "api_version")
 
     @property
     @pulumi.getter
@@ -6154,7 +6154,7 @@ class PersistentVolume(dict):
         """
         Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         """
-        ...
+        return pulumi.get(self, "kind")
 
     @property
     @pulumi.getter
@@ -6162,7 +6162,7 @@ class PersistentVolume(dict):
         """
         Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         """
-        ...
+        return pulumi.get(self, "metadata")
 
     @property
     @pulumi.getter
@@ -6170,7 +6170,7 @@ class PersistentVolume(dict):
         """
         Spec defines a specification of a persistent volume owned by the cluster. Provisioned by an administrator. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistent-volumes
         """
-        ...
+        return pulumi.get(self, "spec")
 
     @property
     @pulumi.getter
@@ -6178,7 +6178,7 @@ class PersistentVolume(dict):
         """
         Status represents the current information/status for the persistent volume. Populated by the system. Read-only. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistent-volumes
         """
-        ...
+        return pulumi.get(self, "status")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -6220,7 +6220,7 @@ class PersistentVolumeClaim(dict):
         """
         APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
         """
-        ...
+        return pulumi.get(self, "api_version")
 
     @property
     @pulumi.getter
@@ -6228,7 +6228,7 @@ class PersistentVolumeClaim(dict):
         """
         Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         """
-        ...
+        return pulumi.get(self, "kind")
 
     @property
     @pulumi.getter
@@ -6236,7 +6236,7 @@ class PersistentVolumeClaim(dict):
         """
         Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         """
-        ...
+        return pulumi.get(self, "metadata")
 
     @property
     @pulumi.getter
@@ -6244,7 +6244,7 @@ class PersistentVolumeClaim(dict):
         """
         Spec defines the desired characteristics of a volume requested by a pod author. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims
         """
-        ...
+        return pulumi.get(self, "spec")
 
     @property
     @pulumi.getter
@@ -6252,7 +6252,7 @@ class PersistentVolumeClaim(dict):
         """
         Status represents the current information/status of a persistent volume claim. Read-only. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims
         """
-        ...
+        return pulumi.get(self, "status")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -6291,12 +6291,12 @@ class PersistentVolumeClaimCondition(dict):
     @property
     @pulumi.getter
     def status(self) -> str:
-        ...
+        return pulumi.get(self, "status")
 
     @property
     @pulumi.getter
     def type(self) -> str:
-        ...
+        return pulumi.get(self, "type")
 
     @property
     @pulumi.getter(name="lastProbeTime")
@@ -6304,7 +6304,7 @@ class PersistentVolumeClaimCondition(dict):
         """
         Last time we probed the condition.
         """
-        ...
+        return pulumi.get(self, "last_probe_time")
 
     @property
     @pulumi.getter(name="lastTransitionTime")
@@ -6312,7 +6312,7 @@ class PersistentVolumeClaimCondition(dict):
         """
         Last time the condition transitioned from one status to another.
         """
-        ...
+        return pulumi.get(self, "last_transition_time")
 
     @property
     @pulumi.getter
@@ -6320,7 +6320,7 @@ class PersistentVolumeClaimCondition(dict):
         """
         Human-readable message indicating details about last transition.
         """
-        ...
+        return pulumi.get(self, "message")
 
     @property
     @pulumi.getter
@@ -6328,7 +6328,7 @@ class PersistentVolumeClaimCondition(dict):
         """
         Unique, this should be a short, machine understandable string that gives the reason for condition's last transition. If it reports "ResizeStarted" that means the underlying persistent volume is being resized.
         """
-        ...
+        return pulumi.get(self, "reason")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -6378,7 +6378,7 @@ class PersistentVolumeClaimSpec(dict):
         """
         AccessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
         """
-        ...
+        return pulumi.get(self, "access_modes")
 
     @property
     @pulumi.getter(name="dataSource")
@@ -6386,7 +6386,7 @@ class PersistentVolumeClaimSpec(dict):
         """
         This field can be used to specify either: * An existing VolumeSnapshot object (snapshot.storage.k8s.io/VolumeSnapshot - Beta) * An existing PVC (PersistentVolumeClaim) * An existing custom resource/object that implements data population (Alpha) In order to use VolumeSnapshot object types, the appropriate feature gate must be enabled (VolumeSnapshotDataSource or AnyVolumeDataSource) If the provisioner or an external controller can support the specified data source, it will create a new volume based on the contents of the specified data source. If the specified data source is not supported, the volume will not be created and the failure will be reported as an event. In the future, we plan to support more data source types and the behavior of the provisioner may change.
         """
-        ...
+        return pulumi.get(self, "data_source")
 
     @property
     @pulumi.getter
@@ -6394,7 +6394,7 @@ class PersistentVolumeClaimSpec(dict):
         """
         Resources represents the minimum resources the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources
         """
-        ...
+        return pulumi.get(self, "resources")
 
     @property
     @pulumi.getter
@@ -6402,7 +6402,7 @@ class PersistentVolumeClaimSpec(dict):
         """
         A label query over volumes to consider for binding.
         """
-        ...
+        return pulumi.get(self, "selector")
 
     @property
     @pulumi.getter(name="storageClassName")
@@ -6410,7 +6410,7 @@ class PersistentVolumeClaimSpec(dict):
         """
         Name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1
         """
-        ...
+        return pulumi.get(self, "storage_class_name")
 
     @property
     @pulumi.getter(name="volumeMode")
@@ -6418,7 +6418,7 @@ class PersistentVolumeClaimSpec(dict):
         """
         volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.
         """
-        ...
+        return pulumi.get(self, "volume_mode")
 
     @property
     @pulumi.getter(name="volumeName")
@@ -6426,7 +6426,7 @@ class PersistentVolumeClaimSpec(dict):
         """
         VolumeName is the binding reference to the PersistentVolume backing this claim.
         """
-        ...
+        return pulumi.get(self, "volume_name")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -6464,7 +6464,7 @@ class PersistentVolumeClaimStatus(dict):
         """
         AccessModes contains the actual access modes the volume backing the PVC has. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1
         """
-        ...
+        return pulumi.get(self, "access_modes")
 
     @property
     @pulumi.getter
@@ -6472,7 +6472,7 @@ class PersistentVolumeClaimStatus(dict):
         """
         Represents the actual resources of the underlying volume.
         """
-        ...
+        return pulumi.get(self, "capacity")
 
     @property
     @pulumi.getter
@@ -6480,7 +6480,7 @@ class PersistentVolumeClaimStatus(dict):
         """
         Current Condition of persistent volume claim. If underlying persistent volume is being resized then the Condition will be set to 'ResizeStarted'.
         """
-        ...
+        return pulumi.get(self, "conditions")
 
     @property
     @pulumi.getter
@@ -6488,7 +6488,7 @@ class PersistentVolumeClaimStatus(dict):
         """
         Phase represents the current phase of PersistentVolumeClaim.
         """
-        ...
+        return pulumi.get(self, "phase")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -6517,7 +6517,7 @@ class PersistentVolumeClaimVolumeSource(dict):
         """
         ClaimName is the name of a PersistentVolumeClaim in the same namespace as the pod using this volume. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims
         """
-        ...
+        return pulumi.get(self, "claim_name")
 
     @property
     @pulumi.getter(name="readOnly")
@@ -6525,7 +6525,7 @@ class PersistentVolumeClaimVolumeSource(dict):
         """
         Will force the ReadOnly setting in VolumeMounts. Default false.
         """
-        ...
+        return pulumi.get(self, "read_only")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -6667,7 +6667,7 @@ class PersistentVolumeSpec(dict):
         """
         AccessModes contains all ways the volume can be mounted. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes
         """
-        ...
+        return pulumi.get(self, "access_modes")
 
     @property
     @pulumi.getter(name="awsElasticBlockStore")
@@ -6675,7 +6675,7 @@ class PersistentVolumeSpec(dict):
         """
         AWSElasticBlockStore represents an AWS Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore
         """
-        ...
+        return pulumi.get(self, "aws_elastic_block_store")
 
     @property
     @pulumi.getter(name="azureDisk")
@@ -6683,7 +6683,7 @@ class PersistentVolumeSpec(dict):
         """
         AzureDisk represents an Azure Data Disk mount on the host and bind mount to the pod.
         """
-        ...
+        return pulumi.get(self, "azure_disk")
 
     @property
     @pulumi.getter(name="azureFile")
@@ -6691,7 +6691,7 @@ class PersistentVolumeSpec(dict):
         """
         AzureFile represents an Azure File Service mount on the host and bind mount to the pod.
         """
-        ...
+        return pulumi.get(self, "azure_file")
 
     @property
     @pulumi.getter
@@ -6699,7 +6699,7 @@ class PersistentVolumeSpec(dict):
         """
         A description of the persistent volume's resources and capacity. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#capacity
         """
-        ...
+        return pulumi.get(self, "capacity")
 
     @property
     @pulumi.getter
@@ -6707,7 +6707,7 @@ class PersistentVolumeSpec(dict):
         """
         CephFS represents a Ceph FS mount on the host that shares a pod's lifetime
         """
-        ...
+        return pulumi.get(self, "cephfs")
 
     @property
     @pulumi.getter
@@ -6715,7 +6715,7 @@ class PersistentVolumeSpec(dict):
         """
         Cinder represents a cinder volume attached and mounted on kubelets host machine. More info: https://examples.k8s.io/mysql-cinder-pd/README.md
         """
-        ...
+        return pulumi.get(self, "cinder")
 
     @property
     @pulumi.getter(name="claimRef")
@@ -6723,7 +6723,7 @@ class PersistentVolumeSpec(dict):
         """
         ClaimRef is part of a bi-directional binding between PersistentVolume and PersistentVolumeClaim. Expected to be non-nil when bound. claim.VolumeName is the authoritative bind between PV and PVC. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#binding
         """
-        ...
+        return pulumi.get(self, "claim_ref")
 
     @property
     @pulumi.getter
@@ -6731,7 +6731,7 @@ class PersistentVolumeSpec(dict):
         """
         CSI represents storage that is handled by an external CSI driver (Beta feature).
         """
-        ...
+        return pulumi.get(self, "csi")
 
     @property
     @pulumi.getter
@@ -6739,7 +6739,7 @@ class PersistentVolumeSpec(dict):
         """
         FC represents a Fibre Channel resource that is attached to a kubelet's host machine and then exposed to the pod.
         """
-        ...
+        return pulumi.get(self, "fc")
 
     @property
     @pulumi.getter(name="flexVolume")
@@ -6747,7 +6747,7 @@ class PersistentVolumeSpec(dict):
         """
         FlexVolume represents a generic volume resource that is provisioned/attached using an exec based plugin.
         """
-        ...
+        return pulumi.get(self, "flex_volume")
 
     @property
     @pulumi.getter
@@ -6755,7 +6755,7 @@ class PersistentVolumeSpec(dict):
         """
         Flocker represents a Flocker volume attached to a kubelet's host machine and exposed to the pod for its usage. This depends on the Flocker control service being running
         """
-        ...
+        return pulumi.get(self, "flocker")
 
     @property
     @pulumi.getter(name="gcePersistentDisk")
@@ -6763,7 +6763,7 @@ class PersistentVolumeSpec(dict):
         """
         GCEPersistentDisk represents a GCE Disk resource that is attached to a kubelet's host machine and then exposed to the pod. Provisioned by an admin. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk
         """
-        ...
+        return pulumi.get(self, "gce_persistent_disk")
 
     @property
     @pulumi.getter
@@ -6771,7 +6771,7 @@ class PersistentVolumeSpec(dict):
         """
         Glusterfs represents a Glusterfs volume that is attached to a host and exposed to the pod. Provisioned by an admin. More info: https://examples.k8s.io/volumes/glusterfs/README.md
         """
-        ...
+        return pulumi.get(self, "glusterfs")
 
     @property
     @pulumi.getter(name="hostPath")
@@ -6779,7 +6779,7 @@ class PersistentVolumeSpec(dict):
         """
         HostPath represents a directory on the host. Provisioned by a developer or tester. This is useful for single-node development and testing only! On-host storage is not supported in any way and WILL NOT WORK in a multi-node cluster. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath
         """
-        ...
+        return pulumi.get(self, "host_path")
 
     @property
     @pulumi.getter
@@ -6787,7 +6787,7 @@ class PersistentVolumeSpec(dict):
         """
         ISCSI represents an ISCSI Disk resource that is attached to a kubelet's host machine and then exposed to the pod. Provisioned by an admin.
         """
-        ...
+        return pulumi.get(self, "iscsi")
 
     @property
     @pulumi.getter
@@ -6795,7 +6795,7 @@ class PersistentVolumeSpec(dict):
         """
         Local represents directly-attached storage with node affinity
         """
-        ...
+        return pulumi.get(self, "local")
 
     @property
     @pulumi.getter(name="mountOptions")
@@ -6803,7 +6803,7 @@ class PersistentVolumeSpec(dict):
         """
         A list of mount options, e.g. ["ro", "soft"]. Not validated - mount will simply fail if one is invalid. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes/#mount-options
         """
-        ...
+        return pulumi.get(self, "mount_options")
 
     @property
     @pulumi.getter
@@ -6811,7 +6811,7 @@ class PersistentVolumeSpec(dict):
         """
         NFS represents an NFS mount on the host. Provisioned by an admin. More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs
         """
-        ...
+        return pulumi.get(self, "nfs")
 
     @property
     @pulumi.getter(name="nodeAffinity")
@@ -6819,7 +6819,7 @@ class PersistentVolumeSpec(dict):
         """
         NodeAffinity defines constraints that limit what nodes this volume can be accessed from. This field influences the scheduling of pods that use this volume.
         """
-        ...
+        return pulumi.get(self, "node_affinity")
 
     @property
     @pulumi.getter(name="persistentVolumeReclaimPolicy")
@@ -6827,7 +6827,7 @@ class PersistentVolumeSpec(dict):
         """
         What happens to a persistent volume when released from its claim. Valid options are Retain (default for manually created PersistentVolumes), Delete (default for dynamically provisioned PersistentVolumes), and Recycle (deprecated). Recycle must be supported by the volume plugin underlying this PersistentVolume. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#reclaiming
         """
-        ...
+        return pulumi.get(self, "persistent_volume_reclaim_policy")
 
     @property
     @pulumi.getter(name="photonPersistentDisk")
@@ -6835,7 +6835,7 @@ class PersistentVolumeSpec(dict):
         """
         PhotonPersistentDisk represents a PhotonController persistent disk attached and mounted on kubelets host machine
         """
-        ...
+        return pulumi.get(self, "photon_persistent_disk")
 
     @property
     @pulumi.getter(name="portworxVolume")
@@ -6843,7 +6843,7 @@ class PersistentVolumeSpec(dict):
         """
         PortworxVolume represents a portworx volume attached and mounted on kubelets host machine
         """
-        ...
+        return pulumi.get(self, "portworx_volume")
 
     @property
     @pulumi.getter
@@ -6851,7 +6851,7 @@ class PersistentVolumeSpec(dict):
         """
         Quobyte represents a Quobyte mount on the host that shares a pod's lifetime
         """
-        ...
+        return pulumi.get(self, "quobyte")
 
     @property
     @pulumi.getter
@@ -6859,7 +6859,7 @@ class PersistentVolumeSpec(dict):
         """
         RBD represents a Rados Block Device mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/rbd/README.md
         """
-        ...
+        return pulumi.get(self, "rbd")
 
     @property
     @pulumi.getter(name="scaleIO")
@@ -6867,7 +6867,7 @@ class PersistentVolumeSpec(dict):
         """
         ScaleIO represents a ScaleIO persistent volume attached and mounted on Kubernetes nodes.
         """
-        ...
+        return pulumi.get(self, "scale_io")
 
     @property
     @pulumi.getter(name="storageClassName")
@@ -6875,7 +6875,7 @@ class PersistentVolumeSpec(dict):
         """
         Name of StorageClass to which this persistent volume belongs. Empty value means that this volume does not belong to any StorageClass.
         """
-        ...
+        return pulumi.get(self, "storage_class_name")
 
     @property
     @pulumi.getter
@@ -6883,7 +6883,7 @@ class PersistentVolumeSpec(dict):
         """
         StorageOS represents a StorageOS volume that is attached to the kubelet's host machine and mounted into the pod More info: https://examples.k8s.io/volumes/storageos/README.md
         """
-        ...
+        return pulumi.get(self, "storageos")
 
     @property
     @pulumi.getter(name="volumeMode")
@@ -6891,7 +6891,7 @@ class PersistentVolumeSpec(dict):
         """
         volumeMode defines if a volume is intended to be used with a formatted filesystem or to remain in raw block state. Value of Filesystem is implied when not included in spec.
         """
-        ...
+        return pulumi.get(self, "volume_mode")
 
     @property
     @pulumi.getter(name="vsphereVolume")
@@ -6899,7 +6899,7 @@ class PersistentVolumeSpec(dict):
         """
         VsphereVolume represents a vSphere volume attached and mounted on kubelets host machine
         """
-        ...
+        return pulumi.get(self, "vsphere_volume")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -6933,7 +6933,7 @@ class PersistentVolumeStatus(dict):
         """
         A human-readable message indicating details about why the volume is in this state.
         """
-        ...
+        return pulumi.get(self, "message")
 
     @property
     @pulumi.getter
@@ -6941,7 +6941,7 @@ class PersistentVolumeStatus(dict):
         """
         Phase indicates if a volume is available, bound to a claim, or released by a claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#phase
         """
-        ...
+        return pulumi.get(self, "phase")
 
     @property
     @pulumi.getter
@@ -6949,7 +6949,7 @@ class PersistentVolumeStatus(dict):
         """
         Reason is a brief CamelCase string that describes any failure and is meant for machine parsing and tidy display in the CLI.
         """
-        ...
+        return pulumi.get(self, "reason")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -6978,7 +6978,7 @@ class PhotonPersistentDiskVolumeSource(dict):
         """
         ID that identifies Photon Controller persistent disk
         """
-        ...
+        return pulumi.get(self, "pd_id")
 
     @property
     @pulumi.getter(name="fsType")
@@ -6986,7 +6986,7 @@ class PhotonPersistentDiskVolumeSource(dict):
         """
         Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified.
         """
-        ...
+        return pulumi.get(self, "fs_type")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -7058,7 +7058,7 @@ class Pod(dict):
         """
         APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
         """
-        ...
+        return pulumi.get(self, "api_version")
 
     @property
     @pulumi.getter
@@ -7066,7 +7066,7 @@ class Pod(dict):
         """
         Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         """
-        ...
+        return pulumi.get(self, "kind")
 
     @property
     @pulumi.getter
@@ -7074,7 +7074,7 @@ class Pod(dict):
         """
         Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         """
-        ...
+        return pulumi.get(self, "metadata")
 
     @property
     @pulumi.getter
@@ -7082,7 +7082,7 @@ class Pod(dict):
         """
         Specification of the desired behavior of the pod. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
         """
-        ...
+        return pulumi.get(self, "spec")
 
     @property
     @pulumi.getter
@@ -7090,7 +7090,7 @@ class Pod(dict):
         """
         Most recently observed status of the pod. This data may not be up to date. Populated by the system. Read-only. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
         """
-        ...
+        return pulumi.get(self, "status")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -7120,7 +7120,7 @@ class PodAffinity(dict):
         """
         The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding "weight" to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.
         """
-        ...
+        return pulumi.get(self, "preferred_during_scheduling_ignored_during_execution")
 
     @property
     @pulumi.getter(name="requiredDuringSchedulingIgnoredDuringExecution")
@@ -7128,7 +7128,7 @@ class PodAffinity(dict):
         """
         If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied.
         """
-        ...
+        return pulumi.get(self, "required_during_scheduling_ignored_during_execution")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -7161,7 +7161,7 @@ class PodAffinityTerm(dict):
         """
         This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.
         """
-        ...
+        return pulumi.get(self, "topology_key")
 
     @property
     @pulumi.getter(name="labelSelector")
@@ -7169,7 +7169,7 @@ class PodAffinityTerm(dict):
         """
         A label query over a set of resources, in this case pods.
         """
-        ...
+        return pulumi.get(self, "label_selector")
 
     @property
     @pulumi.getter
@@ -7177,7 +7177,7 @@ class PodAffinityTerm(dict):
         """
         namespaces specifies which namespaces the labelSelector applies to (matches against); null or empty list means "this pod's namespace"
         """
-        ...
+        return pulumi.get(self, "namespaces")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -7207,7 +7207,7 @@ class PodAntiAffinity(dict):
         """
         The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding "weight" to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.
         """
-        ...
+        return pulumi.get(self, "preferred_during_scheduling_ignored_during_execution")
 
     @property
     @pulumi.getter(name="requiredDuringSchedulingIgnoredDuringExecution")
@@ -7215,7 +7215,7 @@ class PodAntiAffinity(dict):
         """
         If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied.
         """
-        ...
+        return pulumi.get(self, "required_during_scheduling_ignored_during_execution")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -7259,7 +7259,7 @@ class PodCondition(dict):
         """
         Status is the status of the condition. Can be True, False, Unknown. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#pod-conditions
         """
-        ...
+        return pulumi.get(self, "status")
 
     @property
     @pulumi.getter
@@ -7267,7 +7267,7 @@ class PodCondition(dict):
         """
         Type is the type of the condition. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#pod-conditions
         """
-        ...
+        return pulumi.get(self, "type")
 
     @property
     @pulumi.getter(name="lastProbeTime")
@@ -7275,7 +7275,7 @@ class PodCondition(dict):
         """
         Last time we probed the condition.
         """
-        ...
+        return pulumi.get(self, "last_probe_time")
 
     @property
     @pulumi.getter(name="lastTransitionTime")
@@ -7283,7 +7283,7 @@ class PodCondition(dict):
         """
         Last time the condition transitioned from one status to another.
         """
-        ...
+        return pulumi.get(self, "last_transition_time")
 
     @property
     @pulumi.getter
@@ -7291,7 +7291,7 @@ class PodCondition(dict):
         """
         Human-readable message indicating details about last transition.
         """
-        ...
+        return pulumi.get(self, "message")
 
     @property
     @pulumi.getter
@@ -7299,7 +7299,7 @@ class PodCondition(dict):
         """
         Unique, one-word, CamelCase reason for the condition's last transition.
         """
-        ...
+        return pulumi.get(self, "reason")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -7333,7 +7333,7 @@ class PodDNSConfig(dict):
         """
         A list of DNS name server IP addresses. This will be appended to the base nameservers generated from DNSPolicy. Duplicated nameservers will be removed.
         """
-        ...
+        return pulumi.get(self, "nameservers")
 
     @property
     @pulumi.getter
@@ -7341,7 +7341,7 @@ class PodDNSConfig(dict):
         """
         A list of DNS resolver options. This will be merged with the base options generated from DNSPolicy. Duplicated entries will be removed. Resolution options given in Options will override those that appear in the base DNSPolicy.
         """
-        ...
+        return pulumi.get(self, "options")
 
     @property
     @pulumi.getter
@@ -7349,7 +7349,7 @@ class PodDNSConfig(dict):
         """
         A list of DNS search domains for host-name lookup. This will be appended to the base search paths generated from DNSPolicy. Duplicated search paths will be removed.
         """
-        ...
+        return pulumi.get(self, "searches")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -7378,12 +7378,12 @@ class PodDNSConfigOption(dict):
         """
         Required.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def value(self) -> Optional[str]:
-        ...
+        return pulumi.get(self, "value")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -7411,7 +7411,7 @@ class PodIP(dict):
         """
         ip is an IP address (IPv4 or IPv6) assigned to the pod
         """
-        ...
+        return pulumi.get(self, "ip")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -7436,7 +7436,7 @@ class PodReadinessGate(dict):
         """
         ConditionType refers to a condition in the pod's condition list with matching type.
         """
-        ...
+        return pulumi.get(self, "condition_type")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -7502,7 +7502,7 @@ class PodSecurityContext(dict):
 
         If unset, the Kubelet will not modify the ownership and permissions of any volume.
         """
-        ...
+        return pulumi.get(self, "fs_group")
 
     @property
     @pulumi.getter(name="fsGroupChangePolicy")
@@ -7510,7 +7510,7 @@ class PodSecurityContext(dict):
         """
         fsGroupChangePolicy defines behavior of changing ownership and permission of the volume before being exposed inside Pod. This field will only apply to volume types which support fsGroup based ownership(and permissions). It will have no effect on ephemeral volume types such as: secret, configmaps and emptydir. Valid values are "OnRootMismatch" and "Always". If not specified defaults to "Always".
         """
-        ...
+        return pulumi.get(self, "fs_group_change_policy")
 
     @property
     @pulumi.getter(name="runAsGroup")
@@ -7518,7 +7518,7 @@ class PodSecurityContext(dict):
         """
         The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container.
         """
-        ...
+        return pulumi.get(self, "run_as_group")
 
     @property
     @pulumi.getter(name="runAsNonRoot")
@@ -7526,7 +7526,7 @@ class PodSecurityContext(dict):
         """
         Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.
         """
-        ...
+        return pulumi.get(self, "run_as_non_root")
 
     @property
     @pulumi.getter(name="runAsUser")
@@ -7534,7 +7534,7 @@ class PodSecurityContext(dict):
         """
         The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container.
         """
-        ...
+        return pulumi.get(self, "run_as_user")
 
     @property
     @pulumi.getter(name="seLinuxOptions")
@@ -7542,7 +7542,7 @@ class PodSecurityContext(dict):
         """
         The SELinux context to be applied to all containers. If unspecified, the container runtime will allocate a random SELinux context for each container.  May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container.
         """
-        ...
+        return pulumi.get(self, "se_linux_options")
 
     @property
     @pulumi.getter(name="supplementalGroups")
@@ -7550,7 +7550,7 @@ class PodSecurityContext(dict):
         """
         A list of groups applied to the first process run in each container, in addition to the container's primary GID.  If unspecified, no groups will be added to any container.
         """
-        ...
+        return pulumi.get(self, "supplemental_groups")
 
     @property
     @pulumi.getter
@@ -7558,7 +7558,7 @@ class PodSecurityContext(dict):
         """
         Sysctls hold a list of namespaced sysctls used for the pod. Pods with unsupported sysctls (by the container runtime) might fail to launch.
         """
-        ...
+        return pulumi.get(self, "sysctls")
 
     @property
     @pulumi.getter(name="windowsOptions")
@@ -7566,7 +7566,7 @@ class PodSecurityContext(dict):
         """
         The Windows specific settings applied to all containers. If unspecified, the options within a container's SecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.
         """
-        ...
+        return pulumi.get(self, "windows_options")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -7723,7 +7723,7 @@ class PodSpec(dict):
         """
         List of containers belonging to the pod. Containers cannot currently be added or removed. There must be at least one container in a Pod. Cannot be updated.
         """
-        ...
+        return pulumi.get(self, "containers")
 
     @property
     @pulumi.getter(name="activeDeadlineSeconds")
@@ -7731,7 +7731,7 @@ class PodSpec(dict):
         """
         Optional duration in seconds the pod may be active on the node relative to StartTime before the system will actively try to mark it failed and kill associated containers. Value must be a positive integer.
         """
-        ...
+        return pulumi.get(self, "active_deadline_seconds")
 
     @property
     @pulumi.getter
@@ -7739,7 +7739,7 @@ class PodSpec(dict):
         """
         If specified, the pod's scheduling constraints
         """
-        ...
+        return pulumi.get(self, "affinity")
 
     @property
     @pulumi.getter(name="automountServiceAccountToken")
@@ -7747,7 +7747,7 @@ class PodSpec(dict):
         """
         AutomountServiceAccountToken indicates whether a service account token should be automatically mounted.
         """
-        ...
+        return pulumi.get(self, "automount_service_account_token")
 
     @property
     @pulumi.getter(name="dnsConfig")
@@ -7755,7 +7755,7 @@ class PodSpec(dict):
         """
         Specifies the DNS parameters of a pod. Parameters specified here will be merged to the generated DNS configuration based on DNSPolicy.
         """
-        ...
+        return pulumi.get(self, "dns_config")
 
     @property
     @pulumi.getter(name="dnsPolicy")
@@ -7763,7 +7763,7 @@ class PodSpec(dict):
         """
         Set DNS policy for the pod. Defaults to "ClusterFirst". Valid values are 'ClusterFirstWithHostNet', 'ClusterFirst', 'Default' or 'None'. DNS parameters given in DNSConfig will be merged with the policy selected with DNSPolicy. To have DNS options set along with hostNetwork, you have to specify DNS policy explicitly to 'ClusterFirstWithHostNet'.
         """
-        ...
+        return pulumi.get(self, "dns_policy")
 
     @property
     @pulumi.getter(name="enableServiceLinks")
@@ -7771,7 +7771,7 @@ class PodSpec(dict):
         """
         EnableServiceLinks indicates whether information about services should be injected into pod's environment variables, matching the syntax of Docker links. Optional: Defaults to true.
         """
-        ...
+        return pulumi.get(self, "enable_service_links")
 
     @property
     @pulumi.getter(name="ephemeralContainers")
@@ -7779,7 +7779,7 @@ class PodSpec(dict):
         """
         List of ephemeral containers run in this pod. Ephemeral containers may be run in an existing pod to perform user-initiated actions such as debugging. This list cannot be specified when creating a pod, and it cannot be modified by updating the pod spec. In order to add an ephemeral container to an existing pod, use the pod's ephemeralcontainers subresource. This field is alpha-level and is only honored by servers that enable the EphemeralContainers feature.
         """
-        ...
+        return pulumi.get(self, "ephemeral_containers")
 
     @property
     @pulumi.getter(name="hostAliases")
@@ -7787,7 +7787,7 @@ class PodSpec(dict):
         """
         HostAliases is an optional list of hosts and IPs that will be injected into the pod's hosts file if specified. This is only valid for non-hostNetwork pods.
         """
-        ...
+        return pulumi.get(self, "host_aliases")
 
     @property
     @pulumi.getter(name="hostIPC")
@@ -7795,7 +7795,7 @@ class PodSpec(dict):
         """
         Use the host's ipc namespace. Optional: Default to false.
         """
-        ...
+        return pulumi.get(self, "host_ipc")
 
     @property
     @pulumi.getter(name="hostNetwork")
@@ -7803,7 +7803,7 @@ class PodSpec(dict):
         """
         Host networking requested for this pod. Use the host's network namespace. If this option is set, the ports that will be used must be specified. Default to false.
         """
-        ...
+        return pulumi.get(self, "host_network")
 
     @property
     @pulumi.getter(name="hostPID")
@@ -7811,7 +7811,7 @@ class PodSpec(dict):
         """
         Use the host's pid namespace. Optional: Default to false.
         """
-        ...
+        return pulumi.get(self, "host_pid")
 
     @property
     @pulumi.getter
@@ -7819,7 +7819,7 @@ class PodSpec(dict):
         """
         Specifies the hostname of the Pod If not specified, the pod's hostname will be set to a system-defined value.
         """
-        ...
+        return pulumi.get(self, "hostname")
 
     @property
     @pulumi.getter(name="imagePullSecrets")
@@ -7827,7 +7827,7 @@ class PodSpec(dict):
         """
         ImagePullSecrets is an optional list of references to secrets in the same namespace to use for pulling any of the images used by this PodSpec. If specified, these secrets will be passed to individual puller implementations for them to use. For example, in the case of docker, only DockerConfig type secrets are honored. More info: https://kubernetes.io/docs/concepts/containers/images#specifying-imagepullsecrets-on-a-pod
         """
-        ...
+        return pulumi.get(self, "image_pull_secrets")
 
     @property
     @pulumi.getter(name="initContainers")
@@ -7835,7 +7835,7 @@ class PodSpec(dict):
         """
         List of initialization containers belonging to the pod. Init containers are executed in order prior to containers being started. If any init container fails, the pod is considered to have failed and is handled according to its restartPolicy. The name for an init container or normal container must be unique among all containers. Init containers may not have Lifecycle actions, Readiness probes, Liveness probes, or Startup probes. The resourceRequirements of an init container are taken into account during scheduling by finding the highest request/limit for each resource type, and then using the max of of that value or the sum of the normal containers. Limits are applied to init containers in a similar fashion. Init containers cannot currently be added or removed. Cannot be updated. More info: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/
         """
-        ...
+        return pulumi.get(self, "init_containers")
 
     @property
     @pulumi.getter(name="nodeName")
@@ -7843,7 +7843,7 @@ class PodSpec(dict):
         """
         NodeName is a request to schedule this pod onto a specific node. If it is non-empty, the scheduler simply schedules this pod onto that node, assuming that it fits resource requirements.
         """
-        ...
+        return pulumi.get(self, "node_name")
 
     @property
     @pulumi.getter(name="nodeSelector")
@@ -7851,7 +7851,7 @@ class PodSpec(dict):
         """
         NodeSelector is a selector which must be true for the pod to fit on a node. Selector which must match a node's labels for the pod to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/
         """
-        ...
+        return pulumi.get(self, "node_selector")
 
     @property
     @pulumi.getter
@@ -7859,7 +7859,7 @@ class PodSpec(dict):
         """
         Overhead represents the resource overhead associated with running a pod for a given RuntimeClass. This field will be autopopulated at admission time by the RuntimeClass admission controller. If the RuntimeClass admission controller is enabled, overhead must not be set in Pod create requests. The RuntimeClass admission controller will reject Pod create requests which have the overhead already set. If RuntimeClass is configured and selected in the PodSpec, Overhead will be set to the value defined in the corresponding RuntimeClass, otherwise it will remain unset and treated as zero. More info: https://git.k8s.io/enhancements/keps/sig-node/20190226-pod-overhead.md This field is alpha-level as of Kubernetes v1.16, and is only honored by servers that enable the PodOverhead feature.
         """
-        ...
+        return pulumi.get(self, "overhead")
 
     @property
     @pulumi.getter(name="preemptionPolicy")
@@ -7867,7 +7867,7 @@ class PodSpec(dict):
         """
         PreemptionPolicy is the Policy for preempting pods with lower priority. One of Never, PreemptLowerPriority. Defaults to PreemptLowerPriority if unset. This field is alpha-level and is only honored by servers that enable the NonPreemptingPriority feature.
         """
-        ...
+        return pulumi.get(self, "preemption_policy")
 
     @property
     @pulumi.getter
@@ -7875,7 +7875,7 @@ class PodSpec(dict):
         """
         The priority value. Various system components use this field to find the priority of the pod. When Priority Admission Controller is enabled, it prevents users from setting this field. The admission controller populates this field from PriorityClassName. The higher the value, the higher the priority.
         """
-        ...
+        return pulumi.get(self, "priority")
 
     @property
     @pulumi.getter(name="priorityClassName")
@@ -7883,7 +7883,7 @@ class PodSpec(dict):
         """
         If specified, indicates the pod's priority. "system-node-critical" and "system-cluster-critical" are two special keywords which indicate the highest priorities with the former being the highest priority. Any other name must be defined by creating a PriorityClass object with that name. If not specified, the pod priority will be default or zero if there is no default.
         """
-        ...
+        return pulumi.get(self, "priority_class_name")
 
     @property
     @pulumi.getter(name="readinessGates")
@@ -7891,7 +7891,7 @@ class PodSpec(dict):
         """
         If specified, all readiness gates will be evaluated for pod readiness. A pod is ready when all its containers are ready AND all conditions specified in the readiness gates have status equal to "True" More info: https://git.k8s.io/enhancements/keps/sig-network/0007-pod-ready%2B%2B.md
         """
-        ...
+        return pulumi.get(self, "readiness_gates")
 
     @property
     @pulumi.getter(name="restartPolicy")
@@ -7899,7 +7899,7 @@ class PodSpec(dict):
         """
         Restart policy for all containers within the pod. One of Always, OnFailure, Never. Default to Always. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy
         """
-        ...
+        return pulumi.get(self, "restart_policy")
 
     @property
     @pulumi.getter(name="runtimeClassName")
@@ -7907,7 +7907,7 @@ class PodSpec(dict):
         """
         RuntimeClassName refers to a RuntimeClass object in the node.k8s.io group, which should be used to run this pod.  If no RuntimeClass resource matches the named class, the pod will not be run. If unset or empty, the "legacy" RuntimeClass will be used, which is an implicit class with an empty definition that uses the default runtime handler. More info: https://git.k8s.io/enhancements/keps/sig-node/runtime-class.md This is a beta feature as of Kubernetes v1.14.
         """
-        ...
+        return pulumi.get(self, "runtime_class_name")
 
     @property
     @pulumi.getter(name="schedulerName")
@@ -7915,7 +7915,7 @@ class PodSpec(dict):
         """
         If specified, the pod will be dispatched by specified scheduler. If not specified, the pod will be dispatched by default scheduler.
         """
-        ...
+        return pulumi.get(self, "scheduler_name")
 
     @property
     @pulumi.getter(name="securityContext")
@@ -7923,7 +7923,7 @@ class PodSpec(dict):
         """
         SecurityContext holds pod-level security attributes and common container settings. Optional: Defaults to empty.  See type description for default values of each field.
         """
-        ...
+        return pulumi.get(self, "security_context")
 
     @property
     @pulumi.getter(name="serviceAccount")
@@ -7931,7 +7931,7 @@ class PodSpec(dict):
         """
         DeprecatedServiceAccount is a depreciated alias for ServiceAccountName. Deprecated: Use serviceAccountName instead.
         """
-        ...
+        return pulumi.get(self, "service_account")
 
     @property
     @pulumi.getter(name="serviceAccountName")
@@ -7939,7 +7939,7 @@ class PodSpec(dict):
         """
         ServiceAccountName is the name of the ServiceAccount to use to run this pod. More info: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/
         """
-        ...
+        return pulumi.get(self, "service_account_name")
 
     @property
     @pulumi.getter(name="shareProcessNamespace")
@@ -7947,7 +7947,7 @@ class PodSpec(dict):
         """
         Share a single process namespace between all of the containers in a pod. When this is set containers will be able to view and signal processes from other containers in the same pod, and the first process in each container will not be assigned PID 1. HostPID and ShareProcessNamespace cannot both be set. Optional: Default to false.
         """
-        ...
+        return pulumi.get(self, "share_process_namespace")
 
     @property
     @pulumi.getter
@@ -7955,7 +7955,7 @@ class PodSpec(dict):
         """
         If specified, the fully qualified Pod hostname will be "<hostname>.<subdomain>.<pod namespace>.svc.<cluster domain>". If not specified, the pod will not have a domainname at all.
         """
-        ...
+        return pulumi.get(self, "subdomain")
 
     @property
     @pulumi.getter(name="terminationGracePeriodSeconds")
@@ -7963,7 +7963,7 @@ class PodSpec(dict):
         """
         Optional duration in seconds the pod needs to terminate gracefully. May be decreased in delete request. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period will be used instead. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. Defaults to 30 seconds.
         """
-        ...
+        return pulumi.get(self, "termination_grace_period_seconds")
 
     @property
     @pulumi.getter
@@ -7971,7 +7971,7 @@ class PodSpec(dict):
         """
         If specified, the pod's tolerations.
         """
-        ...
+        return pulumi.get(self, "tolerations")
 
     @property
     @pulumi.getter(name="topologySpreadConstraints")
@@ -7979,7 +7979,7 @@ class PodSpec(dict):
         """
         TopologySpreadConstraints describes how a group of pods ought to spread across topology domains. Scheduler will schedule pods in a way which abides by the constraints. This field is only honored by clusters that enable the EvenPodsSpread feature. All topologySpreadConstraints are ANDed.
         """
-        ...
+        return pulumi.get(self, "topology_spread_constraints")
 
     @property
     @pulumi.getter
@@ -7987,7 +7987,7 @@ class PodSpec(dict):
         """
         List of volumes that can be mounted by containers belonging to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes
         """
-        ...
+        return pulumi.get(self, "volumes")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -8065,7 +8065,7 @@ class PodStatus(dict):
         """
         Current service state of pod. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#pod-conditions
         """
-        ...
+        return pulumi.get(self, "conditions")
 
     @property
     @pulumi.getter(name="containerStatuses")
@@ -8073,7 +8073,7 @@ class PodStatus(dict):
         """
         The list has one entry per container in the manifest. Each entry is currently the output of `docker inspect`. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#pod-and-container-status
         """
-        ...
+        return pulumi.get(self, "container_statuses")
 
     @property
     @pulumi.getter(name="ephemeralContainerStatuses")
@@ -8081,7 +8081,7 @@ class PodStatus(dict):
         """
         Status for any ephemeral containers that have run in this pod. This field is alpha-level and is only populated by servers that enable the EphemeralContainers feature.
         """
-        ...
+        return pulumi.get(self, "ephemeral_container_statuses")
 
     @property
     @pulumi.getter(name="hostIP")
@@ -8089,7 +8089,7 @@ class PodStatus(dict):
         """
         IP address of the host to which the pod is assigned. Empty if not yet scheduled.
         """
-        ...
+        return pulumi.get(self, "host_ip")
 
     @property
     @pulumi.getter(name="initContainerStatuses")
@@ -8097,7 +8097,7 @@ class PodStatus(dict):
         """
         The list has one entry per init container in the manifest. The most recent successful init container will have ready = true, the most recently started container will have startTime set. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#pod-and-container-status
         """
-        ...
+        return pulumi.get(self, "init_container_statuses")
 
     @property
     @pulumi.getter
@@ -8105,7 +8105,7 @@ class PodStatus(dict):
         """
         A human readable message indicating details about why the pod is in this condition.
         """
-        ...
+        return pulumi.get(self, "message")
 
     @property
     @pulumi.getter(name="nominatedNodeName")
@@ -8113,7 +8113,7 @@ class PodStatus(dict):
         """
         nominatedNodeName is set only when this pod preempts other pods on the node, but it cannot be scheduled right away as preemption victims receive their graceful termination periods. This field does not guarantee that the pod will be scheduled on this node. Scheduler may decide to place the pod elsewhere if other nodes become available sooner. Scheduler may also decide to give the resources on this node to a higher priority pod that is created after preemption. As a result, this field may be different than PodSpec.nodeName when the pod is scheduled.
         """
-        ...
+        return pulumi.get(self, "nominated_node_name")
 
     @property
     @pulumi.getter
@@ -8125,7 +8125,7 @@ class PodStatus(dict):
 
         More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#pod-phase
         """
-        ...
+        return pulumi.get(self, "phase")
 
     @property
     @pulumi.getter(name="podIP")
@@ -8133,7 +8133,7 @@ class PodStatus(dict):
         """
         IP address allocated to the pod. Routable at least within the cluster. Empty if not yet allocated.
         """
-        ...
+        return pulumi.get(self, "pod_ip")
 
     @property
     @pulumi.getter(name="podIPs")
@@ -8141,7 +8141,7 @@ class PodStatus(dict):
         """
         podIPs holds the IP addresses allocated to the pod. If this field is specified, the 0th entry must match the podIP field. Pods may be allocated at most 1 value for each of IPv4 and IPv6. This list is empty if no IPs have been allocated yet.
         """
-        ...
+        return pulumi.get(self, "pod_ips")
 
     @property
     @pulumi.getter(name="qosClass")
@@ -8149,7 +8149,7 @@ class PodStatus(dict):
         """
         The Quality of Service (QOS) classification assigned to the pod based on resource requirements See PodQOSClass type for available QOS classes More info: https://git.k8s.io/community/contributors/design-proposals/node/resource-qos.md
         """
-        ...
+        return pulumi.get(self, "qos_class")
 
     @property
     @pulumi.getter
@@ -8157,7 +8157,7 @@ class PodStatus(dict):
         """
         A brief CamelCase message indicating details about why the pod is in this state. e.g. 'Evicted'
         """
-        ...
+        return pulumi.get(self, "reason")
 
     @property
     @pulumi.getter(name="startTime")
@@ -8165,7 +8165,7 @@ class PodStatus(dict):
         """
         RFC 3339 date and time at which the object was acknowledged by the Kubelet. This is before the Kubelet pulled the container image(s) for the pod.
         """
-        ...
+        return pulumi.get(self, "start_time")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -8203,7 +8203,7 @@ class PodTemplate(dict):
         """
         APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
         """
-        ...
+        return pulumi.get(self, "api_version")
 
     @property
     @pulumi.getter
@@ -8211,7 +8211,7 @@ class PodTemplate(dict):
         """
         Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         """
-        ...
+        return pulumi.get(self, "kind")
 
     @property
     @pulumi.getter
@@ -8219,7 +8219,7 @@ class PodTemplate(dict):
         """
         Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         """
-        ...
+        return pulumi.get(self, "metadata")
 
     @property
     @pulumi.getter
@@ -8227,7 +8227,7 @@ class PodTemplate(dict):
         """
         Template defines the pods that will be created from this pod template. https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
         """
-        ...
+        return pulumi.get(self, "template")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -8257,7 +8257,7 @@ class PodTemplateSpec(dict):
         """
         Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         """
-        ...
+        return pulumi.get(self, "metadata")
 
     @property
     @pulumi.getter
@@ -8265,7 +8265,7 @@ class PodTemplateSpec(dict):
         """
         Specification of the desired behavior of the pod. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
         """
-        ...
+        return pulumi.get(self, "spec")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -8298,7 +8298,7 @@ class PortworxVolumeSource(dict):
         """
         VolumeID uniquely identifies a Portworx volume
         """
-        ...
+        return pulumi.get(self, "volume_id")
 
     @property
     @pulumi.getter(name="fsType")
@@ -8306,7 +8306,7 @@ class PortworxVolumeSource(dict):
         """
         FSType represents the filesystem type to mount Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs". Implicitly inferred to be "ext4" if unspecified.
         """
-        ...
+        return pulumi.get(self, "fs_type")
 
     @property
     @pulumi.getter(name="readOnly")
@@ -8314,7 +8314,7 @@ class PortworxVolumeSource(dict):
         """
         Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
         """
-        ...
+        return pulumi.get(self, "read_only")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -8342,7 +8342,7 @@ class PreferredSchedulingTerm(dict):
         """
         A node selector term, associated with the corresponding weight.
         """
-        ...
+        return pulumi.get(self, "preference")
 
     @property
     @pulumi.getter
@@ -8350,7 +8350,7 @@ class PreferredSchedulingTerm(dict):
         """
         Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100.
         """
-        ...
+        return pulumi.get(self, "weight")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -8404,7 +8404,7 @@ class Probe(dict):
         """
         One and only one of the following should be specified. Exec specifies the action to take.
         """
-        ...
+        return pulumi.get(self, "exec_")
 
     @property
     @pulumi.getter(name="failureThreshold")
@@ -8412,7 +8412,7 @@ class Probe(dict):
         """
         Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.
         """
-        ...
+        return pulumi.get(self, "failure_threshold")
 
     @property
     @pulumi.getter(name="httpGet")
@@ -8420,7 +8420,7 @@ class Probe(dict):
         """
         HTTPGet specifies the http request to perform.
         """
-        ...
+        return pulumi.get(self, "http_get")
 
     @property
     @pulumi.getter(name="initialDelaySeconds")
@@ -8428,7 +8428,7 @@ class Probe(dict):
         """
         Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
         """
-        ...
+        return pulumi.get(self, "initial_delay_seconds")
 
     @property
     @pulumi.getter(name="periodSeconds")
@@ -8436,7 +8436,7 @@ class Probe(dict):
         """
         How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.
         """
-        ...
+        return pulumi.get(self, "period_seconds")
 
     @property
     @pulumi.getter(name="successThreshold")
@@ -8444,7 +8444,7 @@ class Probe(dict):
         """
         Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.
         """
-        ...
+        return pulumi.get(self, "success_threshold")
 
     @property
     @pulumi.getter(name="tcpSocket")
@@ -8452,7 +8452,7 @@ class Probe(dict):
         """
         TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported
         """
-        ...
+        return pulumi.get(self, "tcp_socket")
 
     @property
     @pulumi.getter(name="timeoutSeconds")
@@ -8460,7 +8460,7 @@ class Probe(dict):
         """
         Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
         """
-        ...
+        return pulumi.get(self, "timeout_seconds")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -8489,7 +8489,7 @@ class ProjectedVolumeSource(dict):
         """
         list of volume projections
         """
-        ...
+        return pulumi.get(self, "sources")
 
     @property
     @pulumi.getter(name="defaultMode")
@@ -8497,7 +8497,7 @@ class ProjectedVolumeSource(dict):
         """
         Mode bits to use on created files by default. Must be a value between 0 and 0777. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
         """
-        ...
+        return pulumi.get(self, "default_mode")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -8541,7 +8541,7 @@ class QuobyteVolumeSource(dict):
         """
         Registry represents a single or multiple Quobyte Registry services specified as a string as host:port pair (multiple entries are separated with commas) which acts as the central registry for volumes
         """
-        ...
+        return pulumi.get(self, "registry")
 
     @property
     @pulumi.getter
@@ -8549,7 +8549,7 @@ class QuobyteVolumeSource(dict):
         """
         Volume is a string that references an already created Quobyte volume by name.
         """
-        ...
+        return pulumi.get(self, "volume")
 
     @property
     @pulumi.getter
@@ -8557,7 +8557,7 @@ class QuobyteVolumeSource(dict):
         """
         Group to map volume access to Default is no group
         """
-        ...
+        return pulumi.get(self, "group")
 
     @property
     @pulumi.getter(name="readOnly")
@@ -8565,7 +8565,7 @@ class QuobyteVolumeSource(dict):
         """
         ReadOnly here will force the Quobyte volume to be mounted with read-only permissions. Defaults to false.
         """
-        ...
+        return pulumi.get(self, "read_only")
 
     @property
     @pulumi.getter
@@ -8573,7 +8573,7 @@ class QuobyteVolumeSource(dict):
         """
         Tenant owning the given Quobyte volume in the Backend Used with dynamically provisioned Quobyte volumes, value is set by the plugin
         """
-        ...
+        return pulumi.get(self, "tenant")
 
     @property
     @pulumi.getter
@@ -8581,7 +8581,7 @@ class QuobyteVolumeSource(dict):
         """
         User to map volume access to Defaults to serivceaccount user
         """
-        ...
+        return pulumi.get(self, "user")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -8633,7 +8633,7 @@ class RBDPersistentVolumeSource(dict):
         """
         The rados image name. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
         """
-        ...
+        return pulumi.get(self, "image")
 
     @property
     @pulumi.getter
@@ -8641,7 +8641,7 @@ class RBDPersistentVolumeSource(dict):
         """
         A collection of Ceph monitors. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
         """
-        ...
+        return pulumi.get(self, "monitors")
 
     @property
     @pulumi.getter(name="fsType")
@@ -8649,7 +8649,7 @@ class RBDPersistentVolumeSource(dict):
         """
         Filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#rbd
         """
-        ...
+        return pulumi.get(self, "fs_type")
 
     @property
     @pulumi.getter
@@ -8657,7 +8657,7 @@ class RBDPersistentVolumeSource(dict):
         """
         Keyring is the path to key ring for RBDUser. Default is /etc/ceph/keyring. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
         """
-        ...
+        return pulumi.get(self, "keyring")
 
     @property
     @pulumi.getter
@@ -8665,7 +8665,7 @@ class RBDPersistentVolumeSource(dict):
         """
         The rados pool name. Default is rbd. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
         """
-        ...
+        return pulumi.get(self, "pool")
 
     @property
     @pulumi.getter(name="readOnly")
@@ -8673,7 +8673,7 @@ class RBDPersistentVolumeSource(dict):
         """
         ReadOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
         """
-        ...
+        return pulumi.get(self, "read_only")
 
     @property
     @pulumi.getter(name="secretRef")
@@ -8681,7 +8681,7 @@ class RBDPersistentVolumeSource(dict):
         """
         SecretRef is name of the authentication secret for RBDUser. If provided overrides keyring. Default is nil. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
         """
-        ...
+        return pulumi.get(self, "secret_ref")
 
     @property
     @pulumi.getter
@@ -8689,7 +8689,7 @@ class RBDPersistentVolumeSource(dict):
         """
         The rados user name. Default is admin. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
         """
-        ...
+        return pulumi.get(self, "user")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -8741,7 +8741,7 @@ class RBDVolumeSource(dict):
         """
         The rados image name. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
         """
-        ...
+        return pulumi.get(self, "image")
 
     @property
     @pulumi.getter
@@ -8749,7 +8749,7 @@ class RBDVolumeSource(dict):
         """
         A collection of Ceph monitors. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
         """
-        ...
+        return pulumi.get(self, "monitors")
 
     @property
     @pulumi.getter(name="fsType")
@@ -8757,7 +8757,7 @@ class RBDVolumeSource(dict):
         """
         Filesystem type of the volume that you want to mount. Tip: Ensure that the filesystem type is supported by the host operating system. Examples: "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified. More info: https://kubernetes.io/docs/concepts/storage/volumes#rbd
         """
-        ...
+        return pulumi.get(self, "fs_type")
 
     @property
     @pulumi.getter
@@ -8765,7 +8765,7 @@ class RBDVolumeSource(dict):
         """
         Keyring is the path to key ring for RBDUser. Default is /etc/ceph/keyring. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
         """
-        ...
+        return pulumi.get(self, "keyring")
 
     @property
     @pulumi.getter
@@ -8773,7 +8773,7 @@ class RBDVolumeSource(dict):
         """
         The rados pool name. Default is rbd. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
         """
-        ...
+        return pulumi.get(self, "pool")
 
     @property
     @pulumi.getter(name="readOnly")
@@ -8781,7 +8781,7 @@ class RBDVolumeSource(dict):
         """
         ReadOnly here will force the ReadOnly setting in VolumeMounts. Defaults to false. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
         """
-        ...
+        return pulumi.get(self, "read_only")
 
     @property
     @pulumi.getter(name="secretRef")
@@ -8789,7 +8789,7 @@ class RBDVolumeSource(dict):
         """
         SecretRef is name of the authentication secret for RBDUser. If provided overrides keyring. Default is nil. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
         """
-        ...
+        return pulumi.get(self, "secret_ref")
 
     @property
     @pulumi.getter
@@ -8797,7 +8797,7 @@ class RBDVolumeSource(dict):
         """
         The rados user name. Default is admin. More info: https://examples.k8s.io/volumes/rbd/README.md#how-to-use-it
         """
-        ...
+        return pulumi.get(self, "user")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -8839,7 +8839,7 @@ class ReplicationController(dict):
         """
         APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
         """
-        ...
+        return pulumi.get(self, "api_version")
 
     @property
     @pulumi.getter
@@ -8847,7 +8847,7 @@ class ReplicationController(dict):
         """
         Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         """
-        ...
+        return pulumi.get(self, "kind")
 
     @property
     @pulumi.getter
@@ -8855,7 +8855,7 @@ class ReplicationController(dict):
         """
         If the Labels of a ReplicationController are empty, they are defaulted to be the same as the Pod(s) that the replication controller manages. Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         """
-        ...
+        return pulumi.get(self, "metadata")
 
     @property
     @pulumi.getter
@@ -8863,7 +8863,7 @@ class ReplicationController(dict):
         """
         Spec defines the specification of the desired behavior of the replication controller. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
         """
-        ...
+        return pulumi.get(self, "spec")
 
     @property
     @pulumi.getter
@@ -8871,7 +8871,7 @@ class ReplicationController(dict):
         """
         Status is the most recently observed status of the replication controller. This data may be out of date by some window of time. Populated by the system. Read-only. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
         """
-        ...
+        return pulumi.get(self, "status")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -8911,7 +8911,7 @@ class ReplicationControllerCondition(dict):
         """
         Status of the condition, one of True, False, Unknown.
         """
-        ...
+        return pulumi.get(self, "status")
 
     @property
     @pulumi.getter
@@ -8919,7 +8919,7 @@ class ReplicationControllerCondition(dict):
         """
         Type of replication controller condition.
         """
-        ...
+        return pulumi.get(self, "type")
 
     @property
     @pulumi.getter(name="lastTransitionTime")
@@ -8927,7 +8927,7 @@ class ReplicationControllerCondition(dict):
         """
         The last time the condition transitioned from one status to another.
         """
-        ...
+        return pulumi.get(self, "last_transition_time")
 
     @property
     @pulumi.getter
@@ -8935,7 +8935,7 @@ class ReplicationControllerCondition(dict):
         """
         A human readable message indicating details about the transition.
         """
-        ...
+        return pulumi.get(self, "message")
 
     @property
     @pulumi.getter
@@ -8943,7 +8943,7 @@ class ReplicationControllerCondition(dict):
         """
         The reason for the condition's last transition.
         """
-        ...
+        return pulumi.get(self, "reason")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -8981,7 +8981,7 @@ class ReplicationControllerSpec(dict):
         """
         Minimum number of seconds for which a newly created pod should be ready without any of its container crashing, for it to be considered available. Defaults to 0 (pod will be considered available as soon as it is ready)
         """
-        ...
+        return pulumi.get(self, "min_ready_seconds")
 
     @property
     @pulumi.getter
@@ -8989,7 +8989,7 @@ class ReplicationControllerSpec(dict):
         """
         Replicas is the number of desired replicas. This is a pointer to distinguish between explicit zero and unspecified. Defaults to 1. More info: https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller#what-is-a-replicationcontroller
         """
-        ...
+        return pulumi.get(self, "replicas")
 
     @property
     @pulumi.getter
@@ -8997,7 +8997,7 @@ class ReplicationControllerSpec(dict):
         """
         Selector is a label query over pods that should match the Replicas count. If Selector is empty, it is defaulted to the labels present on the Pod template. Label keys and values that must match in order to be controlled by this replication controller, if empty defaulted to labels on Pod template. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors
         """
-        ...
+        return pulumi.get(self, "selector")
 
     @property
     @pulumi.getter
@@ -9005,7 +9005,7 @@ class ReplicationControllerSpec(dict):
         """
         Template is the object that describes the pod that will be created if insufficient replicas are detected. This takes precedence over a TemplateRef. More info: https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller#pod-template
         """
-        ...
+        return pulumi.get(self, "template")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -9050,7 +9050,7 @@ class ReplicationControllerStatus(dict):
         """
         Replicas is the most recently oberved number of replicas. More info: https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller#what-is-a-replicationcontroller
         """
-        ...
+        return pulumi.get(self, "replicas")
 
     @property
     @pulumi.getter(name="availableReplicas")
@@ -9058,7 +9058,7 @@ class ReplicationControllerStatus(dict):
         """
         The number of available replicas (ready for at least minReadySeconds) for this replication controller.
         """
-        ...
+        return pulumi.get(self, "available_replicas")
 
     @property
     @pulumi.getter
@@ -9066,7 +9066,7 @@ class ReplicationControllerStatus(dict):
         """
         Represents the latest available observations of a replication controller's current state.
         """
-        ...
+        return pulumi.get(self, "conditions")
 
     @property
     @pulumi.getter(name="fullyLabeledReplicas")
@@ -9074,7 +9074,7 @@ class ReplicationControllerStatus(dict):
         """
         The number of pods that have labels matching the labels of the pod template of the replication controller.
         """
-        ...
+        return pulumi.get(self, "fully_labeled_replicas")
 
     @property
     @pulumi.getter(name="observedGeneration")
@@ -9082,7 +9082,7 @@ class ReplicationControllerStatus(dict):
         """
         ObservedGeneration reflects the generation of the most recently observed replication controller.
         """
-        ...
+        return pulumi.get(self, "observed_generation")
 
     @property
     @pulumi.getter(name="readyReplicas")
@@ -9090,7 +9090,7 @@ class ReplicationControllerStatus(dict):
         """
         The number of ready replicas for this replication controller.
         """
-        ...
+        return pulumi.get(self, "ready_replicas")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -9123,7 +9123,7 @@ class ResourceFieldSelector(dict):
         """
         Required: resource to select
         """
-        ...
+        return pulumi.get(self, "resource")
 
     @property
     @pulumi.getter(name="containerName")
@@ -9131,7 +9131,7 @@ class ResourceFieldSelector(dict):
         """
         Container name: required for volumes, optional for env vars
         """
-        ...
+        return pulumi.get(self, "container_name")
 
     @property
     @pulumi.getter
@@ -9139,7 +9139,7 @@ class ResourceFieldSelector(dict):
         """
         Specifies the output format of the exposed resources, defaults to "1"
         """
-        ...
+        return pulumi.get(self, "divisor")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -9181,7 +9181,7 @@ class ResourceQuota(dict):
         """
         APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
         """
-        ...
+        return pulumi.get(self, "api_version")
 
     @property
     @pulumi.getter
@@ -9189,7 +9189,7 @@ class ResourceQuota(dict):
         """
         Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         """
-        ...
+        return pulumi.get(self, "kind")
 
     @property
     @pulumi.getter
@@ -9197,7 +9197,7 @@ class ResourceQuota(dict):
         """
         Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         """
-        ...
+        return pulumi.get(self, "metadata")
 
     @property
     @pulumi.getter
@@ -9205,7 +9205,7 @@ class ResourceQuota(dict):
         """
         Spec defines the desired quota. https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
         """
-        ...
+        return pulumi.get(self, "spec")
 
     @property
     @pulumi.getter
@@ -9213,7 +9213,7 @@ class ResourceQuota(dict):
         """
         Status defines the actual enforced quota and its current usage. https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
         """
-        ...
+        return pulumi.get(self, "status")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -9247,7 +9247,7 @@ class ResourceQuotaSpec(dict):
         """
         hard is the set of desired hard limits for each named resource. More info: https://kubernetes.io/docs/concepts/policy/resource-quotas/
         """
-        ...
+        return pulumi.get(self, "hard")
 
     @property
     @pulumi.getter(name="scopeSelector")
@@ -9255,7 +9255,7 @@ class ResourceQuotaSpec(dict):
         """
         scopeSelector is also a collection of filters like scopes that must match each object tracked by a quota but expressed using ScopeSelectorOperator in combination with possible values. For a resource to match, both scopes AND scopeSelector (if specified in spec), must be matched.
         """
-        ...
+        return pulumi.get(self, "scope_selector")
 
     @property
     @pulumi.getter
@@ -9263,7 +9263,7 @@ class ResourceQuotaSpec(dict):
         """
         A collection of filters that must match each object tracked by a quota. If not specified, the quota matches all objects.
         """
-        ...
+        return pulumi.get(self, "scopes")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -9293,7 +9293,7 @@ class ResourceQuotaStatus(dict):
         """
         Hard is the set of enforced hard limits for each named resource. More info: https://kubernetes.io/docs/concepts/policy/resource-quotas/
         """
-        ...
+        return pulumi.get(self, "hard")
 
     @property
     @pulumi.getter
@@ -9301,7 +9301,7 @@ class ResourceQuotaStatus(dict):
         """
         Used is the current observed total usage of the resource in the namespace.
         """
-        ...
+        return pulumi.get(self, "used")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -9331,7 +9331,7 @@ class ResourceRequirements(dict):
         """
         Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/
         """
-        ...
+        return pulumi.get(self, "limits")
 
     @property
     @pulumi.getter
@@ -9339,7 +9339,7 @@ class ResourceRequirements(dict):
         """
         Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/
         """
-        ...
+        return pulumi.get(self, "requests")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -9377,7 +9377,7 @@ class SELinuxOptions(dict):
         """
         Level is SELinux level label that applies to the container.
         """
-        ...
+        return pulumi.get(self, "level")
 
     @property
     @pulumi.getter
@@ -9385,7 +9385,7 @@ class SELinuxOptions(dict):
         """
         Role is a SELinux role label that applies to the container.
         """
-        ...
+        return pulumi.get(self, "role")
 
     @property
     @pulumi.getter
@@ -9393,7 +9393,7 @@ class SELinuxOptions(dict):
         """
         Type is a SELinux type label that applies to the container.
         """
-        ...
+        return pulumi.get(self, "type")
 
     @property
     @pulumi.getter
@@ -9401,7 +9401,7 @@ class SELinuxOptions(dict):
         """
         User is a SELinux user label that applies to the container.
         """
-        ...
+        return pulumi.get(self, "user")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -9460,7 +9460,7 @@ class ScaleIOPersistentVolumeSource(dict):
         """
         The host address of the ScaleIO API Gateway.
         """
-        ...
+        return pulumi.get(self, "gateway")
 
     @property
     @pulumi.getter(name="secretRef")
@@ -9468,7 +9468,7 @@ class ScaleIOPersistentVolumeSource(dict):
         """
         SecretRef references to the secret for ScaleIO user and other sensitive information. If this is not provided, Login operation will fail.
         """
-        ...
+        return pulumi.get(self, "secret_ref")
 
     @property
     @pulumi.getter
@@ -9476,7 +9476,7 @@ class ScaleIOPersistentVolumeSource(dict):
         """
         The name of the storage system as configured in ScaleIO.
         """
-        ...
+        return pulumi.get(self, "system")
 
     @property
     @pulumi.getter(name="fsType")
@@ -9484,7 +9484,7 @@ class ScaleIOPersistentVolumeSource(dict):
         """
         Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs", "ntfs". Default is "xfs"
         """
-        ...
+        return pulumi.get(self, "fs_type")
 
     @property
     @pulumi.getter(name="protectionDomain")
@@ -9492,7 +9492,7 @@ class ScaleIOPersistentVolumeSource(dict):
         """
         The name of the ScaleIO Protection Domain for the configured storage.
         """
-        ...
+        return pulumi.get(self, "protection_domain")
 
     @property
     @pulumi.getter(name="readOnly")
@@ -9500,7 +9500,7 @@ class ScaleIOPersistentVolumeSource(dict):
         """
         Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
         """
-        ...
+        return pulumi.get(self, "read_only")
 
     @property
     @pulumi.getter(name="sslEnabled")
@@ -9508,7 +9508,7 @@ class ScaleIOPersistentVolumeSource(dict):
         """
         Flag to enable/disable SSL communication with Gateway, default false
         """
-        ...
+        return pulumi.get(self, "ssl_enabled")
 
     @property
     @pulumi.getter(name="storageMode")
@@ -9516,7 +9516,7 @@ class ScaleIOPersistentVolumeSource(dict):
         """
         Indicates whether the storage for a volume should be ThickProvisioned or ThinProvisioned. Default is ThinProvisioned.
         """
-        ...
+        return pulumi.get(self, "storage_mode")
 
     @property
     @pulumi.getter(name="storagePool")
@@ -9524,7 +9524,7 @@ class ScaleIOPersistentVolumeSource(dict):
         """
         The ScaleIO Storage Pool associated with the protection domain.
         """
-        ...
+        return pulumi.get(self, "storage_pool")
 
     @property
     @pulumi.getter(name="volumeName")
@@ -9532,7 +9532,7 @@ class ScaleIOPersistentVolumeSource(dict):
         """
         The name of a volume already created in the ScaleIO system that is associated with this volume source.
         """
-        ...
+        return pulumi.get(self, "volume_name")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -9591,7 +9591,7 @@ class ScaleIOVolumeSource(dict):
         """
         The host address of the ScaleIO API Gateway.
         """
-        ...
+        return pulumi.get(self, "gateway")
 
     @property
     @pulumi.getter(name="secretRef")
@@ -9599,7 +9599,7 @@ class ScaleIOVolumeSource(dict):
         """
         SecretRef references to the secret for ScaleIO user and other sensitive information. If this is not provided, Login operation will fail.
         """
-        ...
+        return pulumi.get(self, "secret_ref")
 
     @property
     @pulumi.getter
@@ -9607,7 +9607,7 @@ class ScaleIOVolumeSource(dict):
         """
         The name of the storage system as configured in ScaleIO.
         """
-        ...
+        return pulumi.get(self, "system")
 
     @property
     @pulumi.getter(name="fsType")
@@ -9615,7 +9615,7 @@ class ScaleIOVolumeSource(dict):
         """
         Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs", "ntfs". Default is "xfs".
         """
-        ...
+        return pulumi.get(self, "fs_type")
 
     @property
     @pulumi.getter(name="protectionDomain")
@@ -9623,7 +9623,7 @@ class ScaleIOVolumeSource(dict):
         """
         The name of the ScaleIO Protection Domain for the configured storage.
         """
-        ...
+        return pulumi.get(self, "protection_domain")
 
     @property
     @pulumi.getter(name="readOnly")
@@ -9631,7 +9631,7 @@ class ScaleIOVolumeSource(dict):
         """
         Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
         """
-        ...
+        return pulumi.get(self, "read_only")
 
     @property
     @pulumi.getter(name="sslEnabled")
@@ -9639,7 +9639,7 @@ class ScaleIOVolumeSource(dict):
         """
         Flag to enable/disable SSL communication with Gateway, default false
         """
-        ...
+        return pulumi.get(self, "ssl_enabled")
 
     @property
     @pulumi.getter(name="storageMode")
@@ -9647,7 +9647,7 @@ class ScaleIOVolumeSource(dict):
         """
         Indicates whether the storage for a volume should be ThickProvisioned or ThinProvisioned. Default is ThinProvisioned.
         """
-        ...
+        return pulumi.get(self, "storage_mode")
 
     @property
     @pulumi.getter(name="storagePool")
@@ -9655,7 +9655,7 @@ class ScaleIOVolumeSource(dict):
         """
         The ScaleIO Storage Pool associated with the protection domain.
         """
-        ...
+        return pulumi.get(self, "storage_pool")
 
     @property
     @pulumi.getter(name="volumeName")
@@ -9663,7 +9663,7 @@ class ScaleIOVolumeSource(dict):
         """
         The name of a volume already created in the ScaleIO system that is associated with this volume source.
         """
-        ...
+        return pulumi.get(self, "volume_name")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -9689,7 +9689,7 @@ class ScopeSelector(dict):
         """
         A list of scope selector requirements by scope of the resources.
         """
-        ...
+        return pulumi.get(self, "match_expressions")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -9721,7 +9721,7 @@ class ScopedResourceSelectorRequirement(dict):
         """
         Represents a scope's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist.
         """
-        ...
+        return pulumi.get(self, "operator")
 
     @property
     @pulumi.getter(name="scopeName")
@@ -9729,7 +9729,7 @@ class ScopedResourceSelectorRequirement(dict):
         """
         The name of the scope that the selector applies to.
         """
-        ...
+        return pulumi.get(self, "scope_name")
 
     @property
     @pulumi.getter
@@ -9737,7 +9737,7 @@ class ScopedResourceSelectorRequirement(dict):
         """
         An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
         """
-        ...
+        return pulumi.get(self, "values")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -9807,7 +9807,7 @@ class Secret(dict):
         """
         APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
         """
-        ...
+        return pulumi.get(self, "api_version")
 
     @property
     @pulumi.getter
@@ -9815,7 +9815,7 @@ class Secret(dict):
         """
         Data contains the secret data. Each key must consist of alphanumeric characters, '-', '_' or '.'. The serialized form of the secret data is a base64 encoded string, representing the arbitrary (possibly non-string) data value here. Described in https://tools.ietf.org/html/rfc4648#section-4
         """
-        ...
+        return pulumi.get(self, "data")
 
     @property
     @pulumi.getter
@@ -9823,7 +9823,7 @@ class Secret(dict):
         """
         Immutable, if set to true, ensures that data stored in the Secret cannot be updated (only object metadata can be modified). If not set to true, the field can be modified at any time. Defaulted to nil. This is an alpha field enabled by ImmutableEphemeralVolumes feature gate.
         """
-        ...
+        return pulumi.get(self, "immutable")
 
     @property
     @pulumi.getter
@@ -9831,7 +9831,7 @@ class Secret(dict):
         """
         Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         """
-        ...
+        return pulumi.get(self, "kind")
 
     @property
     @pulumi.getter
@@ -9839,7 +9839,7 @@ class Secret(dict):
         """
         Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         """
-        ...
+        return pulumi.get(self, "metadata")
 
     @property
     @pulumi.getter(name="stringData")
@@ -9847,7 +9847,7 @@ class Secret(dict):
         """
         stringData allows specifying non-binary secret data in string form. It is provided as a write-only convenience method. All keys and values are merged into the data field on write, overwriting any existing values. It is never output when reading from the API.
         """
-        ...
+        return pulumi.get(self, "string_data")
 
     @property
     @pulumi.getter
@@ -9855,7 +9855,7 @@ class Secret(dict):
         """
         Used to facilitate programmatic handling of secret data.
         """
-        ...
+        return pulumi.get(self, "type")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -9889,7 +9889,7 @@ class SecretEnvSource(dict):
         """
         Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -9897,7 +9897,7 @@ class SecretEnvSource(dict):
         """
         Specify whether the Secret must be defined
         """
-        ...
+        return pulumi.get(self, "optional")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -9930,7 +9930,7 @@ class SecretKeySelector(dict):
         """
         The key of the secret to select from.  Must be a valid secret key.
         """
-        ...
+        return pulumi.get(self, "key")
 
     @property
     @pulumi.getter
@@ -9938,7 +9938,7 @@ class SecretKeySelector(dict):
         """
         Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -9946,7 +9946,7 @@ class SecretKeySelector(dict):
         """
         Specify whether the Secret or its key must be defined
         """
-        ...
+        return pulumi.get(self, "optional")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -9984,7 +9984,7 @@ class SecretProjection(dict):
         """
         If unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.
         """
-        ...
+        return pulumi.get(self, "items")
 
     @property
     @pulumi.getter
@@ -9992,7 +9992,7 @@ class SecretProjection(dict):
         """
         Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -10000,7 +10000,7 @@ class SecretProjection(dict):
         """
         Specify whether the Secret or its key must be defined
         """
-        ...
+        return pulumi.get(self, "optional")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -10030,7 +10030,7 @@ class SecretReference(dict):
         """
         Name is unique within a namespace to reference a secret resource.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -10038,7 +10038,7 @@ class SecretReference(dict):
         """
         Namespace defines the space within which the secret name must be unique.
         """
-        ...
+        return pulumi.get(self, "namespace")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -10080,7 +10080,7 @@ class SecretVolumeSource(dict):
         """
         Optional: mode bits to use on created files by default. Must be a value between 0 and 0777. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
         """
-        ...
+        return pulumi.get(self, "default_mode")
 
     @property
     @pulumi.getter
@@ -10088,7 +10088,7 @@ class SecretVolumeSource(dict):
         """
         If unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional. Paths must be relative and may not contain the '..' path or start with '..'.
         """
-        ...
+        return pulumi.get(self, "items")
 
     @property
     @pulumi.getter
@@ -10096,7 +10096,7 @@ class SecretVolumeSource(dict):
         """
         Specify whether the Secret or its keys must be defined
         """
-        ...
+        return pulumi.get(self, "optional")
 
     @property
     @pulumi.getter(name="secretName")
@@ -10104,7 +10104,7 @@ class SecretVolumeSource(dict):
         """
         Name of the secret in the pod's namespace to use. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret
         """
-        ...
+        return pulumi.get(self, "secret_name")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -10166,7 +10166,7 @@ class SecurityContext(dict):
         """
         AllowPrivilegeEscalation controls whether a process can gain more privileges than its parent process. This bool directly controls if the no_new_privs flag will be set on the container process. AllowPrivilegeEscalation is true always when the container is: 1) run as Privileged 2) has CAP_SYS_ADMIN
         """
-        ...
+        return pulumi.get(self, "allow_privilege_escalation")
 
     @property
     @pulumi.getter
@@ -10174,7 +10174,7 @@ class SecurityContext(dict):
         """
         The capabilities to add/drop when running containers. Defaults to the default set of capabilities granted by the container runtime.
         """
-        ...
+        return pulumi.get(self, "capabilities")
 
     @property
     @pulumi.getter
@@ -10182,7 +10182,7 @@ class SecurityContext(dict):
         """
         Run container in privileged mode. Processes in privileged containers are essentially equivalent to root on the host. Defaults to false.
         """
-        ...
+        return pulumi.get(self, "privileged")
 
     @property
     @pulumi.getter(name="procMount")
@@ -10190,7 +10190,7 @@ class SecurityContext(dict):
         """
         procMount denotes the type of proc mount to use for the containers. The default is DefaultProcMount which uses the container runtime defaults for readonly paths and masked paths. This requires the ProcMountType feature flag to be enabled.
         """
-        ...
+        return pulumi.get(self, "proc_mount")
 
     @property
     @pulumi.getter(name="readOnlyRootFilesystem")
@@ -10198,7 +10198,7 @@ class SecurityContext(dict):
         """
         Whether this container has a read-only root filesystem. Default is false.
         """
-        ...
+        return pulumi.get(self, "read_only_root_filesystem")
 
     @property
     @pulumi.getter(name="runAsGroup")
@@ -10206,7 +10206,7 @@ class SecurityContext(dict):
         """
         The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.
         """
-        ...
+        return pulumi.get(self, "run_as_group")
 
     @property
     @pulumi.getter(name="runAsNonRoot")
@@ -10214,7 +10214,7 @@ class SecurityContext(dict):
         """
         Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.
         """
-        ...
+        return pulumi.get(self, "run_as_non_root")
 
     @property
     @pulumi.getter(name="runAsUser")
@@ -10222,7 +10222,7 @@ class SecurityContext(dict):
         """
         The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.
         """
-        ...
+        return pulumi.get(self, "run_as_user")
 
     @property
     @pulumi.getter(name="seLinuxOptions")
@@ -10230,7 +10230,7 @@ class SecurityContext(dict):
         """
         The SELinux context to be applied to the container. If unspecified, the container runtime will allocate a random SELinux context for each container.  May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.
         """
-        ...
+        return pulumi.get(self, "se_linux_options")
 
     @property
     @pulumi.getter(name="windowsOptions")
@@ -10238,7 +10238,7 @@ class SecurityContext(dict):
         """
         The Windows specific settings applied to all containers. If unspecified, the options from the PodSecurityContext will be used. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.
         """
-        ...
+        return pulumi.get(self, "windows_options")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -10330,7 +10330,7 @@ class Service(dict):
         """
         APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
         """
-        ...
+        return pulumi.get(self, "api_version")
 
     @property
     @pulumi.getter
@@ -10338,7 +10338,7 @@ class Service(dict):
         """
         Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         """
-        ...
+        return pulumi.get(self, "kind")
 
     @property
     @pulumi.getter
@@ -10346,7 +10346,7 @@ class Service(dict):
         """
         Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         """
-        ...
+        return pulumi.get(self, "metadata")
 
     @property
     @pulumi.getter
@@ -10354,7 +10354,7 @@ class Service(dict):
         """
         Spec defines the behavior of a service. https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
         """
-        ...
+        return pulumi.get(self, "spec")
 
     @property
     @pulumi.getter
@@ -10362,7 +10362,7 @@ class Service(dict):
         """
         Most recently observed status of the service. Populated by the system. Read-only. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
         """
-        ...
+        return pulumi.get(self, "status")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -10408,7 +10408,7 @@ class ServiceAccount(dict):
         """
         APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
         """
-        ...
+        return pulumi.get(self, "api_version")
 
     @property
     @pulumi.getter(name="automountServiceAccountToken")
@@ -10416,7 +10416,7 @@ class ServiceAccount(dict):
         """
         AutomountServiceAccountToken indicates whether pods running as this service account should have an API token automatically mounted. Can be overridden at the pod level.
         """
-        ...
+        return pulumi.get(self, "automount_service_account_token")
 
     @property
     @pulumi.getter(name="imagePullSecrets")
@@ -10424,7 +10424,7 @@ class ServiceAccount(dict):
         """
         ImagePullSecrets is a list of references to secrets in the same namespace to use for pulling any images in pods that reference this ServiceAccount. ImagePullSecrets are distinct from Secrets because Secrets can be mounted in the pod, but ImagePullSecrets are only accessed by the kubelet. More info: https://kubernetes.io/docs/concepts/containers/images/#specifying-imagepullsecrets-on-a-pod
         """
-        ...
+        return pulumi.get(self, "image_pull_secrets")
 
     @property
     @pulumi.getter
@@ -10432,7 +10432,7 @@ class ServiceAccount(dict):
         """
         Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         """
-        ...
+        return pulumi.get(self, "kind")
 
     @property
     @pulumi.getter
@@ -10440,7 +10440,7 @@ class ServiceAccount(dict):
         """
         Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         """
-        ...
+        return pulumi.get(self, "metadata")
 
     @property
     @pulumi.getter
@@ -10448,7 +10448,7 @@ class ServiceAccount(dict):
         """
         Secrets is the list of secrets allowed to be used by pods running using this ServiceAccount. More info: https://kubernetes.io/docs/concepts/configuration/secret
         """
-        ...
+        return pulumi.get(self, "secrets")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -10481,7 +10481,7 @@ class ServiceAccountTokenProjection(dict):
         """
         Path is the path relative to the mount point of the file to project the token into.
         """
-        ...
+        return pulumi.get(self, "path")
 
     @property
     @pulumi.getter
@@ -10489,7 +10489,7 @@ class ServiceAccountTokenProjection(dict):
         """
         Audience is the intended audience of the token. A recipient of a token must identify itself with an identifier specified in the audience of the token, and otherwise should reject the token. The audience defaults to the identifier of the apiserver.
         """
-        ...
+        return pulumi.get(self, "audience")
 
     @property
     @pulumi.getter(name="expirationSeconds")
@@ -10497,7 +10497,7 @@ class ServiceAccountTokenProjection(dict):
         """
         ExpirationSeconds is the requested duration of validity of the service account token. As the token approaches expiration, the kubelet volume plugin will proactively rotate the service account token. The kubelet will start trying to rotate the token if the token is older than 80 percent of its time to live or if the token is older than 24 hours.Defaults to 1 hour and must be at least 10 minutes.
         """
-        ...
+        return pulumi.get(self, "expiration_seconds")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -10542,7 +10542,7 @@ class ServicePort(dict):
         """
         The port that will be exposed by this service.
         """
-        ...
+        return pulumi.get(self, "port")
 
     @property
     @pulumi.getter(name="appProtocol")
@@ -10550,7 +10550,7 @@ class ServicePort(dict):
         """
         The application protocol for this port. This field follows standard Kubernetes label syntax. Un-prefixed names are reserved for IANA standard service names (as per RFC-6335 and http://www.iana.org/assignments/service-names). Non-standard protocols should use prefixed names such as mycompany.com/my-custom-protocol. Field can be enabled with ServiceAppProtocol feature gate.
         """
-        ...
+        return pulumi.get(self, "app_protocol")
 
     @property
     @pulumi.getter
@@ -10558,7 +10558,7 @@ class ServicePort(dict):
         """
         The name of this port within the service. This must be a DNS_LABEL. All ports within a ServiceSpec must have unique names. When considering the endpoints for a Service, this must match the 'name' field in the EndpointPort. Optional if only one ServicePort is defined on this service.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="nodePort")
@@ -10566,7 +10566,7 @@ class ServicePort(dict):
         """
         The port on each node on which this service is exposed when type=NodePort or LoadBalancer. Usually assigned by the system. If specified, it will be allocated to the service if unused or else creation of the service will fail. Default is to auto-allocate a port if the ServiceType of this Service requires one. More info: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
         """
-        ...
+        return pulumi.get(self, "node_port")
 
     @property
     @pulumi.getter
@@ -10574,7 +10574,7 @@ class ServicePort(dict):
         """
         The IP protocol for this port. Supports "TCP", "UDP", and "SCTP". Default is TCP.
         """
-        ...
+        return pulumi.get(self, "protocol")
 
     @property
     @pulumi.getter(name="targetPort")
@@ -10582,7 +10582,7 @@ class ServicePort(dict):
         """
         Number or name of the port to access on the pods targeted by the service. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. If this is a string, it will be looked up as a named port in the target Pod's container ports. If this is not specified, the value of the 'port' field is used (an identity map). This field is ignored for services with clusterIP=None, and should be omitted or set equal to the 'port' field. More info: https://kubernetes.io/docs/concepts/services-networking/service/#defining-a-service
         """
-        ...
+        return pulumi.get(self, "target_port")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -10664,7 +10664,7 @@ class ServiceSpec(dict):
         """
         clusterIP is the IP address of the service and is usually assigned randomly by the master. If an address is specified manually and is not in use by others, it will be allocated to the service; otherwise, creation of the service will fail. This field can not be changed through updates. Valid values are "None", empty string (""), or a valid IP address. "None" can be specified for headless services when proxying is not required. Only applies to types ClusterIP, NodePort, and LoadBalancer. Ignored if type is ExternalName. More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies
         """
-        ...
+        return pulumi.get(self, "cluster_ip")
 
     @property
     @pulumi.getter(name="externalIPs")
@@ -10672,7 +10672,7 @@ class ServiceSpec(dict):
         """
         externalIPs is a list of IP addresses for which nodes in the cluster will also accept traffic for this service.  These IPs are not managed by Kubernetes.  The user is responsible for ensuring that traffic arrives at a node with this IP.  A common example is external load-balancers that are not part of the Kubernetes system.
         """
-        ...
+        return pulumi.get(self, "external_ips")
 
     @property
     @pulumi.getter(name="externalName")
@@ -10680,7 +10680,7 @@ class ServiceSpec(dict):
         """
         externalName is the external reference that kubedns or equivalent will return as a CNAME record for this service. No proxying will be involved. Must be a valid RFC-1123 hostname (https://tools.ietf.org/html/rfc1123) and requires Type to be ExternalName.
         """
-        ...
+        return pulumi.get(self, "external_name")
 
     @property
     @pulumi.getter(name="externalTrafficPolicy")
@@ -10688,7 +10688,7 @@ class ServiceSpec(dict):
         """
         externalTrafficPolicy denotes if this Service desires to route external traffic to node-local or cluster-wide endpoints. "Local" preserves the client source IP and avoids a second hop for LoadBalancer and Nodeport type services, but risks potentially imbalanced traffic spreading. "Cluster" obscures the client source IP and may cause a second hop to another node, but should have good overall load-spreading.
         """
-        ...
+        return pulumi.get(self, "external_traffic_policy")
 
     @property
     @pulumi.getter(name="healthCheckNodePort")
@@ -10696,7 +10696,7 @@ class ServiceSpec(dict):
         """
         healthCheckNodePort specifies the healthcheck nodePort for the service. If not specified, HealthCheckNodePort is created by the service api backend with the allocated nodePort. Will use user-specified nodePort value if specified by the client. Only effects when Type is set to LoadBalancer and ExternalTrafficPolicy is set to Local.
         """
-        ...
+        return pulumi.get(self, "health_check_node_port")
 
     @property
     @pulumi.getter(name="ipFamily")
@@ -10704,7 +10704,7 @@ class ServiceSpec(dict):
         """
         ipFamily specifies whether this Service has a preference for a particular IP family (e.g. IPv4 vs. IPv6).  If a specific IP family is requested, the clusterIP field will be allocated from that family, if it is available in the cluster.  If no IP family is requested, the cluster's primary IP family will be used. Other IP fields (loadBalancerIP, loadBalancerSourceRanges, externalIPs) and controllers which allocate external load-balancers should use the same IP family.  Endpoints for this Service will be of this family.  This field is immutable after creation. Assigning a ServiceIPFamily not available in the cluster (e.g. IPv6 in IPv4 only cluster) is an error condition and will fail during clusterIP assignment.
         """
-        ...
+        return pulumi.get(self, "ip_family")
 
     @property
     @pulumi.getter(name="loadBalancerIP")
@@ -10712,7 +10712,7 @@ class ServiceSpec(dict):
         """
         Only applies to Service Type: LoadBalancer LoadBalancer will get created with the IP specified in this field. This feature depends on whether the underlying cloud-provider supports specifying the loadBalancerIP when a load balancer is created. This field will be ignored if the cloud-provider does not support the feature.
         """
-        ...
+        return pulumi.get(self, "load_balancer_ip")
 
     @property
     @pulumi.getter(name="loadBalancerSourceRanges")
@@ -10720,7 +10720,7 @@ class ServiceSpec(dict):
         """
         If specified and supported by the platform, this will restrict traffic through the cloud-provider load-balancer will be restricted to the specified client IPs. This field will be ignored if the cloud-provider does not support the feature." More info: https://kubernetes.io/docs/tasks/access-application-cluster/configure-cloud-provider-firewall/
         """
-        ...
+        return pulumi.get(self, "load_balancer_source_ranges")
 
     @property
     @pulumi.getter
@@ -10728,7 +10728,7 @@ class ServiceSpec(dict):
         """
         The list of ports that are exposed by this service. More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies
         """
-        ...
+        return pulumi.get(self, "ports")
 
     @property
     @pulumi.getter(name="publishNotReadyAddresses")
@@ -10736,7 +10736,7 @@ class ServiceSpec(dict):
         """
         publishNotReadyAddresses, when set to true, indicates that DNS implementations must publish the notReadyAddresses of subsets for the Endpoints associated with the Service. The default value is false. The primary use case for setting this field is to use a StatefulSet's Headless Service to propagate SRV records for its Pods without respect to their readiness for purpose of peer discovery.
         """
-        ...
+        return pulumi.get(self, "publish_not_ready_addresses")
 
     @property
     @pulumi.getter
@@ -10744,7 +10744,7 @@ class ServiceSpec(dict):
         """
         Route service traffic to pods with label keys and values matching this selector. If empty or not present, the service is assumed to have an external process managing its endpoints, which Kubernetes will not modify. Only applies to types ClusterIP, NodePort, and LoadBalancer. Ignored if type is ExternalName. More info: https://kubernetes.io/docs/concepts/services-networking/service/
         """
-        ...
+        return pulumi.get(self, "selector")
 
     @property
     @pulumi.getter(name="sessionAffinity")
@@ -10752,7 +10752,7 @@ class ServiceSpec(dict):
         """
         Supports "ClientIP" and "None". Used to maintain session affinity. Enable client IP based session affinity. Must be ClientIP or None. Defaults to None. More info: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies
         """
-        ...
+        return pulumi.get(self, "session_affinity")
 
     @property
     @pulumi.getter(name="sessionAffinityConfig")
@@ -10760,7 +10760,7 @@ class ServiceSpec(dict):
         """
         sessionAffinityConfig contains the configurations of session affinity.
         """
-        ...
+        return pulumi.get(self, "session_affinity_config")
 
     @property
     @pulumi.getter(name="topologyKeys")
@@ -10768,7 +10768,7 @@ class ServiceSpec(dict):
         """
         topologyKeys is a preference-order list of topology keys which implementations of services should use to preferentially sort endpoints when accessing this Service, it can not be used at the same time as externalTrafficPolicy=Local. Topology keys must be valid label keys and at most 16 keys may be specified. Endpoints are chosen based on the first topology key with available backends. If this field is specified and all entries have no backends that match the topology of the client, the service has no backends for that client and connections should fail. The special value "*" may be used to mean "any topology". This catch-all value, if used, only makes sense as the last value in the list. If this is not specified or empty, no topology constraints will be applied.
         """
-        ...
+        return pulumi.get(self, "topology_keys")
 
     @property
     @pulumi.getter
@@ -10776,7 +10776,7 @@ class ServiceSpec(dict):
         """
         type determines how the Service is exposed. Defaults to ClusterIP. Valid options are ExternalName, ClusterIP, NodePort, and LoadBalancer. "ExternalName" maps to the specified externalName. "ClusterIP" allocates a cluster-internal IP address for load-balancing to endpoints. Endpoints are determined by the selector or if that is not specified, by manual construction of an Endpoints object. If clusterIP is "None", no virtual IP is allocated and the endpoints are published as a set of endpoints rather than a stable IP. "NodePort" builds on ClusterIP and allocates a port on every node which routes to the clusterIP. "LoadBalancer" builds on NodePort and creates an external load-balancer (if supported in the current cloud) which routes to the clusterIP. More info: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types
         """
-        ...
+        return pulumi.get(self, "type")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -10802,7 +10802,7 @@ class ServiceStatus(dict):
         """
         LoadBalancer contains the current status of the load-balancer, if one is present.
         """
-        ...
+        return pulumi.get(self, "load_balancer")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -10828,7 +10828,7 @@ class SessionAffinityConfig(dict):
         """
         clientIP contains the configurations of Client IP based session affinity.
         """
-        ...
+        return pulumi.get(self, "client_ip")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -10870,7 +10870,7 @@ class StorageOSPersistentVolumeSource(dict):
         """
         Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified.
         """
-        ...
+        return pulumi.get(self, "fs_type")
 
     @property
     @pulumi.getter(name="readOnly")
@@ -10878,7 +10878,7 @@ class StorageOSPersistentVolumeSource(dict):
         """
         Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
         """
-        ...
+        return pulumi.get(self, "read_only")
 
     @property
     @pulumi.getter(name="secretRef")
@@ -10886,7 +10886,7 @@ class StorageOSPersistentVolumeSource(dict):
         """
         SecretRef specifies the secret to use for obtaining the StorageOS API credentials.  If not specified, default values will be attempted.
         """
-        ...
+        return pulumi.get(self, "secret_ref")
 
     @property
     @pulumi.getter(name="volumeName")
@@ -10894,7 +10894,7 @@ class StorageOSPersistentVolumeSource(dict):
         """
         VolumeName is the human-readable name of the StorageOS volume.  Volume names are only unique within a namespace.
         """
-        ...
+        return pulumi.get(self, "volume_name")
 
     @property
     @pulumi.getter(name="volumeNamespace")
@@ -10902,7 +10902,7 @@ class StorageOSPersistentVolumeSource(dict):
         """
         VolumeNamespace specifies the scope of the volume within StorageOS.  If no namespace is specified then the Pod's namespace will be used.  This allows the Kubernetes name scoping to be mirrored within StorageOS for tighter integration. Set VolumeName to any name to override the default behaviour. Set to "default" if you are not using namespaces within StorageOS. Namespaces that do not pre-exist within StorageOS will be created.
         """
-        ...
+        return pulumi.get(self, "volume_namespace")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -10944,7 +10944,7 @@ class StorageOSVolumeSource(dict):
         """
         Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified.
         """
-        ...
+        return pulumi.get(self, "fs_type")
 
     @property
     @pulumi.getter(name="readOnly")
@@ -10952,7 +10952,7 @@ class StorageOSVolumeSource(dict):
         """
         Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts.
         """
-        ...
+        return pulumi.get(self, "read_only")
 
     @property
     @pulumi.getter(name="secretRef")
@@ -10960,7 +10960,7 @@ class StorageOSVolumeSource(dict):
         """
         SecretRef specifies the secret to use for obtaining the StorageOS API credentials.  If not specified, default values will be attempted.
         """
-        ...
+        return pulumi.get(self, "secret_ref")
 
     @property
     @pulumi.getter(name="volumeName")
@@ -10968,7 +10968,7 @@ class StorageOSVolumeSource(dict):
         """
         VolumeName is the human-readable name of the StorageOS volume.  Volume names are only unique within a namespace.
         """
-        ...
+        return pulumi.get(self, "volume_name")
 
     @property
     @pulumi.getter(name="volumeNamespace")
@@ -10976,7 +10976,7 @@ class StorageOSVolumeSource(dict):
         """
         VolumeNamespace specifies the scope of the volume within StorageOS.  If no namespace is specified then the Pod's namespace will be used.  This allows the Kubernetes name scoping to be mirrored within StorageOS for tighter integration. Set VolumeName to any name to override the default behaviour. Set to "default" if you are not using namespaces within StorageOS. Namespaces that do not pre-exist within StorageOS will be created.
         """
-        ...
+        return pulumi.get(self, "volume_namespace")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -11004,7 +11004,7 @@ class Sysctl(dict):
         """
         Name of a property to set
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -11012,7 +11012,7 @@ class Sysctl(dict):
         """
         Value of a property to set
         """
-        ...
+        return pulumi.get(self, "value")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -11041,7 +11041,7 @@ class TCPSocketAction(dict):
         """
         Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
         """
-        ...
+        return pulumi.get(self, "port")
 
     @property
     @pulumi.getter
@@ -11049,7 +11049,7 @@ class TCPSocketAction(dict):
         """
         Optional: Host name to connect to, defaults to the pod IP.
         """
-        ...
+        return pulumi.get(self, "host")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -11085,7 +11085,7 @@ class Taint(dict):
         """
         Required. The effect of the taint on pods that do not tolerate the taint. Valid effects are NoSchedule, PreferNoSchedule and NoExecute.
         """
-        ...
+        return pulumi.get(self, "effect")
 
     @property
     @pulumi.getter
@@ -11093,7 +11093,7 @@ class Taint(dict):
         """
         Required. The taint key to be applied to a node.
         """
-        ...
+        return pulumi.get(self, "key")
 
     @property
     @pulumi.getter(name="timeAdded")
@@ -11101,7 +11101,7 @@ class Taint(dict):
         """
         TimeAdded represents the time at which the taint was added. It is only written for NoExecute taints.
         """
-        ...
+        return pulumi.get(self, "time_added")
 
     @property
     @pulumi.getter
@@ -11109,7 +11109,7 @@ class Taint(dict):
         """
         The taint value corresponding to the taint key.
         """
-        ...
+        return pulumi.get(self, "value")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -11151,7 +11151,7 @@ class Toleration(dict):
         """
         Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
         """
-        ...
+        return pulumi.get(self, "effect")
 
     @property
     @pulumi.getter
@@ -11159,7 +11159,7 @@ class Toleration(dict):
         """
         Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.
         """
-        ...
+        return pulumi.get(self, "key")
 
     @property
     @pulumi.getter
@@ -11167,7 +11167,7 @@ class Toleration(dict):
         """
         Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.
         """
-        ...
+        return pulumi.get(self, "operator")
 
     @property
     @pulumi.getter(name="tolerationSeconds")
@@ -11175,7 +11175,7 @@ class Toleration(dict):
         """
         TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.
         """
-        ...
+        return pulumi.get(self, "toleration_seconds")
 
     @property
     @pulumi.getter
@@ -11183,7 +11183,7 @@ class Toleration(dict):
         """
         Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.
         """
-        ...
+        return pulumi.get(self, "value")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -11211,7 +11211,7 @@ class TopologySelectorLabelRequirement(dict):
         """
         The label key that the selector applies to.
         """
-        ...
+        return pulumi.get(self, "key")
 
     @property
     @pulumi.getter
@@ -11219,7 +11219,7 @@ class TopologySelectorLabelRequirement(dict):
         """
         An array of string values. One value must match the label to be selected. Each entry in Values is ORed.
         """
-        ...
+        return pulumi.get(self, "values")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -11245,7 +11245,7 @@ class TopologySelectorTerm(dict):
         """
         A list of topology selector requirements by labels.
         """
-        ...
+        return pulumi.get(self, "match_label_expressions")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -11280,7 +11280,7 @@ class TopologySpreadConstraint(dict):
         """
         MaxSkew describes the degree to which pods may be unevenly distributed. It's the maximum permitted difference between the number of matching pods in any two topology domains of a given topology type. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 1/1/0: | zone1 | zone2 | zone3 | |   P   |   P   |       | - if MaxSkew is 1, incoming pod can only be scheduled to zone3 to become 1/1/1; scheduling it onto zone1(zone2) would make the ActualSkew(2-0) on zone1(zone2) violate MaxSkew(1). - if MaxSkew is 2, incoming pod can be scheduled onto any zone. It's a required field. Default value is 1 and 0 is not allowed.
         """
-        ...
+        return pulumi.get(self, "max_skew")
 
     @property
     @pulumi.getter(name="topologyKey")
@@ -11288,7 +11288,7 @@ class TopologySpreadConstraint(dict):
         """
         TopologyKey is the key of node labels. Nodes that have a label with this key and identical values are considered to be in the same topology. We consider each <key, value> as a "bucket", and try to put balanced number of pods into each bucket. It's a required field.
         """
-        ...
+        return pulumi.get(self, "topology_key")
 
     @property
     @pulumi.getter(name="whenUnsatisfiable")
@@ -11296,7 +11296,7 @@ class TopologySpreadConstraint(dict):
         """
         WhenUnsatisfiable indicates how to deal with a pod if it doesn't satisfy the spread constraint. - DoNotSchedule (default) tells the scheduler not to schedule it - ScheduleAnyway tells the scheduler to still schedule it It's considered as "Unsatisfiable" if and only if placing incoming pod on any topology violates "MaxSkew". For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 3/1/1: | zone1 | zone2 | zone3 | | P P P |   P   |   P   | If WhenUnsatisfiable is set to DoNotSchedule, incoming pod can only be scheduled to zone2(zone3) to become 3/2/1(3/1/2) as ActualSkew(2-1) on zone2(zone3) satisfies MaxSkew(1). In other words, the cluster can still be imbalanced, but scheduler won't make it *more* imbalanced. It's a required field.
         """
-        ...
+        return pulumi.get(self, "when_unsatisfiable")
 
     @property
     @pulumi.getter(name="labelSelector")
@@ -11304,7 +11304,7 @@ class TopologySpreadConstraint(dict):
         """
         LabelSelector is used to find matching pods. Pods that match this label selector are counted to determine the number of pods in their corresponding topology domain.
         """
-        ...
+        return pulumi.get(self, "label_selector")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -11336,7 +11336,7 @@ class TypedLocalObjectReference(dict):
         """
         Kind is the type of resource being referenced
         """
-        ...
+        return pulumi.get(self, "kind")
 
     @property
     @pulumi.getter
@@ -11344,7 +11344,7 @@ class TypedLocalObjectReference(dict):
         """
         Name is the name of resource being referenced
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="apiGroup")
@@ -11352,7 +11352,7 @@ class TypedLocalObjectReference(dict):
         """
         APIGroup is the group for the resource being referenced. If APIGroup is not specified, the specified Kind must be in the core API group. For any other third-party types, APIGroup is required.
         """
-        ...
+        return pulumi.get(self, "api_group")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -11489,7 +11489,7 @@ class Volume(dict):
         """
         Volume's name. Must be a DNS_LABEL and unique within the pod. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="awsElasticBlockStore")
@@ -11497,7 +11497,7 @@ class Volume(dict):
         """
         AWSElasticBlockStore represents an AWS Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore
         """
-        ...
+        return pulumi.get(self, "aws_elastic_block_store")
 
     @property
     @pulumi.getter(name="azureDisk")
@@ -11505,7 +11505,7 @@ class Volume(dict):
         """
         AzureDisk represents an Azure Data Disk mount on the host and bind mount to the pod.
         """
-        ...
+        return pulumi.get(self, "azure_disk")
 
     @property
     @pulumi.getter(name="azureFile")
@@ -11513,7 +11513,7 @@ class Volume(dict):
         """
         AzureFile represents an Azure File Service mount on the host and bind mount to the pod.
         """
-        ...
+        return pulumi.get(self, "azure_file")
 
     @property
     @pulumi.getter
@@ -11521,7 +11521,7 @@ class Volume(dict):
         """
         CephFS represents a Ceph FS mount on the host that shares a pod's lifetime
         """
-        ...
+        return pulumi.get(self, "cephfs")
 
     @property
     @pulumi.getter
@@ -11529,7 +11529,7 @@ class Volume(dict):
         """
         Cinder represents a cinder volume attached and mounted on kubelets host machine. More info: https://examples.k8s.io/mysql-cinder-pd/README.md
         """
-        ...
+        return pulumi.get(self, "cinder")
 
     @property
     @pulumi.getter(name="configMap")
@@ -11537,7 +11537,7 @@ class Volume(dict):
         """
         ConfigMap represents a configMap that should populate this volume
         """
-        ...
+        return pulumi.get(self, "config_map")
 
     @property
     @pulumi.getter
@@ -11545,7 +11545,7 @@ class Volume(dict):
         """
         CSI (Container Storage Interface) represents storage that is handled by an external CSI driver (Alpha feature).
         """
-        ...
+        return pulumi.get(self, "csi")
 
     @property
     @pulumi.getter(name="downwardAPI")
@@ -11553,7 +11553,7 @@ class Volume(dict):
         """
         DownwardAPI represents downward API about the pod that should populate this volume
         """
-        ...
+        return pulumi.get(self, "downward_api")
 
     @property
     @pulumi.getter(name="emptyDir")
@@ -11561,7 +11561,7 @@ class Volume(dict):
         """
         EmptyDir represents a temporary directory that shares a pod's lifetime. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir
         """
-        ...
+        return pulumi.get(self, "empty_dir")
 
     @property
     @pulumi.getter
@@ -11569,7 +11569,7 @@ class Volume(dict):
         """
         FC represents a Fibre Channel resource that is attached to a kubelet's host machine and then exposed to the pod.
         """
-        ...
+        return pulumi.get(self, "fc")
 
     @property
     @pulumi.getter(name="flexVolume")
@@ -11577,7 +11577,7 @@ class Volume(dict):
         """
         FlexVolume represents a generic volume resource that is provisioned/attached using an exec based plugin.
         """
-        ...
+        return pulumi.get(self, "flex_volume")
 
     @property
     @pulumi.getter
@@ -11585,7 +11585,7 @@ class Volume(dict):
         """
         Flocker represents a Flocker volume attached to a kubelet's host machine. This depends on the Flocker control service being running
         """
-        ...
+        return pulumi.get(self, "flocker")
 
     @property
     @pulumi.getter(name="gcePersistentDisk")
@@ -11593,7 +11593,7 @@ class Volume(dict):
         """
         GCEPersistentDisk represents a GCE Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk
         """
-        ...
+        return pulumi.get(self, "gce_persistent_disk")
 
     @property
     @pulumi.getter(name="gitRepo")
@@ -11601,7 +11601,7 @@ class Volume(dict):
         """
         GitRepo represents a git repository at a particular revision. DEPRECATED: GitRepo is deprecated. To provision a container with a git repo, mount an EmptyDir into an InitContainer that clones the repo using git, then mount the EmptyDir into the Pod's container.
         """
-        ...
+        return pulumi.get(self, "git_repo")
 
     @property
     @pulumi.getter
@@ -11609,7 +11609,7 @@ class Volume(dict):
         """
         Glusterfs represents a Glusterfs mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/glusterfs/README.md
         """
-        ...
+        return pulumi.get(self, "glusterfs")
 
     @property
     @pulumi.getter(name="hostPath")
@@ -11617,7 +11617,7 @@ class Volume(dict):
         """
         HostPath represents a pre-existing file or directory on the host machine that is directly exposed to the container. This is generally used for system agents or other privileged things that are allowed to see the host machine. Most containers will NOT need this. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath
         """
-        ...
+        return pulumi.get(self, "host_path")
 
     @property
     @pulumi.getter
@@ -11625,7 +11625,7 @@ class Volume(dict):
         """
         ISCSI represents an ISCSI Disk resource that is attached to a kubelet's host machine and then exposed to the pod. More info: https://examples.k8s.io/volumes/iscsi/README.md
         """
-        ...
+        return pulumi.get(self, "iscsi")
 
     @property
     @pulumi.getter
@@ -11633,7 +11633,7 @@ class Volume(dict):
         """
         NFS represents an NFS mount on the host that shares a pod's lifetime More info: https://kubernetes.io/docs/concepts/storage/volumes#nfs
         """
-        ...
+        return pulumi.get(self, "nfs")
 
     @property
     @pulumi.getter(name="persistentVolumeClaim")
@@ -11641,7 +11641,7 @@ class Volume(dict):
         """
         PersistentVolumeClaimVolumeSource represents a reference to a PersistentVolumeClaim in the same namespace. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims
         """
-        ...
+        return pulumi.get(self, "persistent_volume_claim")
 
     @property
     @pulumi.getter(name="photonPersistentDisk")
@@ -11649,7 +11649,7 @@ class Volume(dict):
         """
         PhotonPersistentDisk represents a PhotonController persistent disk attached and mounted on kubelets host machine
         """
-        ...
+        return pulumi.get(self, "photon_persistent_disk")
 
     @property
     @pulumi.getter(name="portworxVolume")
@@ -11657,7 +11657,7 @@ class Volume(dict):
         """
         PortworxVolume represents a portworx volume attached and mounted on kubelets host machine
         """
-        ...
+        return pulumi.get(self, "portworx_volume")
 
     @property
     @pulumi.getter
@@ -11665,7 +11665,7 @@ class Volume(dict):
         """
         Items for all in one resources secrets, configmaps, and downward API
         """
-        ...
+        return pulumi.get(self, "projected")
 
     @property
     @pulumi.getter
@@ -11673,7 +11673,7 @@ class Volume(dict):
         """
         Quobyte represents a Quobyte mount on the host that shares a pod's lifetime
         """
-        ...
+        return pulumi.get(self, "quobyte")
 
     @property
     @pulumi.getter
@@ -11681,7 +11681,7 @@ class Volume(dict):
         """
         RBD represents a Rados Block Device mount on the host that shares a pod's lifetime. More info: https://examples.k8s.io/volumes/rbd/README.md
         """
-        ...
+        return pulumi.get(self, "rbd")
 
     @property
     @pulumi.getter(name="scaleIO")
@@ -11689,7 +11689,7 @@ class Volume(dict):
         """
         ScaleIO represents a ScaleIO persistent volume attached and mounted on Kubernetes nodes.
         """
-        ...
+        return pulumi.get(self, "scale_io")
 
     @property
     @pulumi.getter
@@ -11697,7 +11697,7 @@ class Volume(dict):
         """
         Secret represents a secret that should populate this volume. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret
         """
-        ...
+        return pulumi.get(self, "secret")
 
     @property
     @pulumi.getter
@@ -11705,7 +11705,7 @@ class Volume(dict):
         """
         StorageOS represents a StorageOS volume attached and mounted on Kubernetes nodes.
         """
-        ...
+        return pulumi.get(self, "storageos")
 
     @property
     @pulumi.getter(name="vsphereVolume")
@@ -11713,7 +11713,7 @@ class Volume(dict):
         """
         VsphereVolume represents a vSphere volume attached and mounted on kubelets host machine
         """
-        ...
+        return pulumi.get(self, "vsphere_volume")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -11741,7 +11741,7 @@ class VolumeDevice(dict):
         """
         devicePath is the path inside of the container that the device will be mapped to.
         """
-        ...
+        return pulumi.get(self, "device_path")
 
     @property
     @pulumi.getter
@@ -11749,7 +11749,7 @@ class VolumeDevice(dict):
         """
         name must match the name of a persistentVolumeClaim in the pod
         """
-        ...
+        return pulumi.get(self, "name")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -11793,7 +11793,7 @@ class VolumeMount(dict):
         """
         Path within the container at which the volume should be mounted.  Must not contain ':'.
         """
-        ...
+        return pulumi.get(self, "mount_path")
 
     @property
     @pulumi.getter
@@ -11801,7 +11801,7 @@ class VolumeMount(dict):
         """
         This must match the Name of a Volume.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="mountPropagation")
@@ -11809,7 +11809,7 @@ class VolumeMount(dict):
         """
         mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.
         """
-        ...
+        return pulumi.get(self, "mount_propagation")
 
     @property
     @pulumi.getter(name="readOnly")
@@ -11817,7 +11817,7 @@ class VolumeMount(dict):
         """
         Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.
         """
-        ...
+        return pulumi.get(self, "read_only")
 
     @property
     @pulumi.getter(name="subPath")
@@ -11825,7 +11825,7 @@ class VolumeMount(dict):
         """
         Path within the volume from which the container's volume should be mounted. Defaults to "" (volume's root).
         """
-        ...
+        return pulumi.get(self, "sub_path")
 
     @property
     @pulumi.getter(name="subPathExpr")
@@ -11833,7 +11833,7 @@ class VolumeMount(dict):
         """
         Expanded path within the volume from which the container's volume should be mounted. Behaves similarly to SubPath but environment variable references $(VAR_NAME) are expanded using the container's environment. Defaults to "" (volume's root). SubPathExpr and SubPath are mutually exclusive.
         """
-        ...
+        return pulumi.get(self, "sub_path_expr")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -11859,7 +11859,7 @@ class VolumeNodeAffinity(dict):
         """
         Required specifies hard node constraints that must be met.
         """
-        ...
+        return pulumi.get(self, "required")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -11897,7 +11897,7 @@ class VolumeProjection(dict):
         """
         information about the configMap data to project
         """
-        ...
+        return pulumi.get(self, "config_map")
 
     @property
     @pulumi.getter(name="downwardAPI")
@@ -11905,7 +11905,7 @@ class VolumeProjection(dict):
         """
         information about the downwardAPI data to project
         """
-        ...
+        return pulumi.get(self, "downward_api")
 
     @property
     @pulumi.getter
@@ -11913,7 +11913,7 @@ class VolumeProjection(dict):
         """
         information about the secret data to project
         """
-        ...
+        return pulumi.get(self, "secret")
 
     @property
     @pulumi.getter(name="serviceAccountToken")
@@ -11921,7 +11921,7 @@ class VolumeProjection(dict):
         """
         information about the serviceAccountToken data to project
         """
-        ...
+        return pulumi.get(self, "service_account_token")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -11958,7 +11958,7 @@ class VsphereVirtualDiskVolumeSource(dict):
         """
         Path that identifies vSphere volume vmdk
         """
-        ...
+        return pulumi.get(self, "volume_path")
 
     @property
     @pulumi.getter(name="fsType")
@@ -11966,7 +11966,7 @@ class VsphereVirtualDiskVolumeSource(dict):
         """
         Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. "ext4", "xfs", "ntfs". Implicitly inferred to be "ext4" if unspecified.
         """
-        ...
+        return pulumi.get(self, "fs_type")
 
     @property
     @pulumi.getter(name="storagePolicyID")
@@ -11974,7 +11974,7 @@ class VsphereVirtualDiskVolumeSource(dict):
         """
         Storage Policy Based Management (SPBM) profile ID associated with the StoragePolicyName.
         """
-        ...
+        return pulumi.get(self, "storage_policy_id")
 
     @property
     @pulumi.getter(name="storagePolicyName")
@@ -11982,7 +11982,7 @@ class VsphereVirtualDiskVolumeSource(dict):
         """
         Storage Policy Based Management (SPBM) profile name.
         """
-        ...
+        return pulumi.get(self, "storage_policy_name")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -12010,7 +12010,7 @@ class WeightedPodAffinityTerm(dict):
         """
         Required. A pod affinity term, associated with the corresponding weight.
         """
-        ...
+        return pulumi.get(self, "pod_affinity_term")
 
     @property
     @pulumi.getter
@@ -12018,7 +12018,7 @@ class WeightedPodAffinityTerm(dict):
         """
         weight associated with matching the corresponding podAffinityTerm, in the range 1-100.
         """
-        ...
+        return pulumi.get(self, "weight")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -12052,7 +12052,7 @@ class WindowsSecurityContextOptions(dict):
         """
         GMSACredentialSpec is where the GMSA admission webhook (https://github.com/kubernetes-sigs/windows-gmsa) inlines the contents of the GMSA credential spec named by the GMSACredentialSpecName field.
         """
-        ...
+        return pulumi.get(self, "gmsa_credential_spec")
 
     @property
     @pulumi.getter(name="gmsaCredentialSpecName")
@@ -12060,7 +12060,7 @@ class WindowsSecurityContextOptions(dict):
         """
         GMSACredentialSpecName is the name of the GMSA credential spec to use.
         """
-        ...
+        return pulumi.get(self, "gmsa_credential_spec_name")
 
     @property
     @pulumi.getter(name="runAsUserName")
@@ -12068,7 +12068,7 @@ class WindowsSecurityContextOptions(dict):
         """
         The UserName in Windows to run the entrypoint of the container process. Defaults to the user specified in image metadata if unspecified. May also be set in PodSecurityContext. If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.
         """
-        ...
+        return pulumi.get(self, "run_as_user_name")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

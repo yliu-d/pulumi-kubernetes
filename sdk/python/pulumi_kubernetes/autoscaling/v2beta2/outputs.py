@@ -60,7 +60,7 @@ class CrossVersionObjectReference(dict):
         """
         Kind of the referent; More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds"
         """
-        ...
+        return pulumi.get(self, "kind")
 
     @property
     @pulumi.getter
@@ -68,7 +68,7 @@ class CrossVersionObjectReference(dict):
         """
         Name of the referent; More info: http://kubernetes.io/docs/user-guide/identifiers#names
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="apiVersion")
@@ -76,7 +76,7 @@ class CrossVersionObjectReference(dict):
         """
         API version of the referent
         """
-        ...
+        return pulumi.get(self, "api_version")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -104,7 +104,7 @@ class ExternalMetricSource(dict):
         """
         metric identifies the target metric by name and selector
         """
-        ...
+        return pulumi.get(self, "metric")
 
     @property
     @pulumi.getter
@@ -112,7 +112,7 @@ class ExternalMetricSource(dict):
         """
         target specifies the target value for the given metric
         """
-        ...
+        return pulumi.get(self, "target")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -140,7 +140,7 @@ class ExternalMetricStatus(dict):
         """
         current contains the current value for the given metric
         """
-        ...
+        return pulumi.get(self, "current")
 
     @property
     @pulumi.getter
@@ -148,7 +148,7 @@ class ExternalMetricStatus(dict):
         """
         metric identifies the target metric by name and selector
         """
-        ...
+        return pulumi.get(self, "metric")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -179,7 +179,7 @@ class HPAScalingPolicy(dict):
         """
         PeriodSeconds specifies the window of time for which the policy should hold true. PeriodSeconds must be greater than zero and less than or equal to 1800 (30 min).
         """
-        ...
+        return pulumi.get(self, "period_seconds")
 
     @property
     @pulumi.getter
@@ -187,7 +187,7 @@ class HPAScalingPolicy(dict):
         """
         Type is used to specify the scaling policy.
         """
-        ...
+        return pulumi.get(self, "type")
 
     @property
     @pulumi.getter
@@ -195,7 +195,7 @@ class HPAScalingPolicy(dict):
         """
         Value contains the amount of change which is permitted by the policy. It must be greater than zero
         """
-        ...
+        return pulumi.get(self, "value")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -229,7 +229,7 @@ class HPAScalingRules(dict):
         """
         policies is a list of potential scaling polices which can be used during scaling. At least one policy must be specified, otherwise the HPAScalingRules will be discarded as invalid
         """
-        ...
+        return pulumi.get(self, "policies")
 
     @property
     @pulumi.getter(name="selectPolicy")
@@ -237,7 +237,7 @@ class HPAScalingRules(dict):
         """
         selectPolicy is used to specify which policy should be used. If not set, the default value MaxPolicySelect is used.
         """
-        ...
+        return pulumi.get(self, "select_policy")
 
     @property
     @pulumi.getter(name="stabilizationWindowSeconds")
@@ -245,7 +245,7 @@ class HPAScalingRules(dict):
         """
         StabilizationWindowSeconds is the number of seconds for which past recommendations should be considered while scaling up or scaling down. StabilizationWindowSeconds must be greater than or equal to zero and less than or equal to 3600 (one hour). If not set, use the default values: - For scale up: 0 (i.e. no stabilization is done). - For scale down: 300 (i.e. the stabilization window is 300 seconds long).
         """
-        ...
+        return pulumi.get(self, "stabilization_window_seconds")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -287,7 +287,7 @@ class HorizontalPodAutoscaler(dict):
         """
         APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
         """
-        ...
+        return pulumi.get(self, "api_version")
 
     @property
     @pulumi.getter
@@ -295,7 +295,7 @@ class HorizontalPodAutoscaler(dict):
         """
         Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         """
-        ...
+        return pulumi.get(self, "kind")
 
     @property
     @pulumi.getter
@@ -303,7 +303,7 @@ class HorizontalPodAutoscaler(dict):
         """
         metadata is the standard object metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         """
-        ...
+        return pulumi.get(self, "metadata")
 
     @property
     @pulumi.getter
@@ -311,7 +311,7 @@ class HorizontalPodAutoscaler(dict):
         """
         spec is the specification for the behaviour of the autoscaler. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status.
         """
-        ...
+        return pulumi.get(self, "spec")
 
     @property
     @pulumi.getter
@@ -319,7 +319,7 @@ class HorizontalPodAutoscaler(dict):
         """
         status is the current information about the autoscaler.
         """
-        ...
+        return pulumi.get(self, "status")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -352,7 +352,7 @@ class HorizontalPodAutoscalerBehavior(dict):
         """
         scaleDown is scaling policy for scaling Down. If not set, the default value is to allow to scale down to minReplicas pods, with a 300 second stabilization window (i.e., the highest recommendation for the last 300sec is used).
         """
-        ...
+        return pulumi.get(self, "scale_down")
 
     @property
     @pulumi.getter(name="scaleUp")
@@ -363,7 +363,7 @@ class HorizontalPodAutoscalerBehavior(dict):
           * double the number of pods per 60 seconds
         No stabilization is used.
         """
-        ...
+        return pulumi.get(self, "scale_up")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -403,7 +403,7 @@ class HorizontalPodAutoscalerCondition(dict):
         """
         status is the status of the condition (True, False, Unknown)
         """
-        ...
+        return pulumi.get(self, "status")
 
     @property
     @pulumi.getter
@@ -411,7 +411,7 @@ class HorizontalPodAutoscalerCondition(dict):
         """
         type describes the current condition
         """
-        ...
+        return pulumi.get(self, "type")
 
     @property
     @pulumi.getter(name="lastTransitionTime")
@@ -419,7 +419,7 @@ class HorizontalPodAutoscalerCondition(dict):
         """
         lastTransitionTime is the last time the condition transitioned from one status to another
         """
-        ...
+        return pulumi.get(self, "last_transition_time")
 
     @property
     @pulumi.getter
@@ -427,7 +427,7 @@ class HorizontalPodAutoscalerCondition(dict):
         """
         message is a human-readable explanation containing details about the transition
         """
-        ...
+        return pulumi.get(self, "message")
 
     @property
     @pulumi.getter
@@ -435,7 +435,7 @@ class HorizontalPodAutoscalerCondition(dict):
         """
         reason is the reason for the condition's last transition.
         """
-        ...
+        return pulumi.get(self, "reason")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -475,7 +475,7 @@ class HorizontalPodAutoscalerSpec(dict):
         """
         maxReplicas is the upper limit for the number of replicas to which the autoscaler can scale up. It cannot be less that minReplicas.
         """
-        ...
+        return pulumi.get(self, "max_replicas")
 
     @property
     @pulumi.getter(name="scaleTargetRef")
@@ -483,7 +483,7 @@ class HorizontalPodAutoscalerSpec(dict):
         """
         scaleTargetRef points to the target resource to scale, and is used to the pods for which metrics should be collected, as well as to actually change the replica count.
         """
-        ...
+        return pulumi.get(self, "scale_target_ref")
 
     @property
     @pulumi.getter
@@ -491,7 +491,7 @@ class HorizontalPodAutoscalerSpec(dict):
         """
         behavior configures the scaling behavior of the target in both Up and Down directions (scaleUp and scaleDown fields respectively). If not set, the default HPAScalingRules for scale up and scale down are used.
         """
-        ...
+        return pulumi.get(self, "behavior")
 
     @property
     @pulumi.getter
@@ -499,7 +499,7 @@ class HorizontalPodAutoscalerSpec(dict):
         """
         metrics contains the specifications for which to use to calculate the desired replica count (the maximum replica count across all metrics will be used).  The desired replica count is calculated multiplying the ratio between the target value and the current value by the current number of pods.  Ergo, metrics used must decrease as the pod count is increased, and vice-versa.  See the individual metric source types for more information about how each type of metric must respond. If not set, the default metric will be set to 80% average CPU utilization.
         """
-        ...
+        return pulumi.get(self, "metrics")
 
     @property
     @pulumi.getter(name="minReplicas")
@@ -507,7 +507,7 @@ class HorizontalPodAutoscalerSpec(dict):
         """
         minReplicas is the lower limit for the number of replicas to which the autoscaler can scale down.  It defaults to 1 pod.  minReplicas is allowed to be 0 if the alpha feature gate HPAScaleToZero is enabled and at least one Object or External metric is configured.  Scaling is active as long as at least one metric value is available.
         """
-        ...
+        return pulumi.get(self, "min_replicas")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -550,7 +550,7 @@ class HorizontalPodAutoscalerStatus(dict):
         """
         conditions is the set of conditions required for this autoscaler to scale its target, and indicates whether or not those conditions are met.
         """
-        ...
+        return pulumi.get(self, "conditions")
 
     @property
     @pulumi.getter(name="currentReplicas")
@@ -558,7 +558,7 @@ class HorizontalPodAutoscalerStatus(dict):
         """
         currentReplicas is current number of replicas of pods managed by this autoscaler, as last seen by the autoscaler.
         """
-        ...
+        return pulumi.get(self, "current_replicas")
 
     @property
     @pulumi.getter(name="desiredReplicas")
@@ -566,7 +566,7 @@ class HorizontalPodAutoscalerStatus(dict):
         """
         desiredReplicas is the desired number of replicas of pods managed by this autoscaler, as last calculated by the autoscaler.
         """
-        ...
+        return pulumi.get(self, "desired_replicas")
 
     @property
     @pulumi.getter(name="currentMetrics")
@@ -574,7 +574,7 @@ class HorizontalPodAutoscalerStatus(dict):
         """
         currentMetrics is the last read state of the metrics used by this autoscaler.
         """
-        ...
+        return pulumi.get(self, "current_metrics")
 
     @property
     @pulumi.getter(name="lastScaleTime")
@@ -582,7 +582,7 @@ class HorizontalPodAutoscalerStatus(dict):
         """
         lastScaleTime is the last time the HorizontalPodAutoscaler scaled the number of pods, used by the autoscaler to control how often the number of pods is changed.
         """
-        ...
+        return pulumi.get(self, "last_scale_time")
 
     @property
     @pulumi.getter(name="observedGeneration")
@@ -590,7 +590,7 @@ class HorizontalPodAutoscalerStatus(dict):
         """
         observedGeneration is the most recent generation observed by this autoscaler.
         """
-        ...
+        return pulumi.get(self, "observed_generation")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -619,7 +619,7 @@ class MetricIdentifier(dict):
         """
         name is the name of the given metric
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -627,7 +627,7 @@ class MetricIdentifier(dict):
         """
         selector is the string-encoded form of a standard kubernetes label selector for the given metric When set, it is passed as an additional parameter to the metrics server for more specific metrics scoping. When unset, just the metricName will be used to gather metrics.
         """
-        ...
+        return pulumi.get(self, "selector")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -668,7 +668,7 @@ class MetricSpec(dict):
         """
         type is the type of metric source.  It should be one of "Object", "Pods" or "Resource", each mapping to a matching field in the object.
         """
-        ...
+        return pulumi.get(self, "type")
 
     @property
     @pulumi.getter
@@ -676,7 +676,7 @@ class MetricSpec(dict):
         """
         external refers to a global metric that is not associated with any Kubernetes object. It allows autoscaling based on information coming from components running outside of cluster (for example length of queue in cloud messaging service, or QPS from loadbalancer running outside of cluster).
         """
-        ...
+        return pulumi.get(self, "external")
 
     @property
     @pulumi.getter
@@ -684,7 +684,7 @@ class MetricSpec(dict):
         """
         object refers to a metric describing a single kubernetes object (for example, hits-per-second on an Ingress object).
         """
-        ...
+        return pulumi.get(self, "object")
 
     @property
     @pulumi.getter
@@ -692,7 +692,7 @@ class MetricSpec(dict):
         """
         pods refers to a metric describing each pod in the current scale target (for example, transactions-processed-per-second).  The values will be averaged together before being compared to the target value.
         """
-        ...
+        return pulumi.get(self, "pods")
 
     @property
     @pulumi.getter
@@ -700,7 +700,7 @@ class MetricSpec(dict):
         """
         resource refers to a resource metric (such as those specified in requests and limits) known to Kubernetes describing each pod in the current scale target (e.g. CPU or memory). Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the "pods" source.
         """
-        ...
+        return pulumi.get(self, "resource")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -741,7 +741,7 @@ class MetricStatus(dict):
         """
         type is the type of metric source.  It will be one of "Object", "Pods" or "Resource", each corresponds to a matching field in the object.
         """
-        ...
+        return pulumi.get(self, "type")
 
     @property
     @pulumi.getter
@@ -749,7 +749,7 @@ class MetricStatus(dict):
         """
         external refers to a global metric that is not associated with any Kubernetes object. It allows autoscaling based on information coming from components running outside of cluster (for example length of queue in cloud messaging service, or QPS from loadbalancer running outside of cluster).
         """
-        ...
+        return pulumi.get(self, "external")
 
     @property
     @pulumi.getter
@@ -757,7 +757,7 @@ class MetricStatus(dict):
         """
         object refers to a metric describing a single kubernetes object (for example, hits-per-second on an Ingress object).
         """
-        ...
+        return pulumi.get(self, "object")
 
     @property
     @pulumi.getter
@@ -765,7 +765,7 @@ class MetricStatus(dict):
         """
         pods refers to a metric describing each pod in the current scale target (for example, transactions-processed-per-second).  The values will be averaged together before being compared to the target value.
         """
-        ...
+        return pulumi.get(self, "pods")
 
     @property
     @pulumi.getter
@@ -773,7 +773,7 @@ class MetricStatus(dict):
         """
         resource refers to a resource metric (such as those specified in requests and limits) known to Kubernetes describing each pod in the current scale target (e.g. CPU or memory). Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the "pods" source.
         """
-        ...
+        return pulumi.get(self, "resource")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -810,7 +810,7 @@ class MetricTarget(dict):
         """
         type represents whether the metric type is Utilization, Value, or AverageValue
         """
-        ...
+        return pulumi.get(self, "type")
 
     @property
     @pulumi.getter(name="averageUtilization")
@@ -818,7 +818,7 @@ class MetricTarget(dict):
         """
         averageUtilization is the target value of the average of the resource metric across all relevant pods, represented as a percentage of the requested value of the resource for the pods. Currently only valid for Resource metric source type
         """
-        ...
+        return pulumi.get(self, "average_utilization")
 
     @property
     @pulumi.getter(name="averageValue")
@@ -826,7 +826,7 @@ class MetricTarget(dict):
         """
         averageValue is the target value of the average of the metric across all relevant pods (as a quantity)
         """
-        ...
+        return pulumi.get(self, "average_value")
 
     @property
     @pulumi.getter
@@ -834,7 +834,7 @@ class MetricTarget(dict):
         """
         value is the target value of the metric (as a quantity).
         """
-        ...
+        return pulumi.get(self, "value")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -868,7 +868,7 @@ class MetricValueStatus(dict):
         """
         currentAverageUtilization is the current value of the average of the resource metric across all relevant pods, represented as a percentage of the requested value of the resource for the pods.
         """
-        ...
+        return pulumi.get(self, "average_utilization")
 
     @property
     @pulumi.getter(name="averageValue")
@@ -876,7 +876,7 @@ class MetricValueStatus(dict):
         """
         averageValue is the current value of the average of the metric across all relevant pods (as a quantity)
         """
-        ...
+        return pulumi.get(self, "average_value")
 
     @property
     @pulumi.getter
@@ -884,7 +884,7 @@ class MetricValueStatus(dict):
         """
         value is the current value of the metric (as a quantity).
         """
-        ...
+        return pulumi.get(self, "value")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -911,7 +911,7 @@ class ObjectMetricSource(dict):
     @property
     @pulumi.getter(name="describedObject")
     def described_object(self) -> 'outputs.CrossVersionObjectReference':
-        ...
+        return pulumi.get(self, "described_object")
 
     @property
     @pulumi.getter
@@ -919,7 +919,7 @@ class ObjectMetricSource(dict):
         """
         metric identifies the target metric by name and selector
         """
-        ...
+        return pulumi.get(self, "metric")
 
     @property
     @pulumi.getter
@@ -927,7 +927,7 @@ class ObjectMetricSource(dict):
         """
         target specifies the target value for the given metric
         """
-        ...
+        return pulumi.get(self, "target")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -957,12 +957,12 @@ class ObjectMetricStatus(dict):
         """
         current contains the current value for the given metric
         """
-        ...
+        return pulumi.get(self, "current")
 
     @property
     @pulumi.getter(name="describedObject")
     def described_object(self) -> 'outputs.CrossVersionObjectReference':
-        ...
+        return pulumi.get(self, "described_object")
 
     @property
     @pulumi.getter
@@ -970,7 +970,7 @@ class ObjectMetricStatus(dict):
         """
         metric identifies the target metric by name and selector
         """
-        ...
+        return pulumi.get(self, "metric")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -998,7 +998,7 @@ class PodsMetricSource(dict):
         """
         metric identifies the target metric by name and selector
         """
-        ...
+        return pulumi.get(self, "metric")
 
     @property
     @pulumi.getter
@@ -1006,7 +1006,7 @@ class PodsMetricSource(dict):
         """
         target specifies the target value for the given metric
         """
-        ...
+        return pulumi.get(self, "target")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1034,7 +1034,7 @@ class PodsMetricStatus(dict):
         """
         current contains the current value for the given metric
         """
-        ...
+        return pulumi.get(self, "current")
 
     @property
     @pulumi.getter
@@ -1042,7 +1042,7 @@ class PodsMetricStatus(dict):
         """
         metric identifies the target metric by name and selector
         """
-        ...
+        return pulumi.get(self, "metric")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1070,7 +1070,7 @@ class ResourceMetricSource(dict):
         """
         name is the name of the resource in question.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -1078,7 +1078,7 @@ class ResourceMetricSource(dict):
         """
         target specifies the target value for the given metric
         """
-        ...
+        return pulumi.get(self, "target")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -1106,7 +1106,7 @@ class ResourceMetricStatus(dict):
         """
         current contains the current value for the given metric
         """
-        ...
+        return pulumi.get(self, "current")
 
     @property
     @pulumi.getter
@@ -1114,7 +1114,7 @@ class ResourceMetricStatus(dict):
         """
         Name is the name of the resource in question.
         """
-        ...
+        return pulumi.get(self, "name")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -53,11 +53,11 @@ class PriorityClassArgs:
         """
         The value of this priority class. This is the actual priority that pods receive when they have the name of this class in their pod spec.
         """
-        ...
+        return pulumi.get(self, "value")
 
     @value.setter
     def value(self, value: pulumi.Input[float]):
-        ...
+        pulumi.set(self, "value", value)
 
     @property
     @pulumi.getter(name="apiVersion")
@@ -65,11 +65,11 @@ class PriorityClassArgs:
         """
         APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
         """
-        ...
+        return pulumi.get(self, "api_version")
 
     @api_version.setter
     def api_version(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "api_version", value)
 
     @property
     @pulumi.getter
@@ -77,11 +77,11 @@ class PriorityClassArgs:
         """
         description is an arbitrary string that usually provides guidelines on when this priority class should be used.
         """
-        ...
+        return pulumi.get(self, "description")
 
     @description.setter
     def description(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "description", value)
 
     @property
     @pulumi.getter(name="globalDefault")
@@ -89,11 +89,11 @@ class PriorityClassArgs:
         """
         globalDefault specifies whether this PriorityClass should be considered as the default priority for pods that do not have any priority class. Only one PriorityClass can be marked as `globalDefault`. However, if more than one PriorityClasses exists with their `globalDefault` field set to true, the smallest value of such global default PriorityClasses will be used as the default priority.
         """
-        ...
+        return pulumi.get(self, "global_default")
 
     @global_default.setter
     def global_default(self, value: Optional[pulumi.Input[bool]]):
-        ...
+        pulumi.set(self, "global_default", value)
 
     @property
     @pulumi.getter
@@ -101,11 +101,11 @@ class PriorityClassArgs:
         """
         Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         """
-        ...
+        return pulumi.get(self, "kind")
 
     @kind.setter
     def kind(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "kind", value)
 
     @property
     @pulumi.getter
@@ -113,11 +113,11 @@ class PriorityClassArgs:
         """
         Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         """
-        ...
+        return pulumi.get(self, "metadata")
 
     @metadata.setter
     def metadata(self, value: Optional[pulumi.Input['_meta.v1.ObjectMetaArgs']]):
-        ...
+        pulumi.set(self, "metadata", value)
 
     @property
     @pulumi.getter(name="preemptionPolicy")
@@ -125,10 +125,10 @@ class PriorityClassArgs:
         """
         PreemptionPolicy is the Policy for preempting pods with lower priority. One of Never, PreemptLowerPriority. Defaults to PreemptLowerPriority if unset. This field is alpha-level and is only honored by servers that enable the NonPreemptingPriority feature.
         """
-        ...
+        return pulumi.get(self, "preemption_policy")
 
     @preemption_policy.setter
     def preemption_policy(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "preemption_policy", value)
 
 

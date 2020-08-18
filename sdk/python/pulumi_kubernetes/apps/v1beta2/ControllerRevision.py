@@ -91,7 +91,7 @@ class ControllerRevision(pulumi.CustomResource):
         """
         APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
         """
-        ...
+        return pulumi.get(self, "api_version")
 
     @property
     @pulumi.getter
@@ -99,7 +99,7 @@ class ControllerRevision(pulumi.CustomResource):
         """
         Data is the serialized representation of the state.
         """
-        ...
+        return pulumi.get(self, "data")
 
     @property
     @pulumi.getter
@@ -107,7 +107,7 @@ class ControllerRevision(pulumi.CustomResource):
         """
         Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         """
-        ...
+        return pulumi.get(self, "kind")
 
     @property
     @pulumi.getter
@@ -115,7 +115,7 @@ class ControllerRevision(pulumi.CustomResource):
         """
         Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         """
-        ...
+        return pulumi.get(self, "metadata")
 
     @property
     @pulumi.getter
@@ -123,7 +123,7 @@ class ControllerRevision(pulumi.CustomResource):
         """
         Revision indicates the revision of the state represented by Data.
         """
-        ...
+        return pulumi.get(self, "revision")
 
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

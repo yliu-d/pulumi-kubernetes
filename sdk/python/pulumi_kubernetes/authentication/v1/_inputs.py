@@ -43,11 +43,11 @@ class BoundObjectReferenceArgs:
         """
         API version of the referent.
         """
-        ...
+        return pulumi.get(self, "api_version")
 
     @api_version.setter
     def api_version(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "api_version", value)
 
     @property
     @pulumi.getter
@@ -55,11 +55,11 @@ class BoundObjectReferenceArgs:
         """
         Kind of the referent. Valid kinds are 'Pod' and 'Secret'.
         """
-        ...
+        return pulumi.get(self, "kind")
 
     @kind.setter
     def kind(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "kind", value)
 
     @property
     @pulumi.getter
@@ -67,11 +67,11 @@ class BoundObjectReferenceArgs:
         """
         Name of the referent.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "name", value)
 
     @property
     @pulumi.getter
@@ -79,11 +79,11 @@ class BoundObjectReferenceArgs:
         """
         UID of the referent.
         """
-        ...
+        return pulumi.get(self, "uid")
 
     @uid.setter
     def uid(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "uid", value)
 
 
 @pulumi.input_type
@@ -110,11 +110,11 @@ class TokenRequestSpecArgs:
         """
         Audiences are the intendend audiences of the token. A recipient of a token must identitfy themself with an identifier in the list of audiences of the token, and otherwise should reject the token. A token issued for multiple audiences may be used to authenticate against any of the audiences listed but implies a high degree of trust between the target audiences.
         """
-        ...
+        return pulumi.get(self, "audiences")
 
     @audiences.setter
     def audiences(self, value: pulumi.Input[List[pulumi.Input[str]]]):
-        ...
+        pulumi.set(self, "audiences", value)
 
     @property
     @pulumi.getter(name="boundObjectRef")
@@ -122,11 +122,11 @@ class TokenRequestSpecArgs:
         """
         BoundObjectRef is a reference to an object that the token will be bound to. The token will only be valid for as long as the bound object exists. NOTE: The API server's TokenReview endpoint will validate the BoundObjectRef, but other audiences may not. Keep ExpirationSeconds small if you want prompt revocation.
         """
-        ...
+        return pulumi.get(self, "bound_object_ref")
 
     @bound_object_ref.setter
     def bound_object_ref(self, value: Optional[pulumi.Input['BoundObjectReferenceArgs']]):
-        ...
+        pulumi.set(self, "bound_object_ref", value)
 
     @property
     @pulumi.getter(name="expirationSeconds")
@@ -134,11 +134,11 @@ class TokenRequestSpecArgs:
         """
         ExpirationSeconds is the requested duration of validity of the request. The token issuer may return a token with a different validity duration so a client needs to check the 'expiration' field in a response.
         """
-        ...
+        return pulumi.get(self, "expiration_seconds")
 
     @expiration_seconds.setter
     def expiration_seconds(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "expiration_seconds", value)
 
 
 @pulumi.input_type
@@ -162,11 +162,11 @@ class TokenReviewSpecArgs:
         """
         Audiences is a list of the identifiers that the resource server presented with the token identifies as. Audience-aware token authenticators will verify that the token was intended for at least one of the audiences in this list. If no audiences are provided, the audience will default to the audience of the Kubernetes apiserver.
         """
-        ...
+        return pulumi.get(self, "audiences")
 
     @audiences.setter
     def audiences(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
-        ...
+        pulumi.set(self, "audiences", value)
 
     @property
     @pulumi.getter
@@ -174,10 +174,10 @@ class TokenReviewSpecArgs:
         """
         Token is the opaque bearer token.
         """
-        ...
+        return pulumi.get(self, "token")
 
     @token.setter
     def token(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "token", value)
 
 

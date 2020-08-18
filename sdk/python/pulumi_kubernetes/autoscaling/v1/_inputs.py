@@ -39,11 +39,11 @@ class CrossVersionObjectReferenceArgs:
         """
         Kind of the referent; More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds"
         """
-        ...
+        return pulumi.get(self, "kind")
 
     @kind.setter
     def kind(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "kind", value)
 
     @property
     @pulumi.getter
@@ -51,11 +51,11 @@ class CrossVersionObjectReferenceArgs:
         """
         Name of the referent; More info: http://kubernetes.io/docs/user-guide/identifiers#names
         """
-        ...
+        return pulumi.get(self, "name")
 
     @name.setter
     def name(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "name", value)
 
     @property
     @pulumi.getter(name="apiVersion")
@@ -63,11 +63,11 @@ class CrossVersionObjectReferenceArgs:
         """
         API version of the referent
         """
-        ...
+        return pulumi.get(self, "api_version")
 
     @api_version.setter
     def api_version(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "api_version", value)
 
 
 @pulumi.input_type
@@ -103,11 +103,11 @@ class HorizontalPodAutoscalerArgs:
         """
         APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
         """
-        ...
+        return pulumi.get(self, "api_version")
 
     @api_version.setter
     def api_version(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "api_version", value)
 
     @property
     @pulumi.getter
@@ -115,11 +115,11 @@ class HorizontalPodAutoscalerArgs:
         """
         Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         """
-        ...
+        return pulumi.get(self, "kind")
 
     @kind.setter
     def kind(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "kind", value)
 
     @property
     @pulumi.getter
@@ -127,11 +127,11 @@ class HorizontalPodAutoscalerArgs:
         """
         Standard object metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
         """
-        ...
+        return pulumi.get(self, "metadata")
 
     @metadata.setter
     def metadata(self, value: Optional[pulumi.Input['_meta.v1.ObjectMetaArgs']]):
-        ...
+        pulumi.set(self, "metadata", value)
 
     @property
     @pulumi.getter
@@ -139,11 +139,11 @@ class HorizontalPodAutoscalerArgs:
         """
         behaviour of autoscaler. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status.
         """
-        ...
+        return pulumi.get(self, "spec")
 
     @spec.setter
     def spec(self, value: Optional[pulumi.Input['HorizontalPodAutoscalerSpecArgs']]):
-        ...
+        pulumi.set(self, "spec", value)
 
     @property
     @pulumi.getter
@@ -151,11 +151,11 @@ class HorizontalPodAutoscalerArgs:
         """
         current information about the autoscaler.
         """
-        ...
+        return pulumi.get(self, "status")
 
     @status.setter
     def status(self, value: Optional[pulumi.Input['HorizontalPodAutoscalerStatusArgs']]):
-        ...
+        pulumi.set(self, "status", value)
 
 
 @pulumi.input_type
@@ -185,11 +185,11 @@ class HorizontalPodAutoscalerSpecArgs:
         """
         upper limit for the number of pods that can be set by the autoscaler; cannot be smaller than MinReplicas.
         """
-        ...
+        return pulumi.get(self, "max_replicas")
 
     @max_replicas.setter
     def max_replicas(self, value: pulumi.Input[float]):
-        ...
+        pulumi.set(self, "max_replicas", value)
 
     @property
     @pulumi.getter(name="scaleTargetRef")
@@ -197,11 +197,11 @@ class HorizontalPodAutoscalerSpecArgs:
         """
         reference to scaled resource; horizontal pod autoscaler will learn the current resource consumption and will set the desired number of pods by using its Scale subresource.
         """
-        ...
+        return pulumi.get(self, "scale_target_ref")
 
     @scale_target_ref.setter
     def scale_target_ref(self, value: pulumi.Input['CrossVersionObjectReferenceArgs']):
-        ...
+        pulumi.set(self, "scale_target_ref", value)
 
     @property
     @pulumi.getter(name="minReplicas")
@@ -209,11 +209,11 @@ class HorizontalPodAutoscalerSpecArgs:
         """
         minReplicas is the lower limit for the number of replicas to which the autoscaler can scale down.  It defaults to 1 pod.  minReplicas is allowed to be 0 if the alpha feature gate HPAScaleToZero is enabled and at least one Object or External metric is configured.  Scaling is active as long as at least one metric value is available.
         """
-        ...
+        return pulumi.get(self, "min_replicas")
 
     @min_replicas.setter
     def min_replicas(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "min_replicas", value)
 
     @property
     @pulumi.getter(name="targetCPUUtilizationPercentage")
@@ -221,11 +221,11 @@ class HorizontalPodAutoscalerSpecArgs:
         """
         target average CPU utilization (represented as a percentage of requested CPU) over all the pods; if not specified the default autoscaling policy will be used.
         """
-        ...
+        return pulumi.get(self, "target_cpu_utilization_percentage")
 
     @target_cpu_utilization_percentage.setter
     def target_cpu_utilization_percentage(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "target_cpu_utilization_percentage", value)
 
 
 @pulumi.input_type
@@ -259,11 +259,11 @@ class HorizontalPodAutoscalerStatusArgs:
         """
         current number of replicas of pods managed by this autoscaler.
         """
-        ...
+        return pulumi.get(self, "current_replicas")
 
     @current_replicas.setter
     def current_replicas(self, value: pulumi.Input[float]):
-        ...
+        pulumi.set(self, "current_replicas", value)
 
     @property
     @pulumi.getter(name="desiredReplicas")
@@ -271,11 +271,11 @@ class HorizontalPodAutoscalerStatusArgs:
         """
         desired number of replicas of pods managed by this autoscaler.
         """
-        ...
+        return pulumi.get(self, "desired_replicas")
 
     @desired_replicas.setter
     def desired_replicas(self, value: pulumi.Input[float]):
-        ...
+        pulumi.set(self, "desired_replicas", value)
 
     @property
     @pulumi.getter(name="currentCPUUtilizationPercentage")
@@ -283,11 +283,11 @@ class HorizontalPodAutoscalerStatusArgs:
         """
         current average CPU utilization over all pods, represented as a percentage of requested CPU, e.g. 70 means that an average pod is using now 70% of its requested CPU.
         """
-        ...
+        return pulumi.get(self, "current_cpu_utilization_percentage")
 
     @current_cpu_utilization_percentage.setter
     def current_cpu_utilization_percentage(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "current_cpu_utilization_percentage", value)
 
     @property
     @pulumi.getter(name="lastScaleTime")
@@ -295,11 +295,11 @@ class HorizontalPodAutoscalerStatusArgs:
         """
         last time the HorizontalPodAutoscaler scaled the number of pods; used by the autoscaler to control how often the number of pods is changed.
         """
-        ...
+        return pulumi.get(self, "last_scale_time")
 
     @last_scale_time.setter
     def last_scale_time(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "last_scale_time", value)
 
     @property
     @pulumi.getter(name="observedGeneration")
@@ -307,10 +307,10 @@ class HorizontalPodAutoscalerStatusArgs:
         """
         most recent generation observed by this autoscaler.
         """
-        ...
+        return pulumi.get(self, "observed_generation")
 
     @observed_generation.setter
     def observed_generation(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "observed_generation", value)
 
 

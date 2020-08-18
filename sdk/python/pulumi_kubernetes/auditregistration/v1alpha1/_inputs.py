@@ -47,11 +47,11 @@ class AuditSinkArgs:
         """
         APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
         """
-        ...
+        return pulumi.get(self, "api_version")
 
     @api_version.setter
     def api_version(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "api_version", value)
 
     @property
     @pulumi.getter
@@ -59,20 +59,20 @@ class AuditSinkArgs:
         """
         Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         """
-        ...
+        return pulumi.get(self, "kind")
 
     @kind.setter
     def kind(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "kind", value)
 
     @property
     @pulumi.getter
     def metadata(self) -> Optional[pulumi.Input['_meta.v1.ObjectMetaArgs']]:
-        ...
+        return pulumi.get(self, "metadata")
 
     @metadata.setter
     def metadata(self, value: Optional[pulumi.Input['_meta.v1.ObjectMetaArgs']]):
-        ...
+        pulumi.set(self, "metadata", value)
 
     @property
     @pulumi.getter
@@ -80,11 +80,11 @@ class AuditSinkArgs:
         """
         Spec defines the audit configuration spec
         """
-        ...
+        return pulumi.get(self, "spec")
 
     @spec.setter
     def spec(self, value: Optional[pulumi.Input['AuditSinkSpecArgs']]):
-        ...
+        pulumi.set(self, "spec", value)
 
 
 @pulumi.input_type
@@ -106,11 +106,11 @@ class AuditSinkSpecArgs:
         """
         Policy defines the policy for selecting which events should be sent to the webhook required
         """
-        ...
+        return pulumi.get(self, "policy")
 
     @policy.setter
     def policy(self, value: pulumi.Input['PolicyArgs']):
-        ...
+        pulumi.set(self, "policy", value)
 
     @property
     @pulumi.getter
@@ -118,11 +118,11 @@ class AuditSinkSpecArgs:
         """
         Webhook to send events required
         """
-        ...
+        return pulumi.get(self, "webhook")
 
     @webhook.setter
     def webhook(self, value: pulumi.Input['WebhookArgs']):
-        ...
+        pulumi.set(self, "webhook", value)
 
 
 @pulumi.input_type
@@ -145,11 +145,11 @@ class PolicyArgs:
         """
         The Level that all requests are recorded at. available options: None, Metadata, Request, RequestResponse required
         """
-        ...
+        return pulumi.get(self, "level")
 
     @level.setter
     def level(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "level", value)
 
     @property
     @pulumi.getter
@@ -157,11 +157,11 @@ class PolicyArgs:
         """
         Stages is a list of stages for which events are created.
         """
-        ...
+        return pulumi.get(self, "stages")
 
     @stages.setter
     def stages(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
-        ...
+        pulumi.set(self, "stages", value)
 
 
 @pulumi.input_type
@@ -191,11 +191,11 @@ class ServiceReferenceArgs:
         """
         `name` is the name of the service. Required
         """
-        ...
+        return pulumi.get(self, "name")
 
     @name.setter
     def name(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "name", value)
 
     @property
     @pulumi.getter
@@ -203,11 +203,11 @@ class ServiceReferenceArgs:
         """
         `namespace` is the namespace of the service. Required
         """
-        ...
+        return pulumi.get(self, "namespace")
 
     @namespace.setter
     def namespace(self, value: pulumi.Input[str]):
-        ...
+        pulumi.set(self, "namespace", value)
 
     @property
     @pulumi.getter
@@ -215,11 +215,11 @@ class ServiceReferenceArgs:
         """
         `path` is an optional URL path which will be sent in any request to this service.
         """
-        ...
+        return pulumi.get(self, "path")
 
     @path.setter
     def path(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "path", value)
 
     @property
     @pulumi.getter
@@ -227,11 +227,11 @@ class ServiceReferenceArgs:
         """
         If specified, the port on the service that hosting webhook. Default to 443 for backward compatibility. `port` should be a valid port number (1-65535, inclusive).
         """
-        ...
+        return pulumi.get(self, "port")
 
     @port.setter
     def port(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "port", value)
 
 
 @pulumi.input_type
@@ -254,11 +254,11 @@ class WebhookArgs:
         """
         ClientConfig holds the connection parameters for the webhook required
         """
-        ...
+        return pulumi.get(self, "client_config")
 
     @client_config.setter
     def client_config(self, value: pulumi.Input['WebhookClientConfigArgs']):
-        ...
+        pulumi.set(self, "client_config", value)
 
     @property
     @pulumi.getter
@@ -266,11 +266,11 @@ class WebhookArgs:
         """
         Throttle holds the options for throttling the webhook
         """
-        ...
+        return pulumi.get(self, "throttle")
 
     @throttle.setter
     def throttle(self, value: Optional[pulumi.Input['WebhookThrottleConfigArgs']]):
-        ...
+        pulumi.set(self, "throttle", value)
 
 
 @pulumi.input_type
@@ -310,11 +310,11 @@ class WebhookClientConfigArgs:
         """
         `caBundle` is a PEM encoded CA bundle which will be used to validate the webhook's server certificate. If unspecified, system trust roots on the apiserver are used.
         """
-        ...
+        return pulumi.get(self, "ca_bundle")
 
     @ca_bundle.setter
     def ca_bundle(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "ca_bundle", value)
 
     @property
     @pulumi.getter
@@ -324,11 +324,11 @@ class WebhookClientConfigArgs:
 
         If the webhook is running within the cluster, then you should use `service`.
         """
-        ...
+        return pulumi.get(self, "service")
 
     @service.setter
     def service(self, value: Optional[pulumi.Input['ServiceReferenceArgs']]):
-        ...
+        pulumi.set(self, "service", value)
 
     @property
     @pulumi.getter
@@ -346,11 +346,11 @@ class WebhookClientConfigArgs:
 
         Attempting to use a user or basic auth e.g. "user:password@" is not allowed. Fragments ("#...") and query parameters ("?...") are not allowed, either.
         """
-        ...
+        return pulumi.get(self, "url")
 
     @url.setter
     def url(self, value: Optional[pulumi.Input[str]]):
-        ...
+        pulumi.set(self, "url", value)
 
 
 @pulumi.input_type
@@ -374,11 +374,11 @@ class WebhookThrottleConfigArgs:
         """
         ThrottleBurst is the maximum number of events sent at the same moment default 15 QPS
         """
-        ...
+        return pulumi.get(self, "burst")
 
     @burst.setter
     def burst(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "burst", value)
 
     @property
     @pulumi.getter
@@ -386,10 +386,10 @@ class WebhookThrottleConfigArgs:
         """
         ThrottleQPS maximum number of batches per second default 10 QPS
         """
-        ...
+        return pulumi.get(self, "qps")
 
     @qps.setter
     def qps(self, value: Optional[pulumi.Input[float]]):
-        ...
+        pulumi.set(self, "qps", value)
 
 

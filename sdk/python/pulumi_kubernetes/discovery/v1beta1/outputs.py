@@ -59,7 +59,7 @@ class Endpoint(dict):
         """
         addresses of this endpoint. The contents of this field are interpreted according to the corresponding EndpointSlice addressType field. Consumers must handle different types of addresses in the context of their own capabilities. This must contain at least one address but no more than 100.
         """
-        ...
+        return pulumi.get(self, "addresses")
 
     @property
     @pulumi.getter
@@ -67,7 +67,7 @@ class Endpoint(dict):
         """
         conditions contains information about the current status of the endpoint.
         """
-        ...
+        return pulumi.get(self, "conditions")
 
     @property
     @pulumi.getter
@@ -75,7 +75,7 @@ class Endpoint(dict):
         """
         hostname of this endpoint. This field may be used by consumers of endpoints to distinguish endpoints from each other (e.g. in DNS names). Multiple endpoints which use the same hostname should be considered fungible (e.g. multiple A values in DNS). Must pass DNS Label (RFC 1123) validation.
         """
-        ...
+        return pulumi.get(self, "hostname")
 
     @property
     @pulumi.getter(name="targetRef")
@@ -83,7 +83,7 @@ class Endpoint(dict):
         """
         targetRef is a reference to a Kubernetes object that represents this endpoint.
         """
-        ...
+        return pulumi.get(self, "target_ref")
 
     @property
     @pulumi.getter
@@ -97,7 +97,7 @@ class Endpoint(dict):
         * topology.kubernetes.io/region: the value indicates the region where the
           endpoint is located. This should match the corresponding node label.
         """
-        ...
+        return pulumi.get(self, "topology")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -123,7 +123,7 @@ class EndpointConditions(dict):
         """
         ready indicates that this endpoint is prepared to receive traffic, according to whatever system is managing the endpoint. A nil value indicates an unknown state. In most cases consumers should interpret this unknown state as ready.
         """
-        ...
+        return pulumi.get(self, "ready")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -161,7 +161,7 @@ class EndpointPort(dict):
         """
         The application protocol for this port. This field follows standard Kubernetes label syntax. Un-prefixed names are reserved for IANA standard service names (as per RFC-6335 and http://www.iana.org/assignments/service-names). Non-standard protocols should use prefixed names such as mycompany.com/my-custom-protocol.
         """
-        ...
+        return pulumi.get(self, "app_protocol")
 
     @property
     @pulumi.getter
@@ -169,7 +169,7 @@ class EndpointPort(dict):
         """
         The name of this port. All ports in an EndpointSlice must have a unique name. If the EndpointSlice is dervied from a Kubernetes service, this corresponds to the Service.ports[].name. Name must either be an empty string or pass DNS_LABEL validation: * must be no more than 63 characters long. * must consist of lower case alphanumeric characters or '-'. * must start and end with an alphanumeric character. Default is empty string.
         """
-        ...
+        return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
@@ -177,7 +177,7 @@ class EndpointPort(dict):
         """
         The port number of the endpoint. If this is not specified, ports are not restricted and must be interpreted in the context of the specific consumer.
         """
-        ...
+        return pulumi.get(self, "port")
 
     @property
     @pulumi.getter
@@ -185,7 +185,7 @@ class EndpointPort(dict):
         """
         The IP protocol for this port. Must be UDP, TCP, or SCTP. Default is TCP.
         """
-        ...
+        return pulumi.get(self, "protocol")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
@@ -229,7 +229,7 @@ class EndpointSlice(dict):
         """
         addressType specifies the type of address carried by this EndpointSlice. All addresses in this slice must be the same type. This field is immutable after creation. The following address types are currently supported: * IPv4: Represents an IPv4 Address. * IPv6: Represents an IPv6 Address. * FQDN: Represents a Fully Qualified Domain Name.
         """
-        ...
+        return pulumi.get(self, "address_type")
 
     @property
     @pulumi.getter
@@ -237,7 +237,7 @@ class EndpointSlice(dict):
         """
         endpoints is a list of unique endpoints in this slice. Each slice may include a maximum of 1000 endpoints.
         """
-        ...
+        return pulumi.get(self, "endpoints")
 
     @property
     @pulumi.getter(name="apiVersion")
@@ -245,7 +245,7 @@ class EndpointSlice(dict):
         """
         APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
         """
-        ...
+        return pulumi.get(self, "api_version")
 
     @property
     @pulumi.getter
@@ -253,7 +253,7 @@ class EndpointSlice(dict):
         """
         Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
         """
-        ...
+        return pulumi.get(self, "kind")
 
     @property
     @pulumi.getter
@@ -261,7 +261,7 @@ class EndpointSlice(dict):
         """
         Standard object's metadata.
         """
-        ...
+        return pulumi.get(self, "metadata")
 
     @property
     @pulumi.getter
@@ -269,7 +269,7 @@ class EndpointSlice(dict):
         """
         ports specifies the list of network ports exposed by each endpoint in this slice. Each port must have a unique name. When ports is empty, it indicates that there are no defined ports. When a port is defined with a nil port value, it indicates "all ports". Each slice may include a maximum of 100 ports.
         """
-        ...
+        return pulumi.get(self, "ports")
 
     def _translate_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
